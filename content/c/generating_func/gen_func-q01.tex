@@ -1,0 +1,11 @@
+\qitem{%
+    John needs to pay 2010 dollars for his dinner. He has an unlimited supply of 2, 5, and 10 dollar notes. In how many ways can he pay?
+    }{%
+    $\frac{1}{(1-x^2)(1-x^5)(1-x^{10})}=\frac{(1+x^5)(1+x^2+x^4+x^6+x^8)}{(1-x^{10})^3} =(1+x^5)(1+x^2+x^4+x^6+x^8)\sum_{n=0}^\infty \binom{n+2}{2} x^{10n}$
+
+$10n=2010\Rightarrow n=201$
+
+The required number is $\binom{201+2}{2}=\binom{203}{2}$
+    }{%
+    https://artofproblemsolving.com/community/c4t29821f4h1544202_generating_functions
+}

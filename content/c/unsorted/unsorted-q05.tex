@@ -1,0 +1,7 @@
+\qitem{%
+    A bug starts at the origin in the $x,y$ plane and takes 6 steps up, down, left or right. How many ways are there to get back to the origin?
+    }{%
+    We realize that for each step down he takes, he must take one step up, and vice versa. Similarly, he must take one left step for each right step and one right step for each left step. In other words, up/down steps come in a pair and left/right steps come in a pair. Therefore, we want permutations of UDUDUD, UDUDLR, UDLRLR, and LRLRLR. By symmetry, we only have to consider the first two cases, which give $20$ and $180$ possibilities each. Therefore, there are $2\cdot(20+180)=\boxed{400}$ ways to get back to the origin.
+    }{%
+    https://artofproblemsolving.com/community/c3t309f3h1424263_combinatorics_marathon
+}

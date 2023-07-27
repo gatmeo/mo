@@ -1,0 +1,30 @@
+\qitem{%
+    Let $ABC$ be a triangle with$\angle B > \angle C$. The angle bisector of $\angle A$ intersects $BC$ at $D$. The perpendicular from $B$ to $AD$ intersects the circumcircle of $\triangle ABD$ again at $E$. Prove that the circumcenter of $\triangle ABC$ lies on the line $AE$.
+    }{%
+    \myrightasy[2.5in]{
+        Let the circumcenter of $\triangle ABC$ be $O$. We have
+        $$\angle OAB=\tfrac12(180^\circ-\angle AOB)=\tfrac12(180^\circ-2\angle ACB)=90^\circ-\angle ACB$$Also, we have:
+        $$\angle EBA=90^\circ-\angle BAD =90^\circ-\tfrac12\angle BAC$$and
+        $$\angle AEB=\angle ADB=180^\circ-\angle BAD-\angle ABC=180^\circ-\tfrac12\angle BAC-\angle ABC$$Therefore,
+        \begin{align*} \angle EAB&=180^\circ-\angle EBA-\angle AEB\\ &=180^\circ-(90^\circ-\tfrac12\angle BAC)-(180^\circ-\tfrac12\angle BAC-\angle ABC)\\ &=\angle BAC+\angle ABC-90^\circ\\ &=(180^\circ-\angle ACB)-90^\circ\\ &=90^\circ-\angle ACB\\ &=\angle OAB \end{align*}Therefore, $A,E,O$ all lie on the same line.
+        }{
+        import MOgeom;
+        size(2inch);
+        pair A=(0,2),B=(-1,0),C=(2,0);
+        pair D = intersectionpoint(B--C,A--(A+(bisectorpoint(B,A,C)-A)*3));
+        pair E = intersectionpoint(circumcircle(A,B,D),foot(B,A,D)--(B+(foot(B,A,D)-B)*3));
+        draw(A--B--C--cycle);
+        draw(circumcircle(A,B,D));
+        draw(A--D);draw(B--E--A);
+        dot(circumcenter(A,B,C));
+        label("$O$",circumcenter(A,B,C),dir(50));
+        label("$E$",E,dir(-20));
+        label("$A$",A,dir(75));
+        label("$D$",D,dir(-60));
+        label("$B$",B,SW);
+        label("$C$",C,SE);
+    }
+    }{%
+    https://artofproblemsolving.com/community/c4t41805f4h1847981_position_of_circumcenter
+}
+

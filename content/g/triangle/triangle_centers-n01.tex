@@ -1,0 +1,328 @@
+\mysection{Triangle Centres}
+
+
+\begin{mysubsection}{Centroid (G)}
+    \begin{wrapfigure}{r}{2in}
+        \asycode{
+            import MOgeom;
+            size(2inch);
+            pair A=origin, B=(6,0), C=(2,5), I=ctd(A,B,C);
+            pair[] M=mps(A,B,C);
+            draw(cycv(A,B,C));
+            drawmed(A,B,C);
+            labelpt(tp(A,B,C), strabc, td(W,S,N));
+            add(pathticks(A--M[2],2,0.5,0,25,red));
+            labelapd(M, "M_", strabc, td(E,W,S));
+            label("$G$",I,SSW);
+        }
+    \end{wrapfigure}
+    \nbf{Construction: }Intersection of medians
+
+    \nbf{Position: }Always lies within $\triangle ABC$
+\end{mysubsection}
+
+\begin{example*}[exp:]{Properties}
+    \qitem{%
+        The area of the 6 triangles are the same
+        }{%
+        $GAM_C=GBM_C$, $CBG=ABG$, $CGM_A=BGM_A$.
+        \asycode{
+            import MOgeom;
+            size(2inch);
+            pair A=origin, B=(6,0), C=(2,5), I=ctd(A,B,C);
+            pair[] M=mps(A,B,C);
+            draw(cycv(A,B,C));
+            drawmed(A,B,C);
+            labelpt(tp(A,B,C), strabc, td(W,S,N));
+            add(pathticks(A--M[2],2,0.5,0,25,red));
+            labelapd(M, "M_", strabc, td(E,W,S));
+            label("$G$",I,SSW);
+        }
+        }{%
+        <++>
+    }
+
+    \qitem{%
+        $AG:GM_A = BG:GM_B = CG:GM_C = 2:1$
+        }{%
+        $AG:GM_A=\frac{[CGA]}{[CGM_A]}$.
+        }{%
+        <++>
+    }
+\end{example*}
+
+\mynewpage
+
+\begin{mysubsection}{Incentre (I)}
+    \begin{wrapfigure}{r}{2in}
+        \asycode{
+            import MOgeom;
+            size(2inch);
+            pair A=origin, B=(6,0), C=(2,5), I=incenter(A,B,C);
+            path ic=incircle(A,B,C);
+            pair[] Iu=itps(A,B,C);
+            draw(cycv(A,B,C));
+            setpt(tp(A,B,C),I);
+            setpt(Iu,I);
+            draw(ic);
+            labelpt(tp(A,B,C), strabc, td(W,S,N));
+            labelapd(Iu, "I_", strabc, td(E,W,S));
+            label("$I$",I,SSW);
+        }
+    \end{wrapfigure}
+
+    \nbf{Construction: }Intersection of angle bisectors
+
+    \nbf{Position: }Always lies within $\triangle ABC$
+\end{mysubsection}
+
+\begin{example*}[exp:]{Properties}
+    \qitem{%
+        Equal distance to \textbf{sides} of $\triangle ABC$
+        }{%
+        $IBI_A\equiv IBI_C$.
+        }{%
+        <++>
+    }
+
+    \qitem{%
+        $|AB'|=|AC'|=s-a, |BA'|=|BC'|=s-b, |CA'|=|CB'|=s-c$.
+        }{%
+        <++>
+        }{%
+        <++>
+    }
+
+    \qitem{%
+        \nbf{In-radius: }$A=\frac{1}{2} pr = sr$
+        }{%
+        \asycode{
+            import MOgeom;
+            size(2inch);
+            pair A=origin, B=(6,0), C=(0,5), I=incenter(A,B,C);
+            path ic=incircle(A,B,C);
+            pair[] Iu=itps(A,B,C);
+            draw(cycv(A,B,C));
+            setpt(tp(A,B,C),I);
+            setpt(Iu,I);
+            draw(ic);
+            labelpt(tp(A,B,C), strabc, td(W,S,N));
+            labelapd(Iu, "I_", strabc, td(E,W,S));
+            label("$I$",I,SSW);
+        }
+        }{%
+        <++>
+    }
+
+    \qitem{%
+        For right angled-triangle, in-radius equals $\frac{1}{2} (a+b-c)$.
+        }{%
+        <++>
+        }{%
+        <++>
+    }
+
+    \qitem{%
+        Let the internal angle bisector $A$ intersect $BC$ at $T$. Prove that
+        \begin{alignat*}{1}
+            \frac{\left|AB\right|}{\left|AC\right|}=\frac{\left|BT\right|}{\left|TC\right|}.
+        \end{alignat*}
+        This is what we call angle bisector theorem
+        }{%
+        \begin{figure}[H]
+            \asycode{
+                import math;
+                include graph;
+                import olympiad;
+                import geometry;
+                import CSE5;
+                size(2inch);
+                pair A,B,C,D,X,I;
+                B=origin; C=(30,0); A=(10,20); I=incenter(A,B,C);
+                D=(12,0);
+                draw(A--B--C--A);
+                label("$A$",A,N);
+                label("$B$",B,S);
+                label("$C$",C,S);
+                label("$D$",D,S);
+                MA(0,"",10,black,B,A,D,5,black);
+                MA(0,"",10,black,D,A,C,5,black);
+                draw(A--D);
+            }
+        \end{figure}
+        $\frac{AB}{BD}=\frac{\sin\phi }{\sin\theta }$,
+        $\frac{AC}{CD}=\frac{\sin\phi }{\sin\theta }$
+        }{%
+        <++>
+    }
+\end{example*}
+\mynewpage
+
+\begin{mysubsection}{CircumCentre (O)}
+    \begin{wrapfigure}{r}{2in}
+        \asycode{
+            import MOgeom;
+            size(2inch);
+            pair A=origin, B=(6,0), C=(2,5), O1=circumcenter(A,B,C);
+            path W1=ccc(A,B,C);
+            draw(W1);
+            pair M[]=mps(A,B,C);
+            draw(cycv(A,B,C));
+            setpt(tp(A,B,C),O1);
+            setpt(M,O1);
+            labelpt(tp(A,B,C), strabc, td(W,S,N));
+            labelapd(M, "M_", strabc, td(E,W,S));
+            label("$O$",O1,2SSW);
+        }
+    \end{wrapfigure}
+
+    \nbf{Construction: }Intersection of perpendicular bisectors of sides $AB, AC\textnormal{ and }BC$
+
+    \nbf{Position: }
+
+    Lies within $\triangle ABC$ if $\triangle ABC$ is a acute triangle
+
+    Lies on mid-point of hypotenuse $BC$ if $\triangle ABC$ is a right-angled triangle
+
+    Lies outisde $\triangle ABC$ if $\triangle ABC$ is obtuse triangle
+\end{mysubsection}
+
+
+\begin{example*}[exp:]{Properties}
+    \qitem{%
+        Equal distance to \textbf{vertices} ABC and form isosceles triangles with centre $O$.
+        }{%
+        <++>
+        }{%
+        <++>
+    }
+
+    \qitem{%
+        \nbf{Circum-radius: }$\dfrac{a}{\sin A}=\dfrac{b}{\sin B}=\dfrac{c}{\sin C} = 2R$.
+        }{%
+        \noindent\begin{minipage}{.5\linewidth}
+            \begin{figure}[H]
+                \asycode{
+                    import MOgeom;
+                    size(1.5inch);
+                    pair A=origin, B=(6,0), C=(0,5), O1=circumcenter(A,B,C);
+                    path W1=ccc(A,B,C);
+                    draw(W1);
+                    dot(O1);
+                    draw(cycv(A,B,C));
+                    labelpt(tp(A,B,C), strabc, td(W,S,N));
+                    label("$O$",O1,2SSW);
+                }
+            \end{figure}
+        \end{minipage}
+        \begin{minipage}{.45\linewidth}
+            \begin{figure}[H]
+                \asycode{
+                    import MOgeom;
+                    size(1.5inch);
+                    pair A=origin, B=(7,2.5), C=(0,5), O1=circumcenter(A,B,C);
+                    path W1=ccc(A,B,C);
+                    draw(W1);
+                    dot(O1);
+                    draw(cycv(A,B,C));
+                    labelpt(tp(A,B,C), strabc, td(W,S,N));
+                    label("$O$",O1,2SSW);
+                }
+            \end{figure}
+        \end{minipage}
+        }{%
+        <++>
+    }
+
+    \qitem{%
+        Area of triangle $ABC=\dfrac{abc}{4R}$.
+        }{%
+        \begin{alignat*}{1}
+            [ABC]&= \frac{1}{2}ab \sin C\\
+                 &= \frac{1}{2} ab\frac{c}{2R}\\
+                 &= \frac{abc}{4R}
+        \end{alignat*}
+        }{%
+        <++>
+    }
+\end{example*}
+
+\mynewpage
+
+
+\begin{mysubsection}{Orthocentre (H)}
+    \begin{wrapfigure}{r}{2in}
+        \asycode{
+            import MOgeom;
+            size(2inch);
+            pair A=origin, B=(6,0), C=(2,5), H=oct(A,B,C);
+            pair[] Hu=foots(A,B,C);
+            draw(cycv(A,B,C));
+            drawalt(A,B,C);
+            labelpt(tp(A,B,C), strabc, td(W,E,N));
+            labelapd(Hu, "H_", strabc, td(E,W,S));
+            label("$H$",H,2SSE);
+        }
+    \end{wrapfigure}
+
+    \nbf{Construction: }Intersection of altitudes
+
+    \nbf{Position: }
+
+    Lies within $\triangle ABC$ if $\triangle ABC$ is a acute triangle
+
+    Lies on pint $A$ if $\triangle ABC$ is a right-angled triangle (with $\angle A = 90^\circ$)
+
+    Lies outisde $\triangle ABC$ if $\triangle ABC$ is obtuse triangle
+\end{mysubsection}
+
+\begin{example*}[exp:]{Properties}
+    \qitem{%
+        List the similar triangles.
+        }{%
+        Triangles $AH_BH_C, H_ABH_C, H_AH_BC$ are similar to $ABC$.
+        }{%
+        <++>
+    }
+
+    \qitem{%
+        Let the midpoint of $BC, CA, AB$ be $X,Y,Z$ respectively.
+        \begin{alignat*}{1}
+            \frac{AH}{OX}=\frac{BH}{OY}=\frac{CH}{OZ}=2.
+        \end{alignat*}
+        }{%
+        \begin{figure}[H]
+            \asycode{
+                import MOgeom;
+                size(2inch);
+                pair A=origin, B=(6,0), C=(2,5), H=oct(A,B,C), G=ctd(A,B,C);
+                pair O=cct(A,B,C);
+                pair[] Hu=foots(A,B,C);
+                pair[] M=mps(A,B,C);
+                draw(cycv(A,B,C));
+                labelpt(tp(A,B,C), strabc, td(W,E,N));
+                labelapd(Hu, "H_", strabc, td(E,W,S),true);
+                labelapd(M, "M_", strabc, td(E,W,S),true);
+                label("$H$",H,S);
+                label("$G$",G,S);
+                label("$O$",O,S);
+                dot(H);
+                dot(G);
+                dot(O);
+            }
+        \end{figure}
+        Circumcentre of $ABC$ same as orthocentre of $M_AM_BM_C$.
+        }{%
+        <++>
+    }
+
+    \qitem{%
+        From the section on centroids, conclude that $H, G, O$ are collinear. This line is called the Euler Line of triangle $ABC$.
+        }{%
+        <++>
+        }{%
+        <++>
+    }
+\end{example*}
+\mynewpage
+

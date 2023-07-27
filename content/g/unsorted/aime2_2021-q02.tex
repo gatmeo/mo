@@ -1,0 +1,33 @@
+\qitem{%
+    \myrightasy[2.2in]{
+        Equilateral triangle $ABC$ has side length $840$. Point $D$ lies on the same side of line $BC$ as $A$ such that $\overline{BD} \perp \overline{BC}$. The line $\ell$ through $D$ parallel to line $BC$ intersects sides $\overline{AB}$ and $\overline{AC}$ at points $E$ and $F$, respectively. Point $G$ lies on $\ell$ such that $F$ is between $E$ and $G$, $\triangle AFG$ is isosceles, and the ratio of the area of $\triangle AFG$ to the area of $\triangle BED$ is $8:9$. Find $AF$. 
+        }{
+        import MOgeom;
+        pair A,B,C,D,E,F,G;
+        B=origin;
+        A=5*dir(60);
+        C=(5,0);
+        E=0.6*A+0.4*B;
+        F=0.6*A+0.4*C;
+        G=rotate(240,F)*A;
+        D=extension(E,F,B,dir(90));
+        draw(D--G--A,grey);
+        draw(B--0.5*A+rotate(60,B)*A*0.5,grey);
+        draw(A--B--C--cycle,linewidth(1.5));
+        dot(A^^B^^C^^D^^E^^F^^G);
+        label("$A$",A,dir(90));
+        label("$B$",B,dir(225));
+        label("$C$",C,dir(-45));
+        label("$D$",D,dir(180));
+        label("$E$",E,dir(-45));
+        label("$F$",F,dir(225));
+        label("$G$",G,dir(0));
+        label("$\ell$",midpoint(E--F),dir(90));
+    }
+    }{%
+    Since $\triangle AFG$ is isosceles, $AF = FG$, and since $\triangle AEF$ is equilateral, $AF = EF$. Thus, $EF = FG$, and since these triangles share an altitude, they must have the same area.
+
+    Drop perpendiculars from $E$ and $F$ to line $BC$; call the meeting points $P$ and $Q$, respectively. $\triangle BEP$ is clearly congruent to both $\triangle BED$ and $\triangle FQC$, and thus each of these new triangles has the same area as $\triangle BED$. But we can "slide" $\triangle BEP$ over to make it adjacent to $\triangle FQC$, thus creating an equilateral triangle whose area has a ratio of $18:8$ when compared to $\triangle AEF$ (based on our conclusion from the first paragraph). Since these triangles are both equilateral, they are similar, and since the area ratio $18:8$ reduces to $9:4$, the ratio of their sides must be $3:2$. So, because $FC$ and $AF$ represent sides of these triangles, and they add to $840$, $AF$ must equal two-fifths of $840$, or $\boxed{336}$. 
+    }{%
+    https://artofproblemsolving.com/wiki/index.php/2021_AIME_II_Problems/Problem_2   
+}

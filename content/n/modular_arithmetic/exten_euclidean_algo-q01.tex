@@ -1,0 +1,25 @@
+\qitem{%
+    Find polynomials $u(x),v(x)$ such that
+    \begin{equation*}
+        (2x^2-1)u(x)+(3x^3-1)v(x)=1.
+    \end{equation*}
+    }{%
+    \begin{alignat*}{1}
+        3x^3-1&= (2x^2-1)(\frac{3}{2}x)+(\frac{3}{2}x-1)\\
+        2x^2-1&= (\frac{3}{2}x-1)(\frac{4}{3}x)+(\frac{4}{3}x-1)\\
+        2x^2-1&= (\frac{3}{2}x-1)(\frac{4}{3}x+\frac{8}{9})-\frac{1}{9}
+    \end{alignat*}
+    
+    \begin{alignat*}{1}
+        -\frac{1}{9}&= 2x^2-1- (\frac{3}{2}x-1)(\frac{4}{3}x+\frac{8}{9})\\
+                    &= 2x^2-1- ((3x^3-1)-(2x^2-1)(\frac{3}{2}x))(\frac{4}{3}x+\frac{8}{9})\\
+                    &= (2x^2-1)\left[1-\left(\frac{4}{3}x+\frac{8}{9}\right)\left(-\frac{3}{2}x\right)\right]+(3x^3-1)\left[-\left(\frac{4}{3}x+\frac{8}{9}\right)\right]\\
+                    &= (2x^2-1)\left(2x^2+\frac{4}{3}x+1\right)+(3x^3-1)\left[-\left(\frac{4}{3}x+\frac{8}{9}\right)\right].
+    \end{alignat*}
+    And hence 
+    \begin{alignat*}{1}
+        1&= (2x^2-1)(-18x^2-12x-9)+(3x^3-1)(12x+8).
+    \end{alignat*}
+    }{%
+    <++>
+}

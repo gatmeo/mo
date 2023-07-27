@@ -1,0 +1,16 @@
+\qitem{%
+    Let $a$ be an integer such that
+    \begin{alignat*}{1}
+        \dfrac{1}{1}+\dfrac{1}{2}+\dfrac{1}{3}+\cdots+\dfrac{1}{23}=\dfrac{a}{23!}.
+    \end{alignat*}
+    Find the remainder when $a$ is divided by $13$.
+    }{%
+    Multiplying both sides of the equation by $23!,$ we obtain 
+    \[ \frac{23!}1+\frac{23!}2+\frac{23!}3+\cdots+\frac{23!}{13}+\cdots+\frac{23!}{22}+\frac{23!}{23}=a. \]
+    Note that all the terms on the LHS except $\frac{23!}{13}$ are divisible by $13,$ so the amswer os simply the modulo $13$ of $\frac{23!}{13}.$
+
+    Note that $\frac{23!}{13} \equiv 12!10!\equiv \frac12 \equiv 7 \pmod{13},$ so $a\equiv \boxed{7}\pmod{13}.$
+    }{%
+    <++>
+}
+

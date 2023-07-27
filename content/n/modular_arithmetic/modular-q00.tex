@@ -1,0 +1,10 @@
+\qitem{%
+Consider a circle whose circumference has points labeled $1, 2, 3,\dots ,100$. Any chord between two of these points is drawn: the chord is labeled with the product of the numbers its endpoints are labeled with. Find the remainder of the sum of all the numbers that label the chords when divided by 102.
+    }{%
+    The requested number $\pmod{102}$ is
+$$\frac{1(1+2+\cdots +100)+2(1+2+\cdots +100)+\cdots +100(1+2+\cdots 100)-(1^2+2^2+\cdots +100^2)}{2}$$$$=\frac{(1+2+\cdots +100)^2-\frac{100\cdot 101\cdot 201}{6}}{2}$$$$=\frac{(50\cdot 101)^2}{2}-(25\cdot 101\cdot 67)\equiv 25\cdot 50\cdot (-1)^2-(25\cdot 67\cdot (-1))\pmod{102}$$$$\equiv 25(50+67)\equiv 25\cdot 117\equiv 25\cdot 15\equiv\boxed{69}\pmod{102}$$ 
+
+Basically right, but its 18 because you overcount (a,b) and (b,a)
+    }{%
+    https://artofproblemsolving.com/community/c4t177f4h3067059_number_theory
+}

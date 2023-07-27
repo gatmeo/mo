@@ -1,0 +1,62 @@
+\mysection{Divisibility}
+
+\begin{mysubsection}{Test for Divisibility}
+    \begin{itemize}
+        \item [2,5:] Check last digit
+        \item [3,9:] Check sum of digits
+        \item [7:] Double the last digt and subtract it from the remaning truncated number
+        \item [11:] Subtract the last digit from the remaining leading truncated number
+        \item [7,11,13:]
+            Add and subtract alternative of each group of 3 digits
+    \end{itemize}
+\end{mysubsection}
+
+\begin{shortque}[Proof for Divisibility]{}
+    \qitem{%
+        $\overline{abcdefg}$ mod (3,9)
+        }{%
+        \begin{alignat*}{1}
+            \overline{abcdefg}&= 10^6a + 10^5b+10^4c+\cdots+10f + g\\
+                              &= (999999+1) a + (99999+1)b + \cdots + (9+1)f + g
+        \end{alignat*}
+        }{%
+        <++>
+    }
+
+    \qitem{%
+        $\overline{abcdefg}$ mod (7,11,13)
+        }{%
+        \begin{alignat*}{1}
+            \overline{abcdefg}&= 10^6a + 10^5b+10^4c+\cdots+10f + g\\ 
+                              &= (999\cdot 1001 + 1) a + (1001-1)\overline{bcd} + \overline{efg}
+        \end{alignat*}
+        }{%
+        <++>
+    }
+\end{shortque}
+
+\begin{example}[exp:]{}
+    \eitem{%
+        $\overline{abcdefg}$ mod (7)
+        }{%
+        \begin{alignat*}{1}
+            \overline{abcdefg}&= 10^6a + 10^5b+10^4c+\cdots+10f + g\\ 
+                              &= (7\cdot 10^5+3\cdot 10^5) a + (7\cdot 10^4+3\cdot 10^4)b + \cdots + (7+3)f \\
+                              &+ (7-6)g\\
+                              &= 7(\overline{abcdef}) +7g + (3\overline{abcdef}-6g)\\
+                              &= 7(\overline{abcdef})  +7g+ 3(\overline{abcdef}-2g)
+        \end{alignat*}
+
+    }
+
+    \eitem{%
+        $\overline{abcdefg}$ mod (13)
+        }{%
+        \begin{alignat*}{1}
+            \overline{abcdefg}&= 10^6a + 10^5b+10^4c+\cdots+10f + g\\ 
+                              &= (13\cdot 10^5-3\cdot 10^5) a + (13\cdot 10^4-3\cdot 10^4)b + \cdots \\
+                              &+ (13-3)f + (13-12)g\\
+                              &= 13(\overline{abcdef}) +13g- 3(\overline{abcdef}+4g)
+        \end{alignat*}
+    }
+\end{example}

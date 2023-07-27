@@ -1,0 +1,75 @@
+\mysection{Chicken McNugget Theorem}
+
+\begin{shortque}[Introduction]{}
+    \qitem{%
+Marcy buys paint jars in containers of $2$ and $7$. What's the largest number of paint jars that Marcy can't obtain?
+        }{%
+        $5$ containers
+        }{%
+        https://artofproblemsolving.com/wiki/index.php/Chicken_McNugget_Theorem
+    }
+    
+    \qitem{%
+        If a game of American Football has only scores of field goals ($3$ points) and touchdowns with the extra point ($7$ points), then what is the greatest score that cannot be the score of a team in this football game (ignoring time constraints)?
+        }{%
+        11 points
+        }{%
+        https://artofproblemsolving.com/wiki/index.php/Chicken_McNugget_Theorem
+    }
+    
+    Can we Generalize it?
+\end{shortque}
+
+\begin{mysubsection}{Chicken McNugget Theorem}
+    \begin{theorem}[thm:]{Chicken McNugget Theorem}
+        For any two relatively prime positive integers $m,n$, the greatest integer that cannot be written in the form $am + bn$ for nonnegative integers $a, b$ is $mn-m-n$. 
+    \end{theorem}
+
+    \begin{proof}
+        Recall from the proof of FLT $S = \{1,2,3,\cdots, p-1\}\equiv \{1a, 2a, \cdots, (p-1)a\} \pmod{p}$
+
+        \nbf{Lemma}: For any nonnegative integer $c < m$, $cn$ is the least purchasable number $\equiv cn \bmod m$.
+
+        \nbf{Proof}: Any number that is less than $cn$ and congruent to it $\bmod m$ can be represented in the form $cn-dm$, where $d$ is a positive integer. If this is purchasable, we can say $cn-dm=am+bn$ for some nonnegative integers $a, b$. This can be rearranged into $(a+d)m=(c-b)n$, which implies that $(a+d)$ is a multiple of $n$ (since $\gcd(m, n)=1$). We can say that $(a+d)=gn$ for some positive integer $g$, and substitute to get $gmn=(c-b)n$. Because $c < m$, $(c-b)n < mn$, and $gmn < mn$. We divide by $mn$ to get $g<1$. However, we defined $g$ to be a positive integer, and all positive integers are greater than or equal to $1$. Therefore, we have a contradiction, and $cn$ is the least purchasable number congruent to $cn \bmod m$. $\square$
+
+        This means that because $cn$ is purchasable, every number that is greater than $cn$ and congruent to it $\bmod m$ is also purchasable (because these numbers are in the form $am+bn$ where $b=c$). Another result of this Lemma is that $cn-m$ is the greatest number $\equiv cn \bmod m$ that is not purchasable. $c \leq m-1$, so $cn-m \leq (m-1)n-m=mn-m-n$, which shows that $mn-m-n$ is the greatest number in the form $cn-m$. Any number greater than this and congruent to some $cn \bmod m$ is purchasable, because that number is greater than $cn$. All numbers are congruent to some $cn$, and thus all numbers greater than $mn-m-n$ are purchasable.
+
+        Putting it all together, we can say that for any coprime $m$ and $n$, $mn-m-n$ is the greatest number not representable in the form $am + bn$ for nonnegative integers $a, b$. 
+    \end{proof}
+
+    \mynewpage
+    \begin{corollary}[crl:]{}
+        A consequence of the theorem is that there are exactly $\frac{(m - 1)(n - 1)}{2}$ positive integers which cannot be expressed in the form $am + bn$. 
+    \end{corollary}
+
+    \begin{proof}
+        It can be proved with the following lemma:
+
+        \nbf{lemma}: For any integer $k$, exactly one of the integers $k$, $mn-m-n-k$ is not purchasable.
+        \begin{proof}
+            Because every number is congruent to some residue of $m$ permuted by $n$, we can set $k \equiv cn \bmod m$ for some $c$. We can break this into two cases.
+
+            Case 1: $k \leq cn-m$. This implies that $k$ is not purchasable, and that $mn-m-n-k \geq mn-m-n-(cn-m) = n(m-1-c)$. $n(m-1-c)$ is a permuted residue, and a result of the lemma in Proof 2 was that a permuted residue is the least number congruent to itself $\bmod m$ that is purchasable. Therefore, $mn-m-n-k \equiv n(m-1-c) \bmod m$ and $mn-m-n-k \geq n(m-1-c)$, so $mn-m-n-k$ is purchasable.
+
+            Case 2: $k > cn-m$. This implies that $k$ is purchasable, and that $mn-m-n-k < mn-m-n-(cn-m) = n(m-1-c)$. Again, because $n(m-1-c)$ is the least number congruent to itself $\bmod m$ that is purchasable, and because $mn-m-n-k \equiv n(m-1-c) \bmod m$ and $mn-m-n-k < n(m-1-c)$, $mn-m-n-k$ is not purchasable. 
+        \end{proof}
+    \end{proof}
+\end{mysubsection}
+
+\begin{shortque}[]{}
+    \qitem{%
+        Bay Area Rapid food sells chicken nuggets. You can buy packages of $11$ or $7$. What is the largest integer $n$ such that there is no way to buy exactly $n$ nuggets? 
+        }{%
+        $n=59$.
+        }{%
+        https://artofproblemsolving.com/wiki/index.php/Chicken_McNugget_Theorem
+    }
+
+    \qitem{%
+        The town of Hamlet has $3$ people for each horse, $4$ sheep for each cow, and $3$ ducks for each person. Which of the following could not possibly be the total number of people, horses, sheep, cows, and ducks in Hamlet?
+        }{%
+        Let the amount of people be $p$, horses be $h$, sheep be $s$, cows be $c$, and ducks be $d$. We know \[3h=p\] \[4c=s\] \[3p=d\] Then the total amount of people, horses, sheep, cows, and ducks may be written as $p+h+s+c+d = 3h+h+4c+c+(3\times3h)$. This is equivalent to $13h+5c$. By the Chicken McNugget Theorem to find the greatest number of people, horses, sheep, cows, and ducks that cannot be written in the form $13d+5s$. \[13*5-13-5=47,\] so our answer is $\boxed{\textbf{(B)} 47}$. 
+        }{%
+        https://artofproblemsolving.com/wiki/index.php/2015_AMC_10B_Problems/Problem_15
+    }
+\end{shortque}

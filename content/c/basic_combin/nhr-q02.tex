@@ -1,0 +1,16 @@
+\qitem{%
+    You have $2$ copies of the letter A and and unlimited supply of the letters B, C and D. How many words of length $10$ can you make from these such that all A are used, the thired letter is an A, and there is no B appearingg between the A's.
+    }{%
+    There are two case: there is a A before the third A or not.
+
+    If there is no A before the first A, we have the sequence as XXAY..YAX.., where Y can be C/D and X can be B/C/D.
+
+    Since there can be $0-6$ Y, we have a total of
+    \[\sum_{k=0}^{6}2^k3^{8-k}=3^8\sum_{k=0}^{6}\left(\frac{2}{3}\right)^k=3^8\cdot \frac{1-(2/3)^7}{1-(2/3)}=3^2(3^7-2^7).\]
+
+    And if there is a A before the third A, we have the sequence in AYAX... or XAAX..., which have $2\cdot 3^7$ and $3^8$ respectively.
+
+    Hence there are a total of $3^9-9\cdot 2^7+2\cdot 3^7+3^8$ sequence.
+    }{%
+    <++>
+}

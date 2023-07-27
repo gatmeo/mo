@@ -1,0 +1,7 @@
+\qitem{%
+    All possible 4 digit numbers are created using 5,6,7,8 and then sorted from smallest to largest. In the same manner, all possible 4 digit numbers are created using 3,4,5,6 and then sorted from smallest to largest. Then first number of the second type is subtract from first number of the first type, second number of the second type is subtract from second number of the first type and so on. What will be the summation of these difference (subtraction results)?(BdMO National Junior 2018)
+    }{%
+    The summation of all these differences is equivalent to adding all numbers of the first type and subtracting all numbers of the second type. The sum of the numbers of the first type of numbers is $(5 + 6 + 7 + 8)(6000 + 600 + 60 + 6)$. This is because, if we choose a digit to be in some number place, for example let's say we choose the digit $8$ to be in the hundreds place, there are $3! = 6$ ways the other digits could be placed, and because $8$ is in the hundreds place, we multiply by $100$. If we were to do that for every digit in each place, we'd get that expression. Similarly, the sum of the second type of numbers is $(3 + 4 + 5 + 6)(6000 + 600 + 60 + 6)$. Subtracting this from the previous expression we get the answer $8(6666)=\boxed{53328}$
+    }{%
+    https://artofproblemsolving.com/community/c3t309f3h2665025_interesting_counting_prob
+}

@@ -1,0 +1,7 @@
+\qitem{%
+    Let $P(x)$ be a polynomial such that when $P(x)$ is divided by $x-19$, the remainder is 99, and when $P(x)$ is divided by $x-99$, the remainder is 19. In this problem we find the remainder when $P(x)$ is divided by $(x-19)(x-99)$.
+    }{%
+    Because we are dividing by a quadratic, the degree of the remainder is no greater than 1. So, the remainder is $ax + b$, for some constants $a$ and $b$. Therefore, we have \[P(x) = (x - 19)(x - 99)Q(x) + ax + b,\]where $Q(x)$ is the quotient when $P(x)$ is divided by $(x-19)(x-99)$. We can eliminate the $Q(x)$ term by letting $x=19$ or by letting $x=99$. Doing each in turn gives us the system of equations $$ \begin{array}{l@{\ }c@{\ }r@{\ }c@{\ }r} P(19) &=& 19a + b &=& 99, \\ P(99) &=& 99a + b &=& 19. \end{array} $$Solving this system of equations gives us $a=-1$ and $b=118$. So, the remainder is $-x + 118$.
+    }{%
+    https://artofproblemsolving.com/ebooks/intermediate-algebra-ebook/preview
+}

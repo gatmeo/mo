@@ -1,0 +1,22 @@
+\qitem{%
+    Let $m$ and $n$ be positive integers posessing the following property: the equation
+    \begin{equation*}
+        gcd(11k-1,m)=gcd(11k-1,n)
+    \end{equation*}
+    holds for all positive integers $k$. Prove that $m=11^rn$ for some integer $r$.
+    }{%
+    Define $v_p(a)$ to be the number of times that the prime $p$ occurs in the prime factorization of $a_{1}$. The given statement is equivalent to proving that $v_p(m)=v_p(n)$ when $p\neq 11$ is a prime. To prove this, assume on the contrary that WLOG we have
+    \begin{alignat*}{1}
+        v_p (m) > v_p (n)
+    \end{alignat*}
+    Write $m = p^a b, n = p^c d$ where $b$ and $d$ are relatively prime to $p$. We have $a > c$.
+
+    By Theorem 2 we know that there exists a solution for k such that $11k\equiv 1\textnormal{mod }p^a$. However, we now have
+    \begin{alignat*}{1}
+        p^a|gcd(11k-1,m)
+    \end{alignat*}
+    but $p^a|gcd(11k-1,n)$ implies that $p^a|n$ contradicting $a > c$
+    }{%
+    <++>
+}
+

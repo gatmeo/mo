@@ -1,0 +1,123 @@
+\mysection{Combinatorics and Permutations}
+
+%\toggletrue{ownans}
+\begin{shortque}[Introduction]{}
+    \qitem{%
+        Find the number of ways to arrange $3$ distinct objects out of $5$ objects where order matters.
+        }{%
+        $P^5_3$.
+        }{%
+        <++>
+    }
+
+    \qitem{%
+        Find the number of ways to select $3$ distinct objects out of $5$ objects where order does not matter.
+        }{%
+        $C^5_3$.
+        }{%
+        <++>
+    }
+
+    \qitem{%
+        Find the number of ways to arrange a sequence of $5$ objetcs from $3$ distinct objects where order does matter and each objects can be used more than once.
+        }{%
+        $5^3$.
+        }{%
+        <++>
+    }
+
+    \qitem{%
+        Find the number of ways to arrange a sequence of $5$ objetcs from $3$ distinct objects where order does not matter and each objects can be used more than once.
+        }{%
+        <++>
+        }{%
+        <++>
+    }
+\end{shortque}
+
+\begin{mysubsection}{}
+    We recall that the equations
+    \begin{equation*}
+        P^n_r=\dfrac{n!}{(n-r)!}=n\times (n-1)\times (n-2)\times \cdots\times (n-r+1),
+    \end{equation*}
+    \begin{equation*}
+        C^n_r=\dfrac{n!}{r!(n-r)!}=\dfrac{n\times (n-1)\times  \cdots\times (n-r+1)}{1\times 2\times \cdots\times r}
+    \end{equation*}
+    correspond to the number of ways to arrange $r$ objetcs out of $n$ objects where order matters and order doesn't matter respectively.
+
+    \mynewpage
+
+    With the discussion above, we may work out a table representing the equation for the four cases:
+
+    pick $r$ elements out of $n$ elements
+
+    \begin{tabular}{l|c|c}
+        &Order matters&Order does not matter\\
+        \hline
+        Allow repetition& $n^r$& \\
+        \hline
+        Do not allo repetition & $P^n_r$& $C^n_r$.
+    \end{tabular}
+
+    And when we are interested in arranging identical elements, let's say $AABBCCC$, the number of ways to arrange them is $\dfrac{7!}{2!2!3!}$. In general, if we arrange $n$ elements with $a_1,a_2,\dots ,a_n$ occurance each, we have the number of ways equal
+    \[\frac{n!}{a_1!a_2!\cdots a_n!}.\]
+\end{mysubsection}
+
+\begin{shortque}[]{2}
+    \qitem{%
+        We have four different dishes, two dishes of each type.  In how many ways can these be distributed among 8 people?
+        }{%
+        It is the same as counting number of different words we can create
+        from AABBCCDD. For example, the word ADCBBCDA assign dish A to
+        person 1 and person 8.
+
+        Hence the answer is $\dfrac{8!}{2^4}$.
+        }{%
+        <++>
+    }
+
+    \qitem{%
+        In how many ways can 8 people form groups of two? (the order of groups does not matter)
+        }{%
+        If we label the groups 1,2,3,4. We would have $\dfrac{8!}{2^4}$ ways to form 4 groups. Since all permutations of the four labels corresponding to the same grouping, we have the answer equals
+        $\dfrac{8!}{4!\cdot 2^4}$.
+        }{%
+        <++>
+    }
+\end{shortque}
+
+\begin{mysubsection}{Revision on Sticks and Balls}
+    Now, recall that when we are interested in finding number of ways to put $n$ elements into $r$ different sections, we use the concept of sticks and balls.
+
+    For example, if we wanna find the number of ways to put $6$ identical ball into 4 boxes, it is equivalent to finding the number of ways to arrange 3 $|$ and 6 balls ($|||OOOOOO$), which as we discussed before equals $\dfrac{9!}{3!6!}$ or $C^9_3$.
+\end{mysubsection}
+
+\begin{shortque}[]{}
+    \toggletrue{ownans}
+    \qitem{%
+        We go to a pizza party, and there are 5 types of pizza.  We havestarved for days, so we can eat 13 slices, but we want to sample eachtype at least once.  In how many ways can we do this?  Order doesnot matter.
+        }{%
+        After sampling each type once, we have 8 spaces left. With the formula above we have $C_{5-1}^{8+5-1} =C_{4}^{12} $.
+        }{%
+        <++>
+    }
+
+    \qitem{%
+        How many integer solutions are there to the system of inequalities
+        \[x_1+x_2+x_3+x_4\leq 15,\qquad x_1,\dots ,x_4\geq 0\]
+        }{%
+        $C_{5-1}^{15+5-1} $.
+        }{%
+        <++>
+    }
+
+    \qitem{%
+        Count the number of non-negative integer solutions to
+        \[3x_1+3x_2+3x_3+7x_4=22.\]
+        }{%
+        The only possible value of $x_4$ is 1. Hence we have
+        $3(x_1+x_2+x_3)=15, x_1+x_2+x_3=5$. Ans$=C_{5}^{5+2} $.
+        }{%
+        <++>
+    }
+\end{shortque}

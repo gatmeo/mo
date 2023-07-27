@@ -1,0 +1,22 @@
+\qitem{%
+    Find all odd prime numbers $p$ which divide the number:
+    \[
+        1^{p-1}+2^{p-1}+\cdots +2004^{p-1}.
+    \]
+    }{%
+    Note that $k^{p-1} \equiv 0 \text{mod p}$ if $p|k$ otherwise $k^{p-1}\equiv 1 \text {(mod p)}$
+    Hence $0 \equiv 1^{p-1} + 2^{p-1} + ...+2004^{p-1} \text {(mod p)}$ $\implies$ $2004 \equiv [\frac{2004}{p}]$ Then $p<2004$ and $2004=pq+r$ $0 \le r \le (p-1)$
+    Then $[\frac{2004}{p}]=[q+\frac{r}{p}]=q$.
+    Then $r \equiv p \text{mod p}$.
+
+    \begin{itemize}
+        \item 
+            If $q<p$, we have $r=q$.  
+            Then $2004=(p+1)q$. Since $p>q$, $p\ge\sqrt{2004}> 46$. And as $p+1$ divides $2004=3\times4\times 167$, $p+1=2004\textnormal{ or }167$. Since $167-1=166$ is een, $p\neq 166$. The only solution is $p=2003$.
+        \item 
+            If $q\ge p$ then $p\le 47$. Hence $p=17$
+    \end{itemize}
+    So the only solutions are $\boxed{p=2003,17}$
+    }{%
+    https://artofproblemsolving.com/community/c6t45465f6h1745726_nt_problem_from_bulgarian_mathematical_olympiad
+}

@@ -1,0 +1,9 @@
+\qitem{%
+The figure below shows a ring made of six small sections which you are to paint on a wall. You have four paint colors available and you will paint each of the six sections a solid color. Find the number of ways you can choose to paint the sections if no two adjacent sections can be painted with the same color. 
+    }{%
+    We use generating functions. Suppose that the colors are $0,1,2,3$. Then as we proceed around a valid coloring of the ring in the clockwise direction, we know that between two adjacent sections with colors $s_i$ and $s_{i+1}$, there exists a number $d_i\in\{1,2,3\}$ such that $s_{i+1}\equiv s_i+d_i\pmod{4}$. Therefore, we can represent each border between sections by the generating function $(x+x^2+x^3)$, where $x,x^2,x^3$ correspond to increasing the color number by $1,2,3\pmod4$, respectively. Thus the generating function that represents going through all six borders is $A(x)=(x+x^2+x^3)^6$, where the coefficient of $x^n$ represents the total number of colorings where the color numbers are increased by a total of $n$ as we proceed around the ring. But if we go through all six borders, we must return to the original section, which is already colored. Therefore, we wish to find the sum of the coefficients of $x^n$ in $A(x)$ with $n\equiv 0\pmod4$.
+
+Now we note that if $P(x)=x^n$, then \[P(x)+P(ix)+P(-x)+P(-ix)=\begin{cases}4x^n&\text{if } n\equiv0\pmod{4}\\0&\text{otherwise}.\end{cases}\] Therefore, the sum of the coefficients of $A(x)$ with powers congruent to $0\pmod 4$ is \[\frac{A(1)+A(i)+A(-1)+A(-i)}{4}=\frac{3^6+(-1)^6+(-1)^6+(-1)^6}{4}=\frac{732}{4}.\] We multiply this by $4$ to account for the initial choice of color, so the answer is $\boxed{732}$. 
+    }{%
+    https://artofproblemsolving.com/wiki/index.php?title=2016_AIME_II_Problems/Problem_12#Solution_12_.28step-by-step_case_analysis.29
+}

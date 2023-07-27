@@ -1,0 +1,9 @@
+\qitem{%
+    Let $n$ be the smallest positive integer such that the remainder of $3n+45$, when divided by $1060$, is $16$. Find the remainder of $18n+17$ upon division by $1920$.
+    }{%
+    We want $3n+45$ to be equal to $16$ (mod $1060$). This leads us to set up an equation:
+$$3n+45=16+1060x \implies$$$$3(n+15)=3(5+353x)+x+1$$Since $n$ must be an integer the RHS must be divisible by $3$. From the factorization above we clearly only need $x+1$ to be divisible by $3$ (since the rest already is). Obviously, the smallest such positive value is $x=2$. Plugging that back in we have:
+$$3n+45=16+2120 \implies$$$$3n+45=2136 \implies$$$$n=697$$This makes $18n+17=12563$, which in mod $1920$ is $\boxed{1043}$. 
+    }{%
+    https://artofproblemsolving.com/community/c3t178f3h2477677_remainder_of_18n17_mod_1920__iran_first_round_2018_p6
+}

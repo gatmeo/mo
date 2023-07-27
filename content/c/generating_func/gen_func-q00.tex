@@ -1,0 +1,14 @@
+\qitem{%
+    Find the sum of all possible values of $2^x3^y5^z$ where $x$, $y$, and $z$ are nonnegative integers with $x+y+z=8$.
+    }{%
+    The answer is the coefficient of $x^8$ in $(1+2x+4x^2+\ldots)(1+3x+9x^2+\ldots)(1+5x+25x^2+\ldots)$. This is the coefficient of $x^8$ in $\frac{1}{(1-2x)(1-3x)(1-5x)}$.
+    \begin{alignat*}{1}
+        G\left(x\right)&= \frac{1}{\left(1-2x\right)\left(1-3x\right)\left(1-5x\right)}\\
+        &= \frac{\frac{4}{3}}{1-2x}-\frac{\frac{9}{2}}{1-3x}+\frac{\frac{25}{6}}{1-5x}\\
+        &= \frac{4}{3}\left(1-2x\right)^{-1}-\frac{9}{2}\left(1-3x\right)^{-1}+\frac{25}{6}\left(1-5x\right)^{-1}\\
+        &= \frac{4}{3}\sum_{i=0}^{\infty}\left(2x\right)^i-\frac{9}{2}\sum_{j=0}^{\infty}\left(3x\right)^j+\frac{25}{6}\sum_{k=0}^{\infty}\left(5x\right)^k.
+    \end{alignat*}
+    The coefficient of $x^8$ in the expansion of $G\left(x\right)$ is $\frac{4}{3}\cdot2^8-\frac{9}{2}\cdot3^8+\frac{25}{6}\cdot5^8=1598421$.
+    }{%
+    https://artofproblemsolving.com/community/c4t29821f4h2480811_series_using_generating_function
+}

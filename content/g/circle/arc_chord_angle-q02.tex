@@ -1,0 +1,16 @@
+\qitem{%
+    \rightasy[1.5in]{
+        import MOgeom;
+        size(1.5inch);
+        pair A=dir(150), C=dir(-30), B=dir(110), D=dir(230), O=origin;
+        path c=DCR(O,1);
+        pair Q=intersectionpoint(A--C,B--D);
+        D(D("A",A)--D("C",C)--D("D",D)--D("B",B)--C--D--A);
+        D("O",o);
+    }
+    $AC$ is a diameter of the circle. $AC$ and $BD$ meet at $E$. $BC=BD$, $\angle AEB=75^{\circ}$ and $\angle ACD=x$. Find the value of $x$.
+    }{%
+    $\angle DAC=90^{\circ}-x$, $\angle DBC=90-x$, $\angle BDC=\angle BCD=45+x/2$,\\$\angle x+45+x/2+75=180$, $x=40^{\circ}$.
+    }{%
+}
+

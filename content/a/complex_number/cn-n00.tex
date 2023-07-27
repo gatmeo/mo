@@ -1,0 +1,81 @@
+\mysection{Complex Numbers}
+
+A point in the complex plane can be represented by a complex number written in cartesian coordinates. A standard representation of a complex number $z$ would be $z=x+iy$. 
+Before introducing the main topic, we will fix some notations for complex numbers in general. We denote $r=|z|=\sqrt{x^2+y^2}$ be the \textbf{magnitude} of $z$. And denote $\overline{z}=x-yi$ be the \textbf{conjugate} of the complex number $z$. With a simple calculation, we see that $|z|=\sqrt{z\overline{z}}$.
+To introduce a new way of expressing a complex number, we need Euler's Formula:
+\\
+
+{
+\rightasy[1.5in]{
+    import MOgeom;
+    pair A=dir(60), B=dir(-60), N=mp(A--B);
+    path c=D(circle(o,1));
+    D(o--D("z",A));
+    MAR("\theta",A,o,(1,0),10);
+    D(A--(1/2,0));
+    D(o--D("\overline{z}",B));
+    MA("-\theta",B,o,(1,0),10);
+    D(B--(1/2,0));
+    pathpen=black;
+    D((-1.4,0)--(1.4,0),ar=EndArrow);
+    D((0,-1.4)--(0,1.4),ar=EndArrow);
+}
+\begin{definition}[def:]{Euler's Formula}
+    We denote $e^{i\theta}=\cos \theta+i\sin \theta$.
+\end{definition}
+}
+
+Now from the figure, we get a more fancy way of expressing $z$ and $\overline{z}$.
+\[
+    z=x+iy=|z|(\cos \theta+i\sin \theta)=re^{i\theta}.
+\]
+\[
+    z=x-iy=|z|(\cos \theta-i\sin \theta)=re^{-i\theta}.
+\]
+
+One interesting consequence of expressing $z$ in such a way is that multiplication between become extremely easy. 
+\[
+    z_1z_2=r_1e^{i\theta_1}\cdot r_2e^{i\theta_2}=r_1r_2e^{i(\theta_1+\theta_2)}.
+\]
+For the proof of this multiplication being compatible with the standard multiplication on $(x_1+iy_1)(x_2+iy_2)$. But given such a fact, we have a new way of defining the compound angle formulas. For simplicity sake we assume for $z_1,z_2$ have magnitude $1$, then we have
+\begin{alignat*}{1}
+    \cos (\theta_1+\theta_2) + i\sin (\theta_1+\theta_2)
+    &= z_1z_2\\
+    &= (\cos \theta_1+i\sin \theta_1)(\cos \theta_2+i\sigma\theta_2)\\
+    &= (\cos \theta_1\cos \theta_2 -\sin \theta_1\sin \theta_2) + i(\cos \theta_1\sin \theta_2+\sin \theta_1\cos \theta_2).
+\end{alignat*}
+By comparing the two sides, we have the following compound angle formulas. One can try to get the following table by just substituting $\theta_2=-\theta_2$ and some computations:
+
+\noindent\textbf{Compound Angle Formulas}
+\begin{alignat*}{3}
+    \sin(a + b) &= \sin a \cos b + \cos a \sin b&\qquad 
+    \sin(a - b) &= \sin a \cos b - \cos a \sin b\\
+    \cos(a + b) &= \cos a \cos b - \sin a \sin b&\qquad 
+    \cos(a - b) &= \cos a \cos b + \sin a \sin b\\
+    \tan(a + b) &= \frac{\tan a + \tan b}{1 - \tan a \tan b}&
+    \tan(a - b) &= \frac{\tan a - \tan b}{1 + \tan a \tan b}\\
+\end{alignat*}
+
+\begin{shortque}[]{}
+    \qitem{%
+        Find $\sin 15^{\circ}$ and $\cos 15^{\circ}$.
+        }{%
+        $AG=GB\rightarrow OG\perp AB$, we also have $OH=OG$. $OE=OE$,\\$\angle OGE=\angle OHE=90^{\circ}$, hence $\triangle OGE\simeq OHE$.\\And hence $EG=EH$, $BE=DE$.
+        }{%
+    }
+    \qitem{%
+        Express $\sin 2a,\cos 2a,\tan 2a$ in terms of $\sin a$ and $\cos a$. And express $\sin ^2a$ and $\cos ^2a$ in terms of $\cos 2a$.
+        }{%
+        \begin{align*}
+            \sin 2a &= 2\sin a \cos a\\
+            \cos 2a &= \cos^2a-\sin^2a\\
+                    &= 2\cos^2a-1\\
+                    &= 1-2\sin^2a\\
+            \tan 2a &= \frac{2\tan a}{1 - \tan^2 a}\\
+            \sin^2a &= \frac{1}{2}(1 - \cos 2a)\\
+            \cos^2a &= \frac{1}{2}(1 + \cos 2a)\\
+        \end{align*}
+        }{%
+    }
+\end{shortque}
+

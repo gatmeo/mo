@@ -1,0 +1,64 @@
+\mysection{Cyclic Quadrilaterals}
+
+\begin{mysubsection}{}
+    \rightasy[1.5in]{
+        import MOgeom;
+        pair A=dir(120), B=dir(220), C=dir(-90), D=dir(10), o=origin, E;
+        D(CR(o,1));
+        E=WP(L(B,C,0,1.5),.8);
+        D(D("A",A,A-o)--D("B",B,B-o)--D("C",C,C-o)--D("D",D,D-o)--cycle);
+        D(C--D("E",E,E-C));
+        MA(E,C,D,10);
+        MAR(B,C,D,8,m=2);
+        MA(B,A,D,10);
+    }
+    \begin{theorem}[thm:]{opp. $\angle $s cyclic quad.}
+        The opposite angles of a cyclic quadrilateral are supplementary.\\
+        i.e. $\angle A+\angle C=180^{\circ}$ and $\angle B+\angle D=180^{\circ}$.
+        \\\\\nbf{Proof:} $\angle BOD=2A$, $\angle BOD=2C$, $2A+2C=360^{\circ}$. 
+    \end{theorem}
+    \vspace{2em}
+
+    \begin{theorem}[thm:]{ext. $\angle $, cyclic quad.}
+        The exterior angle of a cyclic quadrilateral is equal to its interior opposite angle.
+
+            i.e. $\angle DCE=\angle A$.
+    \end{theorem}
+    %By previous thm, $\angle BAD+\angle BCD=180^{\circ}$, $\angle BCD+\angle ECD=180^{\circ}$, $\angle BAD=\angle DCE$.
+\end{mysubsection}
+
+\begin{shortque}[]{}
+    \qitem{%
+        \rightasy[1.5in]{
+            import MOgeom;
+            pair E=(-.7,1.5), C=dir(-20), B=dir(-160),A,D,F;
+            path c=D(CR(o,1));
+            D=IP(c,E--C);
+            A=IP(c,E--B);
+            F=IP(L(A,D,10),L(B,C,10));
+            D(D("F",F)--D("C",C)--D("E",E)--D("B",B));
+            D(F--D("A",A)--D("D",D));
+            MA("x",E,C,F,10);
+        }
+        In the figure, $EAB$, $EDC, FAD$ and $FBC$ are straight lines. If $\angle DFC=32^{\circ}$ and $\angle CEB=38^{\circ}$, find $\angle ECF$.
+        }{%
+        $\angle EAD=\angle FAB=x$, $\angle ADC=38+x, \angle ABC=32+x$,\\$\angle 32+x+38+x=180, x=55^{\circ}$.
+        }{%
+    }
+
+    \qitem{%
+        \rightasy[1.5in]{
+            import MOgeom;
+            pair A=D("A",dir(160)), B=D("B",dir(60)), E=D("E",dir(-60)), D=D("D",dir(-30)),C;
+            D(CR(D("O",o,W),1));
+            C=OP(L(E,D,4),D(ccc(B,o,E)));
+            D(B--A--E--D("C",C)--B--D);
+            D(B--o--E);
+            MAR("67^{\circ}",B,D,C,10);
+        }
+            In the figure, the centre $O$ of a circle $ABDE$ lies on the other circle. $CDE$ is a straight line. If $\angle BDC=67^{\circ}$, find $\angle BCE$.
+        }{%
+        $\angle BAE=67^{\circ}, \angle BOE=134^{\circ}, \angle BCE=180-134=46^{\circ}$.
+        }{%
+    }
+\end{shortque}

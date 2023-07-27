@@ -1,0 +1,11 @@
+\qitem{%
+    Let $a,b,c$ be the side lengths of a triangle. Show that $a^2(b+ c-a) + b^2 (c+a-b) + c^2 (a+b-c) \leq 3abc.$
+    }{%
+    Since $a,b,c$ are the side lengths of a triangle, we may let $a = x+y$, $b = y+z$, $c = z+x$, where $x,y,z > 0$. Substituting, the left hand side is equivalent to
+    $$\sum_{cyc} (x+y)^2 (2z) = 12xyz + 2\sum_{cyc} (x^2z + y^2z) = 6xyz + 2x^2z + 2y^2z + 2y^2x + 2z^2x + 2x^2y + 2z^2y$$whereas the right hand side is equivalent to
+    $$3(x+y)(x+z)(y+z) = 6xyz + 3x^2z + 3y^2z + 3y^2x + 3z^2x + 3x^2y + 3z^2y$$
+    Thus, after cancelling like terms from both sides, it suffices to prove that
+    $$x^2y + x^2z + y^2x + y^2z + z^2x + z^2y \geq 6xyz$$which is trivial by AM-GM.
+    }{%
+    <++>
+}

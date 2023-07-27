@@ -1,0 +1,72 @@
+\mysection{Order}
+
+\begin{mysubsection}{}
+    \begin{definition}[def:]{Modular arithmetic}
+        $a-b$ is divisible by $m$ if and only if $a\equiv b \mod m$ \qquad for positive integers $m, a \textnormal{ and }b$
+    \end{definition}
+
+    \begin{definition}[def:]{Order}
+        If $m$ is the least positive integer with the property that $a^m\equiv 1$ mod $n$, we say that $a$ has order $m$ mod $n$.
+    \end{definition}
+
+    \myframebreak
+
+    \begin{theorem}[thm:]{}
+        If $a$ is relatively prime to the positive integer $n$, there exists a positive integer $k\leq n$ such that $a^{k}\equiv 1$ mod $n$.
+    \end{theorem}
+
+    \begin{proof}
+        Since $(a,n)=1$ we must have $(a^{j},n)=1$ for all $j\geq 1$. Consider the sequence $a,a^2,a^3,\dots,a^{n+1}$ mod $n$. As there are $n+1$ numbers and only $n$ residues mod $n$, by Pigeonhole Principle, 2 of these powers must have the same remainder mod $n$. We always have $a^s\equiv a^t$ mod $n$ for some $1\leq s<t\leq n+1$, which gives $a^{t-s}\equiv 1$ mod $n$, with $t-s\leq n$.
+    \end{proof}
+
+    \begin{theorem}[thm:]{}
+        Let $n>1$ be a positive integer. Then $a\in \mathbb{Z} $ has an order $m$ mod $n$ if and only if $(a,n)=1$.
+    \end{theorem}
+
+    \begin{proof}
+        If case is proved above. If $(a,n)\neq 1$, there does not exist a power $m$ such that $a^m=1$.
+    \end{proof}
+
+    \begin{theorem}[thm:]{}
+        Let $(a,n)=1$ and let $t$ be an integer. Then $a^t\equiv 1$ mod $n$ if and only if ord$_n a\mid t$.
+    \end{theorem}
+
+    \begin{proof}
+        If there's an integer $s$ such that $m=\textnormal{ord}_na$, $t=ms$, we have
+        \begin{alignat*}{1}
+            a^t\equiv a^{sm} \equiv (a^m)^s\equiv 1^s\equiv &1\quad \textnormal{mod }n.
+        \end{alignat*}
+        Conversely assume that $a^t\equiv 1$ mod $n$ and $t=xm+y$, $0\leq y<m$. Then
+        \begin{alignat*}{1}
+            a^y\equiv a^{t-xm}\equiv a^t\cdot (a^m)^{-x}\equiv 1\cdot 1^{-x}\equiv 1\quad \textnormal{mod }n.
+        \end{alignat*}
+        This contradicts the definition of ord$_na$ as the smallest positive integer with that property. Hence $y=0$ and ord$_na\mid t$.
+    \end{proof}
+\end{mysubsection}
+
+\mynewpage
+\begin{shortque}[]{}
+    \qitem{%
+        Find the order of $5$ mod $13$.
+        }{%
+        Since $5^2\equiv -1 (13)$, $5^4\equiv 1(13)$, $\textnormal{ord}_{13}5=4$.
+        }{%
+        <++>
+    }
+
+    \qitem{%
+        Find the order of $4$ mod 65.
+        }{%
+        Since $4^3\equiv -1 (65)$, $4^6\equiv 1(65)$.
+        }{%
+        <++>
+    }
+
+    \qitem{%
+        Find all positive integers $n$ for which $3^n-1$ is divisible by $7$.
+        }{%
+        $n=6k$.
+        }{%
+        <++>
+    }
+\end{shortque}

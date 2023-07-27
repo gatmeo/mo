@@ -1,0 +1,11 @@
+\qitem{%
+    Prove that $x^2\equiv 14 \pmod{2985}$ has no solutions.
+    }{%
+    Note by Legendre, if $p$ is an odd prime and $\gcd(a,p)=1$, then
+$$x^2\equiv a \pmod{p^n}$$has a solution iff $\biggr(\frac{a}{p}\biggr)=1$. We see that $2985=3\cdot 5 \cdot 199$, which by the Chinese Remainder Theorem implies that
+\begin{align*} &x^2\equiv 14 \pmod{3}\\ &x^2\equiv 14 \pmod{5}\\ &x^2\equiv 14 \pmod{199} \end{align*}all have solutions. From here we can conclude that
+\begin{align*} &\biggr(\frac{14}{3}\biggr)=\biggr(\frac{7}{3}\biggr)\biggr(\frac{2}{3}\biggr)=1(-1)=-1\\ & \\ &\biggr(\frac{14}{5}\biggr)=\biggr(\frac{7}{5}\biggr)\biggr(\frac{2}{5}\biggr)=-1(-1)=1\\ &\\ &\biggr(\frac{14}{199}\biggr)=\biggr(\frac{7}{199}\biggr)\biggr(\frac{2}{199}\biggr)=1(1)=1 \end{align*}
+Because $x^2\equiv 14 \pmod{3}$ has no solutions, it is clear that $x^2\equiv 14 \pmod{2985}$ has no solutions as well, as desired 
+    }{%
+    https://artofproblemsolving.com/community/c3t178f3h2514781_quadratic_congruence
+}

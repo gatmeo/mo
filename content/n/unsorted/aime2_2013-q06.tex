@@ -1,0 +1,7 @@
+\qitem{%
+Find the least positive integer $N$ such that the set of $1000$ consecutive integers beginning with $1000 \cdot N$ contains no square of an integer.
+    }{%
+    For the difference between two consecutive squares $n^{2}$ and $(n+1)^{2}$ to be greater than $1000$ we need to have $(n+1)^{2}-n^{2}>1000~\rightarrow~2n+1>1000~\rightarrow~n\geq 500$. \begin{align*} 500^{2}=250\text{,}000 \\ 501^{2}=251\text{,}001 \\ 502^{2}=252\text{,}004\end{align*}and in general, $(500+x)^{2}=1000(250+x)+x^{2}$. Therefore the first skip occurs when $x^{2}>1000$ or $x\geq 32$. The answer is $\displaystyle\frac{(500+32)^{2}-32^{2}}{1000}=\boxed{282}$
+    }{%
+    https://artofproblemsolving.com/community/c5h528157p3003341
+}

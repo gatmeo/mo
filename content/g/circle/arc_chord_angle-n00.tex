@@ -1,0 +1,78 @@
+\mysection{Relationships among Arcs, Chords and Angles}
+
+\begin{mysubsection}{}
+    \rightasy[1.5in]{
+        import MOgeom;
+        size(1.5inch);
+        pair B=dir(-120), C=dir(-60), O=origin;
+        pair A=dir(160), D=dir(20), O=origin;
+        pair N=mp(A--B);
+        pair M=mp(C--D);
+        path c=DCR(O,1);
+        D(D("O",o)--D("B",B)--D("A",A)--o--D("C",C)--D("D",D)--o);
+    }
+    \begin{theorem}[thm:]{Equal Arc Equal Chords and Equal Angles}
+        $\angle AOB=\angle COD$ iff arc $AB$$=$ arc $CD$ iff $AB=CD$.\\
+        \nbf{Remark}: Arc length $AB=\dfrac{\theta }{360}\cdot 2\pi r$.
+    \end{theorem}
+
+    We need to write the theorem as "equal A, equal B".
+    \vspace{2em}
+
+    \rightasy[1.5in]{
+        import MOgeom;
+        pair A=dir(-120), B=dir(-60), O=origin;
+        pair D=dir(160), C=dir(20), O=origin;
+        pair N=mp(A--B);
+        pair M=mp(C--D);
+        path c=DCR(O,1);
+        D(D("O",o)--D("A",A)--D("B",B)--o--D("C",C)--D("D",D)--o);
+        MA("x", A,O,B,5);
+        MA("y", C,O,D,5);
+    }
+    \begin{theorem}[thm:]{arcs prop. to $\angle $s at centre}
+        In a circle, arcs are proportional to their corresponding angles at the centre.
+
+        i.e. $arc AB: arc CD=x:y$.
+    \end{theorem}
+    \vspace{3em}
+
+    \rightasy[1.5in]{
+        import MOgeom;
+        size(1.5inch);
+        pair A=dir(-120), C=dir(-60), O=origin;
+        pair B=dir(160), D=dir(20), O=origin;
+        pair P=dir(120), Q=dir(80);
+        pair N=mp(A--B);
+        pair M=mp(C--D);
+        path c=DCR(O,1);
+        D(D("A",A)--D("P",P)--D("B",B));
+        D(D("C",C)--D("Q",Q)--D("D",D));
+        MA("x", B,P,A,5);
+        MA("y", C,Q,D,5);
+    }
+    \begin{theorem}[thm:]{arcs prop. to $\angle $s at circumference}
+        In a circle, arcs are proportional to their corresponding angles at the circumference.
+
+            i.e. $arc AB: arc CD=m:n$.
+    \end{theorem}
+    \vspace{3em}
+\end{mysubsection}
+
+\begin{shortque}[]{}
+    \qitem{%
+        \rightasy[1.5in]{
+            import MOgeom;
+            size(1.5inch);
+            pair A=dir(80), B=dir(-170), D=dir(0), C=dir(-80), O=origin;
+            path c=DCR(O,1);
+            D(D("A",A)--D("B",B)--D("D",D)--A--D("C",C)--D--C--B);
+        }
+        In figure, $BC=CD$, $\angle ABD=40^{\circ}$ and $arc AB:arc AD=3:2$. Find $\angle CAD$.
+        }{%
+        $\dfrac{\angle BAC}{\angle CAD}=\dfrac{arc BC}{arc CD}=1, \angle BAC=\angle CAD$
+
+        $arc AB: arc AD=3:2$, $\dfrac{\angle ADB}{\angle ABD=40}=\dfrac{3}{2}$, $\angle ADB=60$. In $\triangle ABD$, we have $\angle CAD = 40^{\circ}$.
+        }{%
+    }
+\end{shortque}

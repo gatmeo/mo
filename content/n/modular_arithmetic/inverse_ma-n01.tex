@@ -1,0 +1,138 @@
+\mysection{Inverse}
+
+\begin{mysubsection}{}
+    \begin{definition}[def:]{Injective, Surjective}
+        A map $f:A\rightarrow B$ is \textbf{injective} if for all $a_1,a_2\in A$, $f(a_1)=f(a_2)$ implies $a_1=a_2$.
+
+        A map $f:A\rightarrow B$ is \textbf{surjective} if for all $b\in B$, there exist an $a\in A$ such that $f(a)=b$.
+    \end{definition}
+    \nbf{Facts}. Assume $A$ to be finite. If $f:A\rightarrow A$ is injective, then $f$ is surjective.
+
+    However, this is only true when $A$ is finite: Let $A=\mathbb{Z}^+$, $f(a)=a+1$.\\
+
+    \begin{definition}[def:]{}
+        $a-b$ is divisible by $m$ if and only if $a\equiv b \mod m$ \qquad for positive integers $m, a \textnormal{ and }b$
+    \end{definition}
+
+    \begin{definition}[def:]{Inverse}
+        The inverse of a number $x$ is a number $y$ s.t. $xy=1$. We denote the inverse of $x$ as $x^{-1} or 1/x$.
+    \end{definition}
+\end{mysubsection}
+
+\begin{example}[exp:]{}
+    \eitem{%
+        Find the inverse of 2 mod 7.
+        }{%
+        Since $2\times 4=8\equiv 1\quad (\textnormal{mod }7)$, $2^{-1} = 4\quad (\textnormal{mod }7)$, and $4^{-1}=2\quad (\textnormal{mod }7)$.
+    }
+\end{example}
+
+\begin{shortque}[]{}
+    \qitem{%
+        Find the inverse of $2,3,4,5$ mod 11.
+        }{%
+        $2\cdot 5\equiv -1, 3\cdot 4\equiv 1$
+
+        Hence $2:-5, 3:4, 4:3, 5:-2$
+        }{%
+        <++>
+    }
+
+    \qitem{%
+        Find the inverse of 34 mod 103.
+        }{%
+        $34\cdot 3\equiv 102 \equiv -1$.
+
+        Hence $34^{-1}\equiv -3$.
+        }{%
+        <++>
+    }
+\end{shortque}
+
+\mynewpage
+\begin{mysubsection}{Uniqueness}
+    If we find a pair $(a,b)$ s.t. $ab\equiv 1\quad (\textnormal{mod }n)$, then we know their inverses correspond to each other. However, does $a$ have inverse other than $b$, or vise versa? The answer is no, which can be easily proved.
+
+    \myframebreak
+    \begin{theorem}[thm:]{}
+        Inveres is unique.
+    \end{theorem}
+
+    \begin{proof}
+        Suppose $a$ has 2 distinct inverses $b$ and $c$ mod $n$.
+
+        \begin{equation*}
+            b=b\times 1=b\times (a\times c)=(b\times a)c=1\times c=c\quad (\textnormal{mod }n)
+        \end{equation*}
+
+        Contradiction. Hence, inverse of any integers mod $n$ is unique.
+    \end{proof}
+\end{mysubsection}
+
+\begin{shortque}[]{}
+    \qitem{%
+        $x\equiv 28\cdot7^{-1}\quad (\textnormal{mod }29)$
+        }{%
+        4
+        }{%
+        <++>
+    }
+
+    \qitem{%
+        $x\equiv 5^{99}\times (40 + 3^{-1})\quad (\textnormal{mod }121)$
+        }{%
+        $3^{-1}=-40$
+
+        $x\equiv 0$.
+        }{%
+        <++>
+    }
+
+    \qitem{%
+        Find the inverse of $9$ mod $82$.
+        }{%
+        $9^2\equiv -1$
+
+        $9^{-1}\equiv -9$.
+        }{%
+        <++>
+    }
+
+    \nbf{Remark:} Indeed, inverse share a concept similar to division. Observed in the previous example, we know that we can simply get the answer for the first question as $28/7=4$. Yet, how does it work?
+\end{shortque}
+
+\mynewpage
+\begin{example}[exp:]{}
+    \eitem{%
+        Find the value of $28\times 7^{-1}$ mod $29$.
+        }{%
+        We can write $28=4\times 7$, then $x\equiv 28\times 7^{-1}\equiv 4\times 7\times 7^{-1}\equiv 4\quad (\textnormal{mod }29)$. The $7$ and $7^{-1}$ cancel out each other, works as division.
+    }
+
+    \eitem{%
+        Find the value of $55^{99}\times (40+3^{-1})$ mod $11$.
+        }{%
+        And most of other operation you do with factions can be done with inverse. We can find the common denominator using that concept. $a+b\times c^{-1}\equiv a\times c\times c^{-1}+b\times c^{-1}\equiv (a\times c+b)c^{-1}\quad (\textnormal{mod }n)$, which is the normal way of combining fractions. Hence, for the second question, we can write
+        \begin{alignat*}{1}
+            x&\equiv 5^{99}\times (40 + 3^{-1})\equiv 5^{99}\times (40\times 3 + 1)3^{-1}\equiv 5^{99}3^{-1}(121)\\
+             &\equiv 0\quad (\textnormal{mod }11)
+        \end{alignat*}
+    }
+\end{example}
+
+\begin{mysubsection}{Existence}
+    \begin{theorem}[thm:]{}
+        Let $a$ and $m$ be relatively prime positive integers. Let the set of positive integers relatively prime to $m$ and less than $m$ be $R=\left\{a_1,a_2,\dots,a_{\phi (m)}\right\}$. Then $S=\left\{aa_1,aa_2,\dots,aa_{\phi (m)}\right\}$ is the same as $R$ when reduced mod $m$.
+    \end{theorem}
+
+    \begin{proof}
+        It is sufficient to prove no 2 element in $S$ are the same. Assume contrary,
+        \begin{equation*}
+            aa_x=aa_y\quad (\textnormal{mod }m)\Rightarrow a(a_x-a_y)\equiv 0\quad (\textnormal{mod }m)\Rightarrow a_x\equiv a_y\quad (\textnormal{mod }m)
+        \end{equation*}
+
+        Hence, when $gcd(a,m)=1$, $a$ always has a distinct inverse mod $m$. (one of the element in $\left\{aa_1,aa_2,\dots,aa_{\phi (m)}\right\}$ equals 1) And there always integral solution for $ax\equiv b\quad (\textnormal{mod }m)$. (WHY?)\\
+
+        And for any pair of $(a,m)$ whose gcd isnt 1, $a$'s inverse doesnt exist. For example, consider $3x\equiv 1\quad (\textnormal{mod }15)$, we can write $3x=15k+1$, $x=5k+1/3$, which there's no integral solution.
+    \end{proof}
+\end{mysubsection}

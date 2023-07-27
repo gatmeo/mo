@@ -1,0 +1,16 @@
+\qitem{%
+    Melinda has three empty boxes and $12$ textbooks, three of which are mathematics textbooks. One box will hold any three of her textbooks, one will hold any four of her textbooks, and one will hold any five of her textbooks. If Melinda packs her textbooks into these boxes in random order, the probability that all three mathematics textbooks end up in the same box can be written as $\frac{m}{n}$, where $m$ and $n$ are relatively prime positive integers. Find $m+n$.
+    }{%
+    Consider the books as either math or not-math where books in each category are indistiguishable from one another. Then, there are $\,_{12}C_{3}$ total distinguishable ways to pack the books. Now, in order to determine the desired propability, we must find the total number of ways the condition that all math books are in the same box can be satisfied. We proceed with casework for each box:
+
+    Case 1: The math books are placed into the smallest box. This can be done in $\binom{3}{3}$ ways.
+
+    Case 2: The math books are placed into the middle box. This can be done in $\binom{4}{3}$ ways.
+
+    Case 3: The math books are placed into the largest box. This can be done in $\binom{5}{3}$ ways.
+
+    So, the total ways the condition can be satisfied is $\binom{3}{3} + \binom{4}{3} + \binom{5}{3}$. This can be simplified to $\binom{6}{4} = \binom{6}{2}$ by the Hockey Stick Identity. Therefore, the desired probability is $\dfrac{\dbinom{6}{2} }{\dbinom{12}{3}}$ = $\dfrac{3}{44}$, and $m+n=3+44=\boxed{047}$.
+    }{%
+    https://artofproblemsolving.com/wiki/index.php?title=2013_AIME_I_Problems/Problem_6#Solution_Two
+}
+

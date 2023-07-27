@@ -1,0 +1,66 @@
+\mysection{Arranging identical elements}
+
+\begin{example}[exp:]{}
+    \eitem{%
+        Find the number of ways arranging $AAABCDE$.
+        }{
+        \fleft{(a) We define a map $f:Perm(A_1A_2A_3BCDE)\rightarrow Perm(AAABCDE)$}
+
+        We can first gives different names to the object $A$, namely $A_1,A_2\textnormal{ and }A_3$.
+
+        Then there will be $7!$ ways to arrange $A_1A_2A_3BCDE$.
+
+        As all $A_1,A_2\textnormal{ and }A_3$ are representing the same object, arrangement $A_1A_2A_3BCDE$ and \\$A_1A_3A_2BCDE$ are representing the same arrangement. Indeed, there are $3!$ different arrangement of  $A_1A_2A_3BCDE$ representing the same $AAABCDE$ arrangement.
+
+        Therefore, there are $\dfrac{7!}{3!}$ arrangements.
+
+        \mycontinueframe
+        \fleft{(b) (directly using $C^n_r$)}
+
+        The questions are equivalent to asking the number of ways to put the 7 elements into 7 boxes.
+
+        So, we can first choose 3 boxes out of 7 to put $A$ in it.
+
+        Then, there are 4 remaining empty boxes. We can further have $C^4_1$ ways to put $B$ in it.
+
+        And there will be 3 remaining empty boxes, ... and so on.
+
+        Therefore, there are $C^7_3C^4_1C^3_1C^2_1C^1_1$ arrangements.
+    }
+\end{example}
+
+\begin{shortque}[]{2}
+    \qitem{%
+        Find the number of ways to arrange 9 out of 9 elements from the set with 2A, 3B, and 4C.
+        }{%
+        $A_1A_2B_1B_2B_3C_1...$
+        \begin{equation*}
+            \dfrac{9!}{2!\cdot 3!\cdot 4!}
+        \end{equation*}
+        \begin{equation*}
+            C^9_2 C^7_3C^4_4
+        \end{equation*}
+        }{%
+        <++>
+    }
+
+    \qitem{%
+        Find the number of ways to arrange 8 out of 9 elements from the set with 2A, 3B, and 4C.
+        }{%
+        It's the same
+
+        \begin{equation*}
+            \dfrac{9!}{2!\cdot 3!\cdot 4!}
+        \end{equation*}
+        arrange 3 out 4 students : arrange 4 out of 4
+
+        =1:1
+
+        ignore 1 student: 4
+        
+        arrange remaining: 3!
+
+        }{%
+        <++>
+    }
+\end{shortque}

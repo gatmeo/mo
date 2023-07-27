@@ -1,0 +1,16 @@
+\qitem{%
+    \rightasy[1.5in]{
+        import MOgeom;
+        size(1.5inch);
+        pair C=(-2,0), A=dir(60), E=dir(-80), O=origin;
+        path c=DCR(O,1);
+        pair B=OP(c,A--C), D=intersectionpoint(c,C--E);
+        pair K=intersectionpoint(A--D,B--E);
+        D(D("A",A)--D("B",B)--D("C",C)--D("D",D)--D("E",E)--D("O",o)--A--D("K",K)--D--E--B);
+    }
+    In the figure, chords $AD$ and $BE$ intersect at $K$. $AB$ and $ED$ are produced to meet at $C$. If $\angle AOE =124^{\circ}$ and $\angle ACE=36^{\circ}$, find $\angle AKE$.
+    }{%
+    $\angle ABE=62^{\circ}$, $\angle BCE=\angle BCE+\angle BEC$, $\angle BEC=26^{\circ}$,\\$\angle BAD=26^{\circ}$, $\angle AKE=\angle ABE+\angle BAD=88^{\circ}$.
+    }{%
+}
+

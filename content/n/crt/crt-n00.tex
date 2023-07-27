@@ -1,0 +1,68 @@
+\mysection{Chinese Remainder Theorem}
+
+\begin{shortque}[Introduction]{}
+    \eitem{%
+        What is the set of integers satisfying $x \equiv 3 \pmod {7}, x \equiv 2 \pmod {5}$?
+        }{%
+        If $x \equiv 3 \pmod {7}$ we can write it as $x=7k+3$ for some integer $k$. And by $x \equiv 2 \pmod {5}$, substitute to $x=7k+3$, we have $7k+3 \equiv 2\pmod5$ and hence $7k \equiv -1\pmod5$. Hence we can solve the smallest integer $k$ satisfying is $2$. Plugging back in to $7k+3$ we get $\boxed{17}$.
+    }
+
+    What if there is more than one congruence equation? Is there a standardway to solve it?
+\end{shortque}
+
+\begin{mysubsection}{CRT}
+    \begin{theorem}[thm:]{Formal CRT}
+        Let $m$ be relatively prime to $n$. Then each residue class mod $mn$ is equal to the intersection of a unique residue class mod $m$ and a unique residue class mod $n$, and the intersection of each residue class mod $m$ with a residue class mod $n$ is a residue class mod $mn$. 
+    \end{theorem}
+
+    \begin{proof}
+        If $a \equiv b \pmod{mn}$, then $a$ and $b$ differ by a multiple of $mn$, so $a \equiv b \pmod{m}$ and $a \equiv b \pmod{n}$. This is the first part of the theorem. The converse follows because $a$ and $b$ must differ by a multiple of $m$ and $n$, and $\mbox{lcm}(m,n) = mn$. This is the second part of the theorem. 
+    \end{proof}
+
+    \begin{theorem}[thm:]{Simplified CRT}
+        Suppose you wish to find the least number $x$ which leaves a remainder of:
+        \begin{alignat*}{2}
+             &y_{1} \text{ when divided by } &d_{1}\\ &y_{2} \text{ when divided by } &d_{2}\\ &\vdots &\vdots\\ &y_{n} \text{ when divided by } & d_{n}
+        \end{alignat*}
+        such that $d_{1}, d_{2},\dots ,d_{n}$ are all relatively prime. Let $M = d_{1}d_{2} \cdots d_{n}$, and $b_{i} = \frac{M}{d_{i}}$. Now if the numbers $a_{i}$ satisfy:
+        \[a_{i}b_{i} \equiv 1 \pmod {d_{i}}\]
+        for every $1 \leq i \leq n$, then a solution for $x$ is:
+        \[x = \sum_{i=1}^n a_{i}b_{i}y_{i} \pmod M.\]
+    \end{theorem}
+\end{mysubsection}
+
+\begin{shortque}[Example]{}
+    \eitem{%
+        Find the smallest value of x such that when divided by 7, 9, and 11 leaves remainder of 3, 4, and 5 respectively.
+        }{%
+        So, $x\equiv 3\pmod{7},x\equiv 4\pmod{9},x\equiv 5\pmod{11}$.
+        Let $n=7\cdot 9\cdot 11=693$ and let $n_1=\frac{n}{7}=99,n_2=\frac{n}{9}=77$ and $n_3=\frac{n}{11}=63$ and let $x_1,x_2$ and $x_3$ are integers such that $$99x_1\equiv 1\pmod{7}$$$$77x_2\equiv 1\pmod{9}$$$$63x_3\equiv 1\pmod{11}.$$
+        We have $x_1=1,x_2=2$ and $x_3=7$.
+        So, by CRT we get $x\equiv (3\cdot 99\cdot 1)+(4\cdot 77\cdot 2)+(5\cdot 63\cdot 7)\pmod{693}\equiv 3118\pmod{693}\equiv 346\pmod{693}$. Hence the smallest value of $x$ is $346$.
+    }
+    
+    \eitem{%
+        What is the remainder when $7^{343}$ is divided by $100$?
+        }{%
+        We sure can directly use euler, but then we will leave with something like $7^{343}\equiv 7^{8\cdot 40+23}\equiv 7^{23}$ which require some more calculation. An alternative solution is to break the question of congruence of $4$ and $5$. Since $7\equiv -1\pmod 4$, we have $7^{343}\equiv (-1)^{343}\equiv -1\pmod 4$. And by euler we have $7^{343}\equiv 7^{3}\equiv -1\cdot 7\equiv -7\pmod{25}$, hence we can solve and get $7^{343}\equiv 43\pmod {100}$.
+        %https://artofproblemsolving.com/community/c3t30973f3h2529319_modulo_problem_im_stuck_on
+    }
+\end{shortque}
+
+\begin{shortque}[]{}
+    \qitem{%
+        Find $x$ satisfying $x\equiv 3 \pmod{11}, x\equiv 4 \pmod{13}, x\equiv 9\pmod{17}$.
+        }{%
+        We have $x\equiv 13\cdot 17\cdot 3+11\cdot 17\cdot 8\cdot 4+11\cdot 13\cdot 5\cdot 9 \equiv 927\pmod{11\cdot 13\cdot 17=2431}$
+        }{%
+        https://artofproblemsolving.com/community/c3t30973f3h1430181_chinese_remainder_theorem
+    }
+
+    \qitem{%
+        Find the smallest number $x$ such that $$x\equiv 2\pmod3$$$$x\equiv 3\pmod 4$$$$x\equiv 4\pmod5$$
+        }{%
+        Since we have $-1$ as a solution, by the uniqueness of $x$ we have $x\equiv -1\pmod {3\cdot 4\cdot 5}$.
+        }{%
+        https://artofproblemsolving.com/community/c3t30973f3h2166871_chinese_remainder_theorem_crt
+    }
+\end{shortque}

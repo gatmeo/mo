@@ -1,0 +1,15 @@
+\qitem{%
+    A natural number $N$ has remainder $1$ when divided by $5$. It also has remainder $2$ when divided by $6$, $4$ when divided by $8$ and $2$ when divided by $9$. What is the smallest value of $N$?
+    %(Try not to simply use CRT)
+    }{%
+    $$N \equiv 1 mod 5 \implies N + 4 \equiv 0 mod 5$$$$N \equiv 2 mod 6 \implies N + 4 \equiv 0 mod 6$$$$N \equiv 4 mod 8 \implies N + 4 \equiv 0 mod 8$$$$N \equiv 2 mod 9 \implies N + 7 \equiv 0 mod 9$$
+    from the first 3 statements we get that, LCM(5,6,8) divides N+4.
+    $$\implies N+4 \equiv 0 mod 120$$$$\implies N \equiv -4 mod 120$$$$\implies N \equiv 116 mod 120$$$\implies N = 120m + 116$. where $m \in \mathbb{N}$.
+
+    now using the fourth statement we get that,
+    $$120m + 116 + 7 \equiv 0 mod 9$$$$3m + 6 \equiv 0 mod 9$$$$3m + 6 = 9 \cdot k, k \in \mathbb{N}$$$$m = 3 \cdot t + 1, t = k -1$$
+    $$N = 120m + 116 = 120 * (3 * t + 1) + 116 = 360* t + 236 $$
+    Hence the smallest possible value for N is 236.
+    }{%
+    https://artofproblemsolving.com/community/c4t30973f4h2602520_smallest_n_that_have_remainder_when_divided_by_56789
+}

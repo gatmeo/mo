@@ -1,0 +1,15 @@
+\qitem{%
+    For a prime $p>5$, prove that $\frac{(p-1)!+p+1}{p(p+1)}$ is an integer.
+    }{%
+    From wilson's theorem, we have $\frac{(p-1)!+1}{p}\in\mathbb{Z}$,
+
+    then $x=\frac{(p-1)!+1}{p}=\frac{(p-1)!(p+1)+(p+1)}{p(p+1)}=\frac{p(p-1)!}{p(p+1)}+\frac{(p-1)!+p+1}{p(p+1)}\implies \frac{(p-1)!+p+1}{p(p+1)}=x-\frac{(p-1)!}{(p+1)}$
+
+    Hence it is sufficient to show that $\frac{(p-1)!}{(p+1)}\in\mathbb{Z}$, \
+
+    now we have $p$ is prime and $gcd(p,p+1)=1$, then $p+1=p_1^{a_1}p_2^{a_2}...p_n^{a_n}$ where $p_i^{a_i}\le p-1, \forall 1\le i\le n$,
+
+    so $p+1|(p-1)!\implies \frac{(p-1)!}{(p+1)}$ and so $\frac{(p-1)!+p+1}{p(p+1)}=x-\frac{(p-1)!}{(p+1)}\in\mathbb{Z}$
+    }{%
+    https://artofproblemsolving.com/community/c4t790502f4h2690779_wilson_theorem_proof
+}

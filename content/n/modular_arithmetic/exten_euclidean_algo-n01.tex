@@ -1,0 +1,163 @@
+\mysection{Euclidean Algorithm}
+
+\begin{mysubsection}{}
+    \begin{theorem}[thm:]{Euclid}
+        For natural numbers a,b, we use the division algorithm to determine a quotient and remainder, $q,r,$ such that $a=bq+r$. Then $gcd(a,b) = gcd(b,r)$.
+    \end{theorem}
+
+    \begin{proof}
+        If $d$ is a common divisor of $a$ and $b$,then since $d$ divides both $a$ and $b$, $d$ divides all linear combinatinations of $a$ and $b$.  Therefore, $d|a-bq=r$, meaning that $d$ is also a common divisor of $b$ and $r$.
+
+        Conversely, if $d$ is a common divisor of $b$ and $r$, then $d$ is a common divisorof all linear combinations of $b$ and $r$, therefore, $d|bq+r=a$.  Hence, $d$ is also a common divisor of $a$ and $b$.
+    \end{proof}
+\end{mysubsection}
+
+\begin{mysubsection}{Extended Euclidean Algorithm}
+    If $gcd(a,b)=1$, then by euclidean algorithm, we should be able to get something similar to:
+    \begin{alignat*}{3}
+        a&=b\times q_1 + r_1 &&\qquad \qquad 0<r_1<b\\
+        b&=r_1\times q_2 + r_2 &&\qquad \qquad 0<r_2<r_1\\
+        r_1&=r_2\times q_3 + 1 &&\qquad \qquad 0<r_3<r_2\\
+    \end{alignat*}
+    We then can we rewrite the fomular with $1=r_1-r_2\cdot q_3$, then substitute $r_2=b-r_1\cdot q_2$ to it, then sub $r_1=a-b\cdot q_1$, and can get a expression of $1=ma+nb$.
+
+    Hence if we take mod $a$, we get $1\equiv nb\textnormal{ mod }a$, i.e. $n$ is the inverse of $b$. Similarly we get $1\equiv ma\textnormal{ mod }b$.
+\end{mysubsection}
+
+\begin{shortque}[]{Finding Inverse}
+    \qitem{%
+        Find the inverse of 216 mod 811.
+        }{%
+        \begin{tabular}{r|cc|l}
+            3 & 811 & 216 & 1 \\
+              &648 & 163 &        \\
+              \hline
+            3 & 163 & 53 & 13 \\
+              & 159 & 52 & \\
+              \hline
+              & 4 & 1 &  \\
+        \end{tabular}
+        \begin{alignat*}{1}
+            811&= 3\cdot 216+163\\
+            216&= 1\cdot 163+53\\
+            163&= 3\cdot 53+4\\
+            53&= 13\cdot 4+1\\
+        \end{alignat*}
+
+        \begin{alignat*}{1}
+            1&= 53-13\cdot 4\\
+             &= 53 - 13 (163-3\cdot 53)\\
+             &= 40 \cdot 53 - 13\cdot 163\\
+             &= 40 \cdot (216-163) - 13\cdot 163\\
+             &= 40\cdot 216 - 53\cdot 163\\
+             &= 40\cdot 216 - 53\cdot (811-3\cdot 216)\\
+             &= 199\cdot 216 - 53\cdot 811
+        \end{alignat*}
+        }{%
+        <++>
+    }
+
+    \qitem{%
+        Find the inverse of 134 mod $673$.
+        }{%
+        \begin{alignat*}{1}
+            673&= 5\cdot 134+3\\
+            134&= 44\cdot 3+2\\
+            3&= 1\cdot 2+1\\
+        \end{alignat*}
+
+        \begin{alignat*}{1}
+            1&= 3-1\cdot 2\\
+             &= 3-(134-44\cdot 3)\\
+             &= 45\cdot 3 - 134\\
+             &= 45\cdot (673-5\cdot 134)-134\\
+             &= 45\cdot 673 - 226\cdot 134
+        \end{alignat*}
+        }{%
+        <++>
+    }
+\end{shortque}
+
+\mynewpage
+\begin{mysubsection}{Bezout's Identity}
+    \begin{theorem}[thm:]{Bezout's Identity}
+        For $a,b$ natural, there exist $x,y\in \mathbb{Z} $ such that $ax+by=gcd(a,b)$.
+    \end{theorem}
+
+    \begin{proof}
+        We can run the Euclidean Algorithm backwards and get:
+        \begin{alignat*}{1}
+            \textnormal{gcd}(a,b)&= r_{n-2}-r_{n-1}q_n\\
+                                 &= r_{n-2}-(r_{n-3}-r_{n-2}q_{n-1})q_n\\
+                                 &= r_{n-2}(1+q_nq_{n-1})-r_{n-3}(q_n)\\
+                                 &= \dots\\
+                                 &= ax+by.
+        \end{alignat*}
+    \end{proof}
+\end{mysubsection}
+
+\begin{shortque}[]{}
+    \qitem{%
+        Express $10$ as a linear combination of $110$ and $380$.
+        }{%
+        \begin{alignat*}{1}
+            380&= 3\cdot 110 + 50\\
+            100&= 2\cdot 50 + 10\\
+            50&= 5\cdot 10 
+        \end{alignat*}
+        \begin{alignat*}{1}
+            10&= 110-2\cdot 50\\
+              &= 110-2\cdot (380-3\cdot 110)\\
+              &= 7\cdot 110-2\cdot 380
+        \end{alignat*}
+        }{%
+        <++>
+    }
+
+    \qitem{%
+        Express $3$ as a linear combination of $1011$ and $11202$.
+        }{%
+        \begin{alignat*}{1}
+            11202&= 11\cdot 1011+81\\
+            1011&= 12\cdot 81+39\\
+            81&= 2\cdot 39+3\\
+            39&= 13\cdot 3
+        \end{alignat*}
+        \begin{alignat*}{1}
+            3&= 81-2\cdot 39\\
+             &= 81-2(1011-81\cdot 12)\\
+             &= 81\cdot 25-2\cdot 1011\\
+             &= 25(11202-1011\cdot 11)-2\cdot 1011\\
+             &= 25\cdot 11202-277\cdot 1011
+        \end{alignat*}
+        }{%
+        <++>
+    }
+\end{shortque}
+
+\mynewpage
+
+\begin{shortque}[Modular Inverse for Divisibility Test]{}
+    \eitem{%
+        Find the test for divisibility for 17
+        }{%
+        Subtract five times the last digit from the remaining leading truncated number.
+        \begin{alignat*}{1}
+            \overline{abcdefg}&= 17\overline{abcdef}-7\overline{abcdef}+g\\
+                              &= 17\overline{abcdef}-7(\overline{abcdef}+k)+(1+7k)g
+        \end{alignat*}
+        Solve $(1+7k)\equiv 0\pmod{17}$, i.e. $7k\equiv -1$, we have $k\equiv -5$.
+    }\\\\
+    \qitem{%
+        Find the test for divisibility for 19.
+        }{%
+        Add two times the last digit to the remaining leading truncated number.
+        \begin{alignat*}{1}
+            \overline{abcdefg}&= (19-9)\overline{abcdef} + (19-18)g\\
+                              &= 19(\overline{abcdef}) + 19g - (9\overline{abcdef}+18g)\\
+                              &= 19(\overline{abcdef}) + 19g - 9(\overline{abcdef}+2g)\\
+        \end{alignat*}
+        }{
+        <++>
+    }
+\end{shortque}

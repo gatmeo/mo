@@ -1,0 +1,16 @@
+\qitem{%
+    An infinite series of integers follows the following rule:
+    $a_{n+1}=2a_n +1$
+    Is there any $a_0$ for which every term of the series will be a prime number?
+    }{%
+    No, if $a_0=-1,0,1$, then $a_0$ is not prime. Otherwise, if $a_0=2$, then $a_5=95$. Otherwise, pick an odd prime $p$ that divides $a_0$. Then, $a_{p-1}\equiv 2^{p-1}(a_0+1)-1\equiv1-1\equiv0\pmod p$.
+
+    No $a_0$ exists.
+    Clearly false for $a_0$ even, since if $a_0=2$ then $a_1=5,a_2=11,a_3=23,a_4=47,a_5=95$ and $95$ is not prime, and if $a_0>2$ then $a_0$ is not prime. If $a_0=1$ then $a_0$ isn't prime. Hence assume $a_0>1$ and $a_0$ is odd. Then there exists a positive integer $n$ such that $2^n \equiv 1 \pmod{a_0}$, for example $\varphi(a_0)$. We then have
+    $$a_n=2^n(a_0+1)-1\equiv a_0+1-1 \equiv 0 \pmod{a_0},$$so $a_0 \mid a_n$. Since $a_n>a_0$ and $a_0 \neq 1$, it follows that $a_n$ is composite.
+
+    Edit:
+    Thought $a_0$ had to be positive. Anyways, if it's nonpositive, then $a_0$ of course is not prime.
+    }{%
+    https://artofproblemsolving.com/community/c3t178f3h2578323_cool_nt_prob
+}

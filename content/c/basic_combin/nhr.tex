@@ -1,0 +1,47 @@
+\qitem{%
+    You are going to an amusement park.  There are four attractions, (haunted house, roller coaster, a carousel, water ride). You buy 25 tokens.  Each attraction cost 3 tokens each ride, except the roller coaster that costs 5. Obviously, you want to ride each ride at least once, but the order of the rides does not matter.
+
+    In how many ways can you spend your tokens?  You may have some remaining tokens in the end of the day.
+    }{%
+    After riding each once, we have 11 tokens left. We can choose to go for rollar coaster 0,1, of 2 times.
+
+    For 0 times, we have it equal to solving $3a+3b+3c\leq 11$, which equals $3(a+b+c)\leq 9$, $(a+b+c+d)=3$. Hence it is $C_{3}^{3+4-1} $.
+
+    For 1 times, we have it equal to solving $3a+3b+3c\leq 6$, which equals $3(a+b+c)\leq 6$, $(a+b+c+d)=2$. Hence it is $C_{2}^{2+4-1} $.
+
+    For 2 times, there is just one tocken left. So there is one solution
+
+    Ans$=20+10+1=31$.
+    }{%
+    <++>
+}
+
+\qitem{%
+    At an amusement park, you pay for attractions using tokens. Thereare five different attractions which cost 3 tokens each, and one attraction which cost 5 tokens.  You have 42 tokens and you want to use all of them.  How many different selections of attractions are there?
+    }{%
+    The questions is equivalent to solving $3x_1+3x_2+3x_3+3x_4+3x_5+5y=42$. Since we need to use all tokens, the number of times we can spend on the attraction that cost 5 tokens are $0,3,6$.
+
+    So we are left to solve $3(x_1+x_2+x_3+x_4+x_5)=12\textnormal{ or }27\textnormal{ or }42$.
+
+    The final answer:
+    \[{4+5-1\choose 5-1}+{9+5-1\choose 5-1}+{14+5-1\choose 5-1}=3845\]
+    }{%
+    <++>
+}
+
+\qitem{%
+    You have $2$ copies of the letter A and and unlimited supply of the letters B, C and D. How many words of length $10$ can you make from these such that all A are used, the thired letter is an A, and there is no B appearingg between the A's.
+    }{%
+    There are two case: there is a A before the third A or not.
+
+    If there is no A before the first A, we have the sequence as XXAY..YAX.., where Y can be C/D and X can be B/C/D.
+
+    Since there can be $0-6$ Y, we have a total of
+    \[\sum_{k=0}^{6}2^k3^{8-k}=3^8\sum_{k=0}^{6}\left(\frac{2}{3}\right)^k=3^8\cdot \frac{1-(2/3)^7}{1-(2/3)}=3^2(3^7-2^7).\]
+
+    And if there is a A before the third A, we have the sequence in AYAX... or XAAX..., which have $2\cdot 3^7$ and $3^8$ respectively.
+
+    Hence there are a total of $3^9-9\cdot 2^7+2\cdot 3^7+3^8$ sequence.
+    }{%
+    <++>
+}

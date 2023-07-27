@@ -1,0 +1,114 @@
+\qitem{%
+    \myrightasy[2.2in]{
+        Two two chords $AB$ and $CD$ are parallel. $AB=16$, $CD=30$, and the radius of the circle is $17$. Find the distance between $AB$ and $CD$.
+        }{
+        import MOgeom;
+        size(1.5inch);
+        pair A=dir(130), B=dir(50), O=origin;
+        pair C=dir(150), D=dir(30);
+        path c=circle(O,1);
+        draw(c);
+        draw(A--B);
+        draw(C--D);
+        D("M",WP(A--B));
+        D("N",WP(C--D));
+        label("$A$", A, W);
+        label("$B$", B, E);
+        label("$C$", C, W);
+        label("$D$", D, E);
+        label("$O$", O, S);
+    }
+    }{%
+    <++>
+    }{%
+    AM=8, MO=15, CN=15, ON=8, MN=7
+}
+
+\qitem{%
+    \myrightasy[2.2in]{
+        $\triangle ABC$ is inscribed in the circle and $M$ is a point on AC such that $AM=BM=CM$. Prove that $\angle ABC=90^{\circ}$ and further prove that $M$ is the centre of the circle.
+        }{
+        import MOgeom;
+        size(1.5inch);
+        pair A=dir(-180), B=dir(120), C=dir(0),O=origin;
+        pair M=mp(A--C);
+        path c=circle(O,1);
+        draw(c);
+        draw(A--B--C--A);
+        draw(M--B);
+        label("$A$", A, W);
+        label("$B$", B, N);
+        label("$C$", C, E);
+        label("$M$", M, S);
+    }
+    }{%
+    <++>
+    }{%
+    $\angle MAB=\angle MBA$, $\angle MBC=\angle MCB$, $\angle ABC=90^{\circ}$, $AC$ is the diameter, we have $M$ centre of the circle.
+}
+
+\qitem{%
+    \myrightasy[2.2in]{
+        $AC$ is a diameter of the circle. $AC$ and $BD$ meet at $E$. $BC=BD$, $\angle AEB=75^{\circ}$ and $\angle ACD=x$. Find the value of $x$.
+        }{
+        import MOgeom;
+        size(1.5inch);
+        pair A=dir(150), C=dir(-30), B=dir(110), D=dir(230), O=origin;
+        path c=circle(O,1);
+        pair Q=intersectionpoint(A--C,B--D);
+        draw(c);
+        draw(A--C--D--B--C--D--A);
+        label("$A$", A, W);
+        label("$B$", B, E);
+        label("$C$", C, E);
+        label("$D$", D, S);
+        label("$E$", Q, E);
+        label("$O$", O, S);
+    }
+    }{%
+    <++>
+    }{%
+    $\angle DAC=90^{\circ}-x$, $\angle DBC=90-x$, $\angle BDC=\angle BCD=45+x/2$, $\angle x+45+x/2+75=180$, $x=40^{\circ}$.
+}
+
+\qitem{%
+    \myrightasy[2.2in]{
+        In the figure, chords $AD$ and $BE$ intersect at $K$. $AB$ and $ED$ are produced to meet at $C$. If $\angle AOE =124^{\circ}$ and $\angle ACE=36^{\circ}$, find $\angle AKE$.
+        }{
+        import MOgeom;
+        size(1.5inch);
+        pair C=(-2,0), A=dir(60), Q=dir(-80), O=origin;
+        path c=circle(O,1);
+        draw(c);
+        pair B=intersectionpoint(c,A--C), D=intersectionpoint(c,C--Q);
+        pair K=intersectionpoint(A--D,B--Q);
+        draw(A--C--Q--O--A--D--Q--B);
+        label("$A$", A, E);
+        label("$B$", B, NW);
+        label("$C$", C, W);
+        label("$D$", D, S);
+        label("$O$", O, E);
+        label("$E$", Q, E);
+        label("$K$", K, S);
+    }
+    }{%
+    <++>
+    }{%
+    $\angle ABE=62^{\circ}$, $\angle BCE=\angle BCE+\angle BEC$, $\angle BEC=26^{\circ}$, $\angle BAD=26^{\circ}$, $\angle AKE=\angle ABE+\angle BAD=88^{\circ}$.\\\\
+}
+
+\qitem{%
+    \myrightasy[2.2in]{
+        In the figure, $AB=BC=CD$. $AC$ intersects $BD$ at $E$. If $\angle AOD=120^{\circ}$, find $\angle BDC$ and $\angle CED$.
+        }{
+        import MOgeom;
+        size(1.5inch);
+        pair A=dir(180), B=dir(220), C=dir(260), D=dir(300);
+        path c=D(circle(D("O",o),1));
+        D(D("D",D)--D("B",B)--D("A",A)--D("C",C)--D--o--A);
+    }
+    }{%
+    <++>
+    }{%
+    $\angle AOB=\angle BOC=\angle COD=40^{\circ}$, $\angle BDC=20^{\circ}$. $\angle COD=40, \angle OCD=70$, $\angle AOC=80, \angle OCA=50$, $\angle ACD=120$, $\angle DEC=40^{\circ}$.
+}

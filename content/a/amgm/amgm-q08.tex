@@ -1,0 +1,9 @@
+\qitem{%
+    If $x, y, z$ are real numbers, find the maximum value of function $f(x,y,z)=\frac{xy+yz}{x^2+y^2+z^2}.$
+    }{%
+    Without loss of generality, assume $x^2+y^2+z^2 = 1$. Since $f(cx, cy, cz) = \frac{c^2xy + c^2xz}{c^2(x^2 + y^2 + z^2)} = f(x,y,z)$, linearly scaling $(x,y,z)$ by the same constant does not change the output.
+
+Hence we can reduce this problem to finding the maximum of $xy+yz$ for all $(x,y,z)$ on the unit sphere. By AM-GM, $\frac{2x^2 + y^2}{2} \ge xy\sqrt{2}$ and $\frac{y^2 + 2z^2}{2} \ge yz \sqrt{2}$. Adding the two inequalities we obtain $1 = x^2 + y^2 + z^2 \ge (xy + yz)\sqrt{2} \implies xy + yz \le \frac{\sqrt{2}}{2}$, so $\max f(x,y,z) = \frac{\sqrt{2}}{2}$ (attainable when $(x,y,z) = (x,\sqrt{2}x, x)$ for example).
+    }{%
+    https://artofproblemsolving.com/community/c4t29715f4h1994835_amgm_problem
+}

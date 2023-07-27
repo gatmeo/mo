@@ -1,0 +1,14 @@
+\qitem{%
+    Find the product of the tens and units digit of $(2^1)(2^2)(2^3)(2^4)...(2^{99})(2^{100})$.
+    }{%
+    Clearly, the product is equal to $2^{1+2+3+\dots + 100} = 2^{5050}$.
+
+Now, all we have to do is find the expression modulo 100. Euler's Theorem won't work at first, because $\gcd (2,100) \neq 1$. However, we can just consider it modulo 4 and modulo 25, and combine these results to get the expression modulo 100.
+
+Obviously, $4|2^{5050}$, so the expression is $0 \pmod 4$.
+
+We then use Euler's Theorem to find that
+$$2^{5050} \equiv (2^{20})^{2520} \cdot 2^{10} \equiv 1^{2520} \cdot 2^{10} \equiv 1024 \equiv 24 \pmod {25}$$Thus, $2^{5050} \equiv 24 \pmod {100}$ (Do you see why?), and our answer is $2 \cdot 4 = \boxed{8}$.
+    }{%
+    https://artofproblemsolving.com/community/c3t135211f3h1191709_mathcounts
+}

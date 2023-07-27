@@ -1,0 +1,18 @@
+\mysection{Quadratic Equation}
+
+\begin{mysubsection}{}
+    Consider a quadratic equation $ax^2+bx+c=0$ with solutions $p$ and $q$, $a\neq 0$, then we have $x^2+\left(\frac{b}{a}\right)x+\frac{c}{a}$, and know that we can factor it as:
+    \begin{alignat*}{1}
+        x^2+\frac{b}{a}x+\frac{c}{a}&=(x-p)(x-q) \\
+                                    &= x^2-(p+q)x+pq
+    \end{alignat*}
+    Hence $\frac{b}{a}=-(p+q), \frac{c}{a}=pq$. In other words, sum of roots equals $-\frac{b}{a}$, product of roots equal $\frac{c}{a}$.
+
+    Another way of viewing the sum of roots is by completing square:
+    \begin{alignat*}{1}
+        ax^2+bx+c&= a\left(x^2+2\frac{b}{2a}x+\frac{b^2}{4a^2}\right)+c-\frac{b^2}{4a}\\
+                  &= a\left(x+\frac{b}{2a}\right)^2+c-\frac{b^2}{4a}.
+    \end{alignat*}
+    Since quadratic equations are symmetric, we know the graph $y=ax^2+bx+c$ attain a extremal point at the axis of symmetry. Since $\left(x+\frac{b}{2a}\right)^2\geq 0$, if $a>0$, the minimum value of the quadratic function is $c-\frac{b^2}{4a}$ at $x=-\frac{b}{2a}$. If $a>0$, we get the same result except $c-\frac{b^2}{4a}$ is the maximum value. Hence $x=-\frac{b}{2a}$ is the axis of symmetry, and hence we can expect the roots of it be $-\frac{b}{2a}\pm \Delta $, and hence sum of roots is $\frac{b}{a}$.
+\end{mysubsection}
+

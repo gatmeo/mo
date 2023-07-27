@@ -1,0 +1,18 @@
+\qitem{%
+    For real numbers $a,b,c$, prove that
+    \begin{alignat*}{1}
+        \left|a\right|+\left|b\right|+\left|c\right|-\left|a+b\right|-\left|b+c\right|-\left|c+a\right|+\left|a+b+c\right|\geq 0
+    \end{alignat*}
+    }{%
+    We can first assume $\left|a\right|\geq \left|b\right|\geq \left|c\right|>0$. Then we divide $\left|a\right|$ for both sides and get
+    \begin{alignat*}{1}
+        1+\left|\dfrac{b}{a}\right|+\left|\frac{c}{a}\right|-\left|1+\frac{b}{a}\right|-\left|\frac{b}{a}+\frac{c}{a}\right|-\left|1+\frac{c}{a}\right|+\left|1+\frac{b}{a}+\frac{c}{a}\right|\geq 0.
+    \end{alignat*}
+    Since $\left|\frac{b}{a}\right|\leq 1$, $\left|\frac{c}{a}\right|\leq 1$, we can deduce that $\left|1+\frac{b}{a}\right|=1+\frac{b}{a}$ and $\left|1+\frac{c}{a}\right|=1+\frac{c}{a}$. Thus it is sufficient to prove that
+    \begin{alignat*}{1}
+        \left|\dfrac{b}{a}\right|+\left|\frac{c}{a}\right|-\left|\frac{b}{a}+\frac{c}{a}\right|-\left(1+\frac{b}{a}+\frac{c}{a}\right)+\left|1+\frac{b}{a}+\frac{c}{a}\right|\geq 0.
+    \end{alignat*}
+    }{%
+    <++>
+}
+

@@ -1,0 +1,9 @@
+\qitem{%
+    For each of $n=84$ and $n=88$, find the smallest integer multiple of $n$ whose base $10$ representation consists entirely of $6$s and $7$s.
+    }{%
+    84: $84=3\cdot4\cdot7$. In order for a number with only $6$ and $7$ to be divisible by 4, the last two digits must be $76$. Next, for it to be divisible by $3$, we need another two $7$s. This makes $7776$. Finally, we do need this to be divisible by $7$, so experimenting with adding another $6$ somewhere (adding a $7$ won't help because $7$ in any place is divisible by $7$), we find the smallest value is $76776$
+
+    88: For this number to be divisible by $8$, we must have the last three digits be $776$. Using the divisibility rule for 11, this number is currently 6 mod 11. Luckily, the thousands place is negative in the divisibility rule, so we can just add a 6 in the thousands place to get $6776$.
+    }{%
+    https://artofproblemsolving.com/community/c3t29718f3h2408043_usamts_divisibility
+}

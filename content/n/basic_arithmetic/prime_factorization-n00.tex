@@ -1,0 +1,57 @@
+\mysection{Prime Factorization}
+
+\begin{mysubsection}{}
+    \begin{definition}[def:]{}
+        We say that an integer $n$ is a prime number if it has exactly 2 positive factors (1 and $n$), composite number if it has more than 2 positive factors
+
+        1 is neither prime number nor composite number, 2 is the unique even prime number
+    \end{definition}
+
+    \begin{definition}[def:]{Fundamental Theorem of arithmetic}
+        Every integer greater than 1 either is prime itself or is the product of prime numbers, and that this product is unique, up to the order of the factors.
+    \end{definition}
+
+    \myframebreak
+
+    \nbf{Prime factorization of $n$: }\\
+    \phantom{\qquad}$n=p_1^{k_1}p_2^{k_2}\cdots p_r^{k_r}$ for some $r$ distinct primes $p_i$ and non-negative integers $k_i$.
+
+    \mynewpage
+    \begin{definition}[def:]{Number of positive factors of n}
+        $\tau (n) = (k_1 +1)(k_2+1)\cdots(k_i + 1)$
+    \end{definition}
+
+    \begin{definition}[def:]{Sum of positive factors of n}
+        $\sigma (n) = (1 + p_1 + p_1^2+\cdots+p_1^{k_1})(1 + p_2 + p_2^2 + \cdots + p_2^{k_2})\cdots(1 + p_r + p_r^2 + \cdots + p_r^{k_r})$
+    \end{definition}
+
+    \begin{definition}[def:]{Number of coprime p integers less than $n$}
+        $\phi (n) = n\left(1-\frac{1}{p_1}\right)\left(1-\frac{1}{p_2}\right)\cdots\left(1-\frac{1}{p_r}\right)$
+    \end{definition}
+\end{mysubsection}
+
+\begin{shortque}[]{}
+    \qitem{%
+        Find the number of positive factors of 18.
+        }{%
+        $(1+1)(2+1)$
+        }{%
+        <++>
+    }
+
+    \qitem{%
+        Find the sum of positive factors of 72.
+        }{%
+        $(1+2+4+8)(1+3+9)$
+        }{%
+        <++>
+    }
+
+    \qitem{%
+        Find the number of positive integers that is comprime with 12 and less than 12.
+        }{%
+        $12(1-\frac{1}{2})(1-\frac{1}{3})$.
+        }{%
+        <++>
+    }
+\end{shortque}

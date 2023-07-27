@@ -1,0 +1,7 @@
+\qitem{%
+Find the number of ordered pairs $(m, n)$ such that $m$ and $n$ are positive integers in the set $\{1, 2, ..., 30\}$ and the greatest common divisor of $2^m + 1$ and $2^n - 1$ is not $1.$
+    }{%
+    Noting $\gcd(2^m+1,2^m-1)=\gcd(2^m+1,2)=1$, we have (by difference of squares) $$\gcd(2^m+1,2^n-1) \neq 1 \iff \gcd(2^{2m}-1,2^n-1) \neq \gcd(2^m-1,2^n-1) $$$$\iff 2^{\gcd(2m,n)}-1 \neq 2^{\gcd(m,n)}-1 \iff \gcd(2m,n) \neq \gcd(m,n) \iff \nu_2(m)<\nu_2(n).$$It is now easy to calculate the answer (with casework on $\nu_2(m)$) as $15 \cdot 15+8 \cdot 7+4 \cdot 3+2 \cdot 1=\boxed{295}$.
+    }{%
+    https://artofproblemsolving.com/community/c5h2495183p21026756
+}

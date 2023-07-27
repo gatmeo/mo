@@ -1,0 +1,17 @@
+\qitem{%
+    What is the highest common divisor of all expressions of the form
+    $$ 25^n + 2\cdot 19^n - 3\cdot13^n$$
+    for all $n\geq 1$?
+    }{%
+    The answer is $24$.
+
+    To see why the answer must be a divisor of $24$, take $n=1$.
+
+    To prove that the answer must be a multiple of $24$, we use CRT.
+
+    To take care of the factor of $8$, we know that $25^n + 2* 19^n - 3*13^n \equiv 1 + 2*3^n - 3*5^n \pmod{8}$; since $3$ and $5$ both have order $2$ modulo 8, it suffices to check this relation for $n=0$ and $n=1$, where it obviously holds in both cases.
+
+    To take care of the factor of $3$, we know that $25^n + 2* 19^n - 3*13^n \equiv 1 + 2*1^n - 3*1^n \equiv 0 \pmod{3}$ as an identity.
+    }{%
+    https://artofproblemsolving.com/community/c4h1861202p12589547
+}

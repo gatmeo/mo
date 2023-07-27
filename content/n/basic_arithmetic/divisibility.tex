@@ -1,0 +1,29 @@
+\qitem{%
+    Find the test for divisibility for 17
+    }{%
+    Subtract five times the last digit from the remaining leading truncated number.
+    \begin{alignat*}{1}
+        \overline{abcdefg}&= 10^6a + 10^5b+10^4c+\cdots+10f + g\\
+                          &= (17\cdot 10^6-7\cdot 10^6) a + (17\cdot 10^5-7\cdot 10^5)b + \cdots \\
+                          &+ (17-7)f + (17-16)g\\
+                          &= 17(\overline{abcdef}) +17g- (7\overline{abcdef}+16g)\\
+                          &= 17(\overline{abcdef}) +17g- (7\overline{abcdef}+16g) + 51g -51g
+    \end{alignat*}
+    }{%
+    <++>
+}
+
+\qitem{%
+    Find the test for divisibility for 19
+    }{%
+    Add two times the last digit to the remaining leading truncated number.
+    \begin{alignat*}{1}
+        \overline{abcdefg}&= 10^6a + 10^5b+10^4c+\cdots+10f + g\\
+                          &= (19\cdot 10^5-9\cdot 10^5) a + (19\cdot 10^4-9\cdot 10^4)b + \cdots \\
+                          &+ (19-9)f + (19-18)g\\
+                          &= 19(\overline{abcdef}) + 19g - (9\overline{abcdef}+18g)\\
+                          &= 19(\overline{abcdef}) + 19g - 9(\overline{abcdef}+2g)\\
+    \end{alignat*}
+    }{%
+    <++>
+}

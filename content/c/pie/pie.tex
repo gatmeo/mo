@@ -1,0 +1,108 @@
+\qitem{%
+    In a town of $351$ adults, every adult owns a car, motorcycle, or both. If $331$ adults own cars and $45$ adults own motorcycles, how many of the car owners do not own a motorcycle?
+    }{%
+    By PIE, the number of adults who own both cars and motorcycles is $331+45-351=25.$ Out of the $331$ car owners, $25$ of them own motorcycles and $331-25=306$ of them don't
+    }{%
+    https://artofproblemsolving.com/wiki/index.php?title=2011_AMC_8_Problems/Problem_6
+}
+
+\qitem{%
+    How many 4-digit positive integers are there for which there are no repeated digits, or for which there may be repeated digits, but all digits are odd?
+    }{%
+    No repeated digits: $9\cdot 9\cdot 8\cdot 7=4356$
+
+    Repeated odd digits: $5^4=625$
+
+    Both: $5\cdot 4\cdot 3\cdot 2=120$
+
+    Ans$=4235+625-120=5041$.
+    }{%
+    <++>
+}
+
+\qitem{%
+    How many 4-digit positive integers are there that are even or contain no 0's?
+    }{%
+    Even: $9\cdot 10\cdot 10\cdot 5=4500$
+
+    No 0: $9^4=6561$
+
+    Both: $9\cdot 9\cdot 9\cdot 4=2916$
+
+    Ans$=4500+6561-2916=8145$
+    }{%
+    <++>
+}
+
+\qitem{%
+    How many 7-digit binary strings begin in 1 or end in 1 or have exactly four 1's?
+    }{%
+    Begin in $1$: $2^6$
+
+    End in $1$: $2^6$
+
+    Exactly four $1$: ${7\choose 4}$.
+
+    begin in 1 and end in 1: $2^5$
+
+    begin (end) in 1 and exactly for 1: ${6\choose 3}$
+
+    All 3: ${5\choose 2}$
+
+    Ans$=2^6+2^6+{7\choose 4}-2^5-2\cdot {6\choose 3}+{5\choose 2}=101$
+    }{%
+    <++>
+}
+
+\qitem{%
+    There are $20$ students participating in an after-school program offering classes in yoga, bridge, and painting. Each student must take at least one of these three classes, but may take two or all three. There are $10$ students taking yoga, $13$ taking bridge, and $9$ taking painting. There are $9$ students taking at least two classes. How many students are taking all three classes?
+    }{%
+    By PIE (Property of Inclusion/Exclusion), we have
+
+    $|A_1 \cup A_2 \cup A_3| = \sum |A_i| - \sum |A_i \cap A_j| + |A_1 \cap A_2 \cap A_3|.$ Number of people in at least two sets is $\sum |A_i \cap A_j| - 2|A_1 \cap A_2 \cap A_3| = 9.$ So, $20 = (10 + 13 + 9) - (9 + 2x) + x,$ which gives $x=3$.
+    }{%
+    https://artofproblemsolving.com/wiki/index.php?title=2017_AMC_10B_Problems/Problem_13
+}
+
+\qitem{%
+    Many states use a sequence of three letters followed by a sequence of three digits as their standard license-plate pattern. Given that each three-letter three-digit arrangement is equally likely, the probability that such a license plate will contain at least one palindrome (a three-letter arrangement or a three-digit arrangement that reads the same left-to-right as it does right-to-left) is $\dfrac{m}{n}$, where $m$ and $n$ are relatively prime positive integers. Find
+    }{%
+    Consider the three-digit arrangement, $\overline{aba}$. There are $10$ choices for $a$ and $10$ choices for $b$ (since it is possible for $a=b$), and so the probability of picking the palindrome is $\frac{10 \times 10}{10^3} = \frac 1{10}$. Similarly, there is a $\frac 1{26}$ probability of picking the three-letter palindrome.
+
+    By the Principle of Inclusion-Exclusion, the total probability is
+    $\frac{1}{26}+\frac{1}{10}-\frac{1}{260}=\frac{35}{260}=\frac{7}{52}\quad\Longrightarrow\quad7+52=\boxed{059}$
+    }{%
+    https://artofproblemsolving.com/wiki/index.php?title=2002_AIME_I_Problems/Problem_1#Problem
+}
+
+\qitem{%
+    How many $6$-digit numbers, written in decimal notation, have at least one $1$, one $2$, and one $3$ among their digits?
+    }{%
+    It suffices to find $900000$ - the number of $6$ digit numbers that do not have a $1$, $2$ or a $3$.
+
+    So now we use PIE on these $3$ constraints.
+
+    The number of $6$ digit numbers that do not have a $1$ is simply $8 \cdot 9^{5} = 472392$. Similarly there are $472392$ numbers that do not have a $2$ and $472392$ numbers that do not have a $3$. This gives a total of $3 \cdot 472392 = 1417176$ cases.
+
+    But we have over-counted when there are no $1$'s and $2$'s, no $1$'s and $3$'s and no $2$'s and $3$'s. The number of $6$ digit numbers with no $1$'s or $2$'s is clearly $7 \cdot 8^5 = 229376$. The same applies to the other two cases so this gives a total of $3 \cdot 229376 = 688128$ over-counts.
+
+    And finally we over-counted again when there are no $1$'s $2$'s or $3$'s which is simply $6 \cdot 7^5 = 100842$ cases.
+
+    Thus the answer is $900000 - (1417176-688128+100842) = \boxed{70110}$ numbers.
+    }{%
+    https://artofproblemsolving.com/community/c4t32098f4h1490550_pie_problem
+}
+
+\qitem{%
+    Call a number prime-looking if it is composite but not divisible by $2, 3,$ or $5.$ The three smallest prime-looking numbers are $49, 77$, and $91$. There are $168$ prime numbers less than $1000$. How many prime-looking numbers are there less than $1000$?
+    }{%
+    The given states that there are $168$ prime numbers less than $1000$, which is a fact we must somehow utilize. Since there seems to be no easy way to directly calculate the number of "prime-looking" numbers, we can apply complementary counting. We can split the numbers from $1$ to $1000$ into several groups: $\{1\},$ $\{\mathrm{numbers\ divisible\ by\ 2 = S_2}\},$ $\{\mathrm{numbers\ divisible\ by\ 3 = S_3}\},$ $\{\mathrm{numbers\ divisible\ by\ 5 = S_5}\}, \{\mathrm{primes\ not\ including\ 2,3,5}\},$ $\{\mathrm{prime-looking}\}$. Hence, the number of prime-looking numbers is $1000 - (168-3) - 1 - |S_2 \cup S_3 \cup S_5|$ (note that $2,3,5$ are primes).
+
+    We can calculate $S_2 \cup S_3 \cup S_5$ using the Principle of Inclusion-Exclusion: (the values of $|S_2| \ldots$ and their intersections can be found quite easily)
+    $|S_2 \cup S_3 \cup S_5| = |S_2| + |S_3| + |S_5| - |S_2 \cap S_3| - |S_3 \cap S_5| - |S_2 \cap S_5| + |S_2 \cap S_3 \cap S_5|$
+    $= 500 + 333 + 200 - 166 - 66 - 100 + 33 = 734$
+
+    Substituting, we find that our answer is $1000 - 165 - 1 - 734 = 100$.
+    }{%
+    https://artofproblemsolving.com/wiki/index.php/2005_AMC_12A_Problems/Problem_18
+}

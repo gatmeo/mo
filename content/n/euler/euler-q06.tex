@@ -1,0 +1,7 @@
+\qitem{%
+    Let $n=2015^{2015}$. What is the sum of the last three digits of $1^n+3^n$?
+    }{%
+    Note by Euler's Totient Theorem $3^{{2015}^{2015}} \equiv 3^{{2015}^{2015} \pmod{125}} \pmod{1000}$. Also, $2015^{2015} \equiv 15^{2015 \pmod{100}} \equiv 15^{15} \equiv (15^3)^5 \equiv 75^5 \equiv 75 \pmod{125}$. We thus have $3^{75} \pmod{1000}$, CRT breaks this into $3^{75} \pmod{1^25}$ and $3^{75} \pmod{8}$. The first one is ${{{(3^5)}^5)}^3} \equiv (243^5)^5 \equiv ((-7)^5)^5 \equiv (-16807)^5 \equiv (68)^3 \equiv 57 \pmod{125}$. Next, $3^{75} \equiv 3^{75 \pmod{4}} \equiv 3^3 \equiv 3 \pmod{8}$. By CRT we obtain that the solution is $307$ adding one, $308$.
+    }{%
+    https://artofproblemsolving.com/community/c223422h1194026_problem_25_daunting_number_theory_powers
+}

@@ -1,0 +1,64 @@
+\qitem{%
+    For real numbers $a,b,c$, prove that
+    \begin{alignat*}{1}
+        \left|a\right|+\left|b\right|+\left|c\right|-\left|a+b\right|-\left|b+c\right|-\left|c+a\right|+\left|a+b+c\right|\geq 0
+    \end{alignat*}
+    }{%
+    We can first assume $\left|a\right|\geq \left|b\right|\geq \left|c\right|>0$. Then we divide $\left|a\right|$ for both sides and get
+    \begin{alignat*}{1}
+        1+\left|\dfrac{b}{a}\right|+\left|\frac{c}{a}\right|-\left|1+\frac{b}{a}\right|-\left|\frac{b}{a}+\frac{c}{a}\right|-\left|1+\frac{c}{a}\right|+\left|1+\frac{b}{a}+\frac{c}{a}\right|\geq 0.
+    \end{alignat*}
+    Since $\left|\frac{b}{a}\right|\leq 1$, $\left|\frac{c}{a}\right|\leq 1$, we can deduce that $\left|1+\frac{b}{a}\right|=1+\frac{b}{a}$ and $\left|1+\frac{c}{a}\right|=1+\frac{c}{a}$. Thus it is sufficient to prove that
+    \begin{alignat*}{1}
+        \left|\dfrac{b}{a}\right|+\left|\frac{c}{a}\right|-\left|\frac{b}{a}+\frac{c}{a}\right|-\left(1+\frac{b}{a}+\frac{c}{a}\right)+\left|1+\frac{b}{a}+\frac{c}{a}\right|\geq 0.
+    \end{alignat*}
+    }{%
+    <++>
+}
+
+\qitem{%
+    Let $a,b$ be real numbers such that $0\leq a\leq b\leq 1$. 
+
+    Prove that $0\leq \dfrac{b-a}{1-ab}\leq 1$.
+    }{%
+    Hint: Use $0\leq b\leq 1$ and $1+a>0$.
+
+    We have 
+    \begin{alignat*}{2}
+        0&\leq &b(1+a)&\leq 1+a\\
+        0&\leq &b-a&\leq 1-ab\\
+        0&\leq &\frac{b-a}{1-ab}&\leq 1
+    \end{alignat*}
+    }{%
+    <++>
+}
+
+\qitem{%
+    Let $a,b$ be real numbers such that $0\leq a\leq b\leq 1$. 
+
+    Prove that $0\leq \dfrac{a}{1+b}+\dfrac{b}{1+a}\leq 1$.
+    }{%
+    Hint: Since $1+a\leq 1+b$, we have $\dfrac{1}{1+b}\leq \dfrac{1}{1+a}$.
+
+    \begin{alignat*}{1}
+        \frac{a}{1+b}+\frac{b}{1+a}\leq \frac{a}{1+a}+\frac{b}{1+a}=\frac{a+b}{1+a}\leq 1
+    \end{alignat*}
+    }{%
+    <++>
+}
+
+\qitem{%
+    Let $a,b$ be real numbers such that $0\leq a\leq b\leq 1$. 
+
+    Prove that $0\leq ab^2-ba^2\leq \dfrac{1}{4}$.
+    }{%
+    Note that $b\leq 1$ implies $b^2\leq b$ and hence $-b\leq -b^2$. Hence
+    \begin{alignat*}{1}
+        ab^2-ba^2&\leq ab^2-b^2a^2=b^2(a-a^2)\\
+                 &\leq a-a^2=\frac{1}{4}-(\frac{1}{2}-a^2)\\
+                 &\leq \frac{1}{4}
+    \end{alignat*}
+    }{%
+    <++>
+}
+

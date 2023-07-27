@@ -1,0 +1,36 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage[tut]{omegat}
+\toggletrue{ownans}
+\begin{document}
+\DTMsavedate{mydate}{2021-10-10}
+
+\title{Review: Number Theory}
+\newcommand\event{S.3,4 Elite Mathematics Training}
+\newcommand\learningobjective{
+\item Review the properties of divisibility
+\item Review Modular Arithmetic and Euclidean Algorithm
+\item Review formulae for prime factorization
+}
+
+\myfrontpage
+
+\input{../content/n/basic_arithmetic/divisibility-n00.tex}
+
+\input{../content/n/modular_arithmetic/basic_modular-n00.tex}
+
+\input{../content/n/basic_arithmetic/prime_factorization-n00.tex}
+
+\input{../content/n/modular_arithmetic/euclidean_algo-n00.tex}
+
+\begin{question}[]{1,5}
+    \input{../content/n/basic_arithmetic/divisibility-q00.tex}
+    \input{../content/n/basic_arithmetic/divisibility-q01.tex}
+    \input{../content/n/basic_arithmetic/prime_factorization-q00.tex}
+    \input{../content/n/basic_arithmetic/prime_factorization-q01.tex}
+    \input{../content/n/basic_arithmetic/divisibility-q04.tex}
+    %\input{../content/n/basic_arithmetic/combin_divisibility-q00.tex}
+    \input{../content/n/basic_arithmetic/combin_divisibility-q01.tex}
+    \input{../content/n/basic_arithmetic/divisibility-q03.tex}
+    \input{../content/n/basic_arithmetic/divisibility-q02.tex}
+\end{question}
+\end{document}

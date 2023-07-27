@@ -1,0 +1,136 @@
+\mysection{Angles in a Circle}
+
+\begin{mysubsection}{}
+    \begin{definition}[def:]{Angle at centre and angle at circumference}
+        If the vertex of the angle subtended by an arc lies at the centre, then this angle is called the angle at the centre.
+
+        If the vertex of the angle subtended by an arc lies at the circumference, then this angle is called the angle at the circumference.
+    \end{definition}
+
+    \begin{theorem}[thm:]{$\angle $ at centre twice $\angle $ and circumference}
+        The angle at the centre of a circle subtended by an arc is twice the angle at the circumference subtended by the same arc.
+        \begin{figure}[H]
+            \centering
+            \asycode{
+                import MOgeom;
+                size(1.5inch);
+                pair A=dir(-135), B=dir(-45), O=origin,P=(0,1);
+                path c=DCR(O,1);
+                D(D("A",A)--D("O",o)--D("B",B)--D("P",P)--A);
+                MA("p",A,P,B,5);
+                MA("q",A,o,B,5);
+            }
+            \quad
+            \asycode{
+                import MOgeom;
+                size(1.5inch);
+                pair A=dir(135), B=dir(45), O=origin,P=(0,1);
+                path c=DCR(O,1);
+                D(D("A",A)--D("O",o)--D("B",B)--D("P",P)--A);
+                MA("p",A,P,B,5);
+                MA("q",A,o,B,5);
+            }
+            \quad
+            \asycode{
+                import MOgeom;
+                size(1.5inch);
+                pair A=dir(-135), B=dir(-45), O=origin,P=dir(5);
+                path c=DCR(O,1);
+                D(D("A",A)--D("O",o)--D("B",B)--D("P",P)--A);
+                MA("p",A,P,B,5);
+                MA("q",A,o,B,5);
+            }
+        \end{figure}
+        %\vocab{Proof:} $\angle AOQ=2x, \angle BOQ=2y$ $q=2y-2x$, $p=y-x$.
+    \end{theorem}
+
+    \rightasy[1.5in]{
+        import MOgeom;
+        pair A=dir(180), B=dir(0), O=origin;
+        pair P=dir(40);
+        path c=DCR(O,1);
+        D(D("A",A)--D("O",o)--D("B",B)--D("P",P)--A);
+    }
+    \begin{theorem}[thm:]{$\angle $ in semi-circle}
+        The angle in a semi-circle is a right angle.
+
+        i.e. If $AB$ is a diameter, then $\angle APB=90^{\circ}$.
+    \end{theorem}
+    \vspace{2em}
+
+    \begin{theorem}[thm:]{Converse of $\angle $ in semi-circle}
+        If the angle at the circumference subtended by a chord is a right angle, then the chord is a diameter of a circle.
+
+        i.e. If $\angle APB=90^{\circ} $, then  $AB$ is a diameter.
+    \end{theorem}
+\end{mysubsection}
+
+\begin{shortque}[]{}
+    \qitem{%
+        \rightasy[1.5in]{
+            import MOgeom;
+            pair D=dir(0), C=dir(180), B=dir(60), A=(2*dx(B,C)-1,0), O=origin;
+            path c=DCR(O,1);
+            D(D("D",D)--D("B",B)--D("C",C)--D("A",A)--B);
+        }
+        In the figure, $CODA$ is a straight line, $BC=BA$ and $\angle CDB=70^{\circ}$. Find $\angle CAB$ and $\angle DBA$.
+        }{%
+        $\angle CBD=90^{\circ}$, $\angle BCD=20^{\circ}$, $\angle BAC=20^{\circ}$, $\angle DBA=70-20=50^{\circ}$.
+        }{%
+    }
+\end{shortque}
+
+\mynewpage
+
+\begin{mysubsection}{}
+    \rightasy[1.5in]{
+        import MOgeom;
+        pair A=dir(-135), B=dir(-45), Q=dir(100),P=dir(5);
+        path c=D(circle(o,1));
+        D(D("A",A)--D("Q",Q)--D("B",B)--D("P",P)--A);
+        MA("x",A,P,B,5);
+        MA("y",A,Q,B,5);
+    }
+    \begin{definition}[def:]{Angles in the Same Segment}
+        If the angles at the circumference subtended by the same arc $AB$.
+
+        i.e. They all lie in the major segment or the same minor segment.
+    \end{definition}
+
+    \begin{theorem}[thm:]{$\angle $s in the same segment}
+        The angles in the same segment of a circle are equal.
+    \end{theorem}
+\end{mysubsection}
+
+\begin{shortque}[]{}
+    \qitem{%
+        \rightasy[1.5in]{
+            import MOgeom;
+            pair A=dir(-140), B=dir(100), C=dir(40), D=dir(-40);
+            path c=D(CR(o,1));
+            D(D("A",A)--D("B",B)--D("D",D)--D("C",C)--D("O",o)--A--D);
+        }
+        $AC$ is a diameter of the circle, $\angle BAD=75^{\circ}$ and $\angle ABD=40^{\circ}$. Find $\angle BAC$.
+        }{%
+        $\angle ACD=\angle ABD=40^{\circ}$, $\angle ADC=90^{\circ}$, $\angle CAD=50$.\\$\angle BAC=\angle BAD-\angle CAD=25^{\circ}$. 
+        }{%
+        <++>
+    }
+
+    \qitem{%
+        \rightasy[1.5in]{
+            import MOgeom;
+            pair A=dir(180), B=dir(0), R=dir(120), P=(2,0);
+            path c=D(CR(o,1));
+            pair Q=intersectionpoint(P--R,c);
+            D(D("R",R)--D("A",A)--D("O",o)--D("B",B)--D("P",P)--R--B--A--D("Q",Q));
+        }
+        Chord $RQ$ and diameter $AB$ of the circle are produced to meet at $P$. If $\angle RPA=30^{\circ}$ and $\angle QAR=50^{\circ}$, find $\angle QRB$ and $\angle RQA$.
+        }{%
+        $\angle QRB=\angle QAB$, $\angle ARB=90^{\circ}$. In $\triangle APR$, let $\angle QAB=x$,\\
+        we can solve $x=5$. In $\triangle QAP$, $\angle RQA=\angle QAP+\angle QPA=35$.
+        }{%
+    }
+\end{shortque}
+\newpage
+

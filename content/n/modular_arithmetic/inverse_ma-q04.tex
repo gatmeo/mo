@@ -1,0 +1,10 @@
+\qitem{%
+    Solve for $x$. $$x(5x+1) \equiv 24 \pmod{25}$$.
+    }{%
+    Since $5\mid25$, we can look at the given congruence in mod $5$. We get
+    $$x(5x+1)\equiv x(1)\equiv x\equiv 24\equiv 4 \pmod 5,$$so $x = 5n + 4$ for some integer $n$. Then,
+    $$x(5x+1)\equiv x(5(5n+4)+1)\equiv x(25n+21)\equiv 21x\equiv 24\pmod{25}.$$Multiplying by $-1$ (To make the numbers smaller to find inverses), we get
+    $$-21x\equiv4x\equiv-24\equiv1\pmod{25}.$$Since $4^{-1}\equiv 19\pmod{25}$, we get that $x\equiv 4^{-1}\equiv\boxed{19}\pmod{25}$.
+    }{%
+    https://artofproblemsolving.com/community/c3t178f3h2661189_solve_this_modular_congruence
+}

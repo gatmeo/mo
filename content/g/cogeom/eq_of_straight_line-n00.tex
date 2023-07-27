@@ -1,0 +1,149 @@
+\mysection{Properties of Coordinate Plane}
+
+\begin{mysubsection}{}
+    \begin{enumerate}
+        \item Given $A(x_1,y_1)$ and $B(x_2,y_2)$ are 2 points on rectangular coordinate plane
+            \begin{itemize}
+                \item Length $AB=\sqrt{(x_1-x_2)^2+(y_1-y_2)^2}$
+                \item Slope of $AB=\dfrac{y_2-y_1}{x_2-x_1}$
+            \end{itemize}
+        \item Given $L_1$ and $L_2$ are two straight lines on a rectangular coordinate plane
+            \begin{itemize}
+                \item If 2 lines with slope $m_1\textnormal{ and }m_2$ are perpendicular to each others,\\
+                    we have $m_1\times m_2=-1$
+                \item If 2 lines with slope $m_1\textnormal{ and }m_2$ are parallel,\\
+                    we have $m_1=m_2$
+                \item Distance between 2 points on the plane with coordinate $(x_1,y_1)\textnormal{ and }(x_2,y_2)$\\
+                    $=\sqrt{(x_1-x_2)^2+(y_1-y_2)^2}$
+            \end{itemize}
+        \item Given $A(x_1,y_1)$ and $B(x_2,y_2)$ are 2 points on a rectangular coordinate plane
+            \begin{itemize}
+                \item Mid-point of a line segment $AB$
+                    $=(\frac{1}{2} (x_1+x_2),\frac{1}{2} (y_1+y_2))$
+                \item For a point C which is lying on segment $AB$ with $AC:CB=p:q$, its coordinate\\
+                    $=\dfrac{qx_1+px_2}{p+q}, \dfrac{qy_1+py_2}{p+q}$
+            \end{itemize}
+    \end{enumerate}
+\end{mysubsection}
+
+\mysection{Equations of Straight Line}
+
+\begin{mysubsection}{}
+    How to define a straight line:
+
+    \begin{enumerate}
+        \item Vertical line: $x=h$, $h\in \mathbb{R}$
+        \item Horizontal line: $y=k$
+        \item Two point form: $y-y_1=\dfrac{y_2-y_1}{x_2-x_1}(x-x_1)$
+        \item Point-slope form: $y-y_1=m(x-x_1)$, where m is the slope of the line
+        \item Slope-intercept form: $y=mx+c$, where $m$ and $c$ are the slope and the $y$-intercept respectively
+        \item Intercept form: $\dfrac{x}{a}+\dfrac{y}{b}=1$, where $a$ and $b$ are the $x$-intercept and the $y$-intercept respectively
+    \end{enumerate}
+\end{mysubsection}
+
+\begin{shortque}[]{3}
+    \qitem{%
+        \rightasy[1.5in]{
+            import MOgeom;
+            pair A=(0,8), P=(-8,0), B=(3,4), Q=(6,0);
+            xaxis("$x$");
+            yaxis("$y$");
+            D(L(P,A,0.25,0.65));
+            D(L(Q,A,0.3,0.6));
+            D("A",A,E);
+            D("B",B,E);
+            D("P",P,S);
+            D("Q",Q,S);
+        }
+        In the figure, the straight lines $L_{1}$ and $L_{2}$ intersect at $A(0,8)$, and cut the $x$-axis at $P$ and $Q$ respectively. The inclination of $L_{1}$ is $45^{\circ}$ and $L_{2}$ passes through  $B(3,4)$. Find the equation of $L_{1}$ and $L_{2}$, and the area of $\triangle APQ$.
+        }{%
+        $y=x+8, y=-\frac{4}{3}x+8$. $P=(-8,0),Q=(6,0)$. $Area=8\times 7= 56$.
+        }{%
+        p.4.19
+    }
+
+    \qitem{%
+        \rightfigure[1.5in]{./go4_pic/G5_8.png}
+        In the figure, $PQRS$ is a parallelogram. If the equation of $SR$ is $2x+y+4=0$ and the length of $PS$ is $5$, find the equation of $PQ$.
+        }{%
+        Sub $y=0$ to $SR$, $x=-2$, $OR=2$. $OQ=2+5=7$.\\
+        Slope $PQ=$ Slope $SR$, $=-2/1=-2$. $PQ:y=-2x-14$.
+        }{%
+    }
+
+    \qitem{%
+        \rightasy[1.5in]{
+            import MOgeom;
+            pair A=(0,8), B=(0,3), D=(3/2,7/2), C=(6,5);
+            xaxis("$x$");
+            yaxis("$y$");
+            D(D("A",A,NE)--D("B",B,W)--D("D",D,S)--D("C",C,E)--A);
+        }
+        Consider three points $A(0,8)$, $B(0,3)$ and $C(6,5)$ on a rectangular coordinate plane. $AD$ is the altitude of $BC$ in $\triangle ABC$. Find the equations of $BC$ and $AD$, and hence the coordinate of $D$. Then find the ration of the area of $\triangle ADC$ to that of $\triangle ABD$.
+        }{%
+        $BC:y=\frac{1}{3}x+3$. Slope $AD\times $ Slope $BC=-1$, Slope $AD=-3$.\\
+        $AD:y=-3x+8$. Sub and get $x=3/2$, $y=7/2$. 
+
+        Let $BD:DC=m:n$, $3/2=(n(0)+m(6))/(m+n)$, $m/n=1/3$.\\Or find the x coordinate ratio of D and C.
+        }{%
+    }
+\end{shortque}
+
+\mysection{General Form of Equation of a Straight Line}
+
+\begin{mysubsection}{}
+    All the different forms of equations of straight lines can be expressed in the form
+    \[Ax+By+C=0,\]
+    where $A, B$ and $C$ are constants, and $A, B$ are not both zero. This is known as the general form of the equation.
+    \begin{enumerate}
+        \item Slope: $-\frac{A}{8}$
+        \item x-intercept: $-\frac{C}{A}$
+        \item y-intercept: $-\frac{C}{B}$
+    \end{enumerate}
+\end{mysubsection}
+
+\begin{shortque}[]{}
+    \qitem{%
+        In the figure, the straight lines $L_1:2x+by-6=0$ and $L_2$ are perpendicular to each other, and they intersect at $P(4,2)$. Find the equation of $L_2$ in the general form.
+        }{%
+        sub $(4,2)$ to $L_{1}$, $2(4)+b(2)-6=0, b=-1$. Slope $L_{2}=-1/2$, equation of $L_{2}:x+2y-8=0$.
+        }{%
+        p.4.28
+    }
+\end{shortque}
+
+\begin{shortque}[Finding Centers with Coordinate Geometry]{2}
+    \qitem{%
+        $A(6,9)$, $B(-4,5)$, and $C(2,-4)$ form triangle $ABC$. $CM$ is the median of $AB$ in $\triangle ABC$. Find the equation of $CM$. And find the coordinate of the centroid of $\triangle ABC$.
+        }{%
+        $M=(1,7)$, hence by two point form we have $y=-11x+18$.
+        You can find another equation of mid point, or use section formula for internal division on $C$ and $M$. $(\frac{1\cdot 2+2\cdot 1}{3},\frac{7\cdot 2+-4\cdot 1}{3})=(4/3,10/3)$.
+        }{%
+        p.4.24
+    }
+
+    \qitem{%
+            Let $O$ be the origin. If the coordinates of the points $A$ and $B$ are $(12,8)$ and $(12,0)$ respectively, then the $x$-coordinate of the circumcenter of $\triangle OAB$ is:
+        }{%
+        $x=6,y=4$.
+        }{%
+    }
+
+    \qitem{%
+            Let $O$ be the origin. If the coordinates of the points $A$ and $B$ are $(12,9)$ and $(-12,9)$ respectively, then the $y$-coordinate of the orthocentre of $\triangle OAB$ is:
+        }{%
+        Let $P=(0,k)$, $BP\perp AO$, Slope $BP\cdot $ Slope $AO=-1$, $\frac{k-9}{0-(-12)}\cdot \frac{9}{12}=-1$, $k=-7$. Since $x=0$ is another altitude, or due to symmetric, $y$-coordinate is $-7$.
+        }{%
+    }
+
+    \qitem{%
+            Let $O$ be the origin. If the coordinates of the points $A$ and $B$ are $(10,0)$ and $(0,10)$ respectively, then the coordinates of the in-centre of $\triangle OAB$ are:
+        }{%
+        $M=(6,6)$. Let $P,Q$ be root of perpendicular from $I$ to $BO$ and $AO$ respectively. $BP=BM=\sqrt{6^2+6^2}=6\sqrt{2}$.
+        $OP=12-6\sqrt{2}$, $OPI\simeq OQI$, $OP=OQ$, $I=(10-5\sqrt{2},10-5\sqrt{2})$.  (or $x=y$ is an angle bisector).
+        }{%
+    }
+
+\end{shortque}
+
+

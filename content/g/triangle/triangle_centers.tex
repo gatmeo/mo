@@ -1,0 +1,29 @@
+\qitem{%
+    The altitudes bisect the angles of the triangle $H_AH_BH_C$ (so $H$ is it's incenter).
+    }{%
+    \begin{wrapfigure}{r}{2in}
+        \asycode{
+            import MOgeom;
+            size(1.5inch);
+            pair A=origin, B=(6,0), C=(2,5), H=oct(A,B,C);
+            pair[] Hu=foots(A,B,C);
+            draw(cycv(A,B,C));
+            drawalt(A,B,C);
+            labelpt(tp(A,B,C), strabc, td(W,E,N));
+            labelapd(Hu, "H_", strabc, td(E,W,S));
+            label("$H$",H,2SSE);
+        }
+    \end{wrapfigure}
+    We have $\angle H_A H_C B=C, \angle H_B H_CA=C$, hence $\angle CH_CH_A=90-C=\angle CH_CH_B$.
+    }{%
+    <++>
+}
+
+\qitem{%
+    The reflections of $H$ across $BC, CA, AB$ lie on the circumcircle of $\triangle ABC$.
+    }{%
+    We have $\angle BCH=90-B, \angle CBH=90-C$ hence we have $\angle CHB=180-A$, and since $\angle CH'B+A=180$, we have that they are concyclic.
+    }{%
+    <++>
+}
+

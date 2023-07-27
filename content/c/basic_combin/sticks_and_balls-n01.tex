@@ -1,0 +1,108 @@
+\mysection{Sticks and Balls}
+
+\begin{shortque}[Introductory questions]{}
+    \qitem{%
+        $2$ candies with different flavour are distributed among $5$ students, given that a student can get at most $1$ candy. How many ways are there? \vfill
+        }{%
+        \begin{equation*}
+            P^5_2
+        \end{equation*}
+        }{%
+        <++>
+    }
+
+    \qitem{%
+        $2$ candies with the same flavour are distributed among $5$ students, given that a student can get at most $1$ candy. How many ways are there? \vfill
+        }{%
+        \begin{equation*}
+            C^5_2
+        \end{equation*}
+        }{%
+        <++>
+    }
+
+    \qitem{%
+        $2$ candies with different flavour are distributed among $5$ students. How many ways are there? \vfill
+        }{%
+        \begin{equation*}
+            5^2
+        \end{equation*}
+        }{%
+        <++>
+    }
+
+    \qitem{%
+        $2$ candies with the same flavour are distributed among $5$ students. How many ways are there? \vfill
+        }{%
+        \begin{equation*}
+            5+C^5_2
+        \end{equation*}
+        }{%
+        <++>
+    }
+\end{shortque}
+
+\begin{example}[exp:]{Concepts of Sticks and Balls}
+    \eitem{%k
+        Find the number of ways to put 6 identical balls into 5 different boxes.
+        }{%
+        We may view the question in another direction. We may consider there is a big box, and we put $5-1=4$ sticks ($|$) into the box and separate it into 5 sections. Then we further put the 6 balls ($O$) into the big box. Every configuration we have by putting sticks and balls in the big box is equivalent to one way of putting 6 balls into 5 different boxes. And every way of putting 6 balls into 5 different boxes can be represented as a sticks and balls configuration.
+
+        Therefore, the number of ways to put 6 identical balls into 5 different boxes is equivalent to arrange 6 balls and 4 sticks. (i.e. arranging $||||OOOOOO$)
+
+        $||OO|OO|OO$
+
+        Number of ways $=C^{10}_4$
+
+        2 candies to 5 student
+
+        $C^{5+2-1}_2$
+        
+
+    }
+\end{example}
+\pagebreak
+
+\begin{shortque}[]{}
+    \qitem{%
+        Find the number of ways of distributing 15 identical candies to 6 students, where each of them has at least 1 candy.
+        }{%
+        \begin{equation*}
+            C^{9+5}_5
+        \end{equation*}
+        }{%
+        <++>
+    }
+\end{shortque}
+
+\begin{shortque}[Extension of sticks and balls]{}
+    \qitem{%
+        Find the number of ways to arrange $AABBBCCCC$.
+        }{%
+        <++>
+        }{%
+        <++>
+    }
+
+    \qitem{%
+        Find the number of ways to arrange $AABBBCCCC$ without having 2 consecutive $A$s.
+        }{%
+        $(9!)/(2!*3!*4!)-(8!/3!/4!)$ or $(8C2 * 7!) / (3! * 4!)$
+
+        980
+        }{%
+        <++>
+    }
+
+    \qitem{%
+        Find the number of ways to arrange $AABBBCCCC$ without having 2 consecutive $B$s.
+
+        \nbf{Hint: }We may consider the $B$s as sticks.
+        }{%
+        $(7C3) * 6!/(2!*4!)=525$
+        
+        }{%
+        <++>
+    }
+    \pagebreak
+\end{shortque}

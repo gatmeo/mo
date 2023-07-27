@@ -1,0 +1,98 @@
+\documentclass{article}
+\usepackage[tut]{omegat}
+
+\title{Combinatorics: Arranging Identical Elements}
+\author{Omega Tong}
+\pagestyle{fancy}
+\fancyhf{}
+\cfoot{\thepage}
+\fancyhead[C]{Name:\qquad\qquad \qquad\qquad\qquad\phantom{()}\\
+Class:\qquad \qquad \qquad \qquad (\qquad )}
+\fancyhead[R]{Score: \qquad/44\\
+Time:\quad\ 2 hours}
+\fancyhead[L]{S.3,4 Term Test 2\\9/5/2023}
+\setlength{\headheight}{25pt}
+\date{\today}
+\def\myFBRSC#1{{\larger[0]{\MakeTextUppercase{#1}}}\scshape }
+\DeclareRobustCommand{\FirstBigRestSmallCaps}[1]{\myFBRSC #1}
+%\toggletrue{ownans}
+
+\begin{document}
+
+\begin{center}
+    \fbox{\fbox{\parbox{5.5in}{\centering
+    Answer the questions in the spaces provided. Box your numerical answers under the question number. For the questions where proof is required, write it out clearly. You are advised to write your sketches of proof for questions that do not require proof for potential partial score if you got it wrong.}}}
+\end{center}
+
+\nbf{Questions:}
+\begin{shortque*}{3,6,9}
+
+    (2pt)\\ \input{../content/n/modular_arithmetic/cal_inverse_ma-q02.tex}
+
+    (3pt)\\
+    \qitem{%
+Katie and Allie are playing a game. Katie rolls two fair six-sided dice and Allie flips two fair two-sided coins. Katie’s score is equal to the sum of the numbers on the top of the dice. Allie’s score is the product of the values of two coins, where heads is worth $4$ and tails is worth $2.$ What is the probability Katie’s score is strictly greater than Allie’s?
+        }{%
+        We proceed by casework. When Allie gets two heads, there is no way for Katie to get a strictly greater score than Allie. When Allie gets first head then second tails, there are $10$ possible ways for Katie to get a strictly greater score than Allie. There are also $10$ possible ways when Allie gets tails first and heads second. When Allie gets both tails, there are $30$ possible ways for Katie to get a strictly greater score than Allie. There are $(6 \cdot 6) \cdot (2 \cdot 2) = 144$ total possible outcomes. Hence, the answer is $\frac{10+10+30}{36 \cdot 4} = \boxed{\frac{25}{72}}.$
+        }{%
+        https://artofproblemsolving.com/community/c4t177f4h3066888_bmt_2022_fall_discrete_p3
+    }
+
+    (3pt)\\
+    \qitem{%
+Let $BB'$ and $CC'$ be the feet of the altitudes from $B$ and $C$ onto the opposite sides of $\triangle ABC$. Let $H$ be the orthocenter and $D$ be the point of intersection of $B'C'$ and $BC$. If $M$ is the midpoint of $BC$, prove that $DH$ is perpendicular to $AM$.
+        }{%
+Let $P$ be the intersection of $\overline{DH}$ and $\overline{AM}$. Angle chase
+\begin{align*} \angle PAB' & = \angle AMD - \angle ACB \\ & = (90^{\circ} - \angle PDM) - \angle ACB \\ & = 90^{\circ} - (\angle HBC - \angle BHD) - \angle ACB \\ & = ((90^{\circ} - \angle ACB) - \angle HBC) + \angle BHD = \angle BHD \\ & = \angle PHB', \end{align*}so $AHPB'$ is cyclic and $\angle HPA = \angle PB'A = 90^{\circ}$ as desired. $\blacksquare$
+        }{%
+        https://artofproblemsolving.com/community/c4t48f4h3065092_geometry
+    }
+
+    (4pt)\\
+    \qitem{%
+        Five men and nine women stand equally spaced around a circle in random order. The probability that every man stands diametrically opposite a woman is $\frac{m}{n},$ where $m$ and $n$ are relatively prime positive integers. Find $m+n.$
+        }{%
+        $\frac{(14\cdot 12\cdot 10\cdot 8\cdot 6)/5!}{\binom{14}{5}}=\frac{48}{143}\implies \boxed{191}$
+        }{%
+        https://artofproblemsolving.com/community/c5h3011229p27048738
+    }
+
+    (4pt)\\
+    \qitem{%
+The sum of all positive integers $m$ for which $\tfrac{13!}{m}$ is a perfect square can be written as $2^{a}3^{b}5^{c}7^{d}11^{e}13^{f}$, where $a, b, c, d, e,$ and $f$ are positive integers. Find $a+b+c+d+e+f$.
+        }{%
+        First note $13! = 2^{10} \cdot  3^{5} \cdot 5^2 \cdot 7\cdot 11\cdot 13$.
+
+This implies that $m = 2^{a_1} \cdot 3^{a_2}\cdot 5^{a_3} \cdot 7\cdot 11\cdot 13$ for nonnegative integers $a_1, a_2, a_3$.
+
+We must have $a_1$ is even and $\le 10$, $a_2$ is odd and $\le 5$, $a_3$ is even and $\le 2$.
+
+We get that the sum of all $m$ is \begin{align*} (2^0 + 2^2 + 2^4 + 2^6 + 2^8 + 2^10)(3^1 + 3^3 + 3^5)(5^0 + 5^2)\cdot 7\cdot 11\cdot 13 \\ = 1365\cdot 273 \cdot 26\cdot 7\cdot 11\cdot 13 \\ = 3\cdot 5\cdot 7\cdot 13\cdot 3\cdot 7\cdot 13 \cdot 2\cdot 13\cdot 7\cdot 11\cdot 13 \\ \end{align*}
+You can count that there are $\boxed{012}$ (not necessarily distinct) primes here, so we are done.
+        }{%
+        https://artofproblemsolving.com/community/c5h3011237p27048762
+    }
+
+    (4pt)\\ \input{../content/n/crt/crt-q04.tex}
+    (4pt)\\ \input{../content/n/crt/crt-q02.tex}
+    (4pt)\\ \input{../content/a/vieta/vieta-q18.tex}
+    (4pt)\\ \input{../content/n/unsorted/sum_of_digit-q00.tex}
+    (4pt)\\ \input{../content/n/modular_arithmetic/modular-q00.tex}
+
+    (4pt)\\
+    \qitem{%
+Let $P$ be a point on the circumcircle of square $ABCD$ such that $PA \cdot PC = 56$ and $PB \cdot PD = 90.$ What is the area of square $ABCD?$
+        }{%
+        Let $O$ be the center of the square, and let $X$ and $Y$ be the feet from $P$ to $AC$ and $BD$. Then $OXPY$ is a rectangle, so we have
+
+$$\left(\frac{56}{\sqrt{2}s}\right)^2 + \left(\frac{90}{\sqrt{2}s}\right)^2 = \left(\frac{s}{\sqrt2}\right)^2\implies s^2 = \boxed{106}.$$
+        }{%
+        https://artofproblemsolving.com/community/c5h3011224p27048721
+    }
+
+    (4pt)\\ \input{../content/a/vieta/vieta-q17.tex}
+\end{shortque*}
+
+
+
+\end{document}

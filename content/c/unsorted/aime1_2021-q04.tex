@@ -1,0 +1,15 @@
+\qitem{%
+    Find the number of ways $66$ identical coins can be separated into three nonempty piles so that there are fewer coins in the first pile than in the second pile and fewer coins in the second pile than in the third pile. 
+    }{%
+    Let the three piles have $a, b, c$ coins respectively. If we disregard order, then we just need to divide by $3! = 6$ at the end.
+
+    We know $a + b + c = 66$. Since $a, b, c$ are positive integers, there are $\binom{65}{2}$ ways from Stars and Bars.
+
+    However, we must discard the cases where $a = b$ or $a = c$ or $b = c$. The three cases are symmetric, so we just take the first case and multiply by 3. We have $2a + c = 66 \implies a = 1, 2, \dots 32$ for 32 solutions. Multiplying by 3, we will subtract 96 from our total.
+
+    But we undercounted where $a = b = c = 22$. This is first counted 1 time, then we subtract it 3 times, so we add it back twice. There is clearly only 1 way, for a total of 2.
+
+    Hence, the answer is $\frac{\binom{65}{2} - 96 + 2}{6} = \boxed{331}.$ 
+    }{%
+    https://artofproblemsolving.com/wiki/index.php/2021_AIME_I_Problems/Problem_4
+}

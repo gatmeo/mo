@@ -1,0 +1,13 @@
+\qitem{%
+    Let $A$ and $B$ be sets such that there are exactly $144$ sets which are subsets of either $A$ or $B$. Determine the number of elements $A \cup B$ has.
+    }{%
+    We can know that for a set $A$ ,there are $2^{|A|}$ sets which are subsets of $A$.
+Then we can know there are $2^{|A|}+2^{|B|}-2^{|A\cap B|}$ sets which are subsets of either $A$ or $B$,so we have:
+$$2^{|A|}+2^{|B|}-2^{|A\cap B|}=144$$If $|B|=|A\cap B|$, then $2^{|A|}=144$,this is a contradiction！
+Then we know$|B|>|A\cap B|$ ,and we can also know$|A|>|A\cap B|$
+Because $2^4||144$,so we can know $|A\cap B|=4$,and we have:
+$$2^{|A|-|A\cap B|}+2^{|B|-|A\cap B|}=10$$Then we have $|A|-|A\cap B|=3,|B|-|A\cap B|=1$ or$|A|-|A\cap B|=1,|B|-|A\cap B|=3$.
+Then$|A|=7,|B|=5,|A\cap B|=4$ or $|A|=5,|B|=7,|A\cap B|=4$ ,and we have$ |A\cup B|=|A|+|B|-|A\cap B|=5+7-4=8$
+    }{%
+    https://artofproblemsolving.com/community/c6t32098f6h2911362_how_many_subsets_belong_to_either_set
+}

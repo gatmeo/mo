@@ -1,0 +1,21 @@
+\qitem{%
+For certain real numbers $a$, $b$, and $c$, the polynomial \[g(x) = x^3 + ax^2 + x + 10\]has three distinct roots, and each root of $g(x)$ is also a root of the polynomial \[f(x) = x^4 + x^3 + bx^2 + 100x + c.\]What is $f(1)$? 
+    }{%
+    Since all of the roots of $g(x)$ are distinct and are roots of $f(x)$, and the degree of $f$ is one more than the degree of $g$, we have that
+
+\[f(x) = C(x-k)g(x)\]
+
+for some number $k$. By comparing $x^4$ coefficients, we see that $C=1$. Thus,
+
+\[x^4+x^3+bx^2+100x+c=(x-k)(x^3+ax^2+x+10)\]
+
+Expanding and equating coefficients we get that
+
+\[a-k=1,1-ak=b,10-k=100,-10k=c\]
+
+The third equation yields $k=-90$, and the first equation yields $a=-89$. So we have that
+
+$f(1)=(1+90)g(1)=91(1-89+1+10)=(91)(-77)=\boxed{\textbf{(C)}\,-7007}$ 
+    }{%
+    https://artofproblemsolving.com/wiki/index.php/2017_AMC_12A_Problems/Problem_23
+}

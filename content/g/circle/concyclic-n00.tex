@@ -1,0 +1,64 @@
+\mysection{Concyclic Points}
+
+\begin{mysubsection}{}
+    \begin{definition}[def:]{Concyclic}
+        Points which lie on the same circle are said to be concyclic.
+    \end{definition}
+
+    Every three non-collinear points are concyclic. Why?
+
+    \rightasy[1.53in]{
+        import MOgeom;
+        pair A=dir(-160), B=dir(-20), P=dir(140), Q=dir(40);
+        D(MD("A",A)--MD("B",B)--MD("Q",Q)--A--MD("P",P)--B);
+        MA("p",A,P,B,10);
+        MA("q",A,Q,B,10);
+    }
+    \begin{theorem}[thm:]{converse of $\angle $s in the same segment}
+        If $AB$ subtends equal angles at $P$ and $Q$ on the same side of $AB$, then $A,B,Q$ and $P$ are concyclic.
+
+            i.e. If $p=1$, then $A,B,q$ and $P$ are concyclic.
+    \end{theorem}
+    \vspace{2em}
+
+    \rightasy[1.5in]{
+        import MOgeom;
+        pair B=dir(-160), C=dir(-20), A=dir(140), D=dir(60);
+        D(MD("A",A)--MD("B",B)--MD("C",C)--MD("D",D)--cycle);
+    }
+    \begin{theorem}[thm:]{opp. $\angle$s supp.}
+        If the opposite angles of quadrilateral $ABCD$ are supplementary, then $A,B,C,D$ are concyclic.
+
+            i.e. If $\angle A+\angle C=180^{\circ}$ or $\angle B+\angle D=180^{\circ}$, then $A,B,C$ and $D$ are concyclic.
+    \end{theorem}
+    \vspace{2em}
+
+    \rightasy[1.55in]{
+        import MOgeom;
+        pair B=dir(-160), C=dir(-20), A=dir(140), D=dir(60);
+        D(MD("A",A)--MD("B",B)--MD("C",C,S)--MD("D",D)--cycle);
+        pair E=MD("E",WP(D(L(B,C,0,0.5)),1));
+        MA("p",B,A,D,10);
+        MA("q",E,C,D,10);
+    }
+    \begin{theorem}[thm:]{ext. $\angle =$int. opp. $\angle $}
+        If the exterior angle of quadrilateral $ABCD$ is equal to its interior opposite angle, then $A,B,C,D$ are concyclic
+    \end{theorem}
+\end{mysubsection}
+
+\begin{shortque}[]{}
+    \qitem{%
+        \rightasy[1.5in]{
+            import MOgeom;
+            pair A=dir(180), B=dir(-30), C=dir(100), D=dir(-120), F=WP(L(D,B,.6),1);
+            D(CR(o,1));
+            D(D("B",B,S)--D("C",C)--D("A",A)--D("D",D)--D("F",F)--D("E",OP(ccc(A,D,F),L(A,B,4)))--A);
+        }
+        In the figure, $ADBC$ is a cyclic quadrilateral. $ABE$ and $DBF$ are straight lines, $AC\parallel EF$ and $AB=BC$.  If $\angle BFE=35^{\circ}, \angle CBF=120^{\circ}$, Find $\angle CAB$.
+        }{%
+        $\angle FEB=180-\angle CAB$, $\angle ADB=180-\angle ACB$. Since $AB=BC$,\\we have $\angle CAB=\angle ACB$, $\angle FEA=\angle FDA$.
+
+        $\angle DAB=\angle BFE=35^{\circ}$, $\angle CAD=\angle CBF$, $\angle CAB=120-35=85^{\circ}$.
+        }{%
+    }
+\end{shortque}

@@ -1,0 +1,36 @@
+\qitem{%
+    \myrightasy[2.2in]{
+        Point $O$ is the circumcenter of triangle $ABC$, and point $A'$ is the reflection of point $A$ over line $BC$. Let $\omega$ be the circle passing through points $A$, $O$, and $A'$. Line $AB$ intersects $\omega$ at point $X$ different from $A$, and line $AC$ intersects $\omega$ at point $Y$ different from $A$. Prove that $\overline{YO} = \overline{XA'}$.
+        }{
+        import MOgeom;
+        pair A, B, C, O, V, X, Y;
+        A = (1, 4);
+        V = (1, -4);
+        B = (0, 0);
+        C = (10, 0);
+        O = circumcenter(A, B, C);
+        path circleAOV;
+        circleAOV = circumcircle(A, O, V);
+        X = intersectionpoint(-A -- B, circleAOV);
+        Y = intersectionpoint(A -- C, circleAOV);
+        draw(X -- A -- C);
+        draw(B -- C);
+        draw(circleAOV);
+        draw(Y -- O);
+        draw(X -- V);
+        dot(O);
+        dot(V);
+        label("$A$", A, N);
+        label("$B$", B, W);
+        label("$C$", C, E);
+        label("$A'$", V, S);
+        label("$O$", O, E);
+        label("$X$", X, SSW);
+        label("$Y$", Y, ENE);
+    }
+    }{%
+    Let $D$ be the foot of the altitude from $A$ to $BC$. Notice that $\angle YAO = \angle CAO = 90^{\circ}-\angle B$ and $\angle XAA' = \angle BAD = 90^{\circ}-\angle B$, so $\angle YAO = \angle XAA'$. Thus, $YO=XA'$.
+    }{%
+    https://artofproblemsolving.com/community/c4t41805f4h2041554_nonsymmetrical_geometry_problem
+}
+

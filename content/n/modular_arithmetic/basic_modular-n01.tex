@@ -1,0 +1,50 @@
+\mysection{Modular Arithmetic}
+
+\begin{mysubsection}{}
+    \begin{definition}[def:]{}
+        $a-b$ is divisible by $m$ if and only if $a\equiv b \mod m$ \qquad for positive integers $m, a \textnormal{ and }b$
+    \end{definition}
+    \begin{itemize}
+        \item Addition, Subtraction and Multiplication
+            \begin{itemize}
+                \item If $a\equiv b (\textnormal{mod  }m)$ and  $b\equiv c (\textnormal{mod  }m)$ , then  $a\equiv c (\textnormal{mod  }m)$
+                \item If $a\equiv b (\textnormal{mod  }m)$ and  $c\equiv d (\textnormal{mod  }m)$ , then  $a\pm c\equiv b \pm d (\textnormal{mod  }m)$
+                \item If $a\equiv b (\textnormal{mod  }m)$ and  $c\equiv d (\textnormal{mod  }m)$ , then  $ac\equiv bd (\textnormal{mod  }m)$ \\
+                    Hence, if $a\equiv b(\textnormal{mod }m)$, then $a^k\equiv b^k (\textnormal{mod }m)$
+            \end{itemize}
+        \item Division
+            \begin{itemize}
+                \item If $ac\equiv bc(\textnormal{mod }mc)$, then $a\equiv b (\textnormal{mod }m)$
+                \item If $ac\equiv bc(\textnormal{mod }m)$ and $\gcd(c,m)=1$, then $a\equiv b (\textnormal{mod }m)$
+                \item \textbf{Generalization: }If $ac\equiv bc(\textnormal{mod }m)$ and $\gcd(c,m)=d$, then $a\equiv b (\textnormal{mod }\frac{m}{d})$
+            \end{itemize}
+    \end{itemize}
+\end{mysubsection}
+
+\mynewpage
+\begin{shortque}[]{}
+    \qitem{%
+        $4\times 23\equiv \qquad (\textnormal{mod }25)$
+        }{%
+        $4\cdot -2$
+        }{%
+        <++>
+    }
+
+    \qitem{%
+        $99^2\equiv \qquad (\textnormal{mod }101)$
+        }{%
+        $(-2)^2$
+        }{%
+        <++>
+    }
+
+    \qitem{%
+        $x^2\equiv 4\quad (\textnormal{mod }23)$
+        }{%
+        $(x+2)(x-2)\equiv 0$.
+        }{%
+        <++>
+    }
+\end{shortque}
+

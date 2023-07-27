@@ -1,0 +1,11 @@
+\qitem{%
+    Find the maximum of $2 - a - \frac{1}{2a}$ for all positive $a$. 
+    }{%
+    We can rewrite the given expression as $2 - (a + \frac{1}{2a})$. To maximize the whole expression, we must minimize $a + \frac{1}{2a}$. Since $a$ is positive, so is $\frac{1}{2a}$. This means AM - GM will hold for $a$ and $\frac{1}{2a}$.
+
+    By AM - GM, the arithmetic mean of $a$ and $\frac{1}{2a}$ is at least their geometric mean, or $\frac{\sqrt{2}}{2}$. This means the sum of $a$ and $\frac{1}{2a}$ is at least $\sqrt{2}$. We can prove that we can achieve this minimum for $a + \frac{1}{2a}$ by plugging in $a = \frac{\sqrt{2}}{2}$ by solving $a + \frac{1}{2a} = \sqrt{2}$ for $a$.
+
+    Plugging in $a = \frac{\sqrt{2}}{2}$ into our original expression that we wished to maximize, we get that $2 - a - \frac{1}{2a} = \boxed{2 - \sqrt{2}}$, which is our answer. 
+    }{%
+    https://artofproblemsolving.com/wiki/index.php/Solution_to_AM_-_GM_Introductory_Problem_2
+}

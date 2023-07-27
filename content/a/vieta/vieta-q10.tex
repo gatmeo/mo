@@ -1,0 +1,12 @@
+\qitem{%
+    Find the cubic monic polynomial whose roots are the cubes of the roots of
+    \[ x^3-x^2+x-2=0\]
+    }{%
+    Let $a,b,c$ be the roots of the original polynomial. Then we need a polynomial with roots $a^3,b^3,c^3$. The desired polynomial will be $$x^3-(a^3+b^3+c^3)x^2+(a^3b^3+a^3c^3+b^3c^3)x-a^3b^3c^3$$From Vieta's $abc=2$. Therefore, $a^3b^3c^3=8$.
+
+Now we will calculate all the roots up to and including $P_6$.
+$$P_1=1$$$$P_2-P_1+2=0\implies P_2=-1$$$$P_3-P_2+P_1-6=0\implies P_3=4$$$$P_4-P_3+P_2-2P_1=0\implies P_4=7$$$$P_5-P_4+P_3-2P_2=0\implies P_5=1$$$$P_6-P_5+P_4-2P_3=0\implies P_6=2$$
+Therefore, $a^3+b^3+c^3=P_3=4$. Furthermore, $$(P_3)^2=a^6+b^6+c^6+2(a^3b^3+a^3c^3+b^3c^3)=P_6+2(a^3b^3+a^3c^3+b^3c^3)$$$$16=2+2(a^3b^3+a^3c^3+b^3c^3)\implies 7=a^3b^3+a^3c^3+b^3c^3$$Thus, the desired polynomial is $$\boxed{x^3-4x^2+7x-8=0}$$
+    }{%
+    https://artofproblemsolving.com/community/c4t173f4h2531925_pst_problem
+}

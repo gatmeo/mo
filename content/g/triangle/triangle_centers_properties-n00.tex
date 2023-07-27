@@ -1,0 +1,172 @@
+\mysection{Angles in Triangle Centres}
+
+\begin{mysubsection}{Incentre (I)}
+    \begin{wrapfigure}{r}{2in}
+        \asycode{
+            import MOgeom;
+            size(2inch);
+            pair A=origin, B=(6,0), C=(2,5), I=incenter(A,B,C);
+            path ic=incircle(A,B,C);
+            pair[] Iu=itps(A,B,C);
+            draw(cycv(A,B,C));
+            SP(TP(A,B,C),I);
+            SP(Iu,I);
+            draw(ic);
+            labelpt(TP(A,B,C), strabc, td(W,S,N));
+            labelapd(Iu, "I_", strabc, td(E,W,S));
+            label("$I$",I,SSW);
+        }
+    \end{wrapfigure}
+
+    \nbf{Construction: }Intersection of angle bisectors
+
+    \nbf{Position: }Always lies within $\triangle ABC$
+\end{mysubsection}
+
+\begin{shortque*}[]{}
+    \qitem{%
+        Find $\angle BII_C$.
+        }{%
+        $90-B/2$ or $C/2+A/2$.
+        }{%
+        <++>
+    }
+    
+    \qitem{%
+        Find $\angle AIB$.
+        }{%
+        $180-A/2-B/2$ or $90+C/2$.
+        }{%
+        <++>
+    }
+\end{shortque*}
+
+\begin{mysubsection}{CircumCentre (O)}
+    \begin{wrapfigure}{r}{2in}
+        \asycode{
+            import MOgeom;
+            size(2inch);
+            pair A=origin, B=(6,0), C=(2,5), O1=circumcenter(A,B,C);
+            path W1=ccc(A,B,C);
+            draw(W1);
+            pair M[]=mps(A,B,C);
+            draw(cycv(A,B,C));
+            SP(TP(A,B,C),O1);
+            SP(M,O1);
+            labelpt(TP(A,B,C), strabc, td(W,S,N));
+            labelapd(M, "M_", strabc, td(E,W,S));
+            label("$O$",O1,2SSW);
+        }
+    \end{wrapfigure}
+
+    \nbf{Construction: }Intersection of perpendicular bisectors of sides $AB, AC\textnormal{ and }BC$
+
+    \nbf{Position: }
+
+    Lies within $\triangle ABC$ if $\triangle ABC$ is a acute triangle
+
+    Lies on mid-point of $BC$ if $\triangle ABC$ is a right-angled triangle
+
+    Lies outisde $\triangle ABC$ if $\triangle ABC$ is obtuse triangle
+\end{mysubsection}
+
+\begin{shortque*}[]{}
+    \qitem{%
+        Find $\angle AOB$.
+        }{%
+        $2C$.
+        }{%
+        <++>
+    }
+    
+    \qitem{%
+        Find $\angle ABO$.
+        }{%
+        $90-C$.
+        }{%
+        <++>
+    }
+
+    \qitem{%
+        Find $AB$ in terms of $R$.
+        }{%
+        $2R\sin C$.
+        }{%
+        <++>
+    }
+\end{shortque*}
+
+\mynewpage
+
+\begin{mysubsection}{Orthocentre (H)}
+    \begin{wrapfigure}{r}{2in}
+        \asycode{
+            import MOgeom;
+            size(2inch);
+            pair A=origin, B=(6,0), C=(2,5), H=oct(A,B,C);
+            pair[] Hu=foots(A,B,C);
+            draw(cycv(A,B,C));
+            drawalt(A,B,C);
+            labelpt(TP(A,B,C), strabc, td(W,E,N));
+            labelapd(Hu, "H_", strabc, td(E,W,S));
+            label("$H$",H,2SSE);
+        }
+    \end{wrapfigure}
+
+    \nbf{Construction: }Intersection of altitudes
+
+    \nbf{Position: }
+
+    Lies within $\triangle ABC$ if $\triangle ABC$ is a acute triangle
+
+    Lies on $A$ if $\triangle ABC$ is a right-angled triangle (with $\angle A = 90^\circ$)
+
+    Lies outisde $\triangle ABC$ if $\triangle ABC$ is obtuse triangle
+\end{mysubsection}
+
+\begin{shortque*}[]{}
+    \qitem{%
+        Find $\angle HAB$.
+        }{%
+        $90-B$.
+        }{%
+        <++>
+    }
+
+    \qitem{%
+        Find $\angle BHC$.
+        }{%
+        $180-A$.
+        }{%
+        <++>
+    }
+    
+    \qitem{%
+        Find $\angle AHH_C$.
+        }{%
+        $B$.
+        }{%
+        <++>
+    }
+
+    \qitem{%
+        Find $AH$ in terms of $R$.
+        }{%
+        $\angle HAH_B=90-C$,
+
+        $AH=\dfrac{AH_B}{\cos(90-C)}=\frac{AB\cos A}{\sin C}=\dfrac{c}{\sin C}\cos A=2R\cos A$
+        }{%
+        <++>
+    }
+
+    \qitem{%
+        Find $H_AH$ in terms of $R$.
+        }{%
+        $\angle HBH_A=90-C$,
+
+        $HH_A=BH_A\tan(90-C)=AB\cos B\dfrac{\cos C}{\sin C}=\dfrac{c}{\sin C} \cos B \cos C=2R\cos B \cos C$
+        }{%
+        <++>
+    }
+
+\end{shortque*}

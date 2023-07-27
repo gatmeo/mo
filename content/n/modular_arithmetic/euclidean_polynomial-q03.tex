@@ -1,0 +1,24 @@
+\qitem{%
+    What is the largest positive integer $n$ such that $n^3+100$is divisible by $n+10$?
+    }{%
+    \begin{alignat*}{1}
+        n^3+100&= (n+1)(n^2+an+b) +c\\
+               &= n^3+n^2(10+a) + n(b+10a) + 10b + c
+    \end{alignat*}
+
+    Solve 
+    \begin{equation*}
+        \begin{cases}
+           &10+a=0\\
+           &b+10a=0\\
+           &10b+c=100
+        \end{cases}
+    \end{equation*}
+
+    we have $a=-10,b=100,c=-900$. Hence we have
+    $n+10=gcd(n^3,100,n+10)=gcd(-900,n+10)=gcd(900,n+10)$.
+
+    Max value for $n$ is $890$.
+    }{%
+    <++>
+}

@@ -1,0 +1,44 @@
+\qitem{%
+    Let $m$ and $n$ be positive integers posessing the following property: the equation
+    \begin{equation*}
+        gcd(11k-1,m)=gcd(11k-1,n)
+    \end{equation*}
+    holds for all positive integers $k$. Prove that $m=11^rn$ for some integer $r$.
+    }{%
+    Define $v_p(a)$ to be the number of times that the prime $p$ occurs in the prime factorization of $a_{1}$. The given statement is equivalent to proving that $v_p(m)=v_p(n)$ when $p\neq 11$ is a prime. To prove this, assume on the contrary that WLOG we have
+    \begin{alignat*}{1}
+        v_p (m) > v_p (n)
+    \end{alignat*}
+    Write $m = p^a b, n = p^c d$ where $b$ and $d$ are relatively prime to $p$. We have $a > c$.
+
+    By Theorem 2 we know that there exists a solution for k such that $11k\equiv 1\textnormal{mod }p^a$. However, we now have
+    \begin{alignat*}{1}
+        p^a|gcd(11k-1,m)
+    \end{alignat*}
+    but $p^a|gcd(11k-1,n)$ implies that $p^a|n$ contradicting $a > c$
+    }{%
+    <++>
+}
+
+\qitem{%
+    Find the least positive integer such that when its leftmost digit is deleted, the resulting integer is $\frac{1}{29}$ of the original integer.
+    }{%
+    Suppose the original number is $N = \overline{a_na_{n-1}\ldots a_1a_0},$ where the $a_i$ are digits and the first digit, $a_n,$ is nonzero. Then the number we create is $N_0 = \overline{a_{n-1}\ldots a_1a_0},$ so \[N = 29N_0.\] But $N$ is $N_0$ with the digit $a_n$ added to the left, so $N = N_0 + a_n \cdot 10^n.$ Thus, \[N_0 + a_n\cdot 10^n = 29N_0\] \[a_n \cdot 10^n = 28N_0.\] The right-hand side of this equation is divisible by seven, so the left-hand side must also be divisible by seven. The number $10^n$ is never divisible by $7,$ so $a_n$ must be divisible by $7.$ But $a_n$ is a nonzero digit, so the only possibility is $a_n = 7.$ This gives \[7 \cdot 10^n = 28N_0\] or \[10^n = 4N_0.\] Now, we want to minimize both $n$ and $N_0,$ so we take $N_0 = 25$ and $n = 2.$ Then \[N = 7 \cdot 10^2 + 25 = \boxed{725},\] and indeed, $725 = 29 \cdot 25.$
+    }{%
+    https://artofproblemsolving.com/wiki/index.php/2006_AIME_I_Problems/Problem_3
+}
+
+\qitem{%
+    The digits of a positive integer $n$ are four consecutive integers in decreasing order when read from left to right. What is the sum of the possible remainders when $n$ is divided by $37$?
+    }{%
+    A brute-force solution to this question is fairly quick, but we'll try something slightly more clever: our numbers have the form ${\underline{(n+3)}}\,{\underline{(n+2)}}\,{\underline{( n+1)}}\,{\underline {(n)}}$$= 1000(n + 3) + 100(n + 2) + 10(n + 1) + n = 3210 + 1111n$, for $n \in \lbrace0, 1, 2, 3, 4, 5, 6\rbrace$.
+
+    Now, note that $3\cdot 37 = 111$ so $30 \cdot 37 = 1110$, and $90 \cdot 37 = 3330$ so $87 \cdot 37 = 3219$. So the remainders are all congruent to $n - 9 \pmod{37}$. However, these numbers are negative for our choices of $n$, so in fact the remainders must equal $n + 28$.
+
+    Adding these numbers up, we get $(0 + 1 + 2 + 3 + 4 + 5 + 6) + 7\cdot28 = \boxed{217}$
+    }{%
+    https://artofproblemsolving.com/wiki/index.php/2004_AIME_I_Problems/Problem_1
+}
+
+%\qitem{% Let $a, b, c$ be positive integers with $0 < a, b, c < 11$. If $a, b, $ and $c$ satisfy \begin{alignat*}{1} 3a+b+c&\equiv abc\pmod{11} \\ a+3b+c&\equiv 2abc\pmod{11} \\ a+b+3c&\equiv 4abc\pmod{11} \end{alignat*}then find the sum of all possible values of $abc$.  }{% <++> }{% <++> }
+

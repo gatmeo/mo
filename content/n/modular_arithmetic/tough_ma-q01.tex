@@ -1,0 +1,8 @@
+\qitem{%
+    Given that $46^3-1$ is divisible by $103$, find the integer $46<n<103$ such that $n^3-1$ is divisible by $103$.
+    }{%
+    We need to find the positive integer $n,$ such that $n^3-1=(n-1)(n^2+n+1)\equiv 0\pmod{103}.$ Since $n-1$ is not divisible by 103 (since 1, 104, etc. is not in the range of 46 and 103 exclusive), we can divide $n-1$ from both sides to obtain $n^2+n+1\equiv 0\pmod{103}$. Also, we are given that $46^3-1=(46-1)(46^2+46+1)\equiv 0\pmod{103}.$ Since 46-1=45 is not divisible by 103, it is safe to divide by 45 on both sides to obtain $46^2+46+1\equiv 0\pmod{103}.$
+We can subtract the second equation from the first to obtain $n^2+n+1-46^2-46-1 \equiv 0\pmod{103} \Leftrightarrow n^2-46^2+n-46\equiv 0\pmod{103} \Leftrightarrow (n-46)(n+46)+(n-46)\equiv 0\pmod{103} \Leftrightarrow (n-46)(n+46+1)\equiv 0\pmod{103}.$ Since $n-46$ is not divisible by 103, it is safe to divide $n-46$ from both sides to obtain $n+47\equiv 0\pmod{103} \Leftrightarrow n+47=103 \Leftrightarrow n=56.$ We can use a calculator and check that 56 is indeed the right answer.
+    }{%
+    https://artofproblemsolving.com/community/c3t178f3h2586577_modular_arithmetic_problem
+}

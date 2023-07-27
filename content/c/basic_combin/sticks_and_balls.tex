@@ -1,0 +1,72 @@
+\qitem{%
+    Let $n$ be the number of ways in which 7 men and 5 women can stand in a queue such that all the women stand consecutively. Let $m$ be the number of ways in which the same $12$ persons can stand in a queue such that exactly $6$ men stand consecutively.
+    }{%
+    $n$: Consider $6$ women stand as one block: $n=6!\cdot 7!$.
+
+    $m$: Consider the $6$ man in a line as one block, the another man as another block.
+
+    $C^6_2$ ways to arrange men and women.
+
+    $5!$ ways to arrange the women, and $7!$ ways to arrange the men. Thus, $\frac{m}{n}=\frac{30\cdot 120 \cdot 5040}{6\cdot 120 \cdot 5040} = 5$.
+    }{%
+    <++>
+}
+
+\qitem{%
+    19 identical candies are distributed to 10 different students. Find the number of ways to distribute the candies, where none of the students gets more than 10 candies.
+
+    }{%
+    All - scenarios where one students gets more than 10 candies.
+
+    All: $C^{28}_{19} $.
+
+    One student has at least 11 candies: $C^{8+9}_{9} \cdot 10$.
+    }{%
+    <++>
+}
+
+\qitem{%
+    Find the number of non-negative non-decreasing sequence with 5 terms, where the fifth term is less than or equal to 10.
+    }{%
+    Consider a 6th term equals 10.
+
+    $C_{5}^{10+5} $.
+    }{%
+    <++>
+}
+
+\qitem{%
+    Find the number of positive strictly increasing sequence with 5 terms, where the fifth term is less than or equal to 10.
+    }{%
+    Consider a 6th term equals 10.
+
+    $C_{5}^{10+5-5} $.
+    }{%
+    <++>
+}
+
+\qitem{%
+    Find the number of non-decreasing sequence with 7 terms, where the first term equals 1, seventh term equals 11, and the forth term is less than or equal to 6.
+    }{%
+    Sol1: consider seperately the 4th term equal 1,2,3,4,5,6.
+
+    Sol2: number of sequence with 4th term equal 1 = equal 11, that of 2 = that of 10 ...
+
+    Hence number of sequence with 4th term \textbf{less than} 6:
+
+    $\frac{1}{2}$(All - 4th term = 6)
+
+    4th term = 6: $(C_{1}^{1+5})^2 $.
+    }{%
+    <++>
+}
+
+\qitem{%
+    $7$ boys and $5$ girls are sitting around a round table. If none of the girls are sitting next to each other, how many ways can the twelve people sit?
+    }{%
+    First, the $7$ boys sit and arrange themselves in $6!$ ways. Then, The girls choose places in $\binom{7}{5}=\binom{7}{2}$ and arrange themselves in $5!$ ways.
+
+    Answer: $6! \cdot \binom{7}{2} \cdot 5!$
+    }{%
+    <++>
+}

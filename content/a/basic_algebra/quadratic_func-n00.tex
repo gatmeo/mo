@@ -1,0 +1,39 @@
+\mysection{Quadratic Function}
+
+\begin{mysubsection}{}
+    For a quadric function, we can find its maximum and minimum value by doing completing square:
+    \begin{alignat*}{1}
+        ax^2+bx+c&= a\left(x^2+2\frac{b}{2a}x+\frac{b^2}{4a^2}\right)+c-\frac{b^2}{4a}\\
+                  &= a\left(x+\frac{b}{2a}\right)^2+c-\frac{b^2}{4a}.
+    \end{alignat*}
+    Since $\left(x+\frac{b}{2a}\right)^2\geq 0$, if $a>0$, the minimum value of the quadratic function is $c-\frac{b^2}{4a}$ at $x=-\frac{b}{2a}$. If $a>0$, we get the same result except $c-\frac{b^2}{4a}$ is the maximum value.
+\end{mysubsection}
+
+\begin{shortque}[]{}
+    \qitem{%
+        If $x,y$ are positive numbers with $x+y=2a$, then the product $xy$ is maximal when $x=y=a$.
+        }{%
+        If $x+y=2a,$ then $y=2a-x$. Hence $xy=x(2a-x)=-x^2+2ax=-(x-a)^2+a^2$ has maximum value when $x=a$, and then $y=x=a$.
+        }{%
+        <++>
+    }
+
+    \qitem{%
+        If $x,y$ are positive with $xy=1$, then sum $x+y$ is minimal when $x=y=1$.
+        }{%
+        If $xy=1$, then $y=\dfrac{1}{x}$. It follows that $x+y=x+\dfrac{1}{x}=\left(\sqrt{x}-\dfrac{1}{\sqrt{x}}\right)^2+2$, and then $x+y$ is minimal when $\sqrt{x}-\dfrac{1}{\sqrt{x}}=0$, that is when $x=1$. Therefore, $x=y=1$.
+        }{%
+        <++>
+    }
+
+    \qitem{%
+        For any positive number $x$ we have $x+\frac{1}{x}\geq 2$.
+        }{%
+        $x+\dfrac{1}{x}=\left(\sqrt{x}-\dfrac{1}{\sqrt{x}}\right)^2+2$
+        
+        The equality holds if and only if $\sqrt{x}-\dfrac{1}{\sqrt{x }}=0$, that is when $x=1$.
+        }{%
+        <++>
+    }
+\end{shortque}
+

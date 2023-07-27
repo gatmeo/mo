@@ -1,0 +1,18 @@
+\qitem{%
+    How many $6$-digit numbers, written in decimal notation, have at least one $1$, one $2$, and one $3$ among their digits?
+    }{%
+    It suffices to find $900000$ - the number of $6$ digit numbers that do not have a $1$, $2$ or a $3$.
+
+    So now we use PIE on these $3$ constraints.
+
+    The number of $6$ digit numbers that do not have a $1$ is simply $8 \cdot 9^{5} = 472392$. Similarly there are $472392$ numbers that do not have a $2$ and $472392$ numbers that do not have a $3$. This gives a total of $3 \cdot 472392 = 1417176$ cases.
+
+    But we have over-counted when there are no $1$'s and $2$'s, no $1$'s and $3$'s and no $2$'s and $3$'s. The number of $6$ digit numbers with no $1$'s or $2$'s is clearly $7 \cdot 8^5 = 229376$. The same applies to the other two cases so this gives a total of $3 \cdot 229376 = 688128$ over-counts.
+
+    And finally we over-counted again when there are no $1$'s $2$'s or $3$'s which is simply $6 \cdot 7^5 = 100842$ cases.
+
+    Thus the answer is $900000 - (1417176-688128+100842) = \boxed{70110}$ numbers.
+    }{%
+    https://artofproblemsolving.com/community/c4t32098f4h1490550_pie_problem
+}
+

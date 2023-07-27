@@ -1,0 +1,9 @@
+\qitem{%
+    There are $10$ girls in a class, all with different heights. They want to form a queue so that no girl stands directly between two girls shorter than her. How many ways are there to form the queue?
+    }{%
+    Note that if we have adjacent girls $i, j$ with heights $h_i < h_j$, then the girl to the right of $j$ should be taller than her, and so on. Similarly if we have $h_i > h_j$, then the girl to the left of $i$ should be taller than her, and so on.
+    Consider the placement of the shortest girl $s$. By definition, girls adjacent to $s$ must be taller than her, hence all of the girls to the right of $s$ are in ascending order and all the girls to the left in descending order. If there are $k$ girls to the right of $s$, we have ${9 \choose k}$ possible combinations of those girls. They will be sorted in ascending order, and the rest of the girls in descending order to the left of $s$.
+    $$\sum_{k = 0}^9{9 \choose k} = 2^9 = \boxed{512}$$
+    }{%
+    https://artofproblemsolving.com/community/c4t309f4h2675958_10_girls_in_a_class_with_different_heights__2021_malaysia_imonst_1_senior_p3
+}

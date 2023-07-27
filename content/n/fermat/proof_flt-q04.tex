@@ -1,0 +1,14 @@
+\qitem{%
+    Prove that if $p$ is prime, $(a+b)^{p} \equiv a^{p}+b^{p}$ mod $p$.
+    }{%
+    From binomial theorem, $(a+b)^p=a^p+\binom{p}{1}a^{p-1}b+...+b^{p}$. This is equivalent to proving that $p|\binom{p}{k}$ for all $k$ such that $1\le k\le p-1$.
+
+    Since $\binom{p}{k}=\frac{p\times (p-1)\times (p-2)\cdots \times (p-k+1)}{k\times (k-1)\times \cdots 1}$, we must have that $\frac{(p-1)\times (p-2)\cdots \times (p-k+1)}{k\times (k-1)\times \cdots 1}$ is an integer. Notice that this is a multiple of $\binom{p-1}{k}$, which is an integer on $1\le k\le p-1$, so we are done. $\blacksquare$
+
+    Assuming $p$ is prime, Fermat's Little Theorem gives
+
+    $$a^p \equiv a \pmod p$$$$b^p \equiv b \pmod p$$$$(a+b)^p \equiv a+b \pmod p$$
+    so $a^p+b^p \equiv (a+b)^p \pmod p$.
+    }{%
+    https://artofproblemsolving.com/community/c3t178f3h2383067_modular_arithmetic
+}

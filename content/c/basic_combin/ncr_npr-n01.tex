@@ -1,0 +1,39 @@
+\mysection{Combinatorics}
+
+\begin{mysubsection}{}
+    \begin{definition}[def:]{Permutation}
+        Count the number of ways to arrange $r$ out of $n$ objects where \textbf{order does matter.}
+
+        The number of ways can be calculated with
+        \begin{equation*}
+            P^n_r=\dfrac{n!}{(n-r)!}=n\times (n-1)\times (n-2)\times \cdots\times (n-r+1).
+        \end{equation*}
+    \end{definition}
+    \myframebreak
+
+    \begin{definition}[def:]{Combination}
+        Count the number of ways to select $r$  out of $n$ objects where \textbf{order does not matter}.
+
+        The number of ways can be calculated by
+        \begin{equation*}
+            C^n_r=\dfrac{n!}{r!(n-r)!}=\dfrac{n\times (n-1)\times  \cdots\times (n-r+1)}{1\times 2\times \cdots\times r}.
+        \end{equation*}
+    \end{definition}
+
+    Properties: $C^n_r = C^n_{n-r}$ (why?)
+
+    Compute $C^{2019}_{2017}$
+\end{mysubsection}
+
+\begin{mysubsection}{Relationship between \texorpdfstring{$C^n_r$ and $P^n_r$}{ncr and npr}}
+    \nbf{Numerical relationship: }$C^n_r = \dfrac{P^n_r}{r!}$
+
+    \nbf{Reason for such relationship exists:}
+
+    Consider the set of all possible permutations arrange $r$ out of $n$ elements. There will be exactly $r!$ permutation representing the same set of combination.
+    For example, when choose 3 elements from a set of 5 elements $(a,b,c,d,e)$, there is $3!=6$ permutation representing the same combination of choosing 3 elements out of 5.
+
+    And for every combination, it matches exactly $3!$ permutation.
+
+    Therefore, we have $P^5_3 = 3!C^5_3$.
+\end{mysubsection}

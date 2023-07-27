@@ -1,0 +1,7 @@
+\qitem{%
+    Find the remainder when $x^{81}+x^{49}+x^{25}+x^{9}+x$ is divided by $x^3-x$.
+    }{%
+    Let \[ P(x) = x^{81} + x^{49} + x^{25} + x^9 + x \]and let $Q(x)$ be the quotient when $P(x)$ is divided by $x^3 - x$. We are dividing by a cubic, so the degree of the remainder is no more than 2. Therefore, the remainder is $ax^2 +bx+c$ for some constants $a$, $b$, and $c$. So, we have \[P(x) = (x^3 - x)Q(x) + ax^2 + bx + c.\]Since $x^3 - x = x(x + 1)(x - 1)$, we can let $x=-1$, 0, or $1$ to make $x^3 - x$ equal to 0. Doing each in turn gives us the system of equations \begin{align*} P(-1) &= a - b + c,\\ P(0) &= c,\\ P(1) &= a+b+c. \end{align*}Since $P(0) = 0$, we have $c=0$. Adding the first and third equations then gives \[ 2a = P(-1) + P(1) = -5 + 5 = 0, \]so $a=0$. Finally, from $P(1) = a+b+c$, we have $b = P(1) = 5$, so the desired remainder is $5x$.
+    }{%
+    https://artofproblemsolving.com/community/c4t45179f4h1966683_remainder_theorem_question
+}

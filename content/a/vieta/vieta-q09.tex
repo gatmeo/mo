@@ -1,0 +1,14 @@
+\qitem{%
+    The equation \[2^{333x-2}+2^{111x+2}=2^{222x+1}+1\]has three real roots. Given that their sum is $m/n$ where $m$ and $n$ are relatively prime positive integers, find $m+n$.
+    }{%
+    Let $y=2^{111x}$.
+The equation then becomes $\frac{y^3}{4}+4y= 2y^2+1$. After rearranging, we get $\frac{y^3}{4}-2y^2+4y-1=0$ and the product of the roots, which we will call $y_1y_2y_3$ equals $-\frac{-1}{\frac{1}{4}}=4$
+
+However, we need to find the sum of the roots of the previous equation. Let $\{x_1,x_2,x_3\}$ be the roots of the original equation. Since $y_1y_2y_3=4$ and $\log_2 y_1y_2y_3=2$,
+
+$\log_2 y_1y_2y_3 = \log_2 2^{111x_1}+\log_2 2^{111x_2}+\log_2 2^{111x_3}=111(x_1+x_2+x_3)= 2$.
+
+Thus, $\frac{m}{n}= \frac{2}{111}$ and $m+n=113$
+    }{%
+    https://artofproblemsolving.com/community/c4t173f4h60522_roots_of_an_exponential_equation
+}

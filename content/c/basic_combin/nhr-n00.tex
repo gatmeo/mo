@@ -1,0 +1,33 @@
+
+\mynewpage
+
+\mysection{Arranging Repeating Elements (nHr)}
+
+\begin{mysubsection}{}
+    If we are asked how many string with length $5$ consisting of only A, B or C, the answer is simply $3^5$ as order does matter, as each choice for each position is independent of one another. However, if we want to find the number of ways to pick 5 elements out of A, B or C, with repetition, the choices are no longer independent. The way we can view this problem is to change this question to putting 5 elements into 3 boxes, namely box A, box B and box C. The number of balls within the boxes $i$ refers the the number of $i$ that are selected out of the $5$ elements. And we write this as $H_5^3$, where $5$ represents the number of elemets to be chosen, and $3$ represents the number of different elemnts. Hence we have
+    \[H_r^n=C_{r}^{n+r-1} =C_{n-1}^{n+r-1} .\]
+    And the value of $H_r^n$ equals the number of nonnegative integer solutions of the equation
+    \[x_1+x_2+\cdots +x_n=r.\]
+\end{mysubsection}
+
+\toggletrue{ownans}
+\begin{shortque}[]{1}
+    \qitem{%
+        You have $2$ copies of the letter A and and unlimited supply of the letters B, C and D. How many words of length $10$ can you make from these for different cases:
+        \begin{enumerate}
+            \item No letter A is used where order does not matter,
+            \item All the letter A are used where order does not matter,
+            \item All A are used with no consecutive A and order matters, or
+            \item No restrictions where order does not matter,
+        \end{enumerate}
+        }{%
+        \begin{enumerate}
+            \item $H_{10}^3={12\choose 2}$
+            \item $H_8^3={10\choose 2}$
+            \item ${10\choose 2}\cdot 3^8-9\cdot 3^8=36\cdot 3^8$
+            \item $H_{10}^{3} +H_{9}^{3} +H_{8}^{3}={12\choose 2}+{11\choose 2}+{10\choose 2}=166$.
+        \end{enumerate}
+        }{%
+        <++>
+    }
+\end{shortque}

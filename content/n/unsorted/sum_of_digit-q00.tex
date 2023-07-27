@@ -1,0 +1,55 @@
+\qitem{%
+Given a positive integer $n,$ let $s(n)$ denote the sum of the digits of $n.$ Compute the largest positive integer $n$ such that $n = s(n)^2 + 2s(n) - 2.$
+    }{%
+    We have given a natural number $N $ satisfying the equation
+
+$(1) \;\; N = S^2 + 2S - 2$,
+
+where $S$ is the sum of the digits of $N$.
+
+Let $k$ be the number of digits of $N$. Hence $N \geq 10^{k-1}$ and $S \leq 9k$, which according to equation (1) implies
+
+$10^{k-1} < (9k + 1)^2$,
+
+yielding $k  \leq 3$.
+
+Assume $k=3$. The fact that $9 \mid N - S$ combined with equation (1) give us
+
+$9 \mid (S - 1)(S + 2)$
+
+i.e.
+
+$(2) \;\; S \equiv 1,7 \pmod{9}$.
+
+According to equation (1)
+
+$10^2 + 3 \leq N + 3 = (S + 1)^2$,
+
+which means $S\geq 10$. The fact that $S \leq 9k \leq 9 \cdot 3 = 27$ result in
+
+$(3) \;\; 10 \leq S \leq 27$.
+
+Combining conditions (2) and (3) we obtain
+
+$S \in \{10,16,19,25\}$
+
+which according to equation (1) result in
+
+$(4) \;\; N + 3 = (S + 1)^2  \in \{11^2, 17^2, 20^2, 26^2\}$,
+
+i.e.
+
+$N \in \{118,286, 397,673\}$,
+
+with
+
+$(5) \;\; S + 1 \in \{11,17,20,17\}$.
+
+respectively. Therefore according to conditions (4) and (5) equation (1) is satisfied when
+
+$N \in \{118, 286, 397\}$.
+
+Conclusion: The largest natural number $N$ which satisfies equation (1) is $N=397$.
+    }{%
+    https://artofproblemsolving.com/community/c4t177f4h3066892_bmt_2022_fall_discrete_p5
+}

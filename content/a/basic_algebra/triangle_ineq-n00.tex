@@ -1,0 +1,68 @@
+\mysection{Triangle Inequality}
+
+\begin{mysubsection}{}
+    \begin{definition}[def:]{Absolute Value}
+        The absolute value of a real numebr $x$, which is denoted by $\left|x\right|$, is defined as
+        \begin{alignat*}{1}
+            \left|x\right|=\begin{cases}
+                x&\textnormal{if } x\geq 0,\\
+                -x&\textnormal{if }x<0.
+            \end{cases}
+        \end{alignat*}
+    \end{definition}
+    Geometrically, $\left|x\right|$ is the distance of the number $x$ (on the real line) from the origin, and $\left|a-b\right|$ is the distance beteween the real numbers $a$ and $b$ on the real line.
+
+    For any real number $x,a,b$, we have
+    \begin{multicols}{3}
+    \begin{enumerate}
+        \item $\left|x\right|\geq 0$
+        \item $\left|-x\right|=\left|x\right|$
+        \item $\left|x\right|^2=x^2$
+        \item $\left|ab\right|=\left|a\right|\left|b\right|$
+        \item $\left|\dfrac{a}{b}\right|=\dfrac{\left|a\right|}{\left|b\right|}$, with $b\neq 0$.
+    \end{enumerate}
+    \end{multicols}
+
+    \begin{theorem}[thm:]{Triangle Inequality}
+        For any real numbers $a$ and $b$, we have
+        \begin{alignat*}{1}
+            \left|a+b\right|\leq \left|a\right|+\left|b\right|.
+        \end{alignat*}
+        Moreover, equality holds if and only if $ab\geq 0$.
+    \end{theorem}
+
+    \begin{proof}
+        Since both sides of are positive, it is sufficient to verify $\left|a+b\right|^2\leq (\left|a\right|+\left|b\right|)^2$:
+        \begin{alignat*}{1}
+            \left|a+b\right|^2&= (a+b)^2=a^2+2ab+b^2\\
+                              &\leq \left|a\right|^2+2\left|ab\right|+\left|b\right|^2=(\left|a\right|+\left|b\right|)^2
+        \end{alignat*}
+        We observe that the only one inequality part is where $ab\leq \left|ab\right|$.  Hence the equality holds only when $ab\geq 0$ such that $ab=\left|ab\right|=\left|a\right|\left|b\right|$.
+    \end{proof}
+\end{mysubsection}
+
+\begin{shortque}[]{}
+%    \qitem{%
+%        Prove that $\left|x\right|\leq b$ if and only if $-b\leq x\leq b$.
+%        }{%
+%        we have $x\leq \left|x\right|$ and $-x\leq \left|x\right|$. We then have $-\left|x\right|\leq x\leq \left|x\right|$.
+%        }{%
+%        <++>
+%    }
+
+    \qitem{%
+        Prove that $\left|\left|a\right|-\left|b\right|\right|\leq \left|a-b\right|$.
+        }{%
+        Consider $\left|b-a+a\right|$, we have $\left|b-a+a\right|\leq \left|b-a\right|+\left|a\right|$.
+        $\left|b\right|-\left|a\right|\leq \left|b-a\right|$.
+
+        Consider $\left|a-b+b\right|$, we have $\left|a-b+b\right|\leq \left|a-b\right|+\left|b\right|$.
+        $\left|a\right|-\left|b\right|\leq \left|a-b\right|$.
+
+        If $a\leq b$ and $-a\leq b$, then $\left|a\right|\leq b$.
+        }{%
+        <++>
+    }
+
+\end{shortque}
+

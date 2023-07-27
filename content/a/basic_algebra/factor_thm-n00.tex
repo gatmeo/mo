@@ -1,0 +1,124 @@
+\mysection{Factor Theorem}
+
+\begin{mysubsection}{}
+    \begin{definition}[def:]{Polynomials}
+        In general, a polynomial in $x$ of degree $n$ can be expresed as $a_nx^n+a_{n-1}x^{n-1}+a_{n-2}x^{n-2}+\cdots +a_1x+a_0$, where $a_n,\cdots ,a_0$ are real numbers and $a_n\neq 0$ and $n$ is a non-negative integer.
+    \end{definition}
+    
+    \begin{definition}[def:]{Division Algorithm}
+    Example: $4x^2+8x+5\equiv (2x+3)(2x+1)+2$.
+        \begin{alignat*}{1}
+            \textnormal{dividend }&\equiv \textnormal{ divisor }\times \textnormal{ quotient }+\textnormal{ remainder}\\
+            f(x)&\equiv p(x)\cdot Q(x)+R(x).
+        \end{alignat*}
+    \end{definition}
+
+    \begin{theorem}[thm:]{Remainder Theorem}
+        When a polynomial $f(x)$ is divided by $x-a$, the remainder is equal to $f(a)$.
+
+        When a polynomial $f(x)$ is divided by $mx-n$, the remainder is equal to $f\left(\frac{n}{m}\right)$.
+    \end{theorem}
+
+    \begin{proof}
+        \begin{alignat*}{1}
+            f(x)&\equiv (x-a)\cdot Q(x)+R\\
+            f(a)&= (a-a)\cdot Q(x)+R = R
+        \end{alignat*}
+    \end{proof}
+
+    \begin{theorem}[thm:]{Factor Theorem}
+        For a polynomial $f(x)$, if $f(a)=0$, then $x-a$ is a factor of $f(x)$. Conversely, if $x-a$ is a factor of a polynomial $f(x)$, then $f(a)=0$.
+    \end{theorem}
+
+    \begin{proof}
+        If $f(x)$ is divided by $x-a$, we have $f(x)\equiv (x-a)\cdot Q(x)+R(x)$, If $f(x)=0$, we have $0=0Q(x)+R(x)$, $R(x)=0$. Hence $x-a$ is a factor. Conversly, if $x-a$ is a factor, we have $f(x)=(x-a)Q(x)+0$, hence $f(a)=0$. 
+    \end{proof}
+
+    \begin{theorem}[thm:]{Generalized Factor Theorem}
+        For a polynomial $f(x)$, if $f\left(\frac{n}{m}\right)=0$, then $mx-n$ is a factor of $f(x)$. Conversely, if $mx-n$ is a factor of a polynomial $f(x)$, then $f\left(\frac{n}{m}\right)=0$.
+    \end{theorem}
+\end{mysubsection}
+
+\begin{example}[exp:]{}
+    \eitem{%
+        Find the remainder of $4x^2+8x+5$ divided by $(2x+3)$.
+        }{%
+        Remainder $=4(-3/2)^2+8(-3/2)+5=2$.
+    }
+\end{example}
+
+\begin{shortque}[]{4}
+    \qitem{%
+        When $-16x^3+nx^2+9x+3$ is divided by $2x+1$, the remainder is $5$. Find the value of $n$.
+        }{%
+        %p5.22
+        \begin{alignat*}{1}
+            f(-1/2)&= 5\\
+            2+n/4-9/2+3&= 5\\
+            n&=18
+        \end{alignat*}
+        }{%
+        <++>
+    }
+
+    \qitem{%
+        When $-3x^2+4x-6$ is divided by $x-a$, the remainder is $-5$. Find the value(s) of $a$.
+        }{%
+        \begin{alignat*}{1}
+            f(a)&= -5\\
+            -3a^2+4a-6&= -5\\
+            a&= 1/3 or 1
+        \end{alignat*}
+        }{%
+        <++>
+    }
+
+    \qitem{%
+        When $x^3+ax^2-2x+b$ is divided by $x-1$ and $x+2$, the reaminders are $-2$ and $4$ respectively. Find the values of $a$ and $b$.
+        }{%
+        let $f(x)=x^3+ax^2-2x+b$, we have $f(1)=-2$, $a+b=-1$, and $f(-2)=4$, $4a+b=8$.
+
+        Hence $3a=9, a=3$, and hence $b=-4$.
+        }{%
+        <++>
+    }
+
+    \qitem{%
+        It is given that $f(x)=x^3+3x^2-4x-12$. Show that $x-2$ is a factor of $f(x)$, and hence factor $f(x)$ completely.        
+        }{%
+        $f(2)=(2)^3+3(2)^2-4(2)-12=0$. By long division, we have $x^3+3x^2-4x-12\equiv (x-2)(x^2+5x+6)=(x-2)(x+2)(x+3)$.
+        }{%
+        <++>
+    }
+\end{shortque}
+
+\begin{mysubsection}{Factorizing Polynomials}
+    If $mx+n$ is a linear factor of $f(x)=px^3+qx^2+rx+s$, we have $f(x)=(mx+n)\cdot Q(x)$, where $Q(x)$ is a polynomial. Hence $m$ is a factor of $p$ (leading coefficient) and $n$ is a factor of $s$ (constant term).
+
+    If we want to find the linear factor of $f$, we can do the following: 
+    \begin{enumerate}
+        \item List all the factors of leading coefficient $p$ and constant term $s$.
+        \item Use factor theorem to determine whether $ax+b$ or $ax-b$ is a factor of $f(x)$, where $a|p$ and $b|s$.
+        \item Find the quotient $Q(x)$. 
+        \item Further factorize $Q(x)$ if possible.
+    \end{enumerate}
+\end{mysubsection}
+
+\begin{shortque}[]{}
+    \qitem{%
+        Factorize $f(x)=x^3+4x^2-7x-10$.
+        }{%
+        $f(1)=-12\neq 0$, $f(1)=-12\neq 0$, $f(-1)=0$. Hence $x+1$ is a factor of $f(x)$. By long division, we have $f(x)=(x+1)(x^2+3x-10)=(x+1)(x-2)(x+5)$.
+        }{%
+        <++>
+    }
+
+    \qitem{%
+        Solve $2x^3+4x^2-20x+14=0$.
+        }{%
+        Let $f(x)=x^3+2x^2-10x+7$. We have $f(1)=0$, hence $(x-1)$ is a factor of $f(x)$. By long division, we have $f(x)=(x-1)(x^2+3x-7)$, hence by quadratic formular we have $x=1\textnormal{ or }\dfrac{-3\pm\sqrt{37}}{2}$.
+        }{%
+        <++>
+    }
+\end{shortque}
+

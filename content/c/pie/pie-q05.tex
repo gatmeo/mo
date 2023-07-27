@@ -1,0 +1,10 @@
+\qitem{%
+    There are $20$ students participating in an after-school program offering classes in yoga, bridge, and painting. Each student must take at least one of these three classes, but may take two or all three. There are $10$ students taking yoga, $13$ taking bridge, and $9$ taking painting. There are $9$ students taking at least two classes. How many students are taking all three classes?
+    }{%
+    By PIE (Property of Inclusion/Exclusion), we have
+
+    $|A_1 \cup A_2 \cup A_3| = \sum |A_i| - \sum |A_i \cap A_j| + |A_1 \cap A_2 \cap A_3|.$ Number of people in at least two sets is $\sum |A_i \cap A_j| - 2|A_1 \cap A_2 \cap A_3| = 9.$ So, $20 = (10 + 13 + 9) - (9 + 2x) + x,$ which gives $x=3$.
+    }{%
+    https://artofproblemsolving.com/wiki/index.php?title=2017_AMC_10B_Problems/Problem_13
+}
+

@@ -1,0 +1,43 @@
+\qitem{%
+    Find all positive integers $x$ such that $2^{2^x+1}+2$ is divisible by $17$.
+    }{%
+    Since we have $2^{16}\equiv 1(17)$, for $x\geq 4$, we have $2^{2^{x}+1}=2^{16(k)+1}\equiv 2(17)$, $2^{2^{x}+1}+2\equiv 4\neq 0(17)$. No $x$ satisfy. We just have to check $x\leq 3$, and get when $x=2$, it is true.
+    }{%
+    <++>
+}
+
+\qitem{%
+    Prove that for $m,n\in \mathbb{Z} , mn(m^4-n^4)$ is always divisible by 30.
+    }{%
+    $m^4-n^4=(m^2-n^2)(m^2+n^2)=(m-n)(m+n)(m^2+n^2)$.
+
+    $30=2\cdot 3\cdot 5$. Let $Q(x,y)=xy(x^4-y^4)$, we have $(x-y)\mid Q(x,y), (x^2-y^2)\mid Q(x,y)$, $(x^4-y^4)\mid Q(x,y)$. By FLT, $m^p-m\equiv 0$ mod $p$, $n^p-n\equiv 0$. Hence $0\equiv n(m^p-m)-m(n^p-n)\equiv nm^p-mn^p=mn(m^{p-1}-n^{p-1})\textnormal{mod }p$
+
+    $Q(x,y)=xy(x-y)*q_1\equiv 0 (2)$.
+
+    $Q(x,y)=xy(x^2-y^2)*q_2\equiv 0 (3)$.
+
+    $Q(x,y)=xy(x^4-y^4)*q_3\equiv 0 (5)$.
+    }{%
+    <++>
+}
+
+\qitem{%
+    Show that given an odd prime $p$, there are always infinitely many integers $n$ for which $p|n2^n+1$.
+    }{%
+    <++>
+    }{%
+    <++>
+}
+
+\qitem{%
+    Let $p$ and $q$ be distinct primes. Prove that
+    \begin{alignat*}{1}
+        q^{p-1}+p^{q-1}\equiv 1\quad \textnormal{mod }pq.
+    \end{alignat*}
+    }{%
+    <++>
+    }{%
+    <++>
+}
+

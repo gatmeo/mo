@@ -1,0 +1,9 @@
+\qitem{%
+    Consider the sequence $(a_k)_{k\ge 1}$ of positive rational numbers defined by $a_1 = \frac{2020}{2021}$ and for $k\ge 1$, if $a_k = \frac{m}{n}$ for relatively prime positive integers $m$ and $n$, then
+
+    \[a_{k+1} = \frac{m + 18}{n+19}.\]Determine the sum of all positive integers $j$ such that the rational number $a_j$ can be written in the form $\frac{t}{t+1}$ for some positive integer $t$. 
+    }{%
+    We know that $a_{1}=\tfrac{t}{t+1}$ when $t=2020$ so $1$ is a possible value of $j$. Note also that $a_{2}=\tfrac{2038}{2040}=\tfrac{1019}{1020}=\tfrac{t}{t+1}$ for $t=1019$. Then $a_{2+q}=\tfrac{1019+18q}{1020+19q}$ unless $1019+18q$ and $1020+19q$ are not relatively prime which happens when $q+1$ divides $18q+1019$ or $q+1$ divides $1001$, so the least value of $q$ is $6$ and $j=2+6=8$. We know $a_{8}=\tfrac{1019+108}{1020+114}=\tfrac{1127}{1134}=\tfrac{161}{162}$. Now $a_{8+q}=\tfrac{161+18q}{162+19q}$ unless $18q+161$ and $19q+162$ are not relatively prime which happens the first time $q+1$ divides $18q+161$ or $q+1$ divides $143$ or $q=10$, and $j=8+10=18$. We have $a_{18}=\tfrac{161+180}{162+190}=\tfrac{341}{352}=\tfrac{31}{32}$. Now $a_{18+q}=\tfrac{31+18q}{32+19q}$ unless $18q+31$ and $19q+32$ are not relatively prime. This happens the first time $q+1$ divides $18q+31$ implying $q+1$ divides $13$, which is prime so $q=12$ and $j=18+12=30$. We have $a_{30}=\tfrac{31+216}{32+228}=\tfrac{247}{260}=\tfrac{19}{20}$. We have $a_{30+q}=\tfrac{18q+19}{19q+20}$, which is always reduced by EA, so the sum of all $j$ is $1+2+8+18+30=\boxed{059}$. 
+    }{%
+    https://artofproblemsolving.com/wiki/index.php/2021_AIME_I_Problems/Problem_10
+}

@@ -1,0 +1,20 @@
+\qitem{%
+    \rightasy[1.5in]{
+        import MOgeom;
+        size(1.5inch);
+        pair A=dir(130), B=dir(50), O=origin;
+        pair C=dir(150), D=dir(30);
+        path c=DCR(O,1);
+        D("O",o);
+        D(D("A",A)--D("B",B));
+        D(D("C",C)--D("D",D));
+        D("M",WP(A--B));
+        D("N",WP(C--D));
+    }
+    Two two chords $AB$ and $CD$ are parallel. $AB=16$, $CD=30$, and the radius of the circle is $17$. Find the distance between $AB$ and $CD$.
+    }{%
+    AM=8, MO=15, CN=15, ON=8, MN=7
+    }{%
+    <++>
+}
+

@@ -1,0 +1,48 @@
+\mysection{Euler's Theorem}
+
+\begin{mysubsection}{}
+    \begin{theorem}[thm:]{Euler's Theorem}
+        If $(a,n)=1$. Then $a^{\phi(n)}\equiv 1$ mod $n$.
+    \end{theorem}
+
+    \begin{proof}
+        Let $a_1,a_2,\dots,a_{\phi (n)}$ be the canonical reduced residues mod $n$. As $(a,n)=1$, $aa_1,aa_2,\dots,aa_{\phi (n)}$ also fforms a set of incongruent reduced residues. Thus
+        \begin{alignat*}{1}
+            aa_1\cdot aa_2\cdots aa_{\phi (n)}&\equiv a_1a_2\cdots a_{\phi (n)}\quad \textnormal{mod }n\\
+            a^{\phi (n)}a_1a_2\cdots a_{\phi (n)}&\equiv a_1a_2\cdots a_{\phi (n)}\quad \textnormal{mod }n
+        \end{alignat*}
+        As $(a_1a_2\cdots a_{\phi (n)},n)=1$, we may cancel the product $a_1a_2\cdots a_{\phi (n)}$ from both sides of the congruence to obtain Euler's Theorem.
+    \end{proof}
+
+    \begin{corollary}[crl:]{}
+        If $(a,n)=1$. Then ord$_na|\phi (n)$.
+    \end{corollary}
+\end{mysubsection}
+
+\begin{shortque}[]{}
+    \qitem{%
+        Find the last 2 digits of $3^{1000}$.
+        }{%
+        $3^{40}\equiv 1(100)$, $3^{1000}=(3^{40})^{25}\equiv 1 (100)$.
+        }{%
+        <++>
+    }
+
+    \qitem{%
+        Find the last 3 digits of $17^{10002}$.
+        }{%
+        $17^{400}\equiv 1$,
+        $17^{10002}\equiv 17^2\equiv 289(1000)$.
+        }{%
+        <++>
+    }
+
+    \qitem{%
+        Find the last 2 digits of $7^{7^{1000}}$.
+        }{%
+        Since $7^{40}\equiv 1(100)$ and $7^{16}\equiv 1 (40)$. Since $1000=16\cdot 62+8$, $7^{1000}\equiv (7^{16})^{62}7^{8}\equiv 7^8\equiv (7^4)^2\equiv 1 (40)$, hence $7^{1000}=1+40k$ for some $k$. We then have
+        \[7^{7^{1000}}\equiv 7^{1+40k}\equiv 7\cdot (7^{40})^{k}\equiv 7 (100).\]
+        }{%
+        <++>
+    }
+\end{shortque}

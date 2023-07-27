@@ -1,0 +1,50 @@
+\mysection{Root of Unity}
+
+We now have the tools to find the roots of the equation $x^n=1$, which we will use in the next section. From the angle-additional property of multiplication of a complex number, we see that $(e^{i\theta})^n=e^{in\theta}$. And for $e^{in\theta}=1$, it is not hard to see that $in\theta=2\pi i\cdot k$ for some interger $k$, as we have $e^{i2\pi}=1$. So we have 
+so the roots of the equation $x^n=1$ are:
+
+\begin{definition}[def:]{nth Roots of Unity}
+    The roots of the equation $x^n=1$, or the \textbf{nth roots of unity} are $e^{2k\pi i/n}$ for $k=0,1,\dots ,n-1$.
+\end{definition}
+
+\begin{figure}[H]
+    \centering
+    \begin{asy}
+        import MOgeom;
+        pair[] C=CoU(3);
+        D(circle(o,1));
+        for (int i=0; i<3; ++i){
+            D(o--D(C[i]));
+        }
+    \end{asy}
+    \qquad\qquad  
+    \begin{asy}
+        import MOgeom;
+        pair[] C=CoU(5);
+        D(circle(o,1));
+        for (int i=0; i<5; ++i){
+            D(o--D(C[i]));
+        }
+    \end{asy}
+    \caption{Roots of Unity for $n=3$ and $n=5$}
+\end{figure}
+
+Since the roots of unity are of the form $e^{2k\pi i/n}$, we often denote $\zeta_n=e^{2\pi i/n}$ to be the "first" root of unity. And hence the roots can be represented as $1,\zeta_n,\zeta_n^2,\dots ,\zeta_n^{n-1}$. Since $\zeta_n$ is a root of $x^n=1$, it satisfies the equation, i.e. $\zeta_n^n=1$. Hence for any power of $\zeta_n^i$, we can always reduce the power to be in the range $0,1,\dots ,n-1$: we always have $\zeta_n^i=\zeta_n^{i\textnormal{ mod }n}$.
+
+\begin{shortque}[]{}
+    \qitem{%
+        What are the 2nd and 3rd roots of unity?
+        }{%
+        <++>
+        }{%
+        <++>
+    }
+    \qitem{%
+        What is the sum of all the nth roots of unity? What is the inverse of the root $\zeta^k_n$.
+        }{%
+        <++>
+        }{%
+        <++>
+    }
+\end{shortque}
+

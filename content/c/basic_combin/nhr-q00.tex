@@ -1,0 +1,18 @@
+\qitem{%
+    You are going to an amusement park.  There are four attractions, (haunted house, roller coaster, a carousel, water ride). You buy 25 tokens.  Each attraction cost 3 tokens each ride, except the roller coaster that costs 5. Obviously, you want to ride each ride at least once, but the order of the rides does not matter.
+
+    In how many ways can you spend your tokens?  You may have some remaining tokens in the end of the day.
+    }{%
+    After riding each once, we have 11 tokens left. We can choose to go for rollar coaster 0,1, of 2 times.
+
+    For 0 times, we have it equal to solving $3a+3b+3c\leq 11$, which equals $3(a+b+c)\leq 9$, $(a+b+c+d)=3$. Hence it is $C_{3}^{3+4-1} $.
+
+    For 1 times, we have it equal to solving $3a+3b+3c\leq 6$, which equals $3(a+b+c)\leq 6$, $(a+b+c+d)=2$. Hence it is $C_{2}^{2+4-1} $.
+
+    For 2 times, there is just one tocken left. So there is one solution
+
+    Ans$=20+10+1=31$.
+    }{%
+    <++>
+}
+

@@ -1,0 +1,14 @@
+\qitem{%
+    How many ways are there to choose 3 numbers from $\left\{1,2,3,\dots,24,25\right\}$ so that the GCD of the three numbers is 1?
+    }{%
+    $\binom{25}{3}-\binom{12}{3}-\binom{8}{3}-\binom{5}{3}-\binom{3}{3}+\binom{4}{3}=2017$
+definitions:
+$\binom{25}{3}$:all the $a,b,c$
+$\binom{12}{3}$:$2|a,b,c$
+$\binom{8}{3}$:$3|a,b,c$
+$\binom{5}{3}$:$5|a,b,c$
+$\binom{3}{3}$:$7|a,b,c$
+$\binom{4}{3}$:$6|a,b,c$(add them back,since they are excluded twice,both $2|a,b,c$ and $3|a,b,c$)
+    }{%
+    https://artofproblemsolving.com/community/c4t309f4h2832132_ow_many_ways_are_there_to_choose_3_numbers_from_1_2_3_middot_middot__24_25_so_the_g
+}

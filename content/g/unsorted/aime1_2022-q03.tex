@@ -1,0 +1,38 @@
+\qitem{%
+    In isosceles trapezoid $ABCD$, parallel bases $\overline{AB}$ and $\overline{CD}$ have lengths $500$ and $650$, respectively, and $AD=BC=333$. The angle bisectors of $\angle{A}$ and $\angle{D}$ meet at $P$, and the angle bisectors of $\angle{B}$ and $\angle{C}$ meet at $Q$. Find $PQ$.
+    }{%
+    \myrightasy[2.2in]{
+        Translate points $B, Q,$ and $C$ by $PQ$ units to the left, as shown. Let $PQ = x$.
+
+        Notice that after this translation, $B'Q'$ still bisects $AB'C'$, and $C'Q'$ still bisects $AC'B'$. Therefore, the intersection of the angle bisectors in quadrilateral $AB'C'D$ exists and it is point $P$. So, $AB'C'D$ is tangential. By the Pitot Theorem, we have $AB' + DC' = AD + B'C'$, so $(500-x) + (650-x) = 333+333$, meaning $x = \boxed{242}$.
+        }{
+        size(150);
+        label((0,0), "D", SW);
+        label((1.166666666, 6), "A", NW);
+        label((4,2.6), "P, Q'", S);
+        label((8,3), "Q", S);
+        label((12,0), "C", SE);
+        label((10.833333, 6), "B", NE);
+        label((6.8333333, 6), "B'", N);
+        label((8,0), "C'", S);
+        draw((0,0)--(12,0)--(10.8333333,6)--(1.16666666,6)--(0,0));
+        dot((6.83333333,6));
+        dot((8,0));
+        draw((4,3)--(8,3), dashed);
+        draw((1.1666666,6)--(4,3), dashed);
+        draw((0,0)--(4,3), dashed);
+        dot((8,3));
+        draw((6.8333333, 6)--(4,3)--(8,0)--cycle, dashed);
+        dot((4,3));
+        label((6,3), "x", N);
+        label((8.83333333, 6), "x", N);
+        label((10, 0), "x", S);
+        label((4,0), "650-x", S);
+        label((4,6), "500-x", N);
+        label((0.83333333, 3), "333", NW);
+        draw((10.833333, 6)--(8,3)--(12,0), dashed);
+        label((11.1666666, 3), "333", NE);
+    }
+    }{%
+    https://artofproblemsolving.com/community/c5h2777216p24368540
+}

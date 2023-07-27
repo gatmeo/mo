@@ -1,0 +1,70 @@
+\mysection{Fermat's Little Theorem}
+
+\begin{mysubsection}{}
+    \begin{theorem}[thm:]{Fermat's Little Theorem}
+        Let $p$ be a prime and let $p\not|a$. Then
+        \begin{alignat*}{1}
+            a^{p-1}\equiv 1\quad \textnormal{mod }p.
+        \end{alignat*}
+    \end{theorem}
+
+    \begin{proof}
+        Since $(a,p)=1$, the set $a\cdot 1,a\cdot 2,\dots,a\cdot (p-1)$ is also a reduced set of residues mod $p$. Hence
+        \begin{alignat*}{1}
+            (a\cdot 1)(a\cdot 2)\cdots(a\cdot (p-1))&\equiv 1\cdot 2\cdots(p-1)\quad \textnormal{mod }p\\
+            a^{p-1}(p-1)!&\equiv (p-1)!\quad \textnormal{mod }p.
+        \end{alignat*}
+        As $((p-1)!,p)=1$, we may cancel out the $(p-1)!$. And this proves the theorem.
+    \end{proof}
+    %$p=7, a=2$:
+
+    %$\left[1,2,3,4,5,6\right] \times 2 \rightarrow \left[2,4,6,1,3,5\right]$.
+    \mynewpage
+
+    \begin{corollary}[crl:]{}
+        For every prime $p$ and for every integer $a$,
+        \begin{alignat*}{1}
+            a^p\equiv a \quad \textnormal{mod }p.
+        \end{alignat*}
+    \end{corollary}
+
+    \begin{proof}
+        Either $p\mid a$ or $p\not| a$. If $p\mid a, a\equiv 0\equiv a^p$ and there is nothing to prove. If $p\not| a$, Fermat's Little Theorem yields $p\mid a^{p-1}-1$. Hence $p\mid a(a^{p-1}-1)=a^{p}-a$, which gives the result.
+    \end{proof}
+
+    \begin{corollary}[crl:]{}
+        Let $p$ be a prime and $a$ an integer. Assume that $p\not|a$. Then ord$_pa\mid p-1$.
+    \end{corollary}
+
+    \begin{proof}
+        Let $\textnormal{ord}_pa=k$, we have $a^{p-1}\equiv 1(p)$ and $a^k\equiv 1(p)$. By law of division, there exist $d$ and $r$ s.t. $p-1=dk+r$, where $0\leq r<d$, $a^{p-1}=a^{dk+r}=(a^k)^d\cdot a^r\equiv (1)^d\cdot a^r\equiv a^r\equiv 1$. Since by the definition of ord, $k$ is the small interger s.t. $a^k=1$. Hence $r=0$. $k\mid p-1$.
+    \end{proof}
+\end{mysubsection}
+
+\begin{shortque}[]{}
+    \qitem{%
+        Find $3^{31}$ mod $7$.
+        }{%
+        $3^{31}=3^{6\cdot 5+1}\equiv 3 (7)$.
+        }{%
+        <++>
+    }
+
+    \qitem{%
+        Find $128^{129}$ mod $17$.
+        }{%
+        $128^{129}=128^{128+1}\equiv 128\equiv 9 (17)$.
+        }{%
+        <++>
+    }
+
+    \qitem{%
+        Find $2^{20}+3^{30}+4^{40}+5^{50}+6^{60}$ mod $7$.
+        }{%
+        Since $2_6\equiv 3_6\equiv 4_6\equiv 5_6\equiv 6_6\equiv 1(7)$, 
+
+        The required sum $=2^2+3_0+4^4+5^2++6^0\equiv 4+1+2^8+25+1\equiv 0$ (7)
+        }{%
+        <++>
+    }
+\end{shortque}

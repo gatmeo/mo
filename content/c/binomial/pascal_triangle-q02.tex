@@ -1,0 +1,17 @@
+\qitem{%
+    In Pascal's Triangle, each entry is the sum of the two entries above it. In which row of Pascal's Triangle do three consecutive entries occur that are in the ratio $3: 4: 5$?
+    }{%
+    Consider what the ratio means. Since we know that they are consecutive terms, we can say \[\frac{\dbinom{n}{k-1}}{3} = \frac{\dbinom{n}{k}}{4} = \frac{\dbinom{n}{k+1}}{5}.\]
+
+    Taking the first part, and using our expression for $n$ choose $k$, \[\frac{n!}{3(k-1)!(n-k+1)!} = \frac{n!}{4k!(n-k)!}\] \[\frac{1}{3(n-k+1)} = \frac{1}{4k}\] \[n-k+1 = \frac{4k}{3}\] \[\frac{3(n+1)}{7} = k\] 
+    Then, we can use the second part of the equation. 
+    \[\frac{n!}{4k!(n-k)!} = \frac{n!}{5(k+1)!(n-k-1)!}\] 
+    \[\frac{1}{4(n-k)} = \frac{1}{5(k+1)}\] 
+    \[\frac{4(n-k)}{5} = k+1\] 
+    \[\frac{4n}{5} = \frac{9k}{5} +1.\] 
+    Since we know $k = \frac{3(n+1)}{7}$ we can plug this in, giving us \[\frac{4n}{5} = \frac{9\left(\frac{3(n+1)}{7}\right)}{5} +1\] \[7(4n - 5) = 27n+27\] \[n = 62.\] We can also evaluate for $k$, and find that $k = \frac{3(62+1)}{7} = 27.$ Since we want $n$, however, our final answer is $\boxed{062.}$
+    }{%
+    https://artofproblemsolving.com/wiki/index.php/Pascal_Triangle_Related_Problems
+    https://artofproblemsolving.com/wiki/index.php/1992_AIME_Problems/Problem_4
+}
+

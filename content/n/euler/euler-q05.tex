@@ -1,0 +1,11 @@
+\qitem{%
+    Find the last three digits of $2008^{2007^{2006{.^{.^{.^{2^{1}}}}}}}$.
+    }{%
+    We have that we wish to find the desired expression $\mod{1000}$.
+As $\phi(1000)=400$, we would like to find $2007^{2006^{\cdots}}\pmod{400}$.
+$\phi(400)=160$, so we wish to find $2006^{2005^{\cdots}}\pmod{160}$. As the expression is trivially $0\pmod{32}$ and $1\pmod{5}$, we use CRT to find it is $96\pmod{160}$.
+Therefore, $2007^{2006^{\cdots}}\equiv 7^{96}\equiv 2401^{24}\equiv 1\pmod{400}$.
+This means that the original expression is equivalent to $2008 \pmod{1000}$, giving an answer of $\boxed{8}$.
+    }{%
+    https://artofproblemsolving.com/community/c4t45465f4h1881866_last_three_digits_of_long_nested_exponents
+}

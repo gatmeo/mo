@@ -1,0 +1,101 @@
+\mysection{Chords of a Circle}
+
+\begin{mysubsection}{Perpendiculars to Chords}
+    \rightasy[1.5in]{
+        import MOgeom;
+        pair A=dir(220), B=dir(320), N=mp(A--B);
+        path c=D(circle(D("O",o),1));
+        D(o--D("N",N)--D("A",A)--D("B",B));
+    }
+    \begin{theorem}[thm:]{line from centre $\perp$ chord bisects chord}
+        The perpendicular from the centre of a circle to a chord bisects the chord, \\
+        i.e. If $ON\perp AB,\textnormal{ then }AN=BN$.
+        \\\\\nbf{Proof}: 
+        We have $AO=BO, ON=ON, \angle ONA=\angle ONB=90^{\circ}, \triangle AON\simeq \triangle BON$.
+    \end{theorem}
+    \mynewpage
+
+    \rightasy[1.5in]{
+        import MOgeom;
+        pair A=dir(220), B=dir(320), N=mp(A--B);
+        path c=D(circle(D("O",o),1));
+        D(o--D("N",N)--D("A",A)--D("B",B));
+    }
+    \begin{theorem}[thm:]{Line joining centre to mid-pt. of chord $\perp $ chord}
+        The line joining the centre of a circle and the mid-point of a chord is perpendicular to the chord.\\
+        i.e. If $AN=BN,\textnormal{ then }ON\perp AB$.
+        \\\\ \nbf{Proof}: 
+        We have $AO=BO, ON=ON, AN=NB, \triangle AON\simeq \triangle BON$.
+    \end{theorem}
+    \vspace{1em}
+
+    \rightasy[1.5in]{
+        import MOgeom;
+        pair A=dir(220), B=dir(320), N=mp(A--B);
+        path c=D(circle(D("O",o),1));
+        D(o--D("N",N)--D("A",A)--D("B",B));
+        D((0,1.1)--(0,-1.1));
+    }
+    \begin{theorem}[thm:]{$\perp $ bisector of a chord passes through centre}
+        The perpendicular bisector of a chord passes through the centre of a circle.
+    \end{theorem}
+    \vspace{3em}
+\end{mysubsection}
+
+
+\begin{mysubsection}{Distances between Chords and Centre}
+    \rightasy[1.5in]{
+        import MOgeom;
+        pair A=dir(-120), B=dir(-20), N=mp(A--B);
+        pair C=dir(120), D=dir(20), M=mp(C--D);
+        path c=D(circle(D("O",o),1));
+        D(D("A",A)--D("B",B)--D("N",N)--D("O",o)--D("M",M)--D("C",C)--D("D",D));
+    }
+    \begin{theorem}[thm:]{equal chords, equidistant from centre}
+        Equal chords of a circle are equidistant from the centre.
+
+        i.e. If $AB=CD$, $OM\perp AB$ and $ON\perp CD$, then $OM=ON$.
+        \\\\\nbf{Proof}: 
+        $AN=NB=CM=MD, OB=OD, \angle OMB=\angle OND=90^{\circ}$, hence $OM=ON$
+    \end{theorem}
+
+    \begin{theorem}[thm:]{Chords equidistant from centre are equal}
+        Chords of a circle which are equidistant from the centre are equal.\\
+        i.e. If $OM=ON$, $OM\perp AB$ and $ON\perp CD$, then $AB=CD$.
+        \\\\\nbf{Proof}: 
+        $OM=ON, OB=OD, \angle OMB=\angle OND=90^{\circ}$, hence $NB=MD$
+    \end{theorem}
+\end{mysubsection}
+
+\begin{shortque}[]{}
+    \qitem{%
+        \rightasy[1.5in]{
+            import MOgeom;
+            pair A=dir(140), B=dir(260), O=origin;
+            pair C=dir(40), D=dir(-60);
+            pair G=mp(A--B);
+            pair H=mp(C--D);
+            path c=D(CR(D("O",o),1));
+            pair E=intersectionpoint(L(A,B,1),L(C,D,1));
+            D(D("A",A)--D("B",B)--D("E",E)--D("D",D)--D("C",C)--D("H",H)--D("O",o)--D("G",G)--o--E);
+        }
+        $AGBE$ and $CHDE$ are straight lines. $AB=CD$, $AG=BG$ and $OH\perp CD$. Prove that $\triangle OGE\simeq \triangle OHE$ and $BE=DE$.
+        }{%
+        $AG=GB\rightarrow OG\perp AB$, we also have $OH=OG$. $OE=OE$,\\$\angle OGE=\angle OHE=90^{\circ}$, hence $\triangle OGE\simeq OHE$.\\And hence $EG=EH$, $BE=DE$.
+        }{%
+    }
+
+    \qitem{%
+        \rightasy[1.5in]{
+            import MOgeom;
+            pair A=dir(-150), B=dir(-30), C=(2,-0.5), O=origin;
+            path c=D(circle(O,1));
+            pair D=intersectionpoint(c,O--C);
+            D(D("A",A)--D("B",B)--D("C",C)--D("D",D)--D("O",o)--A);
+        }
+        $ABC$ and $ODC$ are straight lines. $AB=24$, $BC=28$ and $OA=15$. Find the length of $CD$.
+        }{%
+        Let $M$ be mid point of $AB$, then $\angle OMA=90^{\circ}$,\\$OM=9$ (Pyth on $\triangle OMA$), $CO=41$, $CD=OC-15=26$.
+        }{%
+    }
+\end{shortque}

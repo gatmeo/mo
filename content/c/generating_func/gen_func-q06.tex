@@ -1,0 +1,9 @@
+\qitem{%
+The sets $A = \{z : z^{18} = 1\}$ and $B = \{w : w^{48} = 1\}$ are both sets of complex roots of unity. The set $C = \{zw : z \in A ~ \mbox{and} ~ w \in B\}$ is also a set of complex roots of unity. How many distinct elements are in $C_{}^{}$? 
+    }{%
+    The least common multiple of $18$ and $48$ is $144$, so define $n = e^{2\pi i/144}$. We can write the numbers of set $A$ as $\{n^8, n^{16}, \ldots n^{144}\}$ and of set $B$ as $\{n^3, n^6, \ldots n^{144}\}$. $n^x$ can yield at most $144$ different values. All solutions for $zw$ will be in the form of $n^{8k_1 + 3k_2}$.
+
+$8$ and $3$ are relatively prime, and by the Chicken McNugget Theorem, for two relatively prime integers $a,b$, the largest number that cannot be expressed as the sum of multiples of $a,b$ is $a \cdot b - a - b$. For $3,8$, this is $13$; however, we can easily see that the numbers $145$ to $157$ can be written in terms of $3,8$. Since the exponents are of roots of unities, they reduce $\mod{144}$, so all numbers in the range are covered. Thus the answer is $\boxed{144}$. 
+    }{%
+    https://artofproblemsolving.com/wiki/index.php/1990_AIME_Problems/Problem_10
+}
