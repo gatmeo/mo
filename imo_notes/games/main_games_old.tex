@@ -1,0 +1,295 @@
+documentclass[a4paper]{article}
+\usepackage[tut]{omegat}
+
+\newcommand{\myasignname}{Combinatorics}
+\title{\myasignname}
+\newcommand{\asigntitle}{\section*{\myasignname}}
+\newcommand{\omegatongid}{\FirstBigRestSmallCaps{Omega Tong}}
+
+\toggletrue{ownans}
+%\togglefalse{ownans}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\iftoggle{ownans}{\color{red}}{}{\Large\FirstBigRestSmallCaps{Combinatorics: }}{\large\FirstBigRestSmallCaps{Coloring}}\iftoggle{ownans}{(With Solution)}{}}
+\fancyhead[C]{\iftoggle{ownans}{}{IMO Intensive Training}}
+\fancyhead[R]{\iftoggle{ownans}{\color{red}}{}\omegatongid}
+\fancyfoot[R]{\iftoggle{ownans}{\color{red}Page \rule[-2pt]{1pt}{11pt} \thepage}{}}
+
+\geometry{
+    top=0.95in,
+    %top=1in,
+    headsep=.25in
+}
+
+\newtoggle{plabel}
+\toggletrue{plabel}
+\newcommand{\pitem}[4][]{
+    \noindent \textbf{Problem }\refstepcounter{qcounter}\theqcounter .\iftoggle{plabel}{\addbrackets{#1}}{}
+        #2 \iftoggle{ownans}{\\\\\noindent {\color{red}\textbf{Ans. }} #3}{\vfill}
+
+    \iftoggle{officialans}{#4}{}
+\ifinarry
+}
+
+\begin{document}
+
+\begin{shortque*}{}
+    \pitem[Indonesian MO (INAMO) 2020, Day 1, Problem 4]{%
+        A chessboard with $2n \times 2n$ tiles is coloured such that every tile is coloured with one out of $n$ colours. Prove that there exists 2 tiles in either the same column or row such that if the colours of both tiles are swapped, then there exists a rectangle where all its four corner tiles have the same colour.
+        }{%
+        Since there are $2n \cdot 2n = 4n^2$ tiles coloured with $n$ colours, there exists a colour $k$ used on at least $4n$ tiles. Consider all the $4n$ tiles with this colour.
+
+        For each index $1 \leq i \leq 2n$, let $f(i)$ be the number of tiles with colour $k$ at row $i$. Then, we have $\sum_{i = 1}^{2n} f(i) = 4n$ and $f(i) \leq 2n$ for each $1 \leq i \leq 2n$. In particular:
+
+        1. There exists at least two indices $i$ such that $f(i) \geq 2$.
+        Indeed, otherwise $4n = \sum_{i = 1}^{2n} f(i) \leq (2n) + 1 \cdot (2n - 1) = 4n - 1$, a contradiction.
+
+        2. Consider the set $S$ of all indices $i$ such that $f(i) \geq 2$. Then, $\sum_{i \in S} f(i) > 2n$.
+        This has the same proof as above. By definition of $S$, $\sum_{i \not\in S} f(i) \leq \sum_{i \not\in S} 1 = 2n - |S| \leq 2n - 2 < 2n$ due to the previous observation, so
+        \[ \sum_{i \in S} f(i) = 4n - \sum_{i \not\in S} f(i) > 2n. \]
+        Now, consider the set $T$ of all tiles with coordinate $(i, j)$ of colour $k$ with $i \in S$. These correspond to all the tiles with colour $k$ who has another tile within the same row with colour $k$ as well. The number of such pairs (or tiles) is $\sum_{i \in S} f(i)  > 2n$, so by the pigeonhole principle, there exist two distinct tiles in $T$ in the same column, say $(i_1, j)$ and $(i_2, j)$. Consider two tiles $(i_1, j'), (i_2, j'') \in T$ with $j', j'' \neq j$; they exist by our construction and previous argument. If $j' = j''$, we can swap two random tiles other than those four tiles we mentioned. If $j' \neq j''$, we swap $(i_2, j')$ and $(i_2, j'')$ and we are done.
+        }{%
+        https://artofproblemsolving.com/community/c6t45241f6h2303115_colouring_2n_tiles_and_rectangles_combinatorics
+    }
+
+    \pitem[Turkey EGMO TST 2018]{%
+        In how many ways every unit square of a $2018$ x $2018$ board can be colored in red or white such that number of red unit squares in any two rows are distinct and number of red squares in any two columns are distinct.
+        }{%
+        We consider $n\in \mathbb{N}$ instead of $2018.$
+
+        Firstly, we have to prove the following lemma.
+
+        \textbf{Lemma:} The $n$ distinct numbers of rows and columns must be ${1,2,\cdots,n}$ or ${0,1,2,\cdots,n-1}.$
+
+        \textbf{Proof of the Lemma:} Clearly, totally $n+1$ distinct numbers ${0,1,\cdots,n}$ may occur in $n$ rows and $n$ columns. Suppose some $1<i<n$ does not contained in rows (resp. columns), which implies both $0$ and $n$ are contained in rows (resp. columns), therefore, the $n$ distinct numbers of red squares for each column (resp. rows), says $c(i), 1\leq i\leq n,$ satisfies $1\leq c(i) \leq n-1,$ which is $n-1$ distinct numbers in total. Obviously, it is impossible.
+
+        It is obvious to see that the ways for ${1,2,\cdots,n}$ is equal to the ways for ${0,1,2,\cdots,n-1}.$ (By considering white instead of red.) So we only sovle the first case.
+
+        Next, we denote $(r_1,r_2,\cdots,r_n; c_1,c_2,\cdots,c_n)$ some possible way for coloring, where $r_i$ denotes the numbers of red squares of the $i-th$ row, and $c_i$ denotes the $i-th$ column.
+
+        Finally, we only need to prove that there exists the unique way satisfying $r_i=a_i,$ $c_i=b_i,$ for any distinct $1\leq a_i,b_i\leq n.$
+
+        \textbf{The proof of existence:} Consider the original way $(m_{ij})_{1\leq i,j\leq n}$(the $i-th$ row and $j-th$ column) satisfying $m_{ij}$ is $red$ if $i\leq j$. Now we rearrange each rows and columns so that the way satisfies $(a_1,a_2,\cdots,a_n; b_1,b_2,\cdots,b_n).$ Then it's easy to check the new way is as desire. (NOTE: When swapping, the number of blocks in rows and columns does not affect each other.)
+
+        \textbf{The proof of uniqueness:} $n=1$ works. We assume it also works for any $i<n.$ For the case $n$, WOLG, the first row's number is $n$ and the first column's is $1$, now we throw away these two lines and we obtain the uniqueness for $n-1.$ Due to each line we just throw away, which is full of red squares, is also unique for any possible way, we finish the proof.
+
+        Therefore, the answer is $$2\times\left|\left\{(r_1,r_2,\cdots,r_n; c_1,c_2,\cdots,c_n)|, 1\leq r_i\neq r_j\leq n, 1\leq c_i\neq c_j\leq n, 1\leq i,j\leq n\right\}\right|=2\cdot (n!)^2.$$
+        }{%
+        https://artofproblemsolving.com/community/c6t45241f6h2053991_a_counting_problem_about_coloring
+    }
+
+    \pitem[Dutch IMO TST 2015 day 2 p4]{%
+        Each of the numbers $1$ up to and including $2014$ has to be coloured; half of them have to be coloured red the other half blue. Then you consider the number $k$ of positive integers that are expressible as the sum of a red and a blue number. Determine the maximum value of $k$ that can be obtained.
+        }{%
+        Let $n= 2014$.  We shall prove that the maximum $k$ equals $2n-5$.  The smallest number that you could possibly write as the sum of a red and ablue number is $1 + 2 = 3$ and the largest number is $(n-1) +n= 2n-1$. Hence, there are at most $2n-3$ numbers expressible as the sum of a redand a blue number. Suppose that the numbers can be coloured in such a way that $2n-3$ or $2n-4$ of numbers are expressible as the sum of a red and a blue number. Now at most one of the numbers from $4$ up to and including $2n-1$ is not expressible in such a way.  We will now show that we may assume withoutloss  of  generallity  that  this  number  is  at  least $n+1$. Indeed,  we  could make a second colouring in which a number $i$ is blue if and only if $n+ 1-i$ is blue in the initial colouring.  Then in the case of the second colouring a number $m$ is expressible as the sum of a red and a blue number if and only if $2n+2-m$ was expressible as the sum of a red and a blue number in the initial colouring.  Hence, if in the initial colouring a number smaller than $n+1$ is not expressible as the sum of red and blue, then in the second colouring a number greater than $2n+ 2-(n+ 1) =n+ 1$ is not expressibleas the sum of red and blue. Hence,  we  may  assume  that  the  numbers  $3$  up  to  and  including $n$ are all  expressible  as  the  sum  of  red  and  blue.   Because  red  and  blue  are interchangable,  we  may  also  assume  without  loss  of  generality  that  $1$  is coloured blue.  Because $3$ is expressible as the sum of red and blue and this can only be $3 = 1 + 2$, the number $2$ must be red. Now suppose that weknow that $2$ up to and including $l$ are red, for certain $l$ with $2\leq l\leq n-2$. Then in all the possible sums $a+b=l+ 2$ with $a$, $b\geq 2$ both numbers are colored red.  However, we know that we can express $l+ 2$ as the sum ofred and blue (because $l+2\leq n$), hence that must be $1+(l+1)$.  Hence, $l+1$ is also coloured red.  By induction, we now see that the numbers $2$ up to and including $n-1$ are all red.  These are $n-2=2012$ numbers. However, only $n/2=1007$ numbers are red, which is a contradiction.
+
+        We conclude that at least two numbers of $3$ up to and including $2n-1$ are not expressible as the sum of a red and a blue number. We shall now show that we can colour the numbers in such a way that all number from $4$ up to and inlcuding $2n-2$ are expressible as the sum of a red and a blue number, implying that the maximum $k$ equals $2n-5$.
+
+        To obtain this, colour all the even numbers, except $n$, and also the number $1$ blue. All odd numbers, except $1$, and also the number $n$ we colour red.  By adding $1$ to an odd number (unequal to 1) we can obtain all even numbers from $4$ up to and inlcuding $n$ as the sum of a red and a blue number. By adding $2$ to an odd number (unequal to 1), we can obtain all odd numbers from $5$ up to and including $n+1$ as the sum of a red and a blue number. By adding $n-1$ to an even number (unequal to $n$), we can obtain all odd numbers from $n + 1$ up to and including $2n-3$ as the sum of a red and a blue number. By adding $n$ to an even number (unequal to $n$), we can obtain all even numbers from $n + 2$ up to and including $2n-2$ as the sum of a red and a blue number. Altogether, we can express all
+        numbers from $4$ up to and including $2n-2$ as the sum of a red and a blue number.
+
+        We conclude that the maximum $k$ equals $2n-5=4-23$.
+        }{%
+        https://artofproblemsolving.com/community/c6t45241f6h1906764_each_of_numbers_12014_colored_red_and_blue_half_each_max_sum_2_balls
+
+        https://www.wiskundeolympiade.nl/phocadownload/jaarverslagen/dmo2014.pdf
+        P.33
+    }
+
+    \pitem[Turkey TST 2014 Day 3 Problem 9]{%
+        At the bottom-left corner of a $2014\times 2014$ chessboard, there are some green worms and at the top-left corner of the same chessboard, there are some brown worms. Green worms can move only to right and up, and brown worms can move only to right and down. After a while, the worms make some moves and all of the unit squares of the chessboard become occupied at least once throughout this process. Find the minimum total number of the worms.
+        }{%
+        Let us put $n$ instead of $2015$. We will prove the minimum number is $\displaystyle \left\lceil \frac{2n}{3}\right\rceil$. An example that this number is enough is sketched in the figure below for $n=9$. The red dots represent the six kangaroos, enough to cover all cells of the board.
+
+        It remains to estimate a lower bound for this number. Suppose we have $a$ kangaroos of type SE and $b$ ones - NE that are enough to cover all squares of the chessboard. We will make an interpretation of the statement that allows us better visualization of what happens. Consider only the first column of the chessboard, where the kangaroos are initially disposed. Instead of dealing with the trajectories/routes of kangaroos, we just frame them on the first column. There are n rounds. At each round a kangaroo either stays still or moves some squares up or down, depending of its type - NE or SE. The condition is that at each round the empty squares must be traversed. It is clear that we can start with $a$ kangaroos disposed at the top $a$ cells in the column, each on in a separate square, and $b$ ones at the bottom part of the column, in $b$ adjacent cells. The uppermost kangaroos move only downwards, the lower ones - only upwards. Kangaroos of the same type cannot be placed in the same cell, but this is allowed for those of different types. Each round consists of moves that traverse all the empty cells. We make $n$ rounds, just as many as the columns on the chessboard. So, if you want to see the trajectories of the kangaroos, you just arange vertically the positions on each column that corresponds to each round, one after another, left to right. If at the final ($n$-th) round there are kangaroos that still can jump - up or down - we make them move. So, finally, the kangaroos that were initially at the bottom are at the top of the column and vise versa. 
+
+        It means each of the lower kangaroos (NE ones) steps exactly in $n-a$ squares and each of the SE ones steps exactly in $n-b$ cells. In each round there are $n-a-b$ empty squares that need to be stepped in (for some of them it may be done twice or more). There are also $ab$ moves when a NE kangaroo jumps over a SE one, or vise versa. Therefore
+        \[\displaystyle a(n-a)+b(n-b)\ge n(n-a-b)+ab \]
+        This inequality yields
+        \[\displaystyle 2n(a+b)\ge n^2+a^2+b^2+ab=n^2+(a+b)^2-ab\]
+        Using $ab\leq (a+b)^2/4$, we get
+        \[\displaystyle \frac{3}{4}(a+b)^2-2n(a+b)+n^2\le 0.\]
+        Considering it as a quadratic inequality with respect to a+b yields
+        \[a+b\ge 2n/3.\]
+        }{%
+        https://artofproblemsolving.com/community/c6t309f6h580322_worms_that_are_allowed_to_move_one_way
+
+        https://dgrozev.wordpress.com/2021/06/02/kangaroos-jumping-on-a-chessboard-italian-training-camp/
+    }
+
+    \pitem[Romanian Master Of Mathematics 2012]{%
+        Given a positive integer $n\ge 3$, colour each cell of an $n\times n$ square array with one of $\lfloor (n+2)^2/3\rfloor$ colours, each colour being used at least once. Prove that there is some $1\times 3$ or $3\times 1$ rectangular subarray whose three cells are coloured with three different colours.
+        }{%
+        For more convenience, say that a subarray of the $n\times n$ square arraybearsa colour if at least two of its cells share that colour. We shall prove that the number of $1\times 3$ and $3\times 1$  rectangular subarrays, which is $2n(n-2)$, exceeds the number of such subarrays, each of which bears some colour. The key ingredient isthe estimate in the lemma below.
+
+        \textbf{Lemma.} If a colour is used exactly $p$ times, then the number of $1\times 3$ and $3\times 1$ rectangular subarrays bearing that colour does not exceed $3(p-1)$.
+
+        }{%
+        https://artofproblemsolving.com/community/c6t45317f6h467560_a_1_x_3_or_3_x_1_array_with_three_different_colours
+
+        http://rmms.lbi.ro/rmm2012/index.php?id=solutions_math
+
+    }
+
+\end{shortque*}
+
+\end{document}
+
+\section{Problem Set}
+
+\begin{shortque*}{}
+    \pitem[2017 Belarus Team Selection Test 6.2]{%
+        Any cell of a $5\times 5$ table is colored black or white.  Find the greatest possible value of the ways to place a $T$-tetramino on the table so that it covers exactly two white and two black cells (for various colorings of the table).
+        }{%
+        The answer is $37.$
+
+        To see that $37$ is attainable, consider the following table, where $W$ means white and $B$ means black.
+
+        \[ \begin{bmatrix} W & W & B & B & W \\ B & B & W & W & B \\ W & W & B & B & B \\ B & B & W & W & B \\ W & W & B & B & W \end{bmatrix} \]
+        Now, we will show that $37$ is optimal. For a $T-$tetromino, we will define its $\mathbf{core}$ as the cell which is in its center (the one neighboring the other three). Notice that any point is the core of at most $3$ $T-$tetrominoes, with equality iff it is surrounded by $3$ cells of its opposite color and $1$ of the same color. Furthermore, any point on the boundary is the core of at most $1$ $T-$tetromino and the corners cannot be the cores of any $T-$tetrominoes. Therefore, this gives an upper bound of $3 * 3 * 3 + 12 * 1 = 27 + 12 = 39.$
+
+        Assuming that $39$ was possible, we can WLOG assume that the center is white and then uniquely determine the other cells (up to rotation) one by one, and easily find that $39$ is not possible.
+
+        Hence, we've shown that the answer is at most $38.$ Now, notice that in the case for $38,$ there is only one of the squares which is "bad," in the sense that it's the core of one too few $T-$tetrominoes. Then, caseworking on whether this bad square is on the edge or in the middle $3 \times 3$, and then splitting into subcases on where it is will finish (it's pretty straightforward, since using the non-bad squares turns out to always be enough to uniquely determine the grid).
+
+        Note that an interior cell is bad iff it has $2$ neighbors of each color.
+        }{%
+        https://artofproblemsolving.com/community/c6h1813398p12089401
+    }
+
+    \pitem[BMO 2020 q3]{%
+        A $2019\times2019$ grid is made up of $2019^2$ unit cells. Each cell is colored either black or white. A coloring is called balanced if, within every square subgrid made up of $k^2$ cells for $1\leq k\leq2019$, the number of black cells differs from the number of white cells by at most one. How many different balanced colorings are there?
+
+        (Two colorings are different if there is at least one cell that is black in exactly one of them.)
+        }{%
+        I believe the answer is $\boxed{2^{1011} - 6}.$
+
+        First of all, there are $2$ ways to color the $2019 \times 2019$ board checkerboard style, and these two colorings obviously work.
+
+        We'll now show that there are $2^{1011} - 8$ other colorings which work.
+
+        Call a row or column tasty in a given coloring if the squares in that row or column are colored alternately black and white.
+
+        Claim. In any balanced coloring, either every row is tasty of every column is tasty.
+
+        Proof. If the coloring is checkerboard style, the claim is obvious. Else there must exist two adjacent squares which are the same color. WLOG they are in the same row, the other case is similar. Then, it's easy to see that the columns containing these two squares are both tasty and are identical. From here, it's not hard to see that all columns must be tasty (if not, consider the "closest" non-tasty column to the two columns).
+
+        $\blacksquare$
+
+        Note that since we're looking at colorings which aren't checkerboard style, we only have two cases.
+
+        Case 1. All rows are tasty.
+
+        We claim that there are $2^{1010}-4$ ways to choose the leftmost column which generate a balanced $2019 \times 2019$ grid (which isn't colored checkerboard style) after enforcing the condition that all rows are tasty. This would solve the problem because the case where all columns are tasty is similar.
+
+        Note that the condition of being balanced is equivalent to any $1 \times t$ subgrid of the column having its numbers of black and white squares differ by at most $1$, for any odd $t.$
+
+        Since the coloring isn't checkerboard style, there are two adjacent squares in the column which are the same color. Now, partition the column into dominoes and a single $1 \times 1$ square at one end of the column so that these two adjacent squares are not in the same domino. We claim that the two squares of any domino are oppositely colored. Indeed, this is not hard to verify with induction by consider $k \times k$'s with $k$ odd.
+
+        After this observation, the finish is not far. Indeed, there are two ways to tile into dominoes (pick where the $1 \times 1$ is) and two ways to select each piece, for a total of $2 \cdot 2^{1009} = 2^{1010}$ ways to color the column. However, observe that the two colorings where the column is alternately colored are each counted twice in this calculation, so our true total is $2^{1010} - 2 \cdot 2 = 2^{1010} - 4.$
+
+        Case 2. All columns are tasty.
+
+        This case is analogous to the above.
+
+        Considering all cases, we arrive at our answer of $2 \cdot (2^{1010}-4) + 2 = \boxed{2^{1011} - 6}.$
+        }{%
+        https://artofproblemsolving.com/community/c6h2009907p14093485
+    }
+
+    \pitem[USA TST for EGMO 2020]{%
+        Vulcan and Neptune play a turn-based game on an infinite grid of unit squares. Before the game starts, Neptune chooses a finite number of cells to be flooded. Vulcan is building a levee, which is a subset of unit edges of the grid (called walls) forming a connected, non-self-intersecting path or loop*.
+
+        The game then begins with Vulcan moving first. On each of Vulcan’s turns, he may add up to three new walls to the levee (maintaining the conditions for the levee). On each of Neptune’s turns, every cell which is adjacent to an already flooded cell and with no wall between them becomes flooded as well. Prove that Vulcan can always, in a finite number of turns, build the levee into a closed loop such that all flooded cells are contained in the interior of the loop, regardless of which cells Neptune initially floods. 
+
+        *More formally, there must exist lattice points $\mbox{\footnotesize \(A_0, A_1, \dotsc, A_k\)}$, pairwise distinct except possibly $\mbox{\footnotesize \(A_0 = A_k\)}$, such that the set of walls is exactly $\mbox{\footnotesize \(\{A_0A_1, A_1A_2, \dotsc , A_{k-1}A_k\}\)}$. Once a wall is built it cannot be destroyed; in particular, if the levee is a closed loop (i.e. $\mbox{\footnotesize \(A_0 = A_k\)}$) then Vulcan cannot add more walls. Since each wall has length $\mbox{\footnotesize \(1\)}$, the length of the levee is $\mbox{\footnotesize \(k\)}$.
+
+        Reference: https://artofproblemsolving.com/community/c6h1970140\_greek\_gods\_flood\_the\_world
+        }{%
+        We can draw a square containing all initially flooded cells; let the side length be $s$. We will prove the problem when the all cells inside this square are initially flooded, since removing initially flooded cells does not harm Vulcan. In this four-step construction, Vulcan will build 3 new walls each turn.
+
+        The following diagrams include the square of side length $s$ outlined in green, the flooded cell boundary outlined in blue, the newly built walls in red, and the previously built walls in black.
+
+        \myrightasy[2.2in]{
+        1. In Vulcan's first $2s$ turns, he will build the top right corner of the levee such that the top and right walls are $2s$ away from the top and right sides of the square. This is possible because only immediately after $2s$ turns does the flood boundary reach the levee.
+            }{
+            import MOgeom;
+            pair A, B, C; A = (-15, 0); B = (0, 0); C = (0, -15); draw(A--B--C, red+linewidth(2)); pair X, Y; X = (-10, 0); Y = (0, -10); draw(A--X, blue); draw((-10, 0)--(-10, -1)--(-9, -1)--(-9, -2)--(-8, -2)--(-8, -3), blue); draw((0, -15)--(0, -10)--(-1, -10)--(-1, -9)--(-2, -9)--(-2, -8)--(-3, -8), blue); draw((0, -15)--(-1, -15)--(-1, -16)--(-2, -16)--(-2, -17)--(-3, -17), blue); draw((-15, 0)--(-15, -1)--(-16, -1)--(-16, -2)--(-17, -2)--(-17, -3), blue); draw((-25, -10)--(-25, -15)--(-24, -15)--(-24, -16)--(-23, -16)--(-23, -17)--(-22, -17), blue); draw((-25, -10)--(-24, -10)--(-24, -9)--(-23, -9)--(-23, -8)--(-22, -8), blue); draw((-15, -25)--(-10, -25)--(-10, -24)--(-9, -24)--(-9, -23)--(-8, -23)--(-8, -22), blue); draw((-15, -25)--(-15, -24)--(-16, -24)--(-16, -23)--(-17, -23)--(-17, -22), blue); draw((-4.5, -6.5)--(-6.5, -4.5), dotted+blue+linewidth(2)); draw((-20.5, -6.5)--(-18.5, -4.5), dotted+blue+linewidth(2)); draw((-20.5, -18.5)--(-18.5, -20.5), dotted+blue+linewidth(2)); draw((-4.5, -18.5)--(-6.5, -20.5), dotted+blue+linewidth(2)); draw((-15, -15)--(-15, -10)--(-10, -10)--(-10, -15)--cycle, heavygreen); label("$s$", (-12.5, 0), N); label("$2s$", (-5, 0), N); 
+        }
+
+        \myrightasy[2.2in]{
+            2.  In each of the next $5s$ turns, Vulcan will build one wall downward on the right side of the levee and two walls to finish $7s$ of the top wall and continue downward on the left side. The left side of the flood boundary just reaches the left side of the levee after $7s$ turns in total.
+            }{
+            import MOgeom;
+            draw((-50, -15)--(-50, 0)--(-15, 0), red+linewidth(2)); draw((-15, 0)--(0, 0)--(0, -15), black+linewidth(2)); draw((0, -15)--(0, -40), red+linewidth(2)); draw((-15, -15)--(-15, -10)--(-10, -10)--(-10, -15)--cycle, heavygreen); draw((-50, -15)--(-49, -15)--(-49, -16)--(-48, -16)--(-48, -17)--(-47, -17)--(-47, -18)--(-46, -18), blue); draw((0, -40)--(-1, -40)--(-1, -41)--(-2, -41)--(-2, -42)--(-3, -42)--(-3, -43)--(-4, -43), blue); draw((-15, -50)--(-10, -50), blue); draw((-10, -50)--(-10, -49)--(-9, -49)--(-9, -48)--(-8, -48)--(-8, -47), blue); draw((-15, -50)--(-15, -49)--(-16, -49)--(-16, -48)--(-17, -48)--(-17, -47)--(-18, -47)--(-18, -46), blue); draw((-7, -46)--(-5, -44), blue+dotted); draw((-19, -45)--(-45, -19), blue+dotted); label("$3s$", (-7.5, 0), N); label("$7s$", (-65/2, 0), N); label("$3s$", (-50, -7.5), W); label("$5s$", (0, -55/2), E); 
+        }
+
+        \myrightasy[2.2in]{
+            3. In each of the next $5s$ turns, Vulcan will build two walls on the left side of the levee and one wall on the right, so the left and right walls are equal in length.
+            }{
+            import MOgeom;
+            draw((-50, -15)--(-50, 0)--(-15, 0), linewidth(2)); draw((-15, 0)--(0, 0)--(0, -15), linewidth(2)); draw((0, -15)--(0, -40), linewidth(2)); draw((-15, -15)--(-15, -10)--(-10, -10)--(-10, -15)--cycle, heavygreen); draw((0, -40)--(0, -65), red+linewidth(2)); draw((-50, -15)--(-50, -65), red+linewidth(2)); draw((-50, -40)--(-49, -40)--(-49, -41)--(-48, -41)--(-48, -42)--(-47, -42)--(-47, -43)--(-46, -43), blue); draw((0, -65)--(-1, -65)--(-1, -66)--(-2, -66)--(-2, -67)--(-3, -67)--(-3, -68)--(-4, -68), blue); draw((-15, -75)--(-10, -75), blue); draw((-10, -75)--(-10, -74)--(-9, -74)--(-9, -73)--(-8, -73)--(-8, -72), blue); draw((-15, -75)--(-15, -74)--(-16, -74)--(-16, -73)--(-17, -73)--(-17, -72)--(-18, -72)--(-18, -71), blue); draw((-7, -71)--(-5, -69), blue+dotted); draw((-19, -70)--(-45, -44), blue+dotted); label("$10s$", (-25, 0), N); label("$3s$", (-50, -7.5), W); label("$8s$", (0, -20), E); label("$10s$", (-50, -40), W); label("$5s$", (0, -105/2), E); 
+        }
+
+        \myrightasy[2.2in]{
+            4.  In the final $14s$ moves, we increase the length downward of one of the left or right walls by 1 and the other by 2. Once the total length of the left or right wall reaches length $29s$, we begin constructing the bottom wall of the levee. Note that after these $14s$ moves (and $26s$ moves in total), the bottom edge of the flood boundary just hits the bottom of levee ($26s$ below the bottom edge of the green square).
+            }{
+            import MOgeom;
+            draw((-50, -15)--(-50, 0)--(-15, 0), linewidth(2)); draw((-15, 0)--(0, 0)--(0, -15), linewidth(2)); draw((0, -15)--(0, -40), linewidth(2)); draw((-15, -15)--(-15, -10)--(-10, -10)--(-10, -15)--cycle, heavygreen); draw((0, -40)--(0, -65), linewidth(2)); draw((-50, -15)--(-50, -65), linewidth(2)); draw((-50, -65)--(-50, -145)--(0, -145)--(0, -65), linewidth(2)+red); draw((-50, -110)--(-49, -110)--(-49, -111)--(-48, -111)--(-48, -112)--(-47, -112)--(-47, -113)--(-46, -113), blue); draw((0, -135)--(-1, -135)--(-1, -136)--(-2, -136)--(-2, -137)--(-3, -137)--(-3, -138), blue); draw((-15, -145)--(-10, -145), blue); draw((-10, -145)--(-10, -144)--(-9, -144)--(-9, -143)--(-8, -143), blue); draw((-15, -145)--(-15, -144)--(-16, -144)--(-16, -143)--(-17, -143)--(-17, -142)--(-18, -142)--(-18, -141), blue); draw((-7, -141)--(-5, -139), blue+dotted); draw((-19, -140)--(-45, -114), blue+dotted); label("$10s$", (-25, 0), N); label("$13s$", (-50, -65/2), W); label("$16s$", (-50, -105), W); 
+        }
+        }{%
+        https://artofproblemsolving.com/community/c6t309f6h1970142_roman_gods_flood_the_world
+
+        https://artofproblemsolving.com/community/c6h1970140_greek_gods_flood_the_world
+    }
+
+    \pitem[Croatia TST 2016]{%
+        Let $N$ be a positive integer. Consider a $N \times N$ array of square unit cells. Two corner cells that lie on the same longest diagonal are colored black, and the rest of the array is white. A move consists of choosing a row or a column and changing the color of every cell in the chosen row or column.
+        What is the minimal number of additional cells that one has to color black such that, after a finite number of moves, a completely black board can be reached?
+        }{%
+        For $2 \times 2$, it's clear to see that there's no need for additional cells.
+
+        For $N \times N$ with $N \ge 3$, we rephrase the problem to have a better approach. We denote a black cell as it has $-1$ in it, a white cell as it has $1$ in it. A move is denoted as choosing a column or a row and times every number in that row (or column) by $-1$. Hence, if we denote $a_1,a_2, \cdots , a_N$ as the number of times we time column $1,2 \cdots , N$ by $-1$ (or number of times making a move), respectively. Similar to $b_1,b_2, \cdots , b_N$ for column. Hence, after some move to get all black board, cell $(i,j)$ (column $i$, row $j$) has timed to $(-1)^{a_i+b_j}$.
+
+        This means that if a cell $(i,j)$ has black as its initial colour, or has $-1$ as it initial number, then $(-1)\cdot(-1)^{a_i+b_j}=-1$ or $a_i+b_j$ is even. If a cell $(i,j)$ has $1$ as it initial number, then $a_i+b_j$ is odd.
+
+        Now, to the finding minimum part.
+
+        \myrightasy[2.2in]{
+            Case 1. Initially, if column $1$ has only cell $(1,1)$ coloured black (or has $-1$ written on it) then $a_1+b_i$ must have the same parity for all $2 \le i \le N$ (since they all start with white colour and all end with black colour) or $b_i \; ( 2 \le i \le N)$ have the same parity. On the other hand, since cell $(N,N)$ is black cell therefore, cells $(N,i) \; (2 \le i \le N)$ must also have black cells at the beginning in order to satisfy all $b_i \; (2 \le i \le N)$ have same parity.
+
+            Since $b_i \; (2 \le i \le N)$ must have the same parity so consider any column from $2$ to $N-1$, either it has $1$ black cell at the beginning or $N-1$ black cells at the beginning. So, each column from $2$ to $N-1$ need at least $1$ black cell. So the number of additional cells in this case is $2N-4$.
+            We can easily check that this minimum works by add come black cells as below figure. We reach a completely black board by changing colour for the first $N-1$ column and then changes the colour of the first row.
+            }{
+            import MOgeom;
+            fill((0,8)--(8,8)--(8,9)--(0,9)--cycle, gray); fill((8,8)--(9,8)--(9,0)--(8,0)--cycle, gray); for (int i=0; i<=9; ++i) { draw((0,i)--(9,i));draw((i,0)--(i,9)); }
+        }
+
+        Case 2. If there are at least $2$ black cells in column $1$, let says $x \ge 2$ black cells in column $1$. Similar to case 1, by considering the parity of $b_i$, we obtain each next column either have $x \ge 2$ black cells or $n-x \ge 2$ black cells. Hence, the minimum number of cells required is $2(N-2)+2=2N-2>2N-4$. So $2N-4$ is the better minimum.
+
+        Thus, for $N \ge 3$, the answer is $2N-4$.
+        }{%
+        https://artofproblemsolving.com/community/c6t45241f6h1234383_flipping_rows_on_a_matrix_in_f2
+    }
+
+    \pitem[India TST 2016 Day 3 Problem 3]{%
+        Let $n$ be an odd natural number. We consider an $n\times n$ grid which is made up of $n^2$ unit squares and $2n(n+1)$ edges. We colour each of these edges either red or blue. If there are at most $n^2$ red edges, then show that there exists a unit square at least three of whose edges are blue.
+        }{%
+        I will prove the equivalent result that if at least $n^2 + 2n$ edges are coloured blue in an $n$x$n$ grid, then some cell must have three blue edges. Let $n=2k+1$ since its odd.
+
+        First, define the weight of a cell to be the number of blue edges it has. Suppose FTSOC that $n^2 + 2n$ edges can be coloured blue without any cell having three edges. Then, the sum of weights of all cells is at most $2n^2$ since there are $n^2$ cells and each has at most $2$ blue edges.
+
+        Also, every blue edge contributes to the weights of at most $2$ cells and contributes to one cell only if it is a boundary edge. So, the sum of contributions to weights by border edges is at most $4n$ since there are $4n$ edges on the boundary.
+
+        So, the remaining edges contribute at least $(n^2 + 2n-4n)(2) = 2n^2 - 4n$ to the weights and so the sum of contributions becomes exactly $2n^2$ and so equality holds everywhere in all the inequalities. This means that all the $4n$ edges on the boundary have to be coloured blue.
+
+        Now, consider the inner $(n-2)$x$(n-2)$ grid. Since equality had held, it also means that every cell must have exactly $2$ blue edges. So, this means that all the edges on the boundary of this $(n-2)$x$(n-2)$ grid must be colored blue. Similarly, we can repeat this again for a $(n-4)$x$(n-4)$ grid and so on. But at the end, we will reach a $1$x$1$ grid which needs to have all of its border edges coloured blue. But, this is impossible since that would mean that this cell has $4$ blue edges.
+
+        Therefore, it is not possible to have at most $n^2$ red edges and not have a cell with at least $3$ blue edges
+        }{%
+        https://artofproblemsolving.com/community/c6h1276390p6696375
+    }
+
+
+\end{shortque*}

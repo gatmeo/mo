@@ -1,0 +1,18 @@
+\pitem[USAMO 2011 Q6]{%
+Let $A$ be a set with $|A|=225$, meaning that $A$ has 225 elements. Suppose further that there are eleven subsets $A_1, \ldots, A_{11}$ of $A$ such that $|A_i|=45$ for $1\leq i\leq11$ and $|A_i\cap A_j|=9$ for $1\leq i<j\leq11$. Prove that $|A_1\cup A_2\cup\ldots\cup A_{11}|\geq 165$, and give an example for which equality holds.
+    }{%
+    We double count triplets $(x, A_i, A_j)$ where $x \in A_i \cap A_j$.
+
+We first count by pairs of sets. Given any two sets $P$ and $Q$, we know that $|P \cap Q| = 9$. Since there are $\binom{11}{2}$ possibilities for $(A, B)$, there are $9\binom{11}{2} = 495$ such triplets.
+
+Next, we count by elements. Let $S(x)$ be the number of sets $x$ is in. There are then $\sum \binom{S(x)}{2}$ (where the sum ranges across all $x$) such triplets.
+
+Hence, $\sum \binom{S(x)}{2} = 495$.
+
+The rest of the solution is just algebra.
+
+Let $K = \cap_{i = 1}^{11} A_i$. By Jensen,
+\begin{eqnarray*} \frac{\sum \binom{S(x)}{2}}{K} & \geq & \binom{\left(\frac{\sum S(x)}{K}\right)}{2} \\ \frac{495}{K} & \geq & \binom{495/K}{2} \\ 495 & \geq & \frac{1}{2}K\left(\frac{495}{K}\right)\left(\frac{495}{K} - 1\right) \\ 495 & \geq & \frac{495}{2}\left(\frac{495}{K} - 1\right) \\ 2 & \geq & \frac{495}{K} - 1 \\ K & \geq & 165 \mbox{.} \end{eqnarray*}Thus, $|A_1\cup A_2\cup\ldots\cup A_{11}|\geq 165$. Equality holds for example when $S(x) = 3, \forall x$. $\Box$
+    }{%
+    https://artofproblemsolving.com/community/c474725h1471295_combinatorics_post__1_double_counting
+}

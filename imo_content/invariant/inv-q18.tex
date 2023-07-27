@@ -1,0 +1,19 @@
+\pitem[2020 Caucasus Mathematical Olympiad Seniors Problem 8]{%
+Peter wrote $100$ distinct integers on a board. Basil needs to fill the cells of a table $100\times{100}$ with integers so that the sum in each rectangle $1\times{3}$ (either vertical, or horizontal) is equal to one of the numbers written on the board. Find the greatest $n$ such that, regardless of numbers written by Peter, Basil can fill the table so that it would contain each of numbers $(1,2,...,n)$ at least once (and possibly some other integers).
+    }{%
+    The answer is $n=6$ .
+
+First we prove that not all $1,2,3,4,5,6,7$ can appear on the board if peter chooses his integers to be divisible by a large number say $1000$.
+Denote $a_{ij}$ the number on the $i$-row and $j$-column.
+We get that $1000|a_{ij}+a_{i(j+1)}+a_{i(j+2)}$ and for the next horizontal triomino on the right $1000|a_{i(j+1)}+a_{i(j+2)}+a_{i(j+3)}$ so
+$a_{i(j+3)} \equiv a_{ij} (mod 1000)$ and similarly we get that $a_{(i+3)j} \equiv a_{ij} (mod 1000)$
+
+So each $a_{ij}$ has the same residue $(mod 1000)$ with $a_{kl}$ where $k,l\in (1,2,3)$ are the residues of $i,j (mod 3)$ clearly the three numbers in the same row on the top left $3 \times 3$ square cannot leave a residue $(mod 1000)$ $\le 7$ .
+
+Basil can choose an $s$ and make all the $1 \times 3 $ rectangle have sum of elements $s$ and each $1,2,3,4,5,6$ appear.
+
+Fill the top left $3\times 3 $ square like that :
+$$\begin{pmatrix} s-5 & 2 & 3 \\ 1 & s-7 & 6 \\ 4 & 5 & s-9 \end{pmatrix}$$and extend it periodically to fill the $100 \times 100$ board.
+    }{%
+    https://artofproblemsolving.com/community/c6t45487f6h2031586_find_the_greatest_n_satisfying_given_condition
+}

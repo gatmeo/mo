@@ -1,0 +1,22 @@
+\pitem[VN TST 2010 P6]{%
+    Let $S_n $ be sum of squares of the coefficient of the polynomial $(1+x)^n$. Prove that $S_{2n} +1$ is not divisible by $3.$
+    }{%
+    $S_n=\sum_{k=0}^n \binom{n}{k}^2=\binom{2n}{n}$ (by double counting). Then $S_{2n}+1=\binom{4n}{2n}+1$.
+
+    $\textbf{Lemma :}$
+    If $\binom{2x}{x}$ is not divisible by $p$. and $x=(a_0,\dots,a_t)_p$ then $0 \leq a_i \leq \frac{p-1}{2} $ and
+    $2x=(2a_0 ,\dots , 2a_t)_p$
+
+    Proof: obvious by either Lucas or Kummer.
+
+    So by the lemma $2n=(a_0,\dots ,a_t)_3$ s.t $a_i \in \{0,1\} $
+    So FSoC
+    $-1 = \binom{4n}{2n} = \sum_{i=0}^{t} \binom{2a_i}{a_i} $ $\text{mod} (3)$
+    Notice each term of RHS becomes $-1$ if $a_i = 1$ and otherwise $1$.
+    so we should have odd number of them equal to $1$.
+    But $2n = a_0 + a_1 3+ \dots + a_t 3^t$ ($\spadesuit$)
+    odd number of $a_i$'s are $1$ so RHS of ($\spadesuit$) is odd but LHS of it is even.
+    Contradiction $\blacksquare$
+    }{%
+    https://artofproblemsolving.com/community/c6h373499p2065802
+}

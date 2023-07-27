@@ -1,0 +1,14 @@
+\pitem[2016 Taiwan 1st TST IMO Mock P3]{%
+    Let $\mathbb{Z}^+$ denote the set of all positive integers. Find all surjective functions $f:\mathbb{Z}^+ \times \mathbb{Z}^+ \rightarrow \mathbb{Z}^+$ that satisfy all of the following conditions: for all $a,b,c \in \mathbb{Z}^+$,
+    \begin{itemize}
+        \item $f(a,b) \leq a+b$;
+        \item $f(a,f(b,c))=f(f(a,b),c)$; and
+        \item Both $\binom{f(a,b)}{a}$ and $\binom{f(a,b)}{b}$ are odd numbers.(where $\binom{n}{k}$ denotes the binomial coefficients)
+    \end{itemize}
+    }{%
+    We claim the answer is binary OR (which clearly works), denoted by $\odot$. We'll denote $f(a,b)$ as $a \boxtimes b$, which is associative and surjective and prove that $a \boxtimes b$ is $a \odot b$ for $a,b \le 2^k$ by induction on $k$. The base case $k = 0$ is clear (meaning $1 \boxtimes 1 = 1$).
+
+    Assume now it's true up to $2^{k-1}$. First, note that by Lucas theorem, whenever $n < 2^k$ we get \[ n \boxtimes 2^k = 2^k \boxtimes n = 2^k + n. \](since the $f$-value is also $\le 2^k+n$). Now, for $a,b < 2^{k-1}$ we get \[ (a+2^{k-1}) \boxtimes b = 2^{k-1} \boxtimes a \boxtimes b = 2^{k-1} \boxtimes (a \odot b) = 2^{k-1} + a \odot b. \]Similarly for the symmetric case. Finally, \begin{align*} (a+2^{k-1}) \boxtimes (b+2^{k-1}) &= a \boxtimes 2^{k-1} \boxtimes 2^{k-1} \boxtimes b = a \boxtimes 2^{k-1} \boxtimes b \\ &= (a + 2^{k-1}) \boxtimes b = 2^{k-1} + a \odot b. \end{align*}So all that remains is to show $2^k \boxtimes 2^k = 2^k$, which follows from surjectivity since $a \boxtimes b \ge \min\{a,b\}$. Thus induction done.
+    }{%
+    https://artofproblemsolving.com/community/c6h1270066p6633998
+}

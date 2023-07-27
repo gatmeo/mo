@@ -1,0 +1,19 @@
+\pitem[Romanian TST 2002]{%
+    After elections, every parliament member (PM), has his own absolute rating. When the parliament set up, he enters in a group and gets a relative rating. The relative rating is the ratio of its own absolute rating to the sum of all absolute ratings of the PMs in the group. A PM can move from one group to another only if in his new group his relative rating is greater. In a given day, only one PM can change the group. Show that only a finite number of group moves is possible. (A rating is positive real number.)
+    }{%
+    \textbf{Solution 1:}
+    Let the sum of all the absolute ratings in a group $G_i$ be called $S_i$. We claim that the product of all $S_i$s is a monovariant.
+    Let’s say that a PM with absolute rating $a$ can move from $G_1$ with the sum of absolute ratings being $x$ to $G_2$ with the sum of absolute ratings being $y$. This must mean that $\frac{a}{x}<\frac{a}{a+y}$. Therefore, we get $a+y<x$. Consider the quantity $(x-a)(y+a)=xy+ax-a^2-ay=xy+a(x-a)-ay > xy+a(y)-ay=xy$. Hence the total product is always increasing. However, it’ll have to stop as the quantity (product of $S_i$s) is bounded from above (the number of PMs is a finite number).
+
+    \textbf{Solution 2:}
+    Denote the absolute rating of a PM $x$ by $r(x) > 0$. Say there are $n > 1$ groups $(G_k)_{1\leq k \leq n}$, all non-empty. Count the moves by $m=1,2,\ldots$. Then $s_0 = \sum_{k=1}^n \left (\sum_{x \in G_k} r(x) \right )$ is an invariant - the sum of all absolute ratings before any move was made, but the same after any number $m$ of moves, so $s_m = s_0$, constant. This is of no use.
+
+    Let us rather consider the semi-invariant $\sigma_m = \sum_{k=1}^n \left (\sum_{x \in G_k} r(x) \right )^2$. Let us say at the next move a PM $x$ moves from a group $G$ to a group $H$. Denote by $a = \sum_{y \in G \setminus \{x\}} r(y)$ and by $b = \sum_{z \in H} r(z)$. Then it means the relative rating of $x$ increased, i.e. $\dfrac {r(x)} {a + r(x)} < \dfrac {r(x)} {b + r(x)}$, or $a>b$.
+
+    Now it is easy to compute that $\sigma_{m+1} - \sigma_m = (b+r(x))^2 + a^2 - b^2 - (a+r(x))^2 = 2r(x)(b-a) < 0$, so $(\sigma_m)_{m\geq 0}$ is a decreasing sequence, lower bounded by $0$. But the value $2r(x)(a-b)$, by which it decreases at a move, cannot be too small!
+
+    The possible sums of absolute ratings of a bunch of PM's can only take a finite number of values - for the $2$ power the total number of PM's of all possibilities (less $1$, for the empty set). Therefore $2r(x)(a-b) \geq \varepsilon > 0$ for some $\varepsilon$.
+    By the principle of infinite descent, the number of possible moves is therefore finite, since $\sigma_m$ decreases by at least $\varepsilon$ at each move, while having to remain a positive number at all times.
+    }{%
+    https://artofproblemsolving.com/community/c6t219f6h390066_pms_can_move_to_a_group_if_it_increases_his_relative_rating
+}

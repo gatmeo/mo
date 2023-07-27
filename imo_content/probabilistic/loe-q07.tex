@@ -1,0 +1,8 @@
+\pitem[IMC 2002 day2 q2]{%
+    200 students participated in a math contest. They had 6 problems to solve. Each problem was correctly solved by at least 120 participants. Prove that there must be 2 participants such that every problem was solved by at least one of these two students.
+    }{%
+    Pick two contestants randomly. Let $X_i$ be the indicator that both contestants miss problem $i$, so each $\EE[X_i]<\left(\frac{80}{200}\right)^2=4/25$, and their expected number of both-missed problems is $24/25<1$.
+    %Pick two contestants randomly, the probability that those two can't so a problem is at most $\frac{\binom{80}{2}}{\binom{200}{2}}$. Hence, if $X$ is the number of problems that $2$ contestants can't solve then $\mathbb{E}[X]= 6 \cdot \frac{\binom{80}{2}}{\binom{200}{2}}<1.$ Hence, there exists a way to pick two contestants so that $\mathbb{E}[X]=0$, or each problem can be solved by at least one of them.
+    }{%
+    https://artofproblemsolving.com/community/c7h46086p291620
+}

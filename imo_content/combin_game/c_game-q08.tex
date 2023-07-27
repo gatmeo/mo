@@ -1,0 +1,15 @@
+\pitem[ELMO 2019 Problem 3, 2019 ELMO Shortlist C4]{%
+    Let $n \ge 3$ be a fixed integer. A game is played by $n$ players sitting in a circle. Initially, each player draws three cards from a shuffled deck of $3n$ cards numbered $1, 2, \dots, 3n$. Then, on each turn, every player simultaneously passes the smallest-numbered card in their hand one place clockwise and the largest-numbered card in their hand one place counterclockwise, while keeping the middle card.
+
+    Let $T_r$ denote the configuration after $r$ turns (so $T_0$ is the initial configuration). Show that $T_r$ is eventually periodic with period $n$, and find the smallest integer $m$ for which, regardless of the initial configuration, $T_m=T_{m+n}$.
+    }{%
+    We show with induction that eventually, the $n$ smallest numbers will all be in different people's hands, ie. no person has two numbers from $1$ to $n.$ Trivial note is that each of the $n$ largest numbers are greater then all of the smallest or middle $n$ numbers, and any of the $n$ smallest numbers are smaller then all the middle or largest numbers.
+
+    Base case: Clearly, card number $1$ will always rotate clockwise every step.
+    Inductive step: Assume that the cards numberd $1$ to $k \leq n-1,$ are all in different people's hands. Then, from each step onwards, these $k$ cards will always rotate simultaneously clockwise. If card $k+1$ is the smallest card in someone's hands currently, then we are done.
+    Otherwise, card number $k+1$ will be in the same hand as another card $i \leq k.$ However, note that card $k+1$ can never move Counterclockwise, because by inductive hypothesis all the $k$ smallest cards are never in the same people's hands and rotate clockwise simultaneously. Thus, card $k+1$ will stay where it is, until a gap comes to it, and it is the smallest in that hand. This necessarily eventually happens, as $k \leq n-1.$ Then, card $k+1$ also rotates clockwise indefinitely as the other cards $1$ to $k.$
+
+    Thus eventually, the $n$ smallest numbers will each be in a different person's hand. Similarly, eventually, the $n$ largest numbers will also be in different people's hands. At this point, the $n$ smallest numbers will simply rotate clockwise one person, simultaneously each step, and similarly, the $n$ largest numbers will rotate simultaneously counterclockwise. And the $n$ middle numbers will just stay in the same person's card forever. This is clearly periodic with period $n.$
+    }{%
+    https://artofproblemsolving.com/community/c6t45487f6h1859574_zeroplayer_card_game
+}

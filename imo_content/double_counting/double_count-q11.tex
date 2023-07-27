@@ -1,0 +1,20 @@
+\pitem[IMO 1989 Q3]{%
+    Let $ n$ and $ k$ be positive integers and let $ S$ be a set of $ n$ points in the plane such that
+    \begin{enumerate}
+        \item no three points of $ S$ are collinear, and
+        \item for every point $ P$ of $ S$ there are at least $ k$ points of $ S$ equidistant from $ P.$
+    \end{enumerate}
+    Prove that $$k < \frac {1}{2} + \sqrt {2 \cdot n}.$$
+    }{%
+    Define $T(n)$ as the number of isosceles triangle. We double count $T(n)$. We count them in the following two ways: by apex and by vertices.
+
+    We first count by apex. Fix a given point $P$. Since there are at least $k$ points equidistant from $P$, there are at least $\binom{k}{2}$ ways to select the other two vertices in order to get an isosceles triangle. Since there are $n$ choices for $P$, $$T(n) \geq n\binom{k}{2}.$$
+    We now count by vertices. Pick two points in $S$, $A$ and $B$. To get an isosceles triangle $ABP$, $P$ must lie on the perpendicular bisector of $\overline{AB}$. Since no three points are collinear, there are at most $2$ choices for $P$. Since there are $\binom{n}{2}$ ways to pick $A$ and $B$, $$T(n) \leq 2\binom{n}{2}.$$
+    Hence,
+    \begin{eqnarray*} 2\binom{n}{2} & \geq & n\binom{k}{2} \\ n^2 - n & \geq & \frac{1}{2}n(k^2 - k) \\ k^2 - k - (2n - 2) & \leq & 0 \mbox{.} \end{eqnarray*}Thus,
+    \[
+         k & \leq & \frac{1 + \sqrt{1 + 8n - 8}}{2} \\ & < & \frac{1}{2} + \frac{1}{2}\sqrt{8n} = \frac{1}{2} + \sqrt{2n}
+     \]
+    }{%
+    https://artofproblemsolving.com/community/c474725h1471295_combinatorics_post__1_double_counting
+}

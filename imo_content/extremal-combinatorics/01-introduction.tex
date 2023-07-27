@@ -1,0 +1,83 @@
+\section{Introduction}
+
+\begin{definition}[def:]{Basic Definitions}
+    \begin{enumerate}
+        \item For a set $X$, $|X|$ denote its size.
+        \item For positive integer $n$, let $[n]=\left\{1,2,\dots ,n\right\}$, the power set $2^{[n]}$ consists of $2^n$ subsets (including $[n]$ and the empty set $\emptyset $) of $[n]$.
+        \item Let ${[n]\choose k}$ denote the collection of all $k$-element subsets of $[n]$.
+        \item A subset $\FF$ of $2^{[n]}$ is called a \vocab{family} of subsets. (Think of $\FF\subseteq 2^X$ as a hypergraph)
+        \item A family $\FF\subseteq {[n]\choose k}$ is called $k$-uniform.
+    \end{enumerate}
+\end{definition}
+
+\begin{remark}
+    Sometimes a family $\FF\subseteq 2^X$ is called \vocab{non-uniform}.
+\end{remark}
+
+\begin{notation}[ntt:]{Basic Notation}
+    \begin{enumerate}
+        \item $\FF(x)=\left\{F\setminus \left\{x\right\}:x\in F\in \FF\right\}$,
+        \item $\FF(\overline{x})=\left\{F:x\notin F\in \FF\right\}$.
+    \end{enumerate}
+\end{notation}
+
+\begin{definition}[def:]{Chain}
+    We call $(F_0,\dots ,F_l)$ a \vocab{chain} of length $l$ if
+    \[F_0\subsetneqq F_1\subsetneqq \cdots \subsetneqq F_l.\]
+    If for a family $\FF$ no $F,G\in \FF$ satisfy $F\subsetneqq G$, $\FF$ is called an \vocab{antichain}.
+\end{definition}
+
+\begin{remark}
+    ${[n]\choose k}$ is an antichain for every fixed $k, 0\leq k\leq n$.
+\end{remark}
+
+\begin{theorem}[thm:]{Sperner's Theorem}
+    Let $\FF\subseteq 2^{[n]}$ be an antichain. Then
+    \[|\FF|\leq {n\choose \lfloor \frac{n}{2}\rfloor},\]
+    and in the case of equality, $\FF={[n]\choose \frac{n}{2}}$ for $n$ even and $\FF={[n]\choose \frac{n-1}{2}} \textnormal{ or } {[n]\choose \frac{n+1}{2}}$ for $n$ odd.
+\end{theorem}
+
+\begin{proof}
+    Let $\FF\subseteq 2^{[n]}$ be an maximal antichain. Further let
+    \[p=\max\left\{\left|F\right|:F\in \FF\right\}\textnormal{ and }q=\min\left\{\left|F\right|:F\in \FF\right\}.\]
+    If we can show $p\leq \frac{n+1}{2}$ and $q\geq \frac{n-1}{2}$, then the proof for $n$ even is complete (it implies $p=q=\frac{n}{2}$). If $n$ is odd, we have $\FF\subseteq {[n]\choose \frac{n-1}{2}}\cup {[n]\choose \frac{n+1}{2}}$, which requires some more work.
+
+    We are going to proof by contradiction. Assume $p>\frac{n+1}{2}$, and define $\GG=\left\{G\in \FF:\left|G\right|=p\right\}$.
+    We then define the immediate shadow $\HH$ of $\GG$ by
+    \[\HH=\left\{H:\left|H\right|=p-1\textnormal{ and }H\subseteq G\textnormal{ for some }G\in \GG\right\}.\]
+    \begin{claim}[clm:sperner]{}
+        We have the following:
+        \begin{enumerate}
+            \item Let $\FF'=(\FF\setminus \GG)\cup \HH$. Then $\FF'$ is an antichain.
+            \item $\left|\FF'\right|>\left|\FF\right|$.
+        \end{enumerate}
+    \end{claim}
+    With this claim, the $p\leq \frac{n+1}{2}$ is complete because $\left|F'\right|>\left|F\right|$ contradicts the maximal choice of antichain $\FF$. Similar argument for proving $q\geq \frac{n-1}{2}$. Yet, we may circument by consider the complement $\FF^c=\left\{[n]\setminus F:F\in \FF\right\}$, then check $\left|\FF^c\right|=\left|\FF\right|$ and $\FF^c$ is an antichain, too. Then we have $n-|F|\leq \frac{n+1}{2}\ \forall\ F\in \FF$, $\left|F\right|\geq \frac{n-1}{2}$.
+\end{proof}
+
+\begin{proof}(\cref{clm:sperner})
+    For (i), We have $\HH$ an antichain (as $\HH\subseteq {[n]\choose p-1}$) and $H\not\subseteq F$ for $H\in \HH, F\in \FF\setminus \GG$ (as $\max\left\{\left|F\right|:F\in \FF\setminus \GG\right\}\leq p-1$). Since fo $H\in \HH$, exist $G\in \GG$ with $H\subseteq G$, $H\supseteq F$ implies $G\supseteq F$, contradicts $\FF=(\FF\setminus \GG)\cup \GG$ is an antichain. Hence $H\not\supseteq F$.
+
+    For (ii), since $\left|F'\right|-\left|F\right|=\left|\HH\right|-\left|\GG\right|$. We will prove by double counting. Let $M$ be the number of pairs $(G,H)$ with $G\in \GG, H\in \HH$. Since every $p$-element subset $G$ has $p$ subsets of $p-1$, $M=p\left|\GG\right|$. And since every $(p-1)$-element $H\subseteq [n]$ there are $n-(p-1)=n+1-p$ choices of $G'\in {[n]\choose p}, H\subseteq G'$ (some of $G'$ may lie outside of $\GG$), we have
+    \[p\left|G\right|=M\leq (n-p+1)\left|\HH\right|.\]
+    If $p>\frac{n+1}{2}$, $n+1-p<\frac{n+1}{2}$, hence $\left|\GG\right|<\left|\HH\right|$.
+\end{proof}
+
+\begin{definition}[def:]{Intersecting}
+    A family $\FF\subseteq 2^{[n]}$ is called \vocab{intersecting} if $F\cap F'=\emptyset $ for all $F,F'\in \FF$.
+\end{definition}
+
+\begin{theorem}[thm:]{Erdos-Ko-Rado Theorem}
+    Suppose that $\FF\subseteq 2^{[n]}$ is an intersecting family. Then:
+    \begin{enumerate}
+        \item $\left|\FF\right|\leq 2^{n-1}$.
+        \item If $\FF\subseteq {[n]\choose k}\textnormal{ and }n\geq 2k$, then $\left|\FF\right|\leq {n-1\choose k-1}$.
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+    For (i), let $A\subseteq [n], A^c=[n]\setminus A$. If $F\in \FF$, then $F\cap F^c=\emptyset $ implies $F^c\notin \FF$. Hence $\FF\cap \FF^c=\emptyset $, where $\FF^c\left\{F^c:F\in \FF\right\}$. Since $\left|\FF\right|=\left|\FF^c\right|$ and $\FF\sqcup\FF^c\subseteq 2^{[n]}$, we have
+    \[2\left|\FF\right|=\left|\FF\right|+\left|\FF^c\right|=\left|\FF\sqcup\FF^c\right|\leq \left|2^{[n]}\right|=2^n.\]
+    (ii) will be covered by the end of the lesson.
+\end{proof}
+

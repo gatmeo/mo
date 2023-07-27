@@ -1,0 +1,10 @@
+\pitem[IMOSL 1999 C4]{%
+    Let $A$ be any set of $n$ residues mod $n^2$. Show that there is a set $B$ of $n$ residues mod $n^2$ that at least half of the residues mod $n^2$ can be written as $a + b$ with $a$ in $A$ and $b$ in $B$.
+    }{%
+    Select elements of $B=\left\{b_1,\dots ,b_n\right\}$ uniformly randomly (we'll even allow repetitions for simplicity). For each $r$ (mod $N^2$), and each $i,j\in 1,\dots ,n$, by considering the number of choices of $A$, we have
+    \[\mathbb{P}(r\notin A+b_i)=\mathbb{P}(b_i\notin A-r)=\frac{N^2-N}{N^2}=1-\frac{1}{N}.\]
+    Hence $\mathbb{P}(r\notin A+B)<\left(1-\frac{1}{N}\right)^N<\frac{1}{e}<\frac{1}{2}$. Thus $\EE[|A+B|]>(1-1/2)N^2$.
+    %Let R be the set of all n2 residues and let S be the set of all subsets of R with n elements. Let P be the set of all pairs (r, X), where r belongs to R and X belongs to S, such that r cannot be written as a + x for any a in A, x in X.  For any given r, there are (n2-n)Cn subsets X in S such that (r, X) is in P. But (n2-n)Cn ≤ ½ (n2Cn), so at most half the subsets X have (r, X) in P (for any given r). Hence for some B in S, at most half the elements r of R have (r, B) in P. So for this B at least half the elements of R can be written as a + b with a in A and b in B.  (Note that (n2Cn/(n2-n)Cn = (n2(n2-1)(n2-2) ... (n2-n+1)/( (n2-n)(n2-n-1) ... (n2-2n+1) ) ≥ (n2/(n2-n) = (1 + 1/(n-1) )n > e > 2. ) 
+    }{%
+    https://prase.cz/kalva/short/soln/sh99c4.html
+}

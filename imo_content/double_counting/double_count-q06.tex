@@ -1,0 +1,15 @@
+\pitem[]{%
+    Prove that
+    \[
+        \sum_{i=0}^n \sum_{j=0}^n \frac{(n+i+j)!}{n! i! j!} 3^{-i-j} = 3^n.
+    \]
+    }{%
+    Suppose 3 players A, B, and C are playing a game repeatedly. Each has a 1/3 probability of winning a round. What is the probability that A is the first to win $n+1$ rounds? By symmetry, it's 1/3.
+
+    On the other hand, we'll constructively count the cases where A is the first. Suppose that B has won $i$ rounds and C has won $j$ rounds when A wins their last round. This means that out of the first $n+i+j$ rounds, A won $n$ rounds, and then won the $(n+i+j+1)$st round. There are $\frac{(n+i+j)!}{n!i!j!}$ ways to arrange the wins of A,B,C in all rounds except the last, and the probability of a particular sequence of round wins occurring is $3^{-n-i-j-1}$.
+
+    Therefore,
+    \[ \sum_{i=0}^n \sum_{j=0}^n \frac{(n+i+j)!}{n! i! j!} 3^{-n-i-j-1} = \frac{1}{3}\]which simplifies to the desired identity.
+    }{%
+    https://artofproblemsolving.com/community/c6t45317f6h1785740_some_combinatorial_argument
+}

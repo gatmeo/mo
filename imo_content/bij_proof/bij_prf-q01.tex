@@ -1,0 +1,17 @@
+\pitem[]{%
+    A composition of $n$ is a sequence $\alpha=(\alpha_1,\alpha_2,\dots ,\alpha_k)$ of positive integers such that $\sum\alpha_i=n$. Proof that 
+    \begin{enumerate}
+        \item the number of compositions of $n$ is $2^{n-1}$,
+        \item the total number of parts of all compositions of $n$ is equal to $(n+1)2^{n-2}$, and
+        \item for $n\geq 2$, the number of compositions of $n$ with an even number of even parts is equal to $2^{n-2}$.
+    \end{enumerate}
+    }{%
+    \begin{enumerate}
+        \item The compositions $\alpha=(\alpha_1,\alpha_2,\dots ,\alpha_k)$ is in bijection to subsets of $[n-1]$: $\alpha\mapsto \left\{\alpha_1,\alpha_1+\alpha_2,\dots ,\sum_{i=1}^{k-1}\alpha_i\right\}$.
+        \item Use the "dots and bars" model. The bar putted after dot $i$ participates in $2^{n-2}$ partitions in total (choose 'put'/ 'don’t put a bar' after the remaining $n-2$ dots among $1,\dots ,n-1$). Thus we have $(n-1)\cdot 2^{n-2}$ parts ending before the $n$-th dot, in total. That way, the last part in every composition is missed. After we add it, i.e. after addition of $2^{n-1}$ parts, we get $(n-1)2^{n-2}+2^{n-1}=(n+1)2^{n-2}$.
+        \item Assume you have determined to put or not a bar for each of the positions after the first $n-2$ dots. You can do this in $2^{n-2}$ ways. You get a composition with last part of length $\geq 2$. Take the number of even parts in the received composition. If this number is even, keep the composition as it is. Otherwise, put a bar on the last possible position, i.e. after dot $n-1$. In fact, this way you divide the last part of length $l\geq 2$ to two parts of lengths $l-1$ and $1$. As a result, the parity of the last part is changed and the received
+composition will have even number of even parts.We actually get a bijection between the compositions with odd number of even parts and those with even number of even parts.
+    \end{enumerate}
+    }{%
+    1.2,3,4
+}

@@ -1,0 +1,43 @@
+\pitem[]{%
+    Let $n \geq 2$ be an integer number and $A$ be the set $A = \{1, 2, ..., 3n \}$. Find the least integer $m$ such that any subset of $A$ with $m$ elements contains at least two elements $x, y$ such that $n < |x - y| < 2n$.
+    }{%
+    Hapi's strategy was correct:
+    Step 1: to find a counterexample for $m-1$;
+    Step 2: to prove any subset of $A$ with $m$ elements satisfies the requested conditions;
+    but the starting point was wrong.
+    We claim: $m=n+2$.
+
+    $\textbf{Step 1: }$ Consider the subset $B=\{1,2,\dots,n,n+1\}$.
+    $\forall x,y\in B, |x-y|\le (n+1)-1=n$.
+    Hence $m>n+1$.
+
+    $\textbf{Step 2: }$ Let be $B\subset A, |B|=n+2$.
+    $B=\{b_1,b_2,\dots,b_{n+1},b_{n+2}\}$, where $1\le b_1<b_2<\dots<b_{n+1}<b_{n+2}\le3n$.
+    $b_{i+1}-b_i\ge1\Longrightarrow b_j-b_i\ge j-i, \forall 1\le i<j\le n+2$.
+    Assume the set $\{1,2,\dots,n\}$ contains exactly $k$ terms of $B$, $0\le k\le n$.
+
+    Case 1: $k=0$.
+    Results: $B\subset\{n+1,n+2,\dots,3n-1,3n\}$.
+    $b_{n+2}-b_1\ge n+1$;
+    $b_{n+2}-b_1\le 3n-(n+1)=2n-1$.
+
+    Case 2: $k\ge 1$.
+    For $1\le i\le k$ denote $C_i=\{b_i+n+1,b_i+n+2,\dots,b_i+2n-1\}$ the set which contains the elements $x\in A$ with the property $n+1\le |x-b_i|\le 2n-1; C=\cup_{i\in\{1,2,\dots,k\}}C_i$.
+    Then: $C=\{x\in\mathbb{N}|b_1+n+1\le x\le b_k+2n-1\}$
+    ($C\subset\{x\in\mathbb{N}|b_1\le x\le b_k+2n-1\}$ and $\{x\in\mathbb{N}|b_1\le x\le b_k+2n-1\}\subset C_1\cup C_k\subset C$).
+
+    Case 2a) $\{b_{k+1},b_{k+2},\dots,b_{n+2}\}\cap C\ne\phi$.
+    Results: $\exists i\in\{1,2,\dots,k\}, j\in\{k+1,k+2,\dots,n+2\}$ such that $n+1\le b_j-b_i\le 2n-1$.
+
+    Case 2b) $\{b_{k+1},b_{k+2},\dots,b_{n+2}\}\cap C=\phi$.
+    Results: $\{b_{k+1},b_{k+2},\dots,b_{n+2}\}\subset\{n+1,\dots,b_1+n\}\cup\{b_k+2n,b_k+2n+1,\dots,3n\}$.
+    $|\{b_{k+1},b_{k+2},\dots,b_{n+2}\}|=n-k+2$.
+    $|\{n+1,\dots,b_1+n\}|=b_1;|\{b_k+2n,b_k+2n+1,\dots,3n\}|=n+1-b_k\Longrightarrow$
+    $\Longrightarrow|\{n+1,\dots,b_1+n\}\cup\{b_k+2n,b_k+2n+1,\dots,3n\}|=n+1-(b_k-b_1)\le n-k+2$.
+    Hence: $\{b_{k+1},b_{k+2},\dots,b_{n+2}\}=\{n+1,\dots,b_1+n\}\cup\{b_k+2n,b_k+2n+1,\dots,3n\}$.
+    In this case, $b_{n+2}-b_{k+1}=3n-(n+1)=2n-1\in[n+1,2n-1]$.
+
+    In all cases, $\exists i,j\in\mathbb{N}, 1\le i<j\le n+2$ such that $n+1\le b_j-b_i\le2n-1$.
+    }{%
+    https://artofproblemsolving.com/community/c6t45313f6h2241659_a123n_least_m_such_that_every_subset_of_a_with_m_elements_nltxylt2n
+}

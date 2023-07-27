@@ -1,0 +1,9 @@
+\pitem[]{%
+There are $1001$ rectangles with integer sides such that for each rectangle the difference between the length of sides is less than $100$. Prove that there are $21$ rectangles such that each of them can cover or be covered by any other (one can rotate rectangles).
+    }{%
+    The idea is something like the proof of Erdős–Szekeres theorem (see https://en.wikipedia.org/wiki/Erd%C5%91s%E2%80%93Szekeres_theorem).
+Consider $(a_i, b_i)$ be the length of sides of the $i$th rectangle and $a_i \geq b_i$. Call a pair $(i,j)$ "bad" if $a_i > a_j \geq b_j >b_i$ or $a_j > a_i \geq b_i >b_j$ and "good" otherwise. It's obvious two rectangle $i$ and $j$ can be covered by each other if and only if the pair $(i,j)$ be good.
+Now for every $i$ consider the biggest integer $t_i$ such that there exists a sequence $j_1, \cdots , j_{t_i}$ with 1) $j_{t_i}=i$ and 2) pair $(j_r,j_{r+1})$ is good for every $1\leq r \leq t_i -1$ and rectangle $j_r$ can be covered by rectangle $j_{r+1}$. If one of the $t_i$s is more than 20 then we are done so consider $t_i \leq 20$ for every $1\leq i \leq 1001$ so by pigeonhole principle there exist 51 numbers $r_1, \cdots ,r_{51}$ such that $t_{r_1} = t_{r_2} = \cdots = t_{r_{51}}$ and it concludes all the pairs $(r_i,r_j)$ are bad so W.L.O.G we have $a_{r_1} > a_{r_1} > \cdots > a_{r_{51}} \geq b_{r_{51}} > b_{r_{50}} > \cdots > b_{r_1} $ so $a_{r_1} \geq b_{r_1} + 100$ contradiction.
+    }{%
+    https://artofproblemsolving.com/community/c6t219f6h1832166_nice_combinatorics_problem
+}

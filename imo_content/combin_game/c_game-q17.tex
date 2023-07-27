@@ -1,0 +1,25 @@
+\pitem[SAMO 2017 Q4]{%
+    Andile and Zandre play a game on a $2017 \times 2017$ board. At the beginning, Andile declares some of the squares forbidden, meaning the nothing may be placed on such a square. After that, they take turns to place coins on the board, with Zandre placing the first coin. It is not allowed to place a coin on a forbidden square or in the same row or column where another coin has already been placed. The player who places the last coin wins the game.  
+    What is the least number of squares Andile needs to declare as forbidden at the beginning to ensure a win? (Assume that both players use an optimal strategy.)
+    }{%
+    The answer is $2017$. For $2017$, Andile can just declare an entire row forbidden. Now there are $2016$ rows and $2017$ columns, and each move will reduce the number of available rows and columns each by $1$. As there are more columns than rows, the game ends when we run out of rows. Since $2016$ is even, Andile wins.
+
+    Now we show that $2016$ is not enough. We will prove the following statement by induction.
+
+    \textbf{Claim:} On a $(2n+1)\times(2n+1)$ board, if at most $2n$ squares are forbidden then Zandre wins.
+
+    \textbf{Proof:} The base case $n=0$ is trivial.
+    Now suppose we have a $(2k+1)\times (2k+1)$ board with at most $2k$ forbidden squares $(k\geq 1)$.
+
+    \begin{itemize}
+        \item If there are at most one forbidden square, Zandre chooses some other square in its row. Now whatever square Andile chooses, we're left with $0$ forbidden squares on a $(2k-1)\times(2k-1)$ board.
+        \item Else there are at least 2 forbidden squares.
+            If some two of them are in the same row or column, Zandre chooses a non-forbidden square in that row or column (which exists since $2k<2k+1$).
+        \item 
+            Else consider two forbidden squares $X,Y$. Zandre choose the square $Z$ on the same row as $X$ and same column as $Y$.
+            Now whatever square Andile chooses, we're left with at most $2k-2$ forbidden squares on a $(2k-1)\times(2k-1)$ board. $\square$
+    \end{itemize}
+    Hence Andile needs at least $2017$ forbidden squares.
+    }{%
+    https://artofproblemsolving.com/community/c6t45487f6h1486763_game_involving_placing_coins_on_a_chessboard
+}

@@ -1,0 +1,11 @@
+\pitem[Korea Final Round 2009]{%
+    2008 white stones and 1 black stone are in a row. An 'action' means the following: select one black stone and change the color of neighboring stone(s).
+    Find all possible initial position of the black stone, to make all stones black by finite actions.
+    }{%
+    Let the stones be $a_1,a_2.....a_{2009}$.
+    To each white stone with $k$ black stones to its right assign the number $(-1)^k$. Let $S$ be the sum of the assigned numbers. One can check that $S$ is invariant, except when we act on $a_1$ or $a_{2009}$. In view of this we will add white stones $a_0$ and $a_{2010}$ at the start and the end. Then $S$ is invariant when we can only act on $a_1$ to $a_{2009}$. Now consider the ending configuration, i.e. $a_1$ to $a_{2009}$ are all black, consider the 4 possibilities of what $a_0$ and $a_{2010}$ can be (both stone can be either white or black), we see that $S$ can only be $0$ or $\pm1$.
+    For the initial position, since we originally set $a_0$ and $a_{2010}$ be white, we can easily see that for all initial configuration $S$ congruents to $0$ modulus 2. Hence the only possible initial configuration is when $S=0$, which occurs only when the black stone is in the middle, i.e. the initial position is
+    \[\overbrace{www\ldots www}^{1004} b \overbrace{www\ldots www}^{1004}.\]
+    }{%
+    https://artofproblemsolving.com/community/c6h496963p2790919
+}

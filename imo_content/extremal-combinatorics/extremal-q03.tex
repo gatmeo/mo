@@ -1,0 +1,19 @@
+\pitem[]{%
+    Let $S$ be a nonempty finite set, and $\mathcal {F}$ be a collection of subsets of $S$ such that the following conditions are met:
+    (i) $\mathcal {F}$ $\setminus$ {$S$} $\neq$ $\emptyset$ ;
+    (ii) if $F_1, F_2 \in \mathcal {F}$, then $F_1 \cap F_2 \in \mathcal {F}$ and $F_1 \cup F_2 \in \mathcal {F}$.
+
+    Prove that there exists $a \in S$ which belongs to at most half of the elements of $\mathcal {F}$.
+    }{%
+    The idea is to translate the claim into terms of the complements of the sets in the given family. Denote
+    $$\mathcal{F}' := \{S\setminus F : F\in \mathcal{F}\}$$Using De Morgan laws, the family $\mathcal{F}'$ satisfies the following conditions
+
+    1) $\mathcal{F}'\setminus \{\emptyset\}\neq \emptyset $
+    2) If $F_1,F_2\in\mathcal{F}'$ then $F_1\cap F_2\in \mathcal{F}'$ and $F_1\cup F_2\in \mathcal{F}'$
+
+    We want to prove there exists $a\in S$ which belongs to at least half of the elements of $\mathcal{F}'$.
+    Let $A\in\mathcal{F}'$ be a minimal element (under inclusion) of the family $\mathcal{F}'\setminus \{\emptyset\}.$ By 1) it's guaranteed $A\neq \emptyset.$ Any other set in $\mathcal{F}'$ is either disjoint from $A$ or contains $A.$ Let $a\in A$. We prove $a$ belongs to at least half of the elements of $\mathcal{F}'$.
+    Consider $\mathcal{F}'_1:= \{F\in\mathcal{F}' : F\cap A=\emptyset\}.$ All sets of $\mathcal{F}' $ that does not contain $a$ are exactly the sets in $\mathcal{F}'_1$. Consider the subfamily $\mathcal{F}'_2:=\{A\cup F :F\in \mathcal{F}'_1\}.$ They all contain $a$ and $|\mathcal{F}'_2|=|\mathcal{F}'_1|$. The result follows.
+    }{%
+    https://artofproblemsolving.com/community/c6t275f6h2254950_2020_macedonian_national_olympiad_problem_4
+}

@@ -1,0 +1,17 @@
+\pitem[]{%
+    $n(n \ge 3)$ integers $a_1,a_2,\ldots,a_n$ lie around a circle in that order. In every operation, we calculate the absolute value of difference between each pair of two adjacent numbers to get $n$ new integers, and then set them around the circle without disorganizing the order. Determine all the positive integer $n,$ such that for any $n$ integers, we can take finite operations to make all $n$ integers are the same eventually.
+    }{%
+    The answer is \(n=2^k\).
+
+    To see this, it's helpful to first consider an example, say \(n=4\). After the first step, all the integers are nonnegative. From this point on, the largest number cannot increase. However, considering the various cases for the integers modulo 2, it becomes apparent that no matter the initial values, after at most 4 steps all the integers become even. At this point we may as well factor a two out and repeat the previous argument over and over again, until all values eventually become zero. It turns out modulo 2 considerations are useful in the other cases for \(n\), too.
+
+    If \(n\) is odd, it's fairly clear that all integers can never end up even being the same mod 2 (unless they started that way) - the integers before the final step must necessarily be \(a_1,a_2,\dots,a_n=1, 1, \dots, 1\), which means before that, \(a_1,a_3,a_5,\dots,a_n\) had the same parity, yet \(a_1\) and \(a_n\) had different parities, which is a contradiction.
+
+    Note, however, that if \(n\) is not a solution, \(2n\) can't be, either. To see this, consider a configuration which shows \(n\) isn't a solution, namely one which eventually cycles modulo 2. Merely concatenating two copies of this configuration trivially also leads to a set of \(2n\) integers which cycles modulo 2 in the exact same manner - the two halves essentially operate independently. For instance, using \(n=3\), \(1 0 1 \rightarrow 1 1 0 \rightarrow 0 1 1 \rightarrow 1 0 1\) and \(1 0 1 1 0 1 \rightarrow 1 1 0 1 1 0 \rightarrow 0 1 1 0 1 1  \rightarrow 1 0 1 1 0 1\). Hence, the only potential solutions remaining are \(n=2^k\).
+
+    Finally, when \(n=2^k\), first consider a configuration with only one \(1\), namely \(a_1,a_2,\dots,a_n=1, 0,  \dots, 0\). After the first step, it becomes \(1, 1, 0, \dots, 0\), then \(1, 0, 1, 0,\dots, 0\), then \(1, 1, 1, 1, 0, \dots, 0\), then \(1, 0, 0, 0, 1, 0, \dots, 0\) and so on. It's clear that, at least for the first few(actually, \(n-1\)) steps, the numbers are equivalent to the \(i\)'th row of the Pascal triangle. However, by Lucas' theorem, on the \(n-1\)'st step, all entries of the Pascal triangle will be odd - hence on the \(n\)'th step, all numbers must become congruent to \(0\mod{2}\), at which point we may finish the proof as we did in the example in the beginning.
+
+    Of course, if the numbers all reach \(0\mod{2}\) for each configuration with only one \(1\) (as above), we can use a superposition argument to argue that, indeed, the numbers must necessarily do so for any configuration, which concludes the proof.
+    }{%
+    https://artofproblemsolving.com/community/c6h1862298p12632812
+}

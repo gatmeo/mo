@@ -1,0 +1,90 @@
+\section{Linearity of Expectation}
+
+\begin{definition}[def:]{Random Variable}
+    A \vocab{random variable} is a variable whose value is unknown or a function that assigns values to each of an experiment's outcomes.
+\end{definition}
+
+\begin{definition}[def:]{Expected Value}
+    The \vocab{expected value} is the "weighted average" of a random variable $X$:
+    \[\mathbb{E}[X]:=\sum_{x}^{}\mathbb{P}(X=x)\cdot x.\]
+\end{definition}
+
+\begin{example}[exp:]{}
+    There are $n$ people, each of who has a name tag. We shuffle the name tags and randomly give each person one of the name tags. Let $S$ be the number of people who receive their own name tag. Prove that the expected value of $S$ is $1$. (i.e. $S$ independent of $n$)
+\end{example}
+
+\begin{proof}
+    We can list all the $n!$ permutations and count the number of cases where the $i$-th person get his own name tag. We can easily see that there are $(n-1)!$ cases where the $i$-th person get his own tag. Hence we have
+    $\mathbb{E}[S]=\frac{1}{n!}\left((n-1)!*n\right)=1$.
+\end{proof}
+
+\begin{theorem}[thm:]{Linearity of Expectation}
+    Given any random variables $X_1,X_2,\dots ,X_n$, we always have
+    \[\EE[X_1+X_2+\cdots +X_n]=\EE[X_1]+\EE[X_2]+\cdots +\EE[X_n].\]
+\end{theorem}
+
+\begin{remark}
+    It is true even if $X_i$s are dependent of each other.
+\end{remark}
+
+\begin{proof}
+    \begin{alignat*}{1}
+        \EE[X+Y]&= \sum_{x}^{}\sum_{y}^{}[(x+y)\cdot P(X=x,Y=y)]\\
+                %&= \sum_{x}^{}\sum_{y}^{}[x\cdot P(X=x,Y=y)]+\sum_{x}^{}\sum_{y}^{}[y\cdot P(X=x,Y=y)]\\
+                &= \sum_{x}^{}x\sum_{y}^{}P(X=x,Y=y)+\sum_{y}^{}y\sum_{x}^{}P(X=x,Y=y)\\
+                &= \sum_{x}^{}x\cdot P(X=x)+\sum_{y}^{}y\cdot P(y=y)\\
+                &= \EE[X]+\EE[Y].
+    \end{alignat*}
+\end{proof}
+
+\begin{example}[exp:]{}
+    At a nursery, $2006$ babies sit in a circle. Suddenly, each baby randomly pokes either the baby to its left or to its right. What is the expected value of the number of unpoked babies?
+\end{example}
+
+\begin{proof}
+    Number the babies $1,2,\dots ,2006$. Define
+    \[X_i:=
+        \begin{cases}
+            1,&\quad \textnormal{if baby $i$ is unpoked}\\
+            0,&\quad \textnormal{otherwise}.
+        \end{cases}
+    \]
+    We seek $\EE[X_1+X_2+\cdots +X_{2006}]$. Note that any particular baby has probably $(\frac{1}{2})^2=\frac{1}{4}$ of being unpoked. Hence $\EE[X_i]=\frac{1}{4}$ for each $i$ and hence
+    \[\EE[X_1+\cdots +X_2+\cdots +X_{2006}]=\sum_{i=1}^{2006}\EE[X_i]=2006\cdot \frac{1}{4}=\frac{1003}{2}.\]
+\end{proof}
+
+\begin{newenv}[rnd:]{Use Expected Value to Show Existence}{Usage}
+    Suppose we know the average score of a test is 12.1, then there exists a student who got at least 13 points, and a contestant who got at most 12 points.    
+\end{newenv}
+
+\begin{remark}
+    It is similar in spirit to the pigeonhole principle.
+\end{remark}
+
+\begin{example}[exp:]{}
+    Prove that any subgraph of $K_{n,n}$ with at least $n^2-n+1$ edges has a perfect matching.
+\end{example}
+
+\begin{proof}
+    We randomly pair off one set of points with the other (whether there is an actual edge or not), and define the score of such a pairing be the number of pairs which are actually connected by ane edge. Number the pairs by $1,2,\dots ,n$. Define
+    \[X_i:=
+        \begin{cases}
+            1&\quad \textnormal{if the $i$th pair is connected by an edge}\\
+            0&\quad \textnormal{otherwise}.
+        \end{cases}
+    \]
+    Hence the score of a config $X=X_1+\cdots +X_n$. For any pair of points, they are connected with probability at least $\frac{n^2-n+1}{n^2}$. Hence $\EE[X_i]=\frac{n^2-n+1}{n^2}$, and hence
+    \begin{alignat*}{1}
+        \EE[X]&= \EE[X_1]+\cdots +\EE[X_n] = n\cdot \EE[X_1]\\
+              &= \frac{n^2-n+1}{n}\\
+              &= n-1+\frac{1}{n}.
+    \end{alignat*}
+    Since $X$ takes only integer values, there exists a config with $X=n$.
+\end{proof}
+
+\begin{theorem}[thm:]{Jenson's Inequality}
+    If $f$ is a convex function and $t\in [0,1]$, we have
+    \[f(tx_1+(1-t)x_2)\leq tf(x_1)+(1-t)f(x_2).\]
+    In context of probability theory, if $X$ is a random variable and $\varphi $ is a convex function, then
+    \[\varphi (\EE[X])\leq \EE[\varphi (X)].\]
+\end{theorem}

@@ -1,0 +1,15 @@
+\pitem[]{%
+    Let $p_n(k)$ be the number of permutations of the set $S=\{1,2,3,\ldots,n\}$ which have exactly $k$ fixed points. Prove that
+    \[
+        \sum_{k=0}^nk p_n(k)=n!.
+    \]
+    (A permutation $p$ is a bijective map from $S\rightarrow S$. An element $s\in S$ is called a fixed point of $p$ if $p(s)=s$.)
+    }{%
+    Let $X$ be the collection of all pairs $(s, p)$ where $p\in \textnormal{Sym}_n$ is a permutation with $s\in S$ being one of its fixed points. We will count $X$ in two ways:
+
+    LHS: For any $p\in \textnormal{Sym}_n$ with exactly $k$ fixed points, it admits $k$ such pairs in $X$. Hence $|X|=\sum_{k=0}^nk p_n(k)$.
+
+        RHS: For any $s\in S$, there are obviously $(n-1)!$ permutations fix $s$. Hence $|X|=n\cdot (n-1)!$.
+    }{%
+    https://artofproblemsolving.com/community/c6t45317f6h60752_imo_1987_number_of_permutations
+}

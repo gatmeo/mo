@@ -1,0 +1,17 @@
+\pitem[Romanian Master Of Mathematics 2012]{%
+    Given a positive integer $n\ge 3$, colour each cell of an $n\times n$ square array with one of $\lfloor (n+2)^2/3\rfloor$ colours, each colour being used at least once. Prove that there is some $1\times 3$ or $3\times 1$ rectangular subarray whose three cells are coloured with three different colours.
+    }{%
+    We prove that if there is no $3$-colored such subarray, then the number of distinct colors $M$ on the board is at most $\lfloor (n+2)^2 / 3 \rfloor - 1$.
+
+    Given an $n \times n$ board, let a $3 \times 1$ or $1 \times 3$ tile be called a "supertile" if at least one of its cells lies on the board (so the supertiles are the set of all $3 \times 1$ or $1 \times 3$ tiles on the board, plus the ones that are hanging off of the sides).
+
+    Fix a coloring of the board and assume that there is no $3 \times 1$ or $1 \times 3$ tile colored by three different colors. We will count the set $X$ of pairs of a supertile and a color $c$ which appears in a cell covered by that supertile.
+
+    On the one hand -- counting by supertiles -- each supertile must then be incident to at most two colors. Even more: the ones which hang off the board with only one covered cell actually on the board have only one incident color. So $|X| \le 2(n+2)^2 - 4n = 2n^2+4n+8$.
+
+    On the other hand -- counting by colors -- for any color $c$ appearing on the board in some cell $x$, the color $c$ is incident to at least $6$ different supertiles: the horizontal one with $x$ in the leftmost position, the horizontal one with $x$ in the center position, the horizontal one with $x$ in the rightmost position, and all the corresponding ones for the vertical supertiles. So $6M \le |X|$.
+
+    Thus, $6M \le 2n^2+4n+8 \Rightarrow M \le (n^2+2n+4) / 3 \le \lfloor (n+2)^2 / 3 \rfloor - 1$.
+    }{%
+    https://artofproblemsolving.com/community/c6t45317f6h467560_a_1_x_3_or_3_x_1_array_with_three_different_colours
+}

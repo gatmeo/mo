@@ -1,0 +1,19 @@
+\pitem[]{%
+    Show that
+    \[
+        \sum_{}^{}(2^{a_1-1}-1)\cdots (2^{a_k-1}-1)=F_{2n-2},
+    \]
+    where the sum is over all compositions $a_1+a_2+\cdots +a_k=n$.
+    }{%
+    Given a composition $(a_1,a_2,\dots ,a_k)$ of $n$, replace each part $a_i$ with a composition $a_i$ of $2a_i$ into parts $1$ and $2$, such that $a_i$ begins with $1$, ends in 2, and for all $j$ the $2j$-th 1 in $a$ is followed by a 1, unless this $2j$-th $1$ is the last $1$ in $a$. For instance, the part $a_i=4$ can be
+    replaced by any of the seven compositions $1111112, 111122, 111212, 11222, 121112, 12122, 12212$.
+    Now, let’s check the following two facts that suffices to get a proof:
+
+    \begin{enumerate}
+        \item every composition of $2n$ into parts $1$ and $2$, beginning with $1$ and ending with $2$, occurs exactly once by applying this procedure to all compositions of $n$. Indeed, assume we have such composition. One will be able to divide it into segments representing the different $2\alpha_i$-s forming a corresponding composition of $n$. The latter is true, because it is enough to look for those $2$ followed by $1$ and having even number of $1$s in front of them. All of these 2s and only they are ends of a segments representing a part. For example, if we are given the $1-2$ composition $111111211121212122$, we can see that it corresponds to $1111112 | 111212 | 12122$, which is one of the possible representations for the partition of 12 - (4,4,4).
+        \item the number of compositions that can replace $a_i$ is $2^{a_i-1}-1$. Well, here is a way that we can create all such compositions. Write 1 at the beginning, 2 at the end and choose $a_i-1$ times to write "11" or "2" for the middle portion(you can do this in $2^{a_i}-1$ ways). But, the total sum became $2n+1$. It remains to remove the last $1$. However, this could be done if you have at least one $1$. To gurantee this, just do not consider the choice of $a_i-1$ 2s for the middle portion. Now, the number of ways you can perform the described steps is $2^{a_i-1}-1$.
+    \end{enumerate}
+    Now the number of compositions of $2n$ starting with $1$ and ending with $2$ is $F_{2n-3+1}=F_{2n}$.
+    }{%
+    1.36
+}

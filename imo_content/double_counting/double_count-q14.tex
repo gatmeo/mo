@@ -1,0 +1,16 @@
+\pitem[Russia 1999]{%
+In a class, every boy knows at least one girl. Prove that there is a group containing at least half of the students such that each boy in the group knows an odd number of girls in the group.
+    }{%
+    We double count pairs $(B, \mathcal{G})$, where $B$ is a boy knowing an odd number of girls in some set of girls $\mathcal{G}$.
+
+We first count by boys. Let $f(B)$ denote the number of girls a given boy $B$ knows, $g$ be the number of girls, and $s$ be the total number of students. It follows that there are $\binom{f(B)}{1} + \binom{f(B)}{3} + \cdots = 2^{f(B) - 1}$ ways to choose an odd number of girls $B$ knows. There are then $2^{g - f(B)}$ ways to pick the girls that $B$ doesn't know in $\mathcal{G}$. It follows that there are $2^{g - f(B)}2^{f(B) - 1} = 2^{g - 1}$ possible sets $\mathcal{G}$ for $B$. Since there are $s - g$ boys, it follows that there are $(s - g)2^{g - 1}$ pairs.
+
+Next, we count by sets of girls. Let $A(S)$ be the set of boys knowing an odd number of girls in a set of girls $S$. It follows that there are $\sum_{S} |A(S)|$ such pairs. Therefore,
+\begin{eqnarray*} \sum_{S} |A(S)| & = & (s - g)2^{g - 1} \mbox{.} \end{eqnarray*}
+We claim that there must be some set $S$ for which $|A(S) \cup S| \geq \frac{s}{2}$. We prove this by contradiction: suppose $\forall S$ that $|A(S) \cup S| < \frac{s}{2}$. Then, since there are $2^g$ sets of girls, $\sum_{S} |A(S) \cup S| < \frac{s}{2}(2^g) = s2^{g - 1}$. Since $A(S)$ is a set of boys and $S$ is a set of girls, we find that $|A(S) \cup S| = |A(S)| + |S|$. Hence,
+\begin{eqnarray*} \sum_{S} (|A(S)| + |S|) & < & s2^{g - 1} \\ \sum_{S} |A(S)| + \sum_{S} |S| & < & s2^{g - 1} \\ (s - g)2^{g - 1} + \sum_{S} |S| & < & s2^{g - 1} \\ \sum_{S} |S| & < & g2^{g - 1} \mbox{.} \end{eqnarray*}
+Note that $\sum_{S} |S| = \sum_{k = 0}^g k\binom{g}{k} = g2^{g - 1}$. Contradiction. Hence it is possible to find such group.
+%This is impossible, since $s \geq g$. Therefore, there must be some set $S$ for which $|A(S) \cup S| \geq \frac{n}{2}$. This set satisfies the problem, as each boy in the set knows an odd number of girls in the set, and the size of the set is more than half the size of the class. This completes the proof.
+    }{%
+    https://artofproblemsolving.com/community/c474725h1471295_combinatorics_post__1_double_counting
+}

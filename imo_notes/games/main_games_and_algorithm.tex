@@ -1,0 +1,323 @@
+\documentclass[a4paper]{article}
+\usepackage[math_simple,imo]{gatmeo}
+
+\renewcommand{\courseTitle}{\FirstBigRestSmallCaps{2020 IMO Phase III Level 2}}
+\renewcommand{\courseTopic}{\FirstBigRestSmallCaps{Games and Algorithms}}
+\DTMsavedate{mydate}{2021-02-27}
+
+\toggletrue{ownans}
+\togglefalse{officialans}
+\rfoot{}
+
+\begin{document}
+\maketitle
+\thispagestyle{empty}
+
+\begin{question*}{}
+    \pitem{%
+        Alice and Bob play a game with a string of 2017 pearls. In each move, one player cuts the string between two pearls and the other player chooses one of the resulting parts of the string while the other part is discarded.  In the first move, Alice cuts the string. Thereafter, the players take turns. A player loses if he or she obtains a string with a single pearl such that no more cuts are possible.  Which player has a winning strategy?
+        }{%
+        Claim: Bob has a winning strategy.
+
+        We claim that on Alice's turn, both of the strings she receives have an odd number of pearls each.
+        2017 can only be split into an even $+$ an odd, so Bob is given a string with an even number of pearls and a string with an odd number of pearls on his first turn. Bob's strategy is to keep the string with an even number of pearls, and then split this even string into 2 odd strings. Thus Alice will always receive 2 strings that have odd number of pearls on them, so she can only choose a string with an odd number of pearls on it, which can only be split into even $+$ odd. Thus Alice will eventually lose, as Bob can always make sure he receives a string with an even number of pearls on it.
+        }{%
+        https://artofproblemsolving.com/community/c6t224166f6h1773695_a__game__with_a_string_of_2017_pearls
+    }
+
+    \pitem[IMOSL 2009 C1]{%
+        Consider 2009 cards, each having one gold side and one black side, lying in parallel on a long table. Initially all cards show their gold sides. Two players, standing by the same long side of the table, play a game with alternating moves. Each move consists of choosing a block of 50 consecutive cards, the leftmost of which is showing gold, and turning them all over, so those which showed gold now show black and vice versa. The last player who can make a legal move wins.
+        \begin{enumerate}
+            \item Does the game necessarily end?
+            \item Does there exist a winning strategy for the starting player?
+        \end{enumerate}
+        }{%
+        \begin{enumerate}
+            \item We interpret a card showing black as the digit 0 and a card showing gold as the digit 1. Thus each position of the 2009 cards, read from left to right, corresponds bijectively to a nonnegative integer written in binary notation of 2009 digits, where leading zeros are allowed. Each move decreases this integer, so the game must end. 
+            \item We show that there is no winning strategy for the starting player. We label the cards from sight to left by $1,\dots ,2009$ and consider the set $S$ of cards with labels $50i$, $i=1,2,\dots ,40$. Let $g_{n}$ be the number of cards from $S$ showing gold after $n$ moves. Obviously, $g_0=40$. Moreover, $\left|g_n-g_{n+1}\right|=1$ as long as the play goes on. Thus, after an odd number of moves, the non-starting player finds a card from $S$ showing gold and hence can make a move. Consequently, this player always wins. 
+        \end{enumerate}
+
+        }{%
+        <++>
+    }
+
+    \pitem[Israel National Olympiad 2014 Q4]{%
+        We are given a row of $n\geq7$ tiles. In the leftmost 3 tiles, there is a white piece each, and in the rightmost 3 tiles, there is a black piece each. The white and black players play in turns (the white starts). In each move, a player may take a piece of their color, and move it to an adjacent tile, so long as it's not occupied by a piece of the same color. If the new tile is empty, nothing happens. If the tile is occupied by a piece of the opposite color, both pieces are destroyed (both white and black). The player who destroys the last two pieces wins the game.  Which player has a winning strategy, and what is it? (The answer may depend on $n$)
+        }{%
+        Let the player moving the white pieces be called "Bob" and the other player be called "Rob."
+
+We claim that Bob wins when $n$ is even and Rob wins when $n$ is odd.
+
+Let's label the tiles $1, 2, \cdots, n$ from left to right. Let $b$ be a variable corresponding to the sum of the labels of the tiles containing Bob's pieces, and define $r$ analogously for Rob. Observe that each player toggles the parity of $r-b$ on his or her move. Since $r-b$ starts are $3n-9$, it's immediately clear that Bob cannot win for $n$ odd and Rob cannot win for $n$ even.
+
+Now, all that remains is for the player who cannot lose for a given $n$ to be as aggressive as possible. In other words, Bob will simply move his rightmost piece to the right at all times, and Rob will move his leftmost piece to the left at all times. These clearly provide strategies which guarantee that the game doesn't end in a tie. Hence, they are winning strategies, and the problem is solved.
+        }{%
+        https://artofproblemsolving.com/community/c6t224166f6h1891382_israel_2014_q4__eliminating_pieces_game
+    }
+
+    \pitem[Rioplatense Olympiad 2016 level 3 P1]{%
+        Ana and Beto play against each other. Initially, Ana chooses a non-negative integer $N$ and announces it to Beto. Next Beto writes a succession of $2016$ numbers, $1008$ of them equal to $1$ and $1008$ of them equal to $-1$. Once this is done, Ana must split the succession into several blocks of consecutive terms (each term belonging to exactly one block), and calculate the sum of the numbers of each block. Finally, add the squares of the calculated numbers. If this sum is equal to $N$, Ana wins. If not, Beto wins. Determine all values of $N$ for which Ana can ensure victory, no matter how Beto plays.
+        }{%
+        It is necessary for $N$ to be an even number from $0$ to $2016$.
+        If Bob chooses the sequence $(1, -1, 1, -1, \dots, 1, -1)$, then the most Ana can get is $2016$ by making the blocks $((1), (-1), (1), (-1), \dots, (1), (-1))$. Also, the sum of any block Ana can make is $-1, 0,$ or $1$. Whenever Ana makes a block that sums to $-1$ or $1$, it takes an odd number of values. Whenever the block sums to $0$, there are an even number of values. So, there are an even number of blocks that sum to either $-1$ or $1$, which implies that $N$ must be even.
+
+        It is sufficient for $N$ to be an even number from $0$ to $2016$.
+        Now we show that all even values of $N$ work between $0$ and $2016$. First, suppose Ana has a sequence of $N\ge 4$ blocks, such that the sum in each block is either $-1$ or $1$. We show that it is possible to find another sequence with $N-2$ blocks all summing to either $-1$ or $1$. Let the blocks be
+        $$B_N = (b_1, b_2, \dots, b_N)$$There exists $2$ consecutive blocks, $b_i$ and $b_{i+1}$ that sum to $0$. Otherwise, all $b_j$ are of the same sign, which implies that
+        $$|b_1 + b_2 + \cdots + b_N| > 0,$$impossible as
+        $$b_1 + b_2 + \cdots + b_N = 1 + (-1) + 1 + (-1) + \cdots + (-1) = 0.$$If $i=0$, take $b_{0}, b_{1}, b_{2}$ and combine them into one block. Otherwise, take $b_{i-1}, b_i, b_{i+1}$ and combine them into one block. We have found a new sequence of $N-2$ blocks that each sum to either $-1$ or $1$.
+
+        This shows all even numbers from $2$ to $2016$ are possible. What about $0$? That can be achieved by a single block with all of the numbers.
+        }{%
+        https://artofproblemsolving.com/community/c6t224166f6h1703135_1008_numbers_equal_to_1_1008_equal_to_1_split_into_blocks_count_sums_game
+    }
+
+    \pitem[XIX Olimpíada Matemática Rioplatense 2010]{%
+        Alice and Bob play the following game. To start, Alice arranges the numbers $1,2,\ldots,n$ in some order in a row and then Bob chooses one of the numbers and places a pebble on it. A player's turn consists of picking up and placing the pebble on an adjacent number under the restriction that the pebble can be placed on the number $k$ at most $k$ times. The two players alternate taking turns beginning with Alice. The first player who cannot make a move loses. For each positive integer $n$, determine who has a winning strategy.
+        }{%
+        First let us change the problem to an equivalent version. There are piles of $1, 2, 3, \cdots, n$ stones respectively. Alice can first arrange them however she likes, after which the players take turn taking a stone from some pile (starting with Bob). The only constraint is that each player can only take a stone adjacent to the stone taken on the previous move. We claim that Alice wins if $n \equiv 0, 3$ (mod $4$) and Bob wins otherwise.
+
+        If $n \equiv 0$ (mod $4$), then Alice can let the pile sizes be $1, 2, 4, 3, 5, 6, 8, 7, \cdots$ from left to right. Then, it's easy to pair up these stones into pairs so that the stones in each pair are adjacent. Hence Alice wins. If $n \equiv 3$ (mod $4$), then Alice can let the pile sizes be $1, 3, 2, 4, 5, 7, 6, 8, 9, 11, 10, \cdots.$ Again, Alice can easily pair up these stones into pairs of adjacent stones.
+
+        Now, suppose that $n \equiv 1, 2$ (mod $4$). Let the pile sizes be $a_1, a_2, a_3, \cdots, a_n$ from left to right. We will greedily pair up the stones until we can't.
+
+        More specifically, start by creating as many pairs of stones between the leftmost pile and the second pile from the left as possible. If $a_1 > a_2$, then it's easy to find a winning strategy for Bob--simply repeatedly take a stone from the leftmost pile. Else, continue by pairing up as many stones from the second and third piles as possible. Continue this way until we cannot create any pairs. We must run into one of the following situations.
+
+        1) For some $i > 2$, we've paired all $a_1 + a_2 + \cdots + a_i$ stones in the leftmost $i$ piles, except for some stones in the $(i-1)$th pile from the left.
+
+        2) We paired all stones except for some stones in the rightmost pile.
+
+        Note that since $\sum a_i$ is odd, not all stones can be paired. In the first case, Bob begins by taking a stone in the $(i-1)$th pile. Afterwards, we notice that Alice must always take a stone from a pile which has label $i$ (mod $2$). Hence, after his first move, Bob takes stones which are paired with the stone Alice took on the previous move. Eventually, Alice loses.
+
+        In the second case, Bob begins by taking a stone in the rightmost pile, and then uses a similar strategy as in the first case.
+        }{%
+        https://artofproblemsolving.com/community/c6t224166f6h419591_moving_a_pebble_among_1_2_n_game
+    }
+
+    \pitem[Putnam 2020 B2]{%
+        Let $k$ and $n$ be integers with $1\leq k<n$. Alice and Bob play a game with $k$ pegs in a line of $n$ holes. At the beginning of the game, the pegs occupy the $k$ leftmost holes. A legal move consists of moving a single peg to any vacant hole that is further to the right. The players alternate moves, with Alice playing first. The game ends when the pegs are in the $k$ rightmost holes, so whoever is next to play cannot move and therefore loses. For what values of $n$ and $k$ does Alice have a winning strategy?
+        }{%
+        We refer to this two-player game, with $n$ holes and $k$ pegs, as the \emph{$(n,k)$-game}.
+        We will show that Alice has a winning strategy for the $(n,k)$-game if and only if at least one of $n$ and $k$ is odd; otherwise Bob has a winning strategy.
+
+        We reduce the first claim to the second as follows. If $n$ and $k$ are both odd, then Alice can move the $k$-th peg to the last hole; this renders the last hole, and the peg in it, totally out of play, thus reducing the $(n,k)$-game to the $(n-1,k-1)$-game, for which Alice now has a winning strategy by the second claim. Similarly, if $n$ is odd but $k$ is even, then Alice may move the first peg to the $(k+1)$-st hole, removing the first hole from play and reducing the $(n,k)$-game to the $(n-1,k)$ game. Finally, if $n$ is even but $k$ is odd, then Alice can move the first peg to the last hole, taking the first and last holes, and the peg in the last hole, out of play, and reducing the $(n,k)$-game to the $(n-2,k-1)$-game.
+
+        We now assume $n$ and $k$ are both even and describe a winning strategy for the $(n,k)$-game for Bob.
+        Subdivide the $n$ holes into $n/2$ disjoint pairs of adjacent holes. Call a configuration of $k$ pegs \textit{good} if for each pair of holes, both or neither is occupied by pegs, and note that the starting position is good. Bob can ensure that after each of his moves, he leaves Alice with a good configuration: presented with a good configuration, Alice must move a peg from a pair of occupied holes to a hole in an unoccupied pair; then Bob can move the other peg from the first pair to the remaining hole in the second pair, resulting in another good configuration. In particular, this ensures that Bob always has a move to make. Since the game must terminate, this is a winning strategy for Bob.
+        }{%
+        <++>
+    }
+
+    \pitem[2020 Argentina OMA L3 p6]{%
+        Let $n\ge 3$ be an integer. Lucas and Matías play a game in a regular $n$-sided polygon with a vertex marked as a trap. Initially Matías places a token at one vertex of the polygon. In each step, Lucas says a positive integer and Matías moves the token that number of vertices clockwise or counterclockwise, at his choice. The two players know the value of $n$ and the position of the trap.
+        \begin{enumerate}
+            \item Determine all the $n\ge 3$ such that Matías can locate the token and move it in such a way as to never fall into the trap, regardless of the numbers Lucas says. Give the strategy to Matías.
+            \item Determine all the $n\ge 3$ such that Lucas can force Matías to fall into the trap. Give the strategy to Lucas.
+        \end{enumerate}
+        }{%
+        \begin{enumerate}
+            \item 
+                If $n$ is not a power of 2, Matias wins.
+                Let $p$ be an odd prime divisor of $n$, color the vertices modulo $p$.
+                If the initial vertex does not have the same color as the trap vertex, then Matias can always choose a vertex that is not the same color as the trap vertex each step.
+            \item If $n$ is a power of 2, Lucas wins.
+                Let $n=2^m$. At step $k$, Lucas calls the number $2^{(m-1-v_2(k))}$, for a total of n-1 steps.
+                (For example: if $n=8$, the numbers $4,2,4,1,4,2,4$ are called.)
+                In any number of consecutive positive integers, there is a unique number with the highest power of $2$.
+                Therefore, in any number of consecutive steps, there is a unique number called with the lowest power of 2 and these steps cannot sum to zero, and the token must visit each vertex once.
+
+                This is exactly the same reasoning as 1±1/2±1/3±1/4±... cannot be an integer.
+        \end{enumerate}
+        }{%
+        https://artofproblemsolving.com/community/c6t224166f6h2389461_2player_game_a_vertex_marked_as_a_trap_in_a_regular_ngon
+    }
+
+    \pitem[Tournament of Towns 2020 oral p6]{%
+        There is an endless supply of white, blue and red cubes. In a circle arrange any $N$ of them. The robot, standing in any place of the circle, goes clockwise and, until one cube remains, constantly repeats this operation: destroys the two closest cubes in front of him and puts a new one behind him a cube of the same color if the destroyed ones are the same, and the third color if the destroyed two are different colors.
+        We will call the arrangement of the cubes good if the color of the cube remaining at the very end does not depends on where the robot started. We call $N$ successful if for any choice of $N$ cubes all their arrangements are good. Find all successful $N$.
+        }{%
+        The answer is powers of $2$.
+
+        First, note that since $3x \equiv 0 + 1 + 2 \equiv 0 \pmod{3}$, we can let red, white, and blue be $0$, $1$, and $2$ mod $3$. Then the robot takes a sequence $a_1,\, a_2, \, a_3, \, \ldots, \, a_N$, and repeatedly deletes the first two terms $x$ and $y$ and places $-x - y$ at the end. The color remaining at the end is the value of the final expression mod $3$.
+
+        If $N = 2^k$, then it's clear (for example, by induction) that the final expression is $$(-1)^k\cdot (a_1 + a_2 + \cdots + a_N),$$which is symmetric in all the $a_i$, so the final value is the same for any permutation of the sequence (we only need it to be true for all cyclic shifts).
+
+        Meanwhile, it's clear that in the sequence, there's always exactly one term containing each $a_i$. If $N > 1$ is odd, then we eventually end up with a sequence $$a_N, -a_1 - a_2, -a_3 - a_4, \ldots, -a_{N - 2} - a_{N - 1},$$which results in the term $-a_N + a_1 + a_2$. So then $a_N$ and $a_1$ will end up with different signs in the final expression. This means the sequence $(1, 0, 0, \ldots)$ will have a different final color if the $1$ is $a_1$ as if the $1$ is $a_N$.
+
+        Now if $N = 2^k\cdot n$, where $n > 1$ is odd, then the sequence eventually becomes a length $n$ sequence \[(-1)^k\cdot (a_1 + \cdots + a_{2^k}, \, a_{2^k + 1} + \cdots + a_{2\cdot 2^k}, \, \ldots),\]and then the same reasoning as before shows that if we have the sequence $(1, 0, 0, \ldots)$, then the outcomes when the $1$ is in the first block of consecutive $2^k$ and when the $1$ is in the last block are different.
+        }{%
+        https://artofproblemsolving.com/community/c6t224166f6h2112442_n_white_blue_and_red_cubes_around_a_circle_a_robot_destroys_2_puts_1_back
+    }
+
+\end{question*}
+
+\end{document}
+
+\togglefalse{plabel}
+\section*{Problem Set}
+
+\begin{question*}{}
+    \pitem[USAMO 1999 Problem 5]{%
+        The Y2K Game is played on a $1 \times 2000$ grid as follows. Two players in turn write either an S or an O in an empty square. The first player who produces three consecutive boxes that spell SOS wins. If all boxes are filled without producing SOS then the game is a draw. Prove that the second player has a winning strategy.
+        }{%
+        For brevity, let the first and second players be named A and B, respectively. Also, we call the three configurations of boxes (S, empty, S), or (S, O, empty), or (empty, O, S) winning configurations (since if any of these configurations are ever achieved, the next player to play can win).
+
+        Define a group of four consecutive boxes to be deadly if the first and last contain the letter S, and the middle two boxes are empty. Notice that if any move is made in the two empty boxes of a deadly group, the next player to play can win: if an S is written, the (S, empty, S) configuration is achieved, and if an O is written, the (S, O, empty) or (empty, O, S) configuration is achieved.
+
+        Lemma: B can always force the existence of a deadly group.
+
+        Proof: If A writes an S on his first turn, then B can write an S three boxes away, producing a deadly group. If A writes an O on his first turn, then B can write an S somewhere at least $100$ tiles away from the O and from each end of the grid (the exact number is not important, only that it is far enough from the O that no winning configurations can be achieved next). Then, on B's second turn, he will either win immediately if it is possible, or he can place a second S three boxes away, opposite the direction of A's second move.
+
+        After B produces a deadly group, he can proceed as follows until the only empty boxes remaining lie in deadly group. After each of A's moves, if it is not possible for B to win immediately, then B chooses an empty box $X$ that is not in a deadly group. If the neighboring boxes are both empty, B writes an O in box $X$. If a neighboring box contains an O, B writes an O in box $X$. If a neighboring box contains an S but neither contain O, B writes an S in box $X.$ These moves will not produce any winning configurations. (Specifically, in the third case, notice that writing an S cannot produce a (S, empty, S) configuration opposite the neighboring S, since that would mean that box $X$ is in a deadly group.)
+
+        Eventually, the only squares left will lie in deadly groups. Since deadly groups have two empty boxes and the game began with an even number (2000) of empty boxes, this means that it will be A's turn when this occurs. Then A is forced to make a move in a deadly group, so B wins.
+        }{%
+        https://artofproblemsolving.com/community/c6h54505p340040
+    }
+
+    \pitem[JBMO Shortlist 2017 C3]{%
+        We have two piles with $2000$ and $2017$ coins respectively.
+        Ann and Bob take alternate turns making the following moves:
+        The player whose turn is to move picks a pile with at least two coins removes from that pile $t$ coins for some $2\le  t \le 4$, and adds to the other pile $1$ coin. The players can choose a different $t$ at each turn, and the player who cannot make a move loses.
+        If Ann plays first determine which player has a winning strategy.
+        }{%
+        Denote the number of coins in the two piles by $X$ and $Y$.  We say that the pair $(X,Y)$ is losing if the player who begins the game loses and that the pair $(X,Y)$ is winning otherwise.   We  shall  prove  that  $(X,Y)$  is  loosing  if $X-Y\equiv 0,1,7(\textnormal{mod }8)$,  and  winning  if$X-Y\equiv 2,3,4,5,6(\textnormal{mod }8)$. 
+
+        Lemma 1. If we have a winning pair $(X,Y)$ then we can always play in such a way that the other player is then faced with a losing pair.
+
+        Proof of Lemma 1.Assume $X\geq Y$ and write $X=Y+8k+l$ for some non-negative integer $k$ and some $l\in \left\{2,3,4,5,6\right\}$.  If $l=2,3,4$ then we remove two coins from the first pile and add one coin to the second pile.  If $l=5,6$ then we remove four coins from the first pile and add one coin to the second pile.  In each case, we then obtain a losing pair.
+
+        Lemma 2. If we are faced with a losing distribution then either we cannot play, or, however, we play, the other player is faced with a winning distribution.
+
+        Proof of Lemma 2. Without loss of generality, we may assume that we remove $k$ coins from the first pile.   The following table shows the new difference for all possible values of $k$ and all possible differences $X-Y$.  So however we move, the other player will be faced with a winning distribution. 
+        \begin{tabular}{cccc}
+            k/ X-Y & 0&1&7\\
+            2&5&6&4\\
+            3&4&5&3\\
+            4&3&4&2
+        \end{tabular}
+
+        Since initially the coin difference is 1 mod 8, by Lemmas 1 and 2 Bob has a winning strategy: He can play so that he is always faced with a winning distribution while Ann is always faced with a losing distribution.  So Bob cannot lose.  On the other hand, the game finishes after at most 4017 moves, so Ann has to lose.
+        }{%
+        https://artofproblemsolving.com/community/c6t224166f6h1679724_2_piles_with_2000_and_2017_coins_winning_strategy
+    }
+
+    \pitem[IOM 2020 P5]{%
+        There is an empty table with $2^{100}$ rows and $100$ columns. Alice and Eva take turns filling the empty cells of the first row of the table, Alice plays first. In each move, Alice chooses an empty cell and puts a cross in it; Eva in each move chooses an empty cell and puts a zero. When no empty cells remain in the first row, the players move on to the second row, and so on (in each new row Alice plays first).
+        The game ends when all the rows are filled. Alice wants to make as many different rows in the table as possible, while Eva wants to make as few as possible. How many different rows will be there in the table if both follow their best strategies?
+        }{%
+        <++>
+        }{%
+        https://artofproblemsolving.com/community/c6t224166f6h2384039_alice_amp_eva_take_turns_filling_an_empty_table_with_2100_rows_and_100_columns
+    }
+
+    \pitem[IMOSL 2012 C4]{%
+        Players A and B play a game with $N\geq 2012$ coins and 2012 boxes arranged
+        around a circle. Initially A distributes the coins among the boxes so that there
+        is at least 1 coin in each box. Then the two of them make moves in the order
+        B, A, B, A, … by the following rules:
+        On every move of his B passes 1 coin from every box to an adjacent box.
+        On every move of hers A chooses several coins that were not involved in B 's
+        previous move and are in different boxes. She passes every chosen coin to
+        an adjacent box.
+        Player A 's goal is to ensure at least 1 coin in each box after every move of
+        hers, regardless of how B plays and how many moves are made. Find the
+        least N that enables her to succeed.
+        }{%
+        <++>
+        }{%
+        <++>
+    }
+
+    \pitem[IMOSL 2004 C5]{%
+        A and B play a game, given an integer $N$, A writes down 1 first, then every player sees the last number written and if it is $n$ then in his turn he writes $n + 1$ or $2n$, but his number cannot be bigger than $N$. The player who writes $N$ wins. For which values of $N$ does B win?
+        }{%
+        <++>
+        }{%
+        <++>
+    }
+
+\end{question*}
+
+
+
+
+    \pitem[IMOSL 2005 C5]{%
+        There are $n$ markers, each with one side white and the other side black. In the beginning, these $n$ markers are aligned in a row so that their white sides are all up. In each step, if possible, we choose a marker whose white side is up (but not one of the outermost markers), remove it, and reverse the closest marker to the left of it and also reverse the closest marker to the right of it. Prove that, by a finite sequence of such steps, one can achieve a state with only two markers remaining if and only if $n - 1$ is not divisible by 3 .
+        }{%
+        Denote by $L$ the leftmost and by $R$ the rightmost marker. To start with, note that the parity of the number of black-side-up markers remains unchanged. Hence, if only two markers remain, these markers must have the same color up.
+
+        We'll show by induction on $n$ that the game can be successfully ﬁnished if and only if $n\equiv 0\textnormal{ or }n\equiv 2(\textnormal{mod }3)$, and that the upper sides of L and R will be black in the ﬁrst case and white in the second case.  The statement is clear for n 2 3. Assume that we ﬁnished the game for some n, and denote by k the position of the marker X (counting from the left) that was last removed. Having ﬁnished the game, we have also ﬁnished the subgames with the k markers from L to X and with the n k 1 markers from X to R (inclusive). Thereby, before X was removed, the upper side of L had been black if k 0 and white if k 2 (mod 3), while the upper side of R had been black if n k 1 0 and white if n k 1 2 (mod 3). Markers L and R were reversed upon the removal of X. Therefore, in the ﬁnal position L and R are white if and only if k n k 1 0, which yields n 2 (mod 3), and black if and only if k n k 1 2, which yields n 0 (mod 3).
+
+        On the other hand, a game with n markers can be reduced to a game with n 3 markers by removing the second, fourth, and third marker in this order. This ﬁnishes the induction.
+
+        Second solution. An invariant can be deﬁned as follows. To each white marker with k black markers to its left we assign the number 1 k . Let S be the sum of the assigned numbers. Then it is easy to verify that the remainder of S modulo 3 remains unchanged throughout the game: For example, when a white marker with two white neighbors and k black markers to its left is removed, S decreases
+        by 3 1 t .
+        }{%
+        <++>
+    }
+
+    \pitem[IMOSL 2015 C4]{%
+        Let n be a positive integer. Two players A and B play a game in which they take turns choosing positive integers $k\leq n$. The rules of the game are:
+        \begin{enumerate}
+            \item A player cannot choose a number that has been chosen by either player on any previous turn.
+            \item  A player cannot choose a number consecutive to any of those the player has already chosen on any previous turn.
+            \item  The game is a draw if all numbers have been chosen; otherwise the player who cannot choose a number anymore loses the game.
+        \end{enumerate}
+        The player A takes the first turn. Determine the outcome of the game, assuming that both players use optimal strategies.
+        }{%
+        }{%
+        <++>
+    }
+
+    \pitem[IMOSL 2001 C7]{%
+        A pile of $n$ pebbles is placed in a vertical column. This configuration is modified according to the following rules. A pebble can be moved if it is at the top of a column which contains at least two more pebbles than the column immediately to its right. (If there are no pebbles to the right, think of this as a column with 0 pebbles.) At each stage, choose a pebble from among those that can be moved (if there are any) and place it at the top of the column to its right. If no pebbles can be moved, the configuration is called a final configuration. For each $n$, show that, no matter what choices are made at each stage, the final configuration obtained is unique. Describe that configuration in terms of $n$.
+        }{%
+        <++>
+        }{%
+        <++>
+    }
+
+
+    \pitem{%
+        IMOSL 09CL Coloring
+        }{%
+        <++>
+        }{%
+        <++>
+    }
+
+    \pitem{%
+        Later read ladder game
+        }{%
+        <++>
+        }{%
+        https://artofproblemsolving.com/community/c6t224166f6h2335495_ladder_game_victory_if_you_get_the_zero_ladder
+    }
+
+    \pitem{%
+        Strange one 1999 sticks
+        }{%
+        <++>
+        }{%
+        https://artofproblemsolving.com/community/c6t224166f6h1993291_albert_and_barbara_paly_a_game_with_1999_sticks_winning_strategy_wanted
+    }
+
+    \pitem{%
+        Teaser 3b1b
+        }{%
+        <++>
+        }{%
+        https://artofproblemsolving.com/community/c6t45487f6h2437692_a_game_with_byte_and_money
+    }
+
+    \qitem{%
+        Invariant
+        }{%
+        <++>
+        }{%
+        https://artofproblemsolving.com/community/c6t224166f6h60773_one_of_my_favourite_invariant_problems
+    }
+
+    <++>
+

@@ -1,0 +1,13 @@
+\pitem[2021 Ukraine NMO P9]{%
+    Alexey and Bogdan play a game with two piles of stones. In the beginning, one of the piles contains $2021$ stones, and the second is empty. In one move, each of the guys has to pick up an even number of stones (more than zero) from an arbitrary pile, then transfer half of the stones taken to another pile, and the other half - to remove from the game. Loses the one who cannot make a move. Who will win this game if both strive to win, and Bogdan begins?
+    }{%
+    First player will win.
+
+    \textbf{Claim:} A player who made piles like $n$ and $n-1$, has a winning strategy.
+
+    \textbf{Proof:} The next player will transfer the piles to $(n-2k, n-1+k)$ or $(n+k, n-1-2k)$, in either case, we can reduce it back to $(n-k,n-k-1)=(n',n'-1)$. Since the ending state is $(0,1)$, which is in the form of $(n,n-1)$. 
+
+    Since Alexey can transform $(2021,0)\rightarrow (673,674)$, he wins. $\square$
+    }{%
+    https://artofproblemsolving.com/community/c6t224166f6h2513391_alexey_and_bogdan_2_piles_of_stones_game_2021_stones_totally
+}

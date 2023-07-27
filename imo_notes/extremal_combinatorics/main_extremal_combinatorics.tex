@@ -1,0 +1,75 @@
+\documentclass[a4paper]{article}
+\usepackage[math_simple]{omegat}
+
+\newcommand{\courseTitle}{\FirstBigRestSmallCaps{IMO Phase II Level 2}}
+\newcommand{\courseTopic}{\FirstBigRestSmallCaps{Extremal Combinatorics}}
+\DTMsavedate{mydate}{2021-09-25}
+
+\date{\DTMusedate{mydate}}
+\title{\courseTitle\\\courseTopic}
+
+\newtoggle{ownans}
+\togglefalse{ownans}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\iftoggle{ownans}{\color{red}}{}{\large\courseTopic}\iftoggle{ownans}{(With Solution)}{}}
+\fancyhead[C]{\iftoggle{ownans}{}{\courseTitle}}
+\fancyhead[R]{\iftoggle{ownans}{\color{red}}{}\omegat}
+\fancyfoot[R]{\iftoggle{ownans}{\color{red}}{}Page \rule[-2pt]{1pt}{11pt} \thepage}
+
+\newcounter{qcounter}
+\newtoggle{plabel}
+\toggletrue{plabel}
+\newcommand{\pitem}[4][]{
+    \noindent \textbf{Problem }\refstepcounter{qcounter}\theqcounter .\iftoggle{plabel}{\addbrackets{#1}}{}
+        #2 \iftoggle{ownans}{\\\\\noindent {\color{red}\textbf{Ans. }} #3\\}{}
+
+    \iftoggle{officialans}{#4}{}
+\ifinarry
+}
+
+\newenvironment{question}[2][Problems for Discussion]
+    { \setcounter{qcounter}{0}
+        \section{\initproblem{#1}{Problems for Discussion}}
+
+    }
+    {
+    }
+
+\newcommand{\ds}{\displaystyle}
+\newcommand{\FF}{\mathcal{F}}
+\newcommand{\TF}{\tilde{\mathcal{F}}}
+\newcommand{\GG}{\mathcal{G}}
+\newcommand{\HH}{\mathcal{H}}
+\newcommand{\KK}{\mathcal{K}}
+\newcommand{\diam}{\textnormal{diam}}
+\NewDocumentCommand{\sij}{O{i} O{j}}{S_{#1,#2}}
+
+
+\begin{document}
+\maketitle
+\tableofcontents
+
+\input{../imo_content/extremal-combinatorics/01-introduction.tex}
+\input{../imo_content/extremal-combinatorics/02-operations-on-sets-and-set-systems.tex}
+\input{../imo_content/extremal-combinatorics/03-theorems-on-traces.tex}
+\input{../imo_content/extremal-combinatorics/04-the-erdos-ko-rado-theorem-via-shifting.tex}
+
+\begin{question}[]{}
+    \input{../imo_content/set_theory/set-q00.tex}
+    \input{../imo_content/set_theory/set-q02.tex}
+    %\input{../imo_content/extremal-combinatorics/helly_thm-q00.tex}
+    \input{../imo_content/extremal-combinatorics/extremal-q00.tex}
+    %\input{../imo_content/extremal-combinatorics/extremal-q01.tex}
+    %\input{../imo_content/extremal-combinatorics/extremal-q02.tex}
+    %\input{../imo_content/extremal-combinatorics/extremal-q03.tex}
+    %\input{../imo_content/set_theory/set-q01.tex}
+    \input{../imo_content/extremal-combinatorics/erdos_ko_rado-q00.tex}
+    \input{../imo_content/extremal-combinatorics/erdos_ko_rado-q01.tex}
+    \input{../imo_content/extremal-combinatorics/erdos_ko_rado-q02.tex}
+    \input{../imo_content/extremal-combinatorics/erdos_ko_rado-q03.tex}
+\end{question}
+
+
+\end{document}

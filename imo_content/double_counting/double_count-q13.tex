@@ -1,0 +1,18 @@
+\pitem[Iran Olympiad]{%
+    A school has $n$ students. Each student can participate in any number of classes that he wants. Every class has at least two students participating in it, and if two different classes have at least two common students, then the number of students in these two classes is different. Prove that the number of classes is not greater than $(n - 1)^2$.
+    }{%
+    We double count pairs $(C, t)$, where $C$ is a class containing exactly $t$ students. Define a function $s$, where $s(t)$ denotes the number of classes containing exactly $t$ students. Also, there are $\binom{t}{2}$ pairs of students in each of these classes. It follows that there are $s(t)\binom{t}{2}$ pairs of students in classes containing exactly $t$ students. We must have $s(t)\binom{t}{2} \leq \binom{n}{2}$, so that $$s(t) \leq \frac{\binom{n}{2}}{\binom{t}{2}},$$for all $t$.
+
+    Finally, note that the number of classes is $\sum_{t = 2}^n s(t)$. Letting the number of classes be $N$, we get
+    \[
+        N  =  \sum_{t = 2}^n s(t) \leq \sum_{t = 2}^n \frac{\binom{n}{2}}{\binom{t}{2}}=\binom{n}{2}\sum_{t = 2}^n \frac{2}{t(t - 1)}.
+    \]
+    After some partial fraction decomposition and telescoping, the last sum becomes $2 - \frac{2}{n}$.
+    Thus,
+    \begin{eqnarray*}\end{eqnarray*}
+    \[
+        N  \leq  \binom{n}{2}\left(2 - \frac{2}{n}\right) \leq n(n - 1)\left(\frac{n - 1}{n}\right) \leq (n - 1)^2.
+    \]
+    }{%
+    https://artofproblemsolving.com/community/c474725h1471295_combinatorics_post__1_double_counting
+}

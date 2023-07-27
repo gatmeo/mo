@@ -1,0 +1,24 @@
+\pitem[]{%
+    Let $A_1= \emptyset$ and $B_1=\{0\}$, and define for $n \geq 1$:
+    \[ A_{n+1} = B_n + 1 = \{x+1 | x \in B_n \} \]\[B_{n+1} = A_n \Delta B_n = (A_n \cup B_n) \setminus (A_n \cap B_n) \]
+    Prove that if $n$ is a power of $2$, then $B_n=B_1$.
+    }{%
+    Let $A_0[k]= \{k\}$ and $B_0[k]=\emptyset$, and define $\forall n \in\mathbb Z^{+}$:
+    \[ A_{n+1}[k] = B_n[k] + 1\]\[B_{n+1}[k] =\left(A_n[k] \cup B_n[k]\right) \setminus \left(A_n[k] \cap B_n[k]\right) \]Prove that if $n$ is a power of $2$, then $B_n[0]=\{0\}$
+    The motivation for the above redefinition is twofold. Firstly $A_n[k]$ and $B_n[k]$ are well-defined for negative integral $n$. Furthermore $\forall i\ A_n[i]-i=A_n[0]$. While I am somewhat morally opposed to induction, it does work particularly nicely on this problem.
+
+    Claim(s): $A_{2^i}[0]=\{1,2,\dots,2^{i-1}\},\ B_{2^i}[0]=\{0\},\ A_{-2^i}[0]=\{-2^i,-2^i+1,\dots,-2^{i}+2^{i-1}\},\ B_{2^i}[0]=\{-2^i\}$
+
+    Base Case: Easy to check claims for $n\in \{-8,-4,-2,-1,1,2,4,8\}$
+
+    Induction: We assume the Claim(s) for $n\in\{-2^{i-1},-2^{i-2},\dots, 2^{i-2}, 2^{i-1}\}$, and will prove the claim for $n\in\{-2^i,2^i\}$
+    First note that by hypothesis, $$A_{2^{i-1}}[0]=A_{2^{i-2}}[0]\cup A_{0}[2^{i-2}]\text{ and }B_{2^{i-1}}[0]=B_{2^{i-2}}[0]\cup B_{0}[2^{i-2}]$$.
+    Furthermore for $2^{i-1}\leq n<2^{i-1}+2^{i-2}$ we have $$0\leq A_n[0], B_n[0]<2^{i-2}\text{ and }2^{i-2}\leq A_{n-2^{i-1}}[2^{i-2}], B_{n-2^{i-1}}[2^{i-2}]<2^{i-1}+2^{i-2}$$Hence for the $n$ in aforementioned range as well as $n=2^{i-1}+2^{i-2}$ we have
+    $$A_{n}[0]=A_{n-2^{i-2}}[0]\cup A_{n-2^{i-1}}[2^{i-2}]\text{ and }B_{n-2^{i-2}}[0]=B_{n}[0]\cup B_{n-2^{i-1}}[2^{i-2}]$$.
+    In particular we have $$A_{2^{i-1}+2^{i-2}}[0]=A_{2^{i-2}}[0]\cup A_{-2^{i-2}}[2^{i-1}]\text{ and }B_{2^{i-1}+2^{i-2}}[0]=B_{2^{i-2}}[0]\cup B_{-2^{i-2}}[2^{i-1}]$$.
+    Again by a similar size restriction we obtain sets that do not intersect, and since our sequence is bidirectionally well-defined we finish with
+    $$A_{2^{i}}[0]=A_{2^{i-1}}[0]\cup A_{0}[2^{i-1}]=\{1,2,\dots,2^{i-1}\}\text{ and }B_{2^{i}}[0]=B_{2^{i-1}}[0]\cup B_{0}[2^{i-1}]=\{0\}$$.
+    The exact same argument in the negatives and with a suitable shift will suffice to show the second half of the Claim(s)
+    }{%
+    https://artofproblemsolving.com/community/c6t275f6h1347920_recursive_subsets_of_n
+}

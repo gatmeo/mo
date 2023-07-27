@@ -1,0 +1,20 @@
+\pitem[]{%
+    Determine all functions $f$ defined on the set of all positive integers and taking non-negative integer values, satisfying the three conditions:
+
+    $(i)$ $f(n) \neq 0$ for at least one $n$;\\
+    $(ii)$ $f(x y)=f(x)+f(y)$ for every positive integers $x$ and $y$;\\
+    $(iii)$ there are infinitely many positive integers $n$ such that $f(k)=f(n-k)$ for all $k<n$.
+    }{%
+    The only functions that work are $f(x)=f(p) \cdot \nu_p(x)$ for some prime $p$ with $f(p)>0$
+
+By the first condition $\exists \, p$ such that $f(p)>0$. Call all $n$ satisfying (iii) as "good". For a good $n$ we have :
+
+$$ f\left( \binom {n-1}{k} \right)= \sum_{i=1}^{n-1} f(i) - \sum_{i=1}^{k}f(i) - \sum_{i=1}^{n-k-1}f(i)= \sum_{i=n-k}^{n-1} f(i) - \sum_{i=1}^{k}f(i) =0$$
+Now note that if $p\mid m$, we must have that $f(m)>0$. Hence for all large enough good $n$, we have that $p \not \vert \tbinom {n-1}{k}$. By Lucas's theorem we have that $n=a\cdot p^b$ for some $a<p$.
+
+Now assume there exists a prime $p'\neq p$ with $f(p')>0$. Then all large enough good $n$ must also be of the form $a' \cdot p'^{b'}$. However only finitely many such $n$ can exist, so $p$ is the only prime satisfying $f(p)>0$.
+
+Now its easy to that $f(x)=f(p) \cdot \nu_p(x)$ for all $x\in \mathbb N$.
+    }{%
+    https://artofproblemsolving.com/community/c6h2625925p22705037
+}

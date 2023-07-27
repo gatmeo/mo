@@ -1,0 +1,17 @@
+\pitem[2019 Central American and Caribbean Mathematical Olympiad P2]{%
+    We have a regular polygon $P$ with 2019 vertices, and in each vertex there is a coin. Two players Azul and Rojo take turns alternately, beginning with Azul, in the following way: first, Azul chooses a triangle with vertices in $P$ and colors its interior with blue, then Rojo selects a triangle with vertices in $P$ and colors its interior with red, so that the triangles formed in each move don't intersect internally the previous colored triangles. They continue playing until it's not possible to choose another triangle to be colored. Then, a player wins the coin of a vertex if he colored the greater quantity of triangles incident to that vertex (if the quantities of triangles colored with blue or red incident to the vertex are the same, then no one wins that coin). The player with the greater quantity of coins wins the game. Find a winning strategy for one of the players.  
+    (Two triangles can share vertices or sides.)
+    }{%
+    Azul wins.  
+    Azul starts by picking triangle $A_1A_{1010}A_{1011}$, the points are split into two sets $S=\{A_2,A_3,\dots A_{1009}\}$ and $\overline{S}=\{A_{1012},A_{1013},\dots A_{2019}\}$.  
+    It is clear that any other triangle must have all its vertices in one of these two sets.  
+    On the successive rounds Azul just mimic the previous triangle chosen by Rojo in the complementary set. We can then observe the following:
+    \begin{enumerate}
+        \item Azul and Rojo are even on $S\cup \overline{S}$.
+        \item Azul and Bojo are even on $\{A_{1010},A_{1011}\}$.
+        \item $A_1$ is for Azul.
+    \end{enumerate}
+    Hence Azul will have at least one extra coin than Roji ($A_1$ is always for Azul), and hence Azul wins.
+    }{%
+    https://artofproblemsolving.com/community/c6t224166f6h1859897_2019_central_american_and_caribbean_mathematical_olympiad_p2
+}

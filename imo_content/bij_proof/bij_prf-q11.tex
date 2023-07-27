@@ -1,0 +1,10 @@
+\pitem[]{%
+    Find the number of binary sequences $(\varepsilon_1,\dots ,\varepsilon_n)$ satisfying
+    \[
+        \varepsilon_1\leq \varepsilon_2\geq \varepsilon_3\leq \varepsilon_4\geq \varepsilon_5\leq \cdots .
+    \]
+    }{%
+    Denote this number by $g(n)$ and call the sequences sufficing this property "good". If $\varepsilon_1=0$, then $(\varepsilon_2,\dots ,\varepsilon_n)$ is also "good". In addition, for any "good" $(\varepsilon_2,\dots ,\varepsilon_n)$ of length $n-1$, we can add one 0 in front to make a "good" sequence starting with a $0$ of length $n$. Thus there are $g(n-1)$ such sequences. On the other hand, if $\varepsilon_1=1$, then $\varepsilon_2$ have to be $1$, too and the rest is a "good" sequence of length $n-2$ (and this sequence could be any of those $g(n-2)$). Thus we have the relation $g(n)=g(n-1)+g(n-2)$ again and it remains to check that $g(1)=2$ and $g(2)=3$ to obtain that the answer is $F_{n+2}$.
+    }{%
+    1.34
+}

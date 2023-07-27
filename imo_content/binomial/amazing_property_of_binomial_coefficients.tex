@@ -1,0 +1,2564 @@
+%%%&latex
+\documentclass[11pt]{article}
+\usepackage[T2A]{fontenc}
+\usepackage[cp866]{inputenc}
+\usepackage[russian]{babel}
+
+\usepackage{amsthm,amsmath,amsfonts,amssymb,epic,eepic, epsf, pstricks}%pstcol}
+\usepackage[text={17.7cm,10.2in}, includehead]{geometry}
+\input mathdots.sty
+%\input letterspacing.tex
+
+%\language0
+
+\let\le\leqslant
+\let\leq\leqslant
+\let\ge\geqslant
+\let\geq\geqslant
+\def\answer{О\,т\,в\,е\,т}
+\def\chtd{{\slshape ч\kern-.04em\raise.48ex\hbox{т}\kern-.23em д}}
+%\def\binom(#1,#2){C_{#1}^{#2}}
+\def\binom(#1,#2){{#1 \choose #2}}
+\let\ds\displaystyle
+\DeclareMathOperator{\ord}{ord}
+
+\def\solutionn #1.{S\,o\,l\,u\,t\,i\,o\,n\enspace  #1.\enspace\ignorespaces}
+\def\solution #1 (#2).{S\,o\,l\,u\,t\,i\,o\,n\enspace #1\enspace(#2).\enspace\ignorespaces}
+\def\answer{A\,n\,s\,w\,e\,r:\enspace\ignorespaces}
+\def\lemma{\ifvmode{\smallbreak\par}\fi L\,e\,m\,m\,a}
+\def\proof{\smallbreak\par P\,r\,o\,o\,f}
+
+
+\newcounter{problem}[subsection]
+%\newcounter{solution}[subsection]
+\renewcommand{\thesection}{}
+\renewcommand{\thesubsection}{\arabic{subsection}}
+\renewcommand{\thesubsubsection}{\arabic{subsection}-\arabic{subsubsection}}
+\renewcommand{\theproblem}{\thesubsection.\arabic{problem}}
+%\renewcommand{\thesolution}{\thesubsection.\arabic{solution}}
+\newenvironment{problem}{\refstepcounter{problem}\smallskip\noindent%
+{\bf\arabic{subsection}.\arabic{problem}.}}{}
+%\newenvironment{solution}{\refstepcounter{solution}\medskip\noindent%
+%{\bf\arabic{subsection}.\arabic{solution}.}}{}
+
+\setlength\multlinegap{0pt}
+
+
+\makeatletter
+% И еще заголовки секций
+%
+\renewcommand{\subsection}{\@startsection{subsection}{2}{0mm}%
+{2\baselineskip}{\baselineskip}{\bfseries\large\itshape}}
+\makeatother
+%%%%%%%%%
+
+\def\eps{\varepsilon}
+\def\chtd{{\slshape ч\kern-.04em\raise.48ex\hbox{т}\kern-.23em д}}
+
+\def\kratno{\mathchoice{\mathrel{\smash{\lower.5ex\hbox{$\vdots$}}}}%
+{\mathrel{\smash{\lower.5ex\hbox{$\vdots$}}}}%
+{{\scriptstyle\mathrel{\smash{\lower.5ex\hbox{$\scriptstyle\vdots$}}}}}%
+{{\scriptscriptstyle\mathrel{\smash{\lower.5ex\hbox{$\scriptscriptstyle\vdots$}}}}}}
+
+\def\nekratno{\mathchoice{\kern-.03ex\mathrel{\hbox{$\not{\kern.03ex\kratno}$}}}%
+{\kern-.03ex\mathrel{\hbox{$\not{\kern.03ex\kratno}$}}}%
+{{\scriptstyle\kern-.5ex\mathrel{\hbox{$\scriptstyle\not{\kern.5ex\kratno}$}}}}%
+{{\scriptscriptstyle\kern-.35ex\mathrel{\hbox{$\scriptscriptstyle\not{\kern.35ex\kratno}$}}}}}
+
+
+\begin{document}
+
+\pagestyle{myheadings}
+%
+\makeatletter
+\renewcommand{\@oddhead}{\hfil Amazing properties of binomial coeffcients
+\hfil\thepage}
+\makeatother
+
+%\pagestyle{empty}
+
+
+\section*{Amazing properties of binomial coefficients}
+
+{\footnotesize
+Several research topics will be set to you at the conference.
+%На конференции Вам будет предложено несколько исследовательских проектов.
+Your aim is the maximal advance in one of these topics.
+%Цель --- как можно дальше продвинуться в каком-то из проектов.
+You can co-operate in the solving of problems, arbitrary teams are allowed
+(i.e. the team may consist of participants from different cities).
+%Задачи можно решать коллективно, объединившись в любые команды
+%(члены команды могут быть из разных городов).
+If you solve problems in different topics you may take part in different teams.
+The only thing you should avoid is to sign up the solutions of those
+problems that you really were not solving
+(this may happen if the team is too big and not all of its members solve the problems
+of some topic actively).
+%Вы можете решать задачи сразу из нескольких проектов, причем по разным проектам
+% можете участвовать в разных командах. Единственное, чего не следует делать, ---
+%это присваивать себе чужие результаты, такое случается, если команда
+%слишком велика и не все из нее активно решают задачи данного проекта.
+
+The following is the introductory set of problems about binomial coefficients.
+%Это ознакомительная подборка задач по теме о биномиальных коэффициентах.
+You may hand in the (written) solutions to Kokahs K. (coach 15, seat 17)
+%Задачи следует решать письменно и сдавать Кохасю К.П. (вагон 15, место 17).
+In Teberda the set of problems will be enlarged a lot and you may hand in your
+solutions of this set of problems, except 1.2, in Teberda, too.
+You can hand in the solutions of the problem 1.2 in train only.
+
+}
+
+\subsection{Problems for solving in train}
+
+\begin{problem}
+Prove that a) $\binom({p-1},k)\equiv (-1)^k\pmod p$; \qquad
+b) $\binom({2n},n)\equiv (-4)^n \binom(\frac{p-1}2, n) \pmod p$ при $n\leq\frac{p-1}2$.
+\label{prbl:zadacha_1.1}
+\end{problem}
+
+\begin{problem}
+Prove that the number of odd binomial coefficients in
+%Докажите, что количество нечетных биномиальных коэффициентов в
+$n$-th row of Pascal triangle is equal to $2^r$,
+where $r$ is the number of 1's in the binary expansion of $n$.
+%Винберг
+\end{problem}
+
+\begin{problem}
+Fix a positive integer $m$.
+%Зафиксируем натуральное число $m$.
+By a $m$-arithmetical Pascal triangle we mean a triangle in which
+binomial coefficients are replaced by their residues modulo $m$.
+%Назовем $m$-арифметическим треугольником Паскаля треугольник, в котором
+%вместо чисел $C_n^k$ расставлены их остатки по модулю $m$.
+We will also consider similar triangles %consisting of residues but
+with the arbitrary residues $a$ instead of 1's along the lateral sides of the triangle.
+The operation of the multiplying by a number and addition of triangles of equal size
+are correctly defined. We will consider these operations modulo $m$.
+%For these triangles
+%Кроме того, мы будем рассматривать похожие треугольники из остатков,
+%у которых вдоль боковых сторон вместо единиц стоят одинаковые остатки $a$
+%по модулю $m$. Такие треугольники можно умножать на число,
+%а также складывать (если размеры совпадают), причем будем считать, что операции
+%тоже выполняются по модулю $m$.
+
+\begin{picture}(350,70)(5,-30)
+\footnotesize
+\path(-7,-20)(58,-20)(26,30)(-7,-20)
+\put(0,0){$\arraycolsep=0pt
+\begin{array}{ccccccc}
+   &&&a\\
+  &&a&&a\\
+ &a&&2a&&a\\
+a\,&&3a&&3a&&\,a\\
+\end{array}$}
+\path(67,-20)(127,-20)(97,30)(67,-20)
+\put(75,0){$\arraycolsep=0pt
+\begin{array}{ccccccc}
+   &&&b\\
+  &&b&&b\\
+ &b&&2b&&b\\
+b\,&&3b&&3b&&\,b\\
+\end{array}$}
+\put(60,5){+}
+\path(150,-20)(297,-20)(221,30)(150,-20)
+\put(166,0){$\arraycolsep=-4pt
+\begin{array}{crrcllc}
+   &&&a\!+\!b\\
+  &&a\!+\!b&&a\!+\!b\\
+ &a\!+\!b&&2(a\!+\!b)&&a\!+\!b\\
+a\!+\!b\;\;\,&&3(a\!+\!b)\!&&3(a\!+\!b)&&\;\;a\!+\!b\\
+\end{array}$}
+\put(140,5){=}
+%
+\put(327,5){$x\cdot$}
+\path(324,-20)(388,-20)(356,30)(324,-20)
+\put(330,0){$\arraycolsep=0pt
+\begin{array}{ccccccc}
+   &&&a\\
+  &&a&&a\\
+ &a&&2a&&a\\
+a\,&&3a&&3a&&\,a\\
+\end{array}$}
+\put(395,5){=}
+\path(400,-20)(479,-20)(440,30)(400,-20)
+\put(410,0){$\arraycolsep=-2pt
+\begin{array}{ccccccc}
+   &&&ax\\
+  &&ax&&ax\\
+ &ax&&2ax&&ax\\
+ax\,&&3ax&&3ax&&\,ax\\
+\end{array}$}
+\end{picture}
+
+\noindent
+Let all the elements of  $s$-th row of $m$-arithmetical Pascal triangle except the first and the last one
+be equal to 0. %арифметического треугольника Паскаля все элементы, кроме крайних, --- нули.
+Prove that the triangle has a form depicted on fig. 1.
+%Докажите, что тогда этот треугольник имеет вид, показанный на рис. 1.
+Shaded triangles consist of zeroes, triangles
+%Заштрихованные треугольники состоят из нулей, а треугольники
+$\Delta_n^{k}$ consist of $s$ rows and satisfy the following relations
+%строк и подчинены следующим соотношениям:
+
+1) $\Delta_n^{k-1}+\Delta_n^k=\Delta_{n+1}^k$;
+\hfil
+2) $\Delta_n^{k}=C_n^k\cdot\Delta_{0}^0 \pmod{m}$.
+
+\label{prbl:arif_PAscal_recurrence}
+\end{problem}
+
+
+\begin{figure}[b]
+\quad\hfil\begin{minipage}[b]{0.3\linewidth}
+\begin{center}
+\setlength{\unitlength}{.8mm}
+\begin{picture}(50,40)(0,0)
+\footnotesize
+\psset{unit=.8mm}
+\multiput(0,0)(10,0){4}{\pspolygon[linestyle=none, fillstyle=solid, fillcolor=lightgray](10,0)(15,8)(5,8)(10,0)}
+\multiput(5,8)(10,0){3}{\pspolygon[linestyle=none, fillstyle=solid, fillcolor=lightgray](10,0)(15,8)(5,8)(10,0)}
+\multiput(10,16)(10,0){2}{\pspolygon[linestyle=none, fillstyle=solid, fillcolor=lightgray](10,0)(15,8)(5,8)(10,0)}
+\put(15,24){\pspolygon[linestyle=none, fillstyle=solid, fillcolor=lightgray](10,0)(15,8)(5,8)(10,0)}
+\put(22.2,33){$\Delta_0^0$}
+\put(17.5,24.7){\multiputlist(2,1.7)(10,0){$\Delta_1^0$,$\Delta_1^1$}}
+\put(12.5,16.7){\multiputlist(2,1.7)(10,0){$\Delta_2^0$,$\Delta_2^1$,$\Delta_2^2$}}
+\put(7.5,8.7){\multiputlist(2,1.7)(10,0){$\Delta_3^0$,$\Delta_3^1$,$\Delta_3^2$,$\Delta_3^3$}}
+\put(2.5,1.2){\multiputlist(2.2,1.2)(10,0){$\Delta_4^0$,$\Delta_4^1$,$\Delta_4^2$,$\Delta_4^3$,$\Delta_4^4$}}
+\path(0,0)(50,0)(25,40)(0,0)
+\path(10,0)(30,32)(20,32)(40,0)(45,8)(5,8)(10,0)
+\path(20,0)(35,24)(15,24)(30,0)(40,16)(10,16)(20,0)
+\end{picture}
+\end{center}
+\caption{}
+\end{minipage}
+%
+\begin{minipage}[b]{0.3\linewidth}
+\begin{center}
+\epsfxsize=4cm
+\epsfbox{hanoi.eps}
+\end{center}
+\caption{}
+\end{minipage}
+
+\kern-1.5cm
+\end{figure}
+
+
+
+\medskip
+%\subsection{Ханойская башня}
+
+{\footnotesize
+The well known puzzle Tower of Hanoi
+consists of three rods, and a number of disks of different sizes which can slide onto any rod.
+The puzzle starts with the disks in a neat stack in ascending order of size on one rod,
+the smallest at the top, thus making a conical shape.
+The objective of the puzzle is to move the entire stack to another rod, obeying the following rules:
+1) оnly one disk may be moved at a time;
+2) each move consists of taking the upper disk from one of the rods and sliding it onto another rod, on top of the other disks that may already be present on that rod;
+3) no disk may be placed on top of a smaller disk.
+%Головоломка Ханойская башня представляет собой три стержня, на которые надеваются диски разной величины.
+%Вначале все диски упорядочены по размеру (более крупные --- ниже) и находятся на первом стержне.
+%Разрешается снять со стержня один верхний диск и переместить его на другой стержень.
+%При этом запрещается более крупный диск класть на диск меньшего размера.
+%В головоломке требуется переложить все диски с первого стержня на второй.
+
+Let $n$ be the number of disks.
+Let $TH_n$ be a graph, whose vertices are all possible correct placements of disks onto 3 rods
+and edges connect placements that can be obtained one from another by 1 move.
+Consider also graph  $P_n$, whose vertices are 1's located in the first $2^n$ rows of
+the 2-arithmetical Pascal triangle and edges connect neighboring 1's
+(i.e. two adjacent 1's in the same row or neighboring 1's by a diagonal in two adjacent rows )
+%вершины которого --- это всевозможные
+%расположения дисков Ханойской башни, а ребра соединяют те состояния головоломки,
+%которые получаются друг из друга за один ход.
+%Рассмотрим также граф $P_n$, вершины которого --- это единицы, расположенные в первых
+%$2^n$ строках 2-арифметического треугольника Паскаля,
+%а ребра соединяют соседние единицы (т.е. соседние в строке или в двух смежных строках по диагонали).
+
+}
+
+\begin{problem}
+prove that graphs $TH_n$ and $P_n$ are isomorphic.
+\end{problem}
+
+\begin{problem}
+Prove that that first $10^6$ rows of 2-arithmetical Pascal triangle contain less than 1\,\%
+of 1's.
+%Докажите, что в первых $10^6$ строках 2-арифметического треугольника Паскаля
+%единицы составляют меньше 1\,\%.
+\end{problem}
+
+\begin{problem}
+Prove that if $n$ is divisible by  $p-1$, then \hfill
+$
+\binom(n, p-1)+\binom(n, {2(p-1)})+\binom(n, {3(p-1)})+\ldots+\binom(n, n) \equiv 1 \pmod p .
+$
+Or, even better prove the general statement: if $1\leq j, k\leq p-1$ и $n\equiv k \pmod{p-1}$, then
+$$
+\binom(n, j)+\binom(n, {(p-1)+j})+\binom(n, {2(p-1)+j})+\binom(n, {3(p-1)+j})+\ldots \equiv \binom(k,j)\pmod p .
+$$
+\end{problem}
+
+
+%\goodbreak
+
+%\clearpage
+\section*{Amazing properties of binomial coefficients --- 2}
+
+{\footnotesize\noindent
+``The official theoretical source'' for this set of problems is
+Vinberg's article \cite{Vinberg}.
+Particularly the following theorems are considered to be known.
+%В частности, считаются известными следующие теоремы.
+
+\begin{enumerate}
+\item
+{\sc Wilson's theorem.} For any prime $p$ (and for primes only)
+the equivalence holds $(p-1)!\equiv -1\pmod p$.
+\item
+{\sc Lukas' theorem.} Write the numbers $n$ and $k$ in base $p$:
+\begin{equation}
+n=n_dp^d+n_{d-1}p^{d-1}+\ldots+n_1p+n_0,
+\qquad
+k=k_dp^d+k_{d-1}p^{d-1}+\ldots+k_1p+k_0.
+\label{n,k_bin_razlozhenija}
+\end{equation}
+Then
+$
+\binom(n,k)\equiv
+\binom({n_d},{k_d})\binom({n_{d-1}},{k_{d-1}})\cdot\ldots\cdot
+\binom({n_{1}},{k_{1}})\binom({n_{0}},{k_{0}}) \pmod{p}\,.
+$
+
+\item
+{\sc Kummer's theorem.} The exponent $\ord_p \binom(n,k)$ is equal
+to the number of ``carries'' when we add $k$ and $\ell=n-k$ in base~$p$.
+
+\item
+{\sc Wolstenholme's theorem.} If $p\geq 5$ then $\binom({2p},p)\equiv 2\pmod{p^3}$, or, that is the same,
+$\binom({2p-1},{p-1})\equiv 1\pmod{p^3}$.
+\end{enumerate}
+
+\noindent
+Remind that $\binom(0,0)=1$, $\binom(n,k)=0$ for $k>n$ and for $k<0$ by definition.
+
+We denote by $p$ a prime number.
+For any natural $n$ denote by $(n!)_p$ the product of all integers from 1 to $n$
+not divisible by $p$.
+If a number $p$ is given the symbols $n_i$, $m_i$ etc. denote the digits of numbers
+$n$, $m$ etc.\ in base $p$.
+%произведение всех натуральных чисел от 1 до $n$, не делящихся на $p$.
+%Если задано число $p$, то символами $n_i$, $m_i$ и т.\,д.\ обозначаются цифры $p$-ичной записи
+%чисел $n$, $m$  и т.\,д.
+
+}
+
+\bigskip
+\hfill*\quad*\quad*\hfill\quad
+
+\subsection{Arithmetical triangle and divisibility}
+
+\begin{problem}
+a) Prove that the first $3^k$ rows of 3-arithmetical Pascal triangle %арифметического треугольника Паскаля
+contain  $\frac12 (6^k+4^k)$ residues ``1'' and  $\frac12 (6^k-4^k)$  residues ``2''.
+
+b) Find the number of zero elements in the first $5^k$ rows of 5-arithmetical Pascal triangle.
+
+c) Find the number of non-zero elements in the first $p^k$ rows of $p$-arithmetical Pascal triangle.
+%Докажите, что количество ненулевых элементов в первых $p^k-1$ строках $p$-арифметического треугольника Паскаля
+%равно $\Bigl(\dfrac{p(p+1)}2\Bigr)^k$.
+\end{problem}
+
+
+\begin{problem}
+%Пусть $m=\sum\limits_{i=0}^{n-1} m_i\cdot 2^i$ --- двоичное разложение числа $m$.
+Prove that the number of 1's in the first $m$ rows of 2-arithmetical Pascal triangle equals
+$$
+\sum\limits_{i=0}^{n-1} m_i\cdot 2^{\sum_{k=i+1}^{n-1}m_k}\cdot 3^i.
+$$
+If $m=2^{\alpha_1}+2^{\alpha_2}+\ldots+2^{\alpha_r}$, where  $\alpha_1>\alpha_2>\ldots>\alpha_r$,
+then we can rewrite the last expression in the form
+$$
+3^{\alpha_1}+2\cdot3^{\alpha_2}+2^2\cdot3^{\alpha_3}+\ldots+2^{r-1}\cdot3^{\alpha_r}\,.
+$$
+\end{problem}
+
+\begin{problem}
+%Винберг
+Consider $n$-th row of Pascal triangle modulo 2
+as binary expansion of some integer $P_n$. Prove
+that
+  \begin{equation*}
+    P_n=F_{i_1}\cdot\ldots\cdot F_{i_s},
+  \end{equation*}
+  where $i_1,\dots,i_s$ are numbers of positions
+where 1's occur in the binary expansion of $n$, and
+$F_i=2^{2^i}+1$ is $i$-th Fermat number.
+\end{problem}
+
+
+\begin{problem}
+Prove that the number of non-zero elements in $n$-th row of $p$-arithmetical Pascal triangle equals
+%Докажите, что количество ненулевых элементов в $n$-й строке $p$-арифметического треугольника Паскаля
+%равно
+$\prod\limits_{i=0}^d(n_i+1)$.
+\end{problem}
+
+\begin{problem}
+a) All the binomial coefficients $\binom(n,k)$, where $0<k<n$, are divisible by $p$
+if and only if $n$ is a power of~$p$.
+%Для того чтобы все биномиальные коэффициенты $\binom(n,k)$, где $0<k<n$,
+%делились на $p$, необходимо и достаточно, чтобы $n$ было степенью числа $p$.
+
+b) All the binomial coefficients $\binom(n,k)$, where $0\leq k \leq n$, are not divisible by $p$
+if and only if
+$n+1$ is divisible by $p^d$,
+in other words, all the digits of $n$, except the leftmost, in base $p$ are equal to $p-1$.
+%Для того чтобы все биномиальные коэффициенты $\binom(n,k)$, где $0\leq k \leq n$,
+%не делились на $p$, необходимо и достаточно, чтобы $n+1$ делилось на $p^d$,
+%иными словами, чтобы все цифры $p$-ичной записи числа $n$, кроме старшей, были равны $p-1$.
+\end{problem}
+
+
+\begin{problem}
+Let $0<k<n+1$. Prove that if  $\binom(n,k-1)\nekratno p$ and  $\binom(n,k)\nekratno p$,
+then  $\binom(n+1,k)\nekratno p$, \emph{except} the case, when $n+1$ is divisible by $p$.
+\end{problem}
+
+%\begin{problem}
+%\end{problem}
+
+\subsection{Generalization of Wilson's and Lukas' theorems}
+
+%\bigskip
+
+\begin{problem}
+Prove that $\ord_p(n!)=\dfrac{n-(n_d+\ldots+n_1+n_0)}{p-1}$.
+\end{problem}
+
+\begin{problem}\label{prbl:Wilson_generalized}
+%Обозначим через $(n!)_p$ произведение всех натуральных чисел от 1 до $n$, не делящихся на $p$.
+Prove the following generalizations of Wilson's theorem.
+\qquad
+a) $(-1)^{[n/p]}(n!)_p\equiv n_0!\pmod p$;
+\\
+b) Prove that for $p\geq 3$ %выполнено сравнение
+$$
+(p^q!)_p\equiv -1\pmod{p^q}\,,
+$$
+and for $p=2$, $q\geq 3$ \ \ \ %выполнено сравнение
+$(p^q!)_p\equiv 1\pmod{p^q}$.
+\\
+c) $\dfrac{n!}{p^\mu}\equiv (-1)^\mu n_0!n_1!\dots n_d!\pmod p$, where $\mu=\ord_p(n!)$
+\end{problem}
+
+
+\begin{problem}
+Generalized Lukas' theorem. Let $r=n-k$, $\ell=\ord_p(\binom(n,k))$. Then
+$$
+\frac1{p^\ell}\binom(n,k)\equiv (-1)^\ell
+\Bigl(\frac{n_0!}{k_0!r_0!}\Bigr) \Bigl(\frac{n_1!}{k_1!r_1!}\Bigr) \dots \Bigl(\frac{n_d!}{k_d!r_d!}\Bigr) \pmod p
+$$
+\end{problem}
+
+\begin{problem}
+a) Prove that $(1+x)^{p^d}\equiv 1+x^{p^d}\pmod p$ for all $x=0$, 1, \dots, $p-1$.
+
+b) Prove Laukas' theorem algebraically.
+\end{problem}
+
+
+\begin{problem}
+a) Let $m$, $n$, $k$ be nonnegative integers, and $(n, k)=1$. Prove that
+$C_{mn}^k\equiv 0\pmod n$.
+
+b) Prove that if $n\kratno p^k$, $m\nekratno p$, then $\binom(n,m)\kratno p^k$.
+\label{prbl:delimost_bin_koef}
+\end{problem}
+
+\begin{problem}
+Let $f_{n,a}=\sum\limits_{k=0}^n (\binom(n,k))^a$.
+Prove that $f_{n,a}\equiv\prod\limits_{i=0}^d f_{n_i,a}\pmod p$.
+\end{problem}
+
+
+%\clearpage
+
+\subsection{Variations on Wolstenholme's theorem}
+%{Делимость на высокую степень $p$}
+
+\begin{problem}
+Prove that
+$\displaystyle \frac11+ \frac12+\ldots+\frac1{p-1}\equiv 0\pmod{p^2}$.
+\label{prbl:Wolstenholm_reformulated}
+\end{problem}
+
+\begin{problem}
+Let $p=4k+3$ be a prime number. Find \ \
+$\displaystyle
+\frac{1}{0^2+1}+\frac{1}{1^2+1}+\ldots+\frac{1}{(p-1)^2+1} \pmod{p}.
+$
+\end{problem}
+
+\begin{problem}
+\label{prbl:sums_mod_p^2}
+a) Let $k$ be a nonnegative integer such that
+for any prime divisor $p$ of the number $m$ \ \
+%Пусть натуральное число $k$ таково, что для каждого простого делителя $p$ числа $m$ \ \
+$k$ is not divisible by $(p-1)$. Prove that
+$\displaystyle
+\frac{1}{1^k}+\frac{1}{2^k}+\ldots+\frac{1}{(p-1)^k}\equiv0 \pmod{m}$
+(summation over all fractions whose denominators are coprime to $m$).
+
+
+b) Let $k$ be odd and $(k+1)\nekratno (p-1)$. Prove that
+$\displaystyle \frac{1}{1^k}+\frac{1}{2^k}+\ldots+\frac{1}{(p-1)^k}\equiv0 \pmod{p^2}.$
+\end{problem}
+
+\begin{problem}
+Prove that the equivalence (12) from Vinberg's article holds in fact modulo $p^4$.
+\end{problem}
+
+\begin{problem}
+Prove that the following properties are equivalent
+%Докажите эквивалентность следующих сравнений. \quad
+1) $\binom({2p-1},{p-1})\equiv 1\pmod{p^4}$;
+
+\noindent
+2) $\displaystyle \frac11+ \frac12+\ldots+\frac1{p-1}\equiv 0\pmod{p^3}$;
+\hfil
+3) $\displaystyle \frac1{1^2}+ \frac1{2^2}+\ldots+\frac1{(p-1)^2}\equiv 0\pmod{p^2}$.
+\end{problem}
+
+\begin{problem}
+a) Prove algebraically that for any prime $p$ and arbitrary $k$ and~$n$ \
+$(\binom(pk,pm)-\binom(k,m))\kratno p^2$.
+(In Vinberg's article this fact is proven combinatorially.
+
+\noindent
+b) Prove the statement (9) form Vinberg's article:
+for any prime $p\geq 5$ and arbitrary $k$ and~$n$ \
+%для всякого простого $p\!\geq\! 5$ и произвольных $k$ и~$n$ \
+${(\binom(pk,pm)\!-\!\binom(k,m))\kratno p^3}$.
+%Как бы упрощенное утверждение теоремы Якобшталя
+\end{problem}
+
+
+\begin{problem}
+Let $p\geq 5$. Prove that \ \
+a) $\binom(p^2,p)\equiv \binom(p,1) \pmod{p^5}$;
+\qquad
+b) $\binom(p^{s+1},p)\equiv p^s \pmod{p^{2s+3}}$.
+\end{problem}
+
+\begin{problem}
+Prove that $\binom({p^3},{p^2})\equiv \binom({p^2},p) \pmod{p^8}$.
+\end{problem}
+
+
+
+\clearpage
+\section*{Amazing properties of binomial coefficients --- 3}
+
+\subsection*{Additional problems to previous topics}
+
+\setcounter{subsection}{2}
+\setcounter{problem}{6}
+
+\begin{problem}
+Prove that $\binom(p^n-1,k)\equiv (-1)^{S_k}\pmod p$, where $S_k$ is the sum of digits of $k$ in base $p$.
+\end{problem}
+
+
+\begin{problem}
+%Винберг
+  Prove that if the binomial coefficient
+$\binom(n, k)$ is odd
+i.e. $k_i\leq n_i$ for all $i=0,1,\dots,d$
+in the notations of \eqref{n,k_bin_razlozhenija}, then
+  \begin{equation*}
+    \binom(n,k)\equiv\prod_{i=1}^d (-1)^{k_{i-1}n_i+k_in_{i-1}}
+    \pmod 4.
+  \end{equation*}
+\end{problem}
+
+\begin{problem}
+%Винберг
+Prove that if there are no two consecutive 1's in
+the binary expansion of $n$ then all the odd
+entries in $n$-th row $\equiv1\pmod 4$,
+otherwise the number of entries $\equiv1\pmod 4$ equals the number
+of entries $\equiv-1\pmod 4$.
+\end{problem}
+
+%\begin{problem}
+%Prove that if the binomial coefficient $\binom(n,k)$
+%is even then it is not divisible by 4 if and only
+%if there exists a unique $i$ such that $k_i>n_i$
+%and $k_{i+1}<n_{i+1}$.
+%%Винберг
+%%Докажите, что если биномиальный коэффициент $\binom(n,k)$ четен, то он не делится на 4 тогда и только тогда, когда
+%%имеется ровно одно значение $i$, для которого $k_i>n_i$, и при этом $k_{i+1}<n_{i+1}$.
+%\end{problem}
+
+
+\begin{problem}
+Prove that the number of 5's in each row of
+8-arithmetical Pascal triangle is a power of 2.
+Prove the same for 1's, 3's and 7's.
+%Докажите, что количество пятерок в каждой строке
+%8-арифметического треугольника Паскаля равно
+%степени двойки. То же касается единиц, троек и
+%семерок.
+\end{problem}
+
+\begin{problem}
+Prove that if we consider all the elements of the
+two sets
+%Докажите, что если все элементы двух множеств
+$$
+\left\{ \binom(2^n-1,1), \binom(2^n-1,3), \binom(2^n-1,5), \dots, \binom(2^n-1,2^n-1)\right\}
+\quad\text{and}\quad
+\{1,3,5,\dots, 2^n-1\}
+$$
+as a reminders modulo $2^n$, then these sets coincide.
+\end{problem}
+
+\begin{problem}
+Prove that  elements of a row of Pascal
+triangle are not coprime in the following sence.
+%Докажите, что элементы одной строки треугольника Паскаля не взаимно просты
+%в следующем довольно сильном смысле.
+For any $\varepsilon>0$ there exists $N$, such that for all integer $n>N$
+and $k_1, k_2, \dots, k_{100}<\varepsilon \sqrt{n}$ the
+numbers
+$$
+\binom(2n, n+k_1), \ \binom(2n, n+k_2), \ \dots, \ \binom(2n, n+k_{100})
+$$
+have a common divisor.
+\end{problem}
+
+
+\begin{problem}
+a) The non negative numbers $m>1$, $n$, $k$ are given.
+Prove that at least one of the numbers
+$\binom(n,k)$, $\binom({n+1},k)$, \dots,
+$\binom({n+k},k)$ is not divisible by $m$.
+
+b) Prove that for each $k$ there exist infinite set of
+numbers $n$, such that all the numbers
+$\binom(n,k)$, $\binom({n+1},k)$, \dots, $\binom({n+k-1},k)$
+are divisible by $m$.
+\end{problem}
+
+
+
+\setcounter{subsection}{4}
+\setcounter{problem}{8}
+
+\begin{problem}
+Prove that for $n>1$ \
+$\binom(2^{n+1},{2^n})-\binom({2^{n}},{2^{n-1}})$
+is divisible by $2^{2n+2}$.
+\end{problem}
+
+
+\begin{problem}
+Prove that for  $p\geq 5$ \
+$(-1)^\frac{p-1}2\binom(p-1,\frac{p-1}2)\equiv 4^{p-1}\pmod{p^3}$.
+\end{problem}
+
+%\setcounter{subsection}{2}
+
+\clearpage
+%\section*{Арифметические свойства биномиальных коэффициентов --- 4}
+\section*{Amazing properties of binomial coefficients --- 4}
+
+%\subsection*{Дополнения к предыдущим темам}
+\subsection*{Additional problems to previous topics}
+
+
+\setcounter{subsection}{4}
+\setcounter{problem}{10}
+
+\begin{problem}
+Let $m$ be a non negative integer, $p\geq 5$ be a prime. Prove that
+$$
+\frac1{mp+1}+ \frac1{mp+2}+ \dots+\frac1{mp+(p-1)}\equiv 0\pmod{p^2}.
+$$
+\end{problem}
+
+\begin{problem}
+Let $p$ and $q$ be primes. Prove that
+$\binom(2pq-1,pq-1)\equiv 1\pmod{pq}$ if and only if
+$\binom(2p-1,p-1)\equiv 1\pmod{q}$ and $\binom(2q-1,q-1)\equiv 1\pmod{p}$.
+\end{problem}
+
+\subsection{Sums of binomial coefficients}
+
+\begin{problem}
+a) Prove that the sum $\sum\limits_{k=0}^{3^a-1} \binom({2k},k)$ is divisible by 3;
+\qquad
+b) %Докажите, что $\sum\limits_{k=0}^{3^a-1} \binom({2k},k)$
+ is divisible by $3^a$.
+\end{problem}
+
+
+\begin{problem}
+Let $C_k=\frac1{k+1}\binom({2k},k)$ be Catalan numbers.
+Prove that $\sum\limits_{k=1}^n C_k \equiv1 \pmod 3$ if and only if
+the number $n+1$ contains at least one digit ``2'' in base 3.
+\end{problem}
+
+
+\begin{problem}
+Let $p\geq 3$, $k=[2p/3]$.
+Prove that the sum $\binom(p,1) +\binom(p,2) +\ldots+\binom(p,k)$ is divisible by $p^2$.
+\end{problem}
+
+\begin{problem}
+Let $n\kratno (p-1)$, where $p$ is an odd prime. Prove that
+$$
+\binom(n, p-1)+\binom(n, {2(p-1)})+\binom(n, {3(p-1)})+\ldots \equiv 1+p(n+1) \pmod{p^2} .
+$$
+\end{problem}
+
+\begin{problem}
+Prove that if $0\leq j\leq p-1<n$ and $q=\frac{n-1}{p-1}]$ then
+$$
+\sum_{m: m\equiv j \pmod{p}} (-1)^m\binom(n, m)\equiv 0\pmod{p^q}.
+$$
+\end{problem}
+
+\begin{problem}
+Let $p$ be an odd roime. Prove that  $n\kratno (p+1)$ if and only if
+$$
+\binom(n, j)-\binom(n, {j+(p-1)})+
+\binom(n, {j+2(p-1)})-\binom(n, {j+3(p-1)})+\ldots
+\equiv 0 \pmod{p}
+$$
+for all $j=1$, 3, \dots, $p-2$.
+\end{problem}
+
+
+
+\clearpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{Solutions}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\setcounter{subsection}0
+
+\subsection{Problems for solving in train}
+
+\begin{problem}
+a) \solutionn 1. $\binom(p-1,k)=\dfrac{(p-1)(p-2)\dots(p-k)}{1\cdot2\cdots k}\equiv
+\dfrac{(-1)(-2)\dots(-k)}{1\cdot2\cdots k}\equiv (-1)^k\pmod p$.
+
+\medskip
+\solutionn 2. It is evident by the formula for binomial coefficients that
+%По формуле для биномиальных коэффициентов очевидно, что
+$\binom(p,i)$ is divisible by $p$ when $1\leq i\leq p-1$.
+Since $\binom(p-1,k-1)+\binom(p-1,k)=\binom(p,k)$ and
+$\binom(p-1,0)=1\equiv 1\pmod p$, then $(\binom(p-1,0)+\binom(p-1,1))\kratno p$,
+and therefore $\binom(p-1,1)\equiv -1 \pmod p$. But
+$\binom(p-1,1)+\binom(p-1,2)$ is divisible by $p$ also, hence  $\binom(p-1,2)\equiv 1 \pmod p$ etc.
+
+\medskip
+%Докажите, что $C_{2n}^n\equiv (-4)^n C_{\frac{p-1}2}^n\pmod p$ при $n\leq\frac{p-1}2$.
+б) This problem is taken from \cite[problem 162]{Dynkin}.
+Since the fractions $\binom(2n+2,n+1)/\binom(2n,n)$ and $\binom(\frac{p-1}2,n+1)/\binom(\frac{p-1}2,n)$
+are highly reducible, the statement can be easily proven by induction.
+But we suggest a direct calculation from~\cite{Dynkin}.
+
+It easy to see that %Как нетрудно видеть,
+$$
+\smash{\binom(2n,n)=2^n\cdot\frac{1\cdot3\cdots(2n-1)}{n!}}
+$$
+and %При этом
+\begin{multline*}
+1\cdot3\cdots(2n-1)=(-1)^n(-1)(-3)\cdots(-2n+1)\equiv (-1)^n(p-1)(p-3)\cdots(p-2n+1)
+=\\[4pt]=
+(-1)^n2^n\Bigl(\frac{p-1}2\Bigr)\Bigl(\frac{p-3}2\Bigr)\cdots\Bigl(\frac{p-2n+1}2\Bigr)=
+(-1)^n2^n\Bigl(\frac{p-1}2\Bigr)\Bigl(\frac{p-1}2-1\Bigr)\cdots\Bigl(\frac{p-1}2-n+1\Bigr)
+=\\=\smash[b]{
+(-1)^n2^n\frac{(\frac{p-1}2)!}{(\frac{p-1}2-n)!} \pmod p}.
+\end{multline*}
+Therefore
+$\displaystyle
+\binom(2n,n)\equiv (-1)^n 4^n\frac{(\frac{p-1}2)!}{n!(\frac{p-1}2-n)!} = (-4)^n \binom(\frac{p-1}2, n)\pmod p.
+$
+\end{problem}
+
+%\end{document}
+
+\begin{problem}
+%Докажите, что количество нечетных биномиальных коэффициентов в
+%$n$-й строке треугольника Паскаля равно $2^r$, где $r$ ---
+%количество единиц в двоичной записи числа $n$.
+%\cite{Vinberg}
+It follows directly from self-similar structure of an arithmetical Pascal triangle,
+that is described in the next problems.
+It follows from Lucas'  theorem also, you can read the proof in~\cite{Vinberg}.
+%Это непосредственно следует из самоподобной структуры арифметического треугольника Паскаля, описанной в следующих задачах.
+%Это также сразу следует из теоремы Люка. Доказательство можно прочесть в статье Винберга~\cite{Vinberg}.
+\end{problem}
+
+\begin{problem}
+We restrict ourselves with small contemplation, the full solution can be found in~\cite[problem 133]{Dynkin}.
+
+Since the $s$-th row contains a long sequence of zeroes, then
+below these zeroes in $(s+1)$-th row we have the sequence of zeroes, too,
+(it is one element shorter than the upper sequence);
+in  $(s+2)$-th row there are the sequence of zeroes also (it is one element shorter again) and so on.
+%Поскольку в $s$-й строке расположен длинный ряд из нулей,
+%в $(s+1)$-й строке под этими нулями также расположен ряд из нулей (на единицу короче),
+%в~$(s+2)$-й строке --- опять ряд из нулей (снова на 1 короче) и~т.\,д.
+This explains the presence of the grey triangle below $\Delta_0^0$ (fig.~1).
+%Этим объясняется наличие серого треугольника снизу от $\Delta_0^0$ (рис.~1).
+
+Further, the non-zero elements of the $s$-th row are equal to 1,
+hence the numbers situated along the sloped sides of the grey triangle all are 1's
+(due to the recurrence for binomial coefficients).
+%Далее, ненулевые элементы $s$-й  строки равны 1, тогда ряды чисел, идущих вдоль наклонных границ серого треугольника, состоящего из %нулей, --- это тоже всё сплошь единицы (по рекуррентному правилу построения треугольника Паскаля).
+So all the numbers along the sloped sides of the triangles
+%Таким образом, вдоль боковых сторон треугольников
+$\Delta_1^0$ and $\Delta_1^1$ are 1's, and therefore both triangles are identical to~$\Delta_0^0$.
+
+Now it is clear, what is the $(2s)$-th row of the triangle.
+%Теперь понятно, как выглядит $2s$-я строка треугольника.
+The left- and the rightmost elements are 1's,
+%Крайние элементы в ней --- единицы,
+all other elements equal 0, except the central element that is equal to 2, because
+it is a sum of the two upper 1's.
+%остальные элементы --- нули, кроме центрального элемента, который равен 2, как сумма двух вышестоящих единиц.
+Thus we obtain that two grey triangles are situated below $2s$-th row,
+the triangles $\Delta_2^0$ and $\Delta_2^2$ to the left and to the right of them are identical to $\Delta_0^0$,
+and the triangle $\Delta_2^1$ with 2's along its sloped sides is equal to $2\cdot\Delta_0^0$.
+%Отсюда получаем, что снизу от $2s$-й строки находятся два серых нулевых треугольника,
+%по краям от них --- треугольники $\Delta_2^0$ и $\Delta_2^2$, идентичные $\Delta_0^0$,
+%а между ними ---
+%треугольник $\Delta_2^1$, у которого вдоль боковых сторон расположены двойки. Как нетрудно понять, это значит, что
+%$\Delta_2^1=2\cdot\Delta_0^0$.
+
+And so on.
+%Ну и так далее.
+\end{problem}
+
+
+\begin{problem}
+%Ханойская башня
+This statement we found in \cite{Hinz},
+several facts about binomial coefficients are proven there via Tower of Hanoi and the graph $TH_n$.
+%Этот сюжет мы взяли в статье \cite{Hinz},
+%где некоторые факты о биномиальных коэффициентов доказываются с помощью рассмотрения Ханойской башни и графа $TH_n$.
+
+Let $a$ be the diameter of the upper disc on the first rod,
+$b$ be the diameter of the upper disc on the second rod and
+$c$ be the  diameter of the upper disc on the third rod. W.l.o.g.
+$a<b<c$, then we have 3 possible moves in this configuration:
+from $a$ to $b$ or $c$ and from $b$ to $c$,
+we analogously have 3 moves if one rod is without discs.
+%тогда в этом положении есть три возможных хода: с $a$ на $b$ или на $c$, либо с $b$ на $c$;
+%аналогично имеется три хода, если диски занимают лишь два стержня.
+If all the discs are placed on one rod then we have 2 possible moves only;
+let $A_1$, $A_2$, $A_3$ denote the configurations of this type.
+%Если же все диски находятся на одном стержне, возможных ходов только два, обозначим такие конфигурации $A_1$,
+%$A_2$, $A_3$ по номеру стержня, на который нанизаны диски.
+
+Observe that by the problem 1.2 all the elements of $2^s$-th row of Pascal triangle are 1's.
+Therefore graph $P_n$ has the rotational symmetry of the third order,
+because the recurrence $\binom(n,k-1)+\binom(n,k)=\binom(n+1,k)$,
+that allows us to construct the triangle from top to bottom, is equivalent in arithmetic modulo 2
+to the recurrences $\binom(n,k-1)=\binom(n,k)+\binom(n+1,k)$ and  $\binom(n,k)=\binom(n,k-1)+\binom(n+1,k)$,
+that allows us to construct the triangle from the low left corner in the upper right direction
+and from the low right corner in the upper left direction.
+%Заметим, что $2^s$-я строка треугольника Паскаля состоит из одних единиц --- это следует из задачи~1.2
+%или проверяется непосредственно с помощью формулы Лежандра \eqref{eq:OrdCnk}.
+%Отсюда следует, что граф $P_n$ имеет поворотную симметрию
+%третьего порядка, поскольку основное соотношение $\binom(n,k-1)+\binom(n,k)=\binom(n+1,k)$, при помощи которого
+%мы строим треугольник Паскаля ``сверху вниз'', в арифметике по модулю 2 равносильно соотношениям
+%$\binom(n,k-1)=\binom(n,k)+\binom(n+1,k)$ и  $\binom(n,k)=\binom(n,k-1)+\binom(n+1,k)$, с помощью которых
+%можно аналогично построить треугольник Паскаля ``слева снизу --- вправо вверх'' и  ``справа снизу --- влево вверх''.
+It follows also that the triangle of the double size contains 3 copies of the initial triangle.
+%Кроме того, отсюда следует (из предыдущей задачи), что треугольник Паскаля в 2 раза большего размера содержит три копии исходного %треугольника.
+
+Now let us prove by induction that there exists a bijection between  $TH_n$ and $P_n$, such that
+the vertices of the triangle $P_n$ correspond to the configurations  $A_1$, $A_2$, $A_3$.
+%Докажем по индукции, что существует биекция между $TH_n$ и $P_n$, при которой вершинам треугольника $P_n$ соответствуют конфигурации %$A_1$, $A_2$, $A_3$.
+%База $n=1$ очевидна.
+The base $n=1$ is evident.
+
+Proof of the step of induction.
+Assume that the bijection between $TH_n$ and $P_n$ has been constructed.
+%Пусть мы уже умеем строить биекцию между $TH_n$ и $P_n$.
+The 2-arithmetical Pascal triangle with the side length  $2^{n+1}$ contains 3 copies
+of the triangle with the side length~$2^{n}$.
+Number the copies and mark its vertices as shown on fig.\ref{ris:triangle_2x2}.
+%Рассмотрим 2-ариф\-ме\-ти\-че\-ский треугольник треугольник Паскаля со стороной $2^{n+1}$, он содержит три копии треугольника со стороной $2^{n}$. Пронумеруем копии и
+%разметим их вершины, как показано на рис.~\ref{ris:triangle_2x2}.
+Consider all the configurations of the Tower of Hanoi for which the $(n+1)$-th (biggest) disc is placed on rod $i$.
+%Рассмотрим все положения Ханойской башни, в которых самый крупный диск находится на стержне $i$.
+If we fix the placement of this disc then displacements of other discs correspond to the graph that is isomorphic to $TP_n$.
+%Если мы не двигаем этот диск, то все эти положения и перекладывания остальных дисков задают граф, изоморфный $TP_n$.
+%Applying our bijection we can identify this graph with graph $P_n$ in the $i$-th copy of the triangle.
+By induction hypothesis we can choose a bijection between this graph and the graph $P_n$ in the $i$-th copy of the triangle,
+such that the configurations $A_j$ correspond to the vertices of the triangles with the same marks.
+%С помощью уже имеющейся биекции отождествим этот граф с графом $P_n$, расположенным в $i$-й копии треугольника,
+%причем потребуем, чтобы конфигурации $A_j$ были отождествлены в соответствии с разметкой вершин.
+When we move the biggest disc, say, from the first rod to the second, all other discs must be on the 3rd rod.
+This move correspond to the edge connecting two neighboring vertices $A_3$ on the left sloped side of big triangle.
+The same reasons concern other moves of the biggest disc. Therefore we obtain an isomorphism between
+$TP_{n+1}$ and $P_n$.
+%Перемещение самого крупного диска, скажем, с первого стержня на второй возможно,
+%только если все остальные диски находятся на третьем стержне. Это в точности соответствует ребру, соединяющему соседние вершины $A_3$ на левой боковой стороне треугольника, аналогично обстоят дела с другими перемещениями самого большого диска. Таким образом, построенное соответствие действительно дает изоморфизм графов $TP_{n+1}$ и $P_n$.
+
+\begin{figure}[t]
+\quad\hfil\begin{minipage}[b]{0.3\linewidth}
+\begin{center}
+\setlength{\unitlength}{2.4mm}
+\begin{picture}(20,16)(0,0)
+\footnotesize
+\psset{unit=2.4mm}
+\put(0,0){\pspolygon[linestyle=none, fillstyle=solid, fillcolor=lightgray](10,0)(15,8)(5,8)(10,0)}
+\path(0,0)(20,0)(10,16)(0,0)
+\path(10,0)(15,8)(5,8)(10,0)
+\put(9.2,14){$A_1$}\put(4.2,6){$A_3$}\put(14.2,6){$A_2$}
+\put(.4,0.4){$A_2$}\put(10.5,0.4){$A_1$}\put(5.5,8.4){$A_3$}
+\put(7.8,0.4){$A_1$}\put(17.8,0.4){$A_3$}\put(12.8,8.4){$A_2$}
+\put(4.6,2.5){2}\put(9.6,10.5){1}\put(14.6,2.5){3}
+\end{picture}
+\end{center}
+\caption{}
+\label{ris:triangle_2x2}
+\end{minipage}
+\end{figure}
+
+\end{problem}
+
+
+\begin{problem}
+%Докажите, что в среди первых $10^6$ строк 2-арифметического треугольника Паскаля
+%единицы составляют меньше 1\,\%.
+%\cite{Hinz}
+The bijection with Tower of Hanoi gives us a formula (when the number of rows is a power of~2):
+the first $2^k$ rows of 2-arithmetical Pascal triangle contain $3^k$ 1's.
+The formula can be also proved by induction via recurrence from the problem~\ref{prbl:arif_PAscal_recurrence}.
+Using this formula we can obtain an estimation. Since $10^6<2^{20}$,
+the total number of elements in these rows equals $\frac12\cdot10^6(10^6+1)$,
+and the number of 1's is at most $3^{20}$. The proportion does not exceed $\frac{2\cdot3^{20}}{10^6(10^6+1)}\ll 0.01$.
+\end{problem}
+
+\begin{problem}
+We found this statement in \cite{Granville-p^q}.
+
+\solution 1 ([CSTTVZ]).
+For $p=2$ the statement can be easily checked. So we can assume that $p$ is odd prime.
+Let $n=x(p-1)+k$. We use induction on $x$.
+%Будем доказывать утверждение индукцией по $x$.
+
+The base $x=0$ is trivial: $\binom(k,j)\equiv\binom(k,j)\pmod p$.
+
+To prove the step of induction we need the following property of binomial coefficients:
+%Для доказательства перехода воспользуемся свойством биномиальных коэффициентов
+$$
+\binom(a+b,s)=\sum_i \binom(a,s-i)\binom(b,i)
+\qquad\text{(summation in natural bounds)},
+$$
+both sides of which calculate in how many ways we can choose $s$ balls in the box that contains $a$ black and $b$~white balls.
+Let $n=m+(p-1)$. Observe that
+$$
+\binom(n,{\ell(p\!-\!1)+j})=\binom(m+(p\!-\!1),{\ell(p\!-\!1)+j})
+=\sum_{i=0}^{p-1} \binom(m,{\ell(p\!-\!1)+j-i})\binom(p-1,i)
+\equiv \sum_{i=0}^{p-1} (-1)^i\binom(m,{\ell(p\!-\!1)+j-i})\!\! \pmod p
+$$
+(the last equivalence is due to problem \ref{prbl:zadacha_1.1}\,a).
+Remark that the sign of the first and last terms in the last sum is ``plus'' .
+%sОтметим, что в последней сумме первое и последнее слагаемое присутствуют со знаком плюс.
+Now transform the sum from the problem statement:
+%Преобразуем теперь интересующую нас сумму.
+\begin{multline*}
+\sum_\ell \binom(n,{\ell(p-1)+j})
+\equiv \\ \equiv
+\left( \binom(m,j)- \binom(m,j-1)+\ldots \right)+
+\left( \binom(m,{p-1+j})- \binom(m,{p-1+j-1})+\!\ldots\!+ \binom(m,j)\right)
++\\\qquad\qquad\qquad+
+\left( \binom(m,{2(p\!-\!1)+j})- \binom(m,{2(p\!-\!1)+j-1})+\!\ldots\!+ \binom(m,{2(p\!-\!1)+j})\right)+\ldots
+ \\=
+\sum_{i=0}^{m} (-1)^i\binom(m,i) + \sum_\ell \binom(m,{\ell(p\!-\!1)+j}) \pmod p.
+\end{multline*}
+the first sum is equal to 0, the second sum is equivalent  $\binom(k,j)\pmod p$ by the induction hypothesis.
+%Здесь первая сумма равна нулю, а вторая по предположению индукции сравнима с  \chtd
+
+\medskip
+\solution 2 ([J], [T]). Induction by $n$.
+The base $n\leq p-1$ is trivial: both sides contain the same term.
+%тривиальна: левая часть содержит всего одно слагаемое --- то же самое, что и в правой части.
+%Переход:
+Prove the step of induction.
+\begin{multline*}
+\binom(n, j)+\binom(n, {(p-1)+j})+\ldots
+=
+\left(\binom(n-1, j)+\binom(n-1, j-1)\right)+\left(\binom(n-1, {(p-1)+j})+\binom(n-1, {(p-1)+j-1})\right)+\ldots
+= \\ =
+\left(\binom(n-1, j)+\binom(n-1, {(p-1)+j})+\dots\right)+
+\left(\binom(n-1, j-1)+\binom(n-1, {(p-1)+j-1})+\dots\right)
+\equiv\\ \equiv
+\binom(k-1, j)+\binom(k-1, j-1) = \binom(k, j) \pmod p.
+\end{multline*}
+But it should be accurate in cases when $p-1$ divides $j$ or $k$,
+because the induction hypothesis does not hold for  $j=0$ or $k=0$
+(it uses the value $p-1$ instead of 0).
+Therefore we must consider more carefully the cases when  $j=1$ or $k=1$.
+%Таким образом, выписанное соотношение требует отдельного рассмотрения при $j=1$ или $k=1$.
+%Мы ограничимся рассмотрением частного случая, которое проясняет ситуацию.
+We restrict ourselves by consideration of one partial case only.
+Let $p=5$, $j=1$ and we fulfill step to $n=13$. Then we have
+$$
+\binom(1,1)\overset{?}\equiv \binom(13,1)+\binom(13,6)+\binom(13,11)=
+\left(\binom(12,1)+\binom(12,6)+\binom(12,11)\right)+
+\left(\binom(12,0)+\binom(12,5)+\binom(12,10)\right).
+$$
+By induction hypothesis the sum in the first parentheses has a residue $\binom(4,1)$
+%Здесь первая скобка дает по индукционному предположению остаток $\binom(4,1)$
+(and not $\binom(0,1)$ as the previous calculation shows).
+%(а вовсе не $\binom(0,1)$, как могло показаться по предыдущему вычислению).
+In the second parentheses the induction hypothesis covers all the terms except the first one,
+so the sum has residue $\binom(12,0)+\binom(4,0)$.
+Writing $p-1$ instead of 4 for clarity, we obtain that the whole sum is equivalent to
+%Во второй скобке первое слагаемое не участвует в индукционном предположении,
+%а сумма остальных сравнима с $\binom(4,0)$. Записывая для ясности $p-1$ вместо 4,
+%получаем, что вся сумма сравнима с
+$\binom(n-1,0)+\binom(p-1,1)+\binom(p-1,0)\equiv \binom(1,1)\pmod p$, as required.
+
+
+\medskip
+\solution 3 (algebraical reasoning with Luka's theorem, \cite{Granville-p^q}).
+Induction by $n$. Base $n\leq p-1$ is trivial.
+Now let $n\geq p$, write all parameters in base $p$, let  $\sigma_p(m)$ denotes the sum of digits of $m$.
+It is clear that if  $m\equiv j\pmod p$, then $\sigma_p(m)\equiv j\pmod p$.
+The sum under consideration is equal by Luka's theorem to
+%Тогда по теореме Люка интересующая нас сумма равна
+$$
+\sum \binom(n_0,m_0)\binom(n_1,m_1)\dots\binom(n_d,m_d) \pmod p\,,
+$$
+where the summation is over all $m=\overline{m_d\dots m_1m_0}\leq n$, for which $\sigma_p(m)\equiv j\pmod p$.
+This sum is equal to the sum of coefficients of $x^j$, $x^{j+p-1}$, $x^{j+2(p-1)}$, \dots
+in the expression
+$$
+(1+x)^{n_0}(1+x)^{n_1}\dots(1+x)^{n_d}=(1+x)^{\sigma_p(n)}\,.
+$$
+But it is evident that this sum of coefficients equals
+$$
+\sum_{\substack{1\leq r\leq \sigma_p(n) \\ r\equiv j \pmod{p-1}} } \binom(\sigma_p(n), r)\,,
+$$
+which satisfy the induction hypothesis because $1\leq \sigma_p(n)\leq n-1$,
+and supply the desired equivalence since  $\sigma_p(n)\equiv n\equiv j\pmod p$.
+\end{problem}
+
+\medskip
+\solution 4 (linear algebra, [D]).
+The polynomials $x$, $x^2$, \dots, $x^{p-1}$ are linearly independent over $\mathbb{Z}_p$
+and form a basis in the space of functions $f\colon\mathbb{Z}_p\to\mathbb{Z}_p, f(0)=0$.
+By Fermat's little theorem $(1+x)^n\equiv (1+x)^k \pmod p$.
+Applying the relations $x^{i+a(p-1)}\equiv x^i$ to the left hand side,
+we obtain that our sum as an element of $\mathbb{Z}_p$ is equal to the coefficient of $x^j$
+in the right hand side, i.\,e. $\binom(k,j)$.
+
+\clearpage
+
+\subsection{Arithmetical triangle and divisibility}
+
+
+\begin{problem}
+a) This result is due to Roberts \cite{Roberts}.
+By $a_k$ denote the number of 1's in the first $3^k$ rows, and by $b_k$ denote the number of 2's.
+Due to the recurrence from problem \ref{prbl:arif_PAscal_recurrence} we obtain
+$$
+a_{k+1}=5a_k+b_k, \qquad b_{k+1}=5b_k+a_k.
+$$
+Now the statement of problem follows by induction.
+
+\medskip
+b) \answer $\frac12 \cdot5^k(5^k+1)-15^k$.
+By $a_k$ denote the number of nonzero elements in the first $5^k$ rows.
+As in previous problem we have a recurrence
+% Обозначая искомую величину $a_k$, аналогично предыдущей задаче получаем соотношение
+$$
+a_{k+1}=15a_k +10\cdot\frac{5^k(5^k-1)}{2}.
+$$
+Since the whole triangle consists of $\frac{5^k(5^k+1)}{2}$ elements, it is natural to change
+variables $a_k=\frac{5^k(5^k+1)}{2}-b_k$. Then we can rewrite the previous relation
+in terms of $b_k$ as $b_{k+1}=15b_k$.
+
+\medskip
+c) \answer $\bigl(\frac{p(p+1)}2\bigr)^k$.
+%Докажите, что количество биномиальных коэффициентов в первых $p^k-1$ строках треугольника Паскаля, не делящихся на $p$,
+%равно $\Bigl(\dfrac{p(p+1)}2\Bigr)^k$.
+This is Fine's result \cite{Fine}. It can be obtained by induction
+by means of recurrence of the problem \ref{prbl:arif_PAscal_recurrence}.
+%Из этого утверждения, кстати, следует задача 3.2.c.
+\end{problem}
+
+
+\begin{problem}
+%Пусть $m=\sum\limits_{i=0}^{n-1} m_i\cdot 2^i$ --- двоичное разложение числа $m$.
+%Докажите, что количество единиц в первых $m$ строках 2-арифметического треугольника
+%Паскаля равно
+%$$
+%\sum\limits_{i=0}^{n-1} m_i\cdot 2^{\sum_{k=i+1}^{n-1}m_k}\cdot 3^i
+%$$
+\solutionn 1. Induction by $\alpha_1$. The base $\alpha_1=0,1$ can be easily checked.
+Let the statement has been proven for all $\alpha_1<a$. Prove it for  $\alpha_1=a$.
+Evedently  $\tilde{m}-2^{\alpha_1}<2^{\alpha_1}$.
+Let $s=2^{\alpha_1}$ (in notations of problem~\ref{prbl:arif_PAscal_recurrence}).
+Consider the $\tilde{m}$-th row in the triangle $\Delta_0^0$, where $\tilde{m}=2^{\alpha_2}+2^{\alpha_3}+\ldots+2^{\alpha_r}$.
+By the induction hypothesis the number of 1's in this row and above it equals
+%В этой строке и в строках над ней по индукционному предположению содержится
+\begin{equation}
+3^{\alpha_2}+2\cdot3^{\alpha_3}+\ldots+2^{r-2}\cdot3^{\alpha_r}.
+\label{eq:number_of_ones}
+\end{equation}
+%единиц.
+Then for the number $m=\tilde{m}+2^{\alpha_1}$ we have a row that intersects the triangles  $\Delta_0^1$ and
+$\Delta_1^1$ (due to 2-arithmetics they are both identical to triangle $\Delta_0^0$).
+The part of Pascal triangle from top to this row contains triangle  $\Delta_0^0$
+(containing $3^{\alpha_1}$ 1's by induction hypothesis) and partially
+triangles  $\Delta_0^1$ and $\Delta_1^1$ (the number of 1's in them is given by~\eqref{eq:number_of_ones}).
+So the total number of 1's is
+%В этой строке и выше находится целиком треугольник $\Delta_0^0$ (в нем по предположению индукции $3^{\alpha_1}$ единиц) и два неполных треугольника  $\Delta_0^1$ и $\Delta_1^1$, в каждом из которых число единиц задается формулой~\eqref{eq:number_of_ones}. В сумме получаем
+$$
+3^{\alpha_1}+2(3^{\alpha_2}+2\cdot3^{\alpha_3}+\ldots+2^{r-2}\cdot3^{\alpha_r}).
+$$
+%единиц, что и требуется.
+
+\medskip
+\solution 2 (combinatorial sense of coefficients, [T]).
+
+\lemma\ 1. Let the $k$-th row contains  $2^r$ 1's
+(or, equivalently, $k$ contains $r$ 1's in base 2)
+and let $\alpha_1>\alpha_2>\dots>\alpha_m$, $2^{\alpha_m}>k$.
+Then the row with number  $2^{\alpha_1}+2^{\alpha_2}+\ldots+2^{\alpha_m}+k$ contains $2^{m+r}$ 1's.
+
+\proof. It is clear that the number $2^{\alpha_1}+2^{\alpha_2}+\ldots+2^{\alpha_m}+k$ in base 2
+contains $m+r$ 1's and hence the corresponding row contains
+%единиц и тогда в строке треугольника Паскаля с этим номером
+$2^{m+r}$ 1's. \qed
+
+\smallskip
+\lemma\ 2. The rows with the following numbers %Суммарное количество единиц в строках с номерами
+$$
+2^{\alpha_1}+2^{\alpha_2}+\ldots+2^{\alpha_{m-1}}, \quad
+2^{\alpha_1}+2^{\alpha_2}+\ldots+2^{\alpha_{m-1}}+1, \quad
+%2^{\alpha_1}+2^{\alpha_2}+\ldots+2^{\alpha_{m-1}}+2, \quad
+\dots, \quad
+2^{\alpha_1}+2^{\alpha_2}+\ldots+2^{\alpha_{m-1}}+2^{\alpha_m}-1, \quad
+$$
+contain $2^k 3^{\alpha_m}$ 1's.
+
+\proof. By lemma 1 the row with number
+$2^{\alpha_1}+2^{\alpha_2}+\ldots+2^{\alpha_{m-1}}+i$ contains  $2^k x_i$ 1's,
+where $x_i$ is the number of 1's in $i$-th row. Then the total number of 1's in these rows equals
+$2^k\sum x_i$. But $\sum x_i$ is the number of 1's in the first $2^{\alpha_m}-1$ rows of Pascal triangle,
+this number is equal to $3^{\alpha_m}$ (it is known, for example, by problem 1.4). \qed
+
+\smallskip
+The statement of problem follows from lemma 2.
+%Осталось просуммировать по $m$ количества единиц из леммы 2.
+\end{problem}
+
+\begin{problem}
+The problem is from \cite{Vinberg}, the solution is from \cite{Granville-p^q}.
+The problem statement follows from Luka's theorem due to the following observation
+(it is also mentioned in~\cite{Vinberg}):
+a binomial coefficient $\binom(n,k)$ is odd if and only if
+the set of 1's in the binary expansion of $k$
+is the subset of the set of 1's in the binary expansion of $n$.
+Therefore $P_n=\sum 2^k$, where the summation is over all $k$ described in the previous phrase.
+%где суммирование распространяется на все числа $k$, описанные в предыдущем предложении.
+For $p=2$ let $S_n=\{i: n_i=1\}$ in notations of formula  \eqref{n,k_bin_razlozhenija}. Then
+%В обозначениях формулы \eqref{n,k_bin_razlozhenija} при $p=2$
+%положим $S_n=\{i: n_i=1\}$. Тогда
+$$
+P_n=\sum_{I\subseteq S_n} \prod_{i\in I} 2^{2^i} = \prod_{i\in S_n} F_i.
+$$
+\end{problem}
+
+\begin{problem}
+%Докажите, что количество биномиальных коэффициентов в $n$-й строке треугольника Паскаля, не делящихся на $p$,
+%равно $\prod\limits_{i=0}^d(n_i+1)$.
+This result of Fine \cite{Fine} (1947) is an easy corollary of Kummer's theorem.
+If $p$ does not divide $\binom(n,k)$,
+then there are no carries when we add  $k$ and $n-k$ in base $p$.
+%не должно быть переносов при сложении чисел $k$ и $n-k$, записанных в системе счисления по основанию $p$.
+For a fixed $n$ it means that  we can choose $i$-th digit of $k$ in base $p$ by $n_i+1$ ways.
+%При фиксированном $n$ это означает, что выбор $i$-й цифры \hbox{$p$-ичной} записи числа $k$ можно сделать
+%$n_i+1$ способом.
+\end{problem}
+
+\begin{problem}
+%Для того чтобы все биномиальные коэффициенты $\binom(n,k)$, где $0<k<n$,
+%делились на $p$, необходимо и достаточно, чтобы $n$ было степенью числа $p$.
+a) It follows from the formula proven in the previous problem
+because here we have a row with 2 elements only not divisible by $p$.
+%Это сразу следует из формулы, доказанной в предыдущей задаче,
+%поскольку речь идет о~строке, в которой ровно два элемента не делятся на $p$.
+
+\medskip
+%Для того чтобы все биномиальные коэффициенты $\binom(n,k)$, где $0\leq k \leq n$,
+%не делились на $p$, необходимо и достаточно, чтобы $n+1$ делилось на $p^d$,
+%иными словами, чтобы все цифры $p$-ичной записи числа $p$, кроме старшей, были равны $p-1$.
+b) \cite{Fine}. If Если $p^d\mid (n+1)$, then $n=\overline{a(p-1)(p-1)\ldots(p-1)}$ in base $p$.
+%в системе счисления по основанию $p$.
+Then for any $k$, $0\leq k\leq n$, each digit of $k$ does not exceed the corresponding digit of $n$.
+%каждая цифра числа $k$ не превосходит соответствующей цифры числа $n$.
+Therefore all the binomial coefficients $\binom(n_i,k_i)$ are not equal to 0 and $\not\equiv 0\pmod p$.
+By Lukas' theorem $\binom(n,k)$ is not divisible by $p$.
+
+The reverse statement. Assume that all the coefficients $\binom(n,k)$ are not divisible by $p$,
+but $n$ is not the number of the form $\overline{a(p-1)(p-1)\ldots(p-1)}$.
+Therefore one of its digits, say, $n_i$ is less than $p-1$. Choose $k=(p-1)\cdot p^i$.
+Then $k_i=p-1$ and hence $\binom(n_i,k_i)=0$, and  $p\mid\binom(n,k)$ by Lukas' theorem.
+A contradicition.
+\end{problem}
+
+
+\begin{problem}
+This problem we found in \cite{Everett}.
+%Пусть $0<k<n+1$. Докажите, что если $\binom(n,k-1)\nekratno p$ и  $\binom(n,k)\nekratno p$,
+%то $\binom(n+1,k)\nekratno p$, \emph{кроме} случая, когда $n+1$ делится на $p$.
+
+\solutionn 1. Assume that $\binom(n,k-1)\nekratno p$ and $\binom(n,k)\nekratno p$,
+but $\binom(n+1,k)=\Bigl(\binom(n,k-1)+\binom(n,k)\Bigr)\kratno p$. Then
+$\binom(n,k)\equiv-\binom(n,k-1)\pmod p$. Since both binomial coefficients are not divisible by $p$,
+we can reduce the equivalence and obtain $\frac{n-k+1}{k}\equiv -1\pmod p$.
+Therefore $n+1\equiv 0\pmod p$.
+
+\medskip
+\solution 2 ([K]).
+Though the statement remind us the main recurrence for binomial coefficients,
+the part ``$\binom(n,k-1)\!\nekratno p$'' is  unnecessary.
+Indeed, if $(n+1)\nekratno p$, then $0\leq n_0\leq p-2$.
+Since $\binom(n,k)\nekratno p$, then by Kummer's theorem  $k_i\leq n_i$ for all $i$
+%то по теореме Куммера при всех $i$ верно неравенство $k_i\leq n_i$.
+But analogous inequalities hold also for the pair $k$ and $n+1$,
+because $n$ and $n+1$ have the same digits except the lower ones that differs by 1.
+Hence  $\binom(n+1,k)\nekratno p$.
+%Но тогда аналогичные неравенства верны
+%и для пары чисел $k$ и $n+1$, поскольку у числа $n+1$ те же цифры, что и у $n$, кроме цифры в самом младшем разряде, которая у числа $n+1$ на 1 больше. Следовательно, $\binom(n+1,k)\nekratno p$.
+\end{problem}
+
+\begin{problem}
+\cite{Gashkov}. It follows from Lukas' theorem and problem 1.1.a).
+\end{problem}
+
+
+\begin{problem}
+The problem is from \cite{Vinberg}. Induction by number of digits. The base is trivial.
+For the proof of induction step add one more digit to the rightmost position.
+%Для перехода добавляем очередную цифру в конец числа.
+Since the binomial coefficient is odd we have the inequalities $n_i\geq k_i$.
+%В силу нечетности биномиального коэффициента $n_i\geq k_i$.
+Now we will use the recurrence $\binom(n,k)=\binom(n-1,k-1)+\binom(n-1,k)$ and consider
+distinct variants of parity  $n$ и $k$. Applying Kummer's theorem and the problem 4.6a)
+we will reduce the question to the induction hypothesis.
+%Пользуясь рекуррентностью $\binom(n,k)=\binom(n-1,k-1)+\binom(n-1,k)$, перебирая разные
+%варианты четности $n$ и $k$ с помощью теоремы Куммера и задачи 4.6a) сводим все к индукционному предположению.
+
+For example, let $n=2\ell+1$ be odd and $k=2m$ be even. Consider a subcase $k_1=1$.
+Then we have binary representations $k=\dots10$, $n=\dots11$, $k-1=\dots01$ and $n-k=\dots01$
+(the latter because by Kummer's theorem there are no carries when we add $k$ and $n-k$).
+Now when we add $k-1$ and $n-k$ we have 1 carry, i.e. $\binom(n-1,k-1)\equiv 2\pmod4$,
+and hence
+%Например, при нечетном $n=2\ell+1$ и четном $k=2m$, если $k_1=1$, то $k=\dots10$, $n=\dots11$,
+%Тогда $(n-k)=\dots01$ (потому что по теореме Куммера не должно было быть переносов),
+%$(k-1)_2=\dots01$, значит, по теореме Куммера при сложении $(k-1)_2+(n-k)_2$ есть ровно 1 перенос,
+%т.\,е.\ $\binom(n-1,k-1)\equiv 2\pmod4$, откуда
+$$
+\binom(n,k)=\binom(n-1,k-1)+\binom(n-1,k)\equiv-\binom(n-1,k)=-\binom(2\ell,2m)\equiv-\binom(\ell,m)\pmod4\,,
+$$
+the latter equivalence is by problem 4.6a).
+The minus sign in it corresponds to the multiplier $(-1)^{k_{0}n_1+k_1n_{0}}$.
+\end{problem}
+
+
+\begin{problem}
+The problem is from~\cite{Vinberg}. %Решение в \cite{Granville-Zaphod}.
+The statement follows from the previous problem. If the binary representation of $n$ does not contains
+two consecutive 1's, then for all $k$ all the exponents  $k_{i-1}n_i+k_in_{i-1}$  are equal to 0
+and all the binomial coefficients in $n$-th row have are equivalent 1 modulo 4.
+%Утверждение следует из результата предыдущей задачи. Если в записи $n$ нет двух единиц подряд,
+%то все показатели $k_{i-1}n_i+k_in_{i-1}$ равны нулю и все
+%биномиальные коэффициенты дают остаток 1 при делении на 4.
+But if the binary representation of $n$ contains several consecutive 1's starting from $n_j=1$
+%Если же запись числа $n$ содержит участок из единиц, начинающийся с $n_j=1$,
+then the one half  of all coefficients have  $k_j=0$, and one half of them  have $k_j=1$.
+By the formula of previous problem these two halves differ by a sign.
+%то у половины нечетных биномиальных коэффициентов $k_j=0$, а~у~другой половины $k_j=1$
+%и, как нетрудно видеть по формуле из предыдущей задачи, по модулю 4 эти половины отличаются знаком.
+\end{problem}
+
+%\begin{problem}
+%Задача из Винберга
+%\end{problem}
+
+\begin{problem}
+%Докажите, что количество пятерок в каждой строке
+%8-арифметического треугольника Паскаля равно
+%степени двойки. То же касается единиц, троек и семерок.
+Two articles in Monthly \cite{Granville-Zaphod, Granville-Zaphod-2}
+discuss this dark problem.
+\end{problem}
+
+\begin{problem}
+%Докажите, что все элементы двух множеств
+%$$
+%\{ \binom(2^n-1,1), \binom(2^n-1,3), \binom(2^n-1,5), \dots, \binom(2^n-1,2^n-1)\}
+%\quad\text{и}\quad
+%\{1,3,5,\dots, 2^n-1\}
+%$$
+%рассматривать как остатки по модулю $2^n$, то эти множества совпадают.
+This is a problem of D.\,Dzhukich was presented at the olympiad of 239 school of St.-Petersburg, 2002,
+and after that appeared at short-list of IMO-2008.
+%Эта задача Д.Джукича была в 2002 г.\ на олимпиаде 239 школы г.~Санкт-Петербурга,
+%а потом засветилась в шорт-листе  IMO-2008.
+
+All the binomial coefficients in the problem statement are odd by Lukas' theorem, therefore,
+it is sufficient to check that all the numbers
+%Поскольку все биномиальные коэффициенты из условия задачи нечетны
+%(по теореме Люка), для доказательства утверждения достаточно проверить, что все числа
+$\binom(2^n-1, 1)$, $\binom(2^n-1, 3)$, \dots, $\binom(2^n-1, 2^n-1)$
+have distinct reminders modulo $2^n$.
+%дают разные остатки при делении на $2^n$.
+%Дальше можно  действовать по-разному.
+
+\medskip
+\solutionn 1 ([D]).  Assume by the contrary that % Предположим противное, пусть
+$\binom(2^n-1, k)\equiv \binom(2^n-1, m) \pmod{2^n}$ for odd $k$ and $m$, $k>m$.
+Observe that %Заметим, что
+\begin{multline*}
+\binom(2^n-1, k)=\binom(2^n, k)-\binom(2^n-1, k-1)=\binom(2^n, k)-\binom(2^n, k-1)+\binom(2^n-1, k-2)
+=\dots
+=\\=
+\binom(2^n, k)-\binom(2^n, k-1)+\binom(2^n, k-2)-\ldots-\binom(2^n, m+1)+\binom(2^n-1, m)\,.
+\end{multline*}
+In particular
+$$
+\binom(2^n, k)-\binom(2^n, k-1)+\binom(2^n, k-2)-\ldots-\binom(2^n, m+1)\equiv 0\pmod{2^n}\,.
+$$
+Calculate the exponent $\ord_2 \binom(2^n,r)$ by Kummer's theorem.
+%Теорема Куммера позволяет для каждого $r$ легко вычислить показатель $\ord_2 \binom(2^n,r)$, а именно, если
+If $\ord_2 r=a$ then we have $n-a$ carries in addition $r$ and $2^n-r$
+(it is clear by the standard algorithm of addition),
+%, то при сложении $r$ и $2^n-r$ произойдет $n-a$ переносов (это очевидно из алгоритма сложения столбиком),
+%и значит,
+hence $\ord_2 \binom(2^n,r)=n-a$.
+In particular  $2^n\mid\binom(2^n, r)$  for odd $r$, that allows us
+to consider only one half of summands:
+%что позволяет отбросить в последнем сравнении половину слагаемых:
+$$
+\binom(2^n, k-1)+\binom(2^n, k-3)+\ldots+\binom(2^n, m+1)\equiv 0\pmod{2^n}\,.
+$$
+Now all the  $\binom(2^n,i)$ in the left hand side have even parameter $i$,
+%Другое следствие из приведенных рассуждений состоит в том, что у всех слагаемых $\binom(2^n,i)$
+%в левой части параметр $i$ четный и поэтому
+therefore $\ord_2 \binom(2^n,x)<n$.
+
+We will prove that this congruence is impossible and obtain a contradiction.
+%Докажем теперь, что выполнение этого сравнения невозможно.
+Choose $x$ with minimal  $\ord_2 \binom(2^n,x)$.
+Since ${\ord_2 \binom(2^n,x)<n}$ and the whole sum is divisible by $2^n$, there exists $y$,
+for which $\ord_2 \binom(2^n,x)=\ord_2 \binom(2^n,y)$.
+Then the binary representations of $x$ and $y$ end with equal number of 0's,
+and hence there exists $z$ between $x$ and $y$ which binary representation ends with bigger number of 0's.
+%оканчиваются на одинаковое число нулей, поэтому между $x$ и $y$ найдется число~$z$, оканчивающееся на большее число нулей.
+Then $\ord_2 \binom(2^n,z)<\ord_2 \binom(2^n,x)$, a contradiction.
+
+\medskip
+\solutionn 2 ([CSTTVZ]). Induction by $n$. We prove the step of induction.
+Let the statement be proven for all numbers less than $n$.
+%Кроме того, мы будем вести рассуждения по индукции, считая, что для меньших значений $n$ утверждение задачи уже доказано.
+Assume by the contrary that there exist $k$ and $\ell$,
+$k\ne \ell$, $0\leq k,\ell\leq 2^n-1$, such that $\binom(2^n-1, 2k+1)\equiv \binom(2^n-1, 2\ell+1)\mod{2^n}$.
+Observe that
+\begin{align}
+\binom(2^n-1,2k+1)&=
+\biggl(\frac{2^n}1-1\biggr)\biggl(\frac{2^n}2-1\biggr)\dots\biggl(\frac{2^n}{2k+1}-1\biggr)
+=\notag \\&=
+\biggl(\frac{2^n}1-1\biggr)\biggl(\frac{2^n}3-1\biggr)\dots\biggl(\frac{2^n}{2k+1}-1\biggr)\cdot
+\biggl(\frac{2^{n-1}}1-1\biggr)\biggl(\frac{2^{n-1}}2-1\biggr)\dots\biggl(\frac{2^{n-1}}{k}-1\biggr)
+= \label{egn:serb_reduction}\\&=
+\biggl(\frac{2^n}1-1\biggr)\biggl(\frac{2^n}3-1\biggr)\dots\biggl(\frac{2^n}{2k+1}-1\biggr)\cdot
+\binom(2^{n-1}-1,k)
+\equiv\notag \\&\equiv
+(-1)^{k+1}\binom(2^{n-1}-1,k) \pmod{2^n}
+\notag
+\end{align}
+and analogously $\binom(2^n-1,2\ell+1)\equiv (-1)^{\ell+1}\binom(2^{n-1}-1,\ell) \pmod{2^n}$.
+It follows by induction hypothesis that both $k$ and $\ell$ can not be odd.
+%По индукционному предположению, отсюда следует, что $k$ и $\ell$ не могут быть оба нечетными.
+Besides, due to the symmetry $\binom(2^n-1,r)=\binom(2^n-1,2^n-1-r)$
+the problem statement means that all the ``even'' binomial coefficients $\binom(2^n-1,2r)$
+are pairwise distinct modulo $2^n$ and form the same set of residues as ``odd'' binomial coefficients  $\binom(2^n-1,2r+1)$.
+%утверждение задачи означает также, что все биномиальные коэффициенты с четными показателями --- $\binom(2^n-1,2r)$ --- тоже попарно различны и по модулю $2^n$ образуют то же множество, что и биномиальные коэффициенты с нечетными показателями.
+Therefore $k$ and $\ell$ can not be even simultaneously.
+
+It remains to consider a case when $k$ and $\ell$ have distinct parity,
+%Осталось разобрать случай, когда $k$ и $\ell$ разной четности, пусть
+say $k=2a+1$, $\ell=2b$. Then
+$$
+\binom(2^{n-1}-1,2a+1)+\binom(2^{n-1}-1,2b)\equiv 0\pmod{2^n}\,.
+$$
+If $a=b$ the congruence is impossible because $\binom(2^{n-1}-1,2a)$ is odd and
+$$
+\binom(2^{n-1}-1,2a+1)+\binom(2^{n-1}-1,2a)
+=
+\binom(2^{n-1}-1,2a)\biggl( 1+ \frac{2^{n-1}-1-2a}{2a+1}\biggr)
+=
+\binom(2^{n-1}-1,2a)\cdot\frac{2^{n-1}}{2a+1}\equiv 2^{n-1}\pmod{2^n}\,.
+$$
+If $b\ne a$, then $\binom(2^{n-1}-1,2a)\ne \binom(2^{n-1}-1,2b)$ by the induction hypothesis,
+Since $\binom(2^{n-1}-1,2a)+\binom(2^{n-1}-1,2a+1)$ is divisible by $2^{n-1}$,
+the sum $\binom(2^{n-1}-1,2b)+\binom(2^{n-1}-1,2a+1)$ can not be divisible by $2^{n-1}$.
+\end{problem}
+
+\begin{problem}
+The author of this problem is A.\,Belov.
+%Докажите, что элементы одной строки треугольника Паскаля не взаимно просты
+%в следующем довольно сильном смысле.
+%Для каждого числа $\varepsilon>0$ существует $N$, такое, что при всех натуральных $n>N$ и
+%$k_1, k_2, \dots, k_{100}<\varepsilon \sqrt{n}$ верно, что числа
+%$$
+%\binom(2n, n+k_1), \ \binom(2n, n+k_2), \ \dots, \ \binom(2n, n+k_{100})
+%$$
+%имеют общий делитель.
+Observe that
+$$
+\binom(2n,n+k)=\binom(2n,n)\cdot\frac{n(n-1)\dots(n-k+1)}{(n+1)(n+2)\dots(n+k)},
+$$
+and therefore $\binom(2n,n+k)$ have many common divisors with $\binom(2n,n)$,
+because the denominator is not very big, more precisely, it does not exceed $(2n)^k$.
+Write the analogous equalities for all binomial coefficients
+$\binom(2n, n+k_1)$,  $\binom(2n, n+k_2)$,  \dots,  $\binom(2n, n+k_{100})$.
+Then GCD of all denominators in the right hand sides of the equalities does not exceed
+$(n+1)(n+2)\dots\bigl(n+[\varepsilon\sqrt{n}\,]\bigr)<(2n)^{ \varepsilon \sqrt{n}}$. But for big $n$
+the binomial coefficient $\binom(2n,n)$ is much greater, so after reducing by GCD
+the quotient is very big, and it divides all 100 binomial coefficients.
+%поэтому даже если сократить его на наибольший общий делитель всех знаменателей, останется весьма крупное частное, которое и будет общим делителем всех ста биномиальных коэффициентов.
+
+Explain more accurate the last reasoning. Observe that
+%Поясним последнее соображение с помощью оценки. Заметим, что
+$$
+\binom(2n, n)=\frac{2n}{n}\cdot\frac{2n-1}{n-1}\dots\frac{n+1}{1}>2^n
+\qquad\text{and}\qquad
+(2n)^{100 \varepsilon \sqrt{n}}=2^{\varepsilon \sqrt{n}\log_2n+\varepsilon \sqrt{n}}.
+$$
+For each $\varepsilon$ there exists $N$ such that for all $n>N$ we have the equality
+$
+\frac n2>\varepsilon \sqrt{n}\log_2n+\varepsilon \sqrt{n}.
+$
+If we reduce $\binom(2n,n)$ by GCD for these $n$, the quotient is at least $2^{n/2}$.
+\end{problem}
+
+
+\begin{problem}
+%Даны натуральные числа $m>1$, $n$, $k$.
+%Докажите, что хотя бы одно из чисел $C_n^k$, $C_{n+1}^k$, \dots,
+%$C_{n+k}^k$ не делится на $m$.
+a) The problem was presented at Leningrad olympiad, 1977.
+
+\solution 1 (without Kummer's theorem).
+This is solution from the excellent book \cite{spb}.
+Assume that all these numbers are divisible by $m$. Then the numbers
+%Допустим, что все эти числа делятся на $m$. Тогда числа
+\begin{align*}
+ \binom(n+k-1,k-1)&= \binom(n+k,k)- \binom(n+k-1,k)\;,\\
+ \binom(n+k-2,k-1)&= \binom(n+k-1,k)- \binom(n+k-2,k)\;,\\
+&\ldots\\
+ \binom(n,k-1)&= \binom(n+1,k)- \binom(n,k)
+\end{align*}
+are also divisible by $m$. Then analogously $m$ divides all the numbers
+$ \binom(n+i,j)$, where $i\le j$ are arbitrary nonnegative integers.
+But $ \binom(n,0)$ ($i=j=0$) is not divisible by $m$. A contradiction.
+
+\medskip
+\solution 2 (Kummer's theorem).
+Let $p$ be a prime divisor of $m$. Prove that at least one of the numbers
+$\binom(n,k)$, $\binom({n+1}, k)$, \dots, $\binom({n+k},k)$ is not divisible by $p$.
+%Запишем $k$ в системе счисления по основанию $p$.
+By Kummer's theorem if we choose  $\ell$  ($n-k\leq \ell\leq n$) such that
+the addition $k+\ell$ fulfills in base $p$ without carries
+%в системе счисления по основанию $p$ выполнялось без переносов,
+then the binomial coefficient $\binom(k+\ell,k)$ is not divisible by $p$.
+
+We will explain how to choose $\ell$ by giving a concrete example.
+%Это сделать совсем нетрудно. Мы ограничимся рассуждением на конкретном примере.
+Let $p=7$, $k=133$. We will write all the numbers in base 7. % (здесь и далее числа записаны в семиричной системе счисления).
+Since we try to choose $\ell$ in the set of $k+1$ numbers,
+%Поскольку диапазон, в котором мы ищем число $\ell$, содержит $k+1$ число,
+we can always choose $\ell$ such that $k+\ell$ to be one of the following numbers
+$$
+\dots133,  \quad \dots 233, \quad,  \dots, \quad \dots633.
+$$
+(Remind that 6 is the greatest digit in our example.) It is clear that the addition
+$k+\ell$ fulfills without carries.
+
+\medskip
+b)
+%Докажите, что для любого $k$ найдется бесконечно много таких $n$, что все числа
+%$\binom(n,k)$, $\binom({n+1},k)$, \dots, $\binom({n+k-1},k)$ делятся на $m$.
+We found this problem in \cite{Gashkov}.
+It is not difficult to construct $n$ by Kummer's theorem. Let $\ord_p m =s$,
+and $k$ have $d+1$ digits in base $p$.
+Let $n\kratno p^{d+s+1}$. Then the representations of numbers $n-k$, $n-k+1$, \dots, $n-1$
+contain digits $(p-1)$ in positions from $(d+2)$ to $(d+s+2)$.
+When we add $k$ to these numbers we have carries in these positions.
+Therefore by Kummer's theorem all the corresponding binomial coefficients are divisible by  $p^s$.
+
+Since it is not difficult to combine our reasoning for distinct $p$, the statemetn is proven.
+%Поскольку условия, наложенные на $n$, легко совмещаются для разных $p$, мы получаем отсюда требуемое.
+\end{problem}
+
+
+%\clearpage
+
+\subsection{Generalizations of Wilson's and Lukas' theorems}
+
+\begin{problem}
+%Докажите, если $n=\overline{n_r\dots n_1n_0}$ --- $p$-ичная запись числа $n$,  то
+%$\ord_p(n!)=\dfrac{n-(n_r+\ldots+n_1+n_0)}{p-1}$.
+It is well known that $\ord_p(n!)=\sum_k \bigl[\frac{n}{p^k}\bigr]$.
+If $n=n_dp^d+n_{d-1}p^{d-1}+\ldots+n_1p+n_0$ (representation in base $p$), then $\bigl[\frac{n}{p^k}\bigr]=n_dp^{d-k}+n_{d-1}p^{d-k-1}+\ldots+n_{k+1}p+n_k$
+and we can rewrite the formula for $\ord_p(n!)$ in the form
+$$
+\ord_p(n!)=\sum_{k=1}^d \left(\sum_{i=k}^{d} n_ip^{i-k}\right)=
+\sum_{i=1}^d n_i(p^{i-1}+p^{i-2}+\ldots+p+1)=
+\sum_{i=1}^d n_i\frac{p^i-1}{p-1}=
+\smash{\frac{\sum\limits_{i=0}^d n_i p^i - \sum\limits_{i=0}^d n_i}{p-1}.
+}
+$$
+This is exactly what we need.
+%\smallskip
+%Утверждение задачи также нетрудно доказать индукцией по $n$, см. \cite{Taba}.
+\end{problem}
+
+\begin{problem}
+%Обозначим через $(n!)_p$ произведение всех натуральных чисел от 1 до $n$, не делящихся на $p$.
+%Докажите следующее обобщение теоремы Вильсона. При $p\geq 3$ выполнено сравнение
+%$$
+%(p^q!)_p\equiv -1\pmod{p}\,,
+%$$
+%а при $p=2$, $q\geq 3$ выполнено сравнение $(p^q!)_p\equiv 1\pmod{p}$.
+a) Split the factors of $n!$ on groups of $(p-1)$ factors:
+$$
+(n!)_p=\prod_{k=0}^{[\frac np]-1}\!\!\bigl((kp+1)\cdot(kp+2)\cdots(kp+p-1)\bigr) \ \cdot  \
+\bigl([\tfrac np]p+1\bigl)\bigl([\tfrac np]p+2\bigl)\dots\bigl([\tfrac np]p+n_0\bigl)
+\equiv
+(-1)^{[\frac np]} n_0!\pmod p\,.\
+$$
+%\dfrac{n!}{p^{[n/p]}}$
+
+б) This statement can be found in Gauss works \cite{Gauss}.
+The product $(p^q!)_p$ contains factors in pairs: a factor and its inverse modulo $p^q$,
+the product of each pair is 1 modulo $p^q$. So we need to watch on those factors $m$
+which equals to its inverse, this factors satisfy the congruence
+%Таким образом, нам следует лишь проследить за теми множителями $m$, которые совпадают со своими обратными, т.е. удовлетворяют сравнению
+$$
+m^2\equiv 1\pmod{p^q}.
+$$
+For odd prime $p$ the congruence has 2 solutions: $\pm 1$.
+For $p=2$, $q\geq 3$ the congruence has two more solutions: $2^{q-1}\pm 1$.
+
+\smallskip
+c) Since $n!=(n!)_p\cdot p^{[\frac np]}\bigl([\frac np]\bigr)!$,
+the statement can be proven by induction by means of the congruence of statement a) of this problem.
+\end{problem}
+
+\begin{problem}
+We found this problem on the web-page of A.Granville \cite{Granville-http}.
+%Помимо теоремы Куммера, широко известна прямая и не столь симпатичная формула для числа
+It well known Legendre's formula for the number $\ell$ is that
+\begin{equation}
+\ell=\ord_p\binom(n,k)=
+\biggl(\Bigl[\frac np\Bigr] - \Bigl[\frac kp\Bigr] - \Bigl[\frac rp\Bigr]\biggr)+
+\biggl(\Bigl[\frac n{p^2}\Bigr] - \Bigl[\frac k{p^2}\Bigr] - \Bigl[\frac r{p^2}\Bigr]\biggr)+\ldots
+\label{eq:OrdCnk}
+\end{equation}
+Denote $\tilde{n}=[n/p]$ for brevity  and so forth,
+and collect all terms divisible by $p$ in the the formula for a~binomial coefficient:
+$$
+\binom(n,k)=\frac{(n!)_p}{(k!)_p (r!)_p}\cdot
+\frac{p^{[n/p]}}{p^{[k/p]} \cdot p^{[r/p]}}\cdot
+\frac{\tilde{n}!}{\tilde{k}! \cdot \tilde{r}!}.
+$$
+By generalized Wilson's theorem (problem \ref{prbl:Wilson_generalized}, b)
+the first fraction equals $\pm\frac{n_0!}{k_0!r_0!}\pmod p$, the third fraction allows us to apply induction,
+and the middle fraction (together with the sign of the first fraction)
+supply all the expressions containing $\ell$ by the formula \eqref{eq:OrdCnk}.
+%третья дробь позволяет действовать по индукции, а~средняя дробь
+%(и знак из обобщенной теоремы Вильсона, который мы не упомянули) по формуле \eqref{eq:OrdCnk} даст все нужные выражения, содержащие $\ell$.
+\end{problem}
+
+\begin{problem}
+a) Expand brackets in $(1+x)^{p^d}$ use the fact that $p\mid \binom(p^d, k)$ for $1\leq k\leq p^d-1$
+by Kummer's theorem.
+
+\smallskip
+b) Let $n=n'p+n_0$, $k=k'p+k_0$. By the previous statement  $(1+x)^{pn'}\equiv (1+x^p)^{n'}\pmod p$.
+Then
+$$
+(1+x)^n=(1+x)^{pn'}(1+x)^{n_0}\equiv (1+x^p)^{n'}(1+x)^{n_0} \pmod p.
+$$
+This congruence means that we transform the coefficients of the polynomial modulo $p$.
+The coefficient of $x^k$ at the l.h.s. equals $\binom(n,k)$.
+All the exponents in the first brackets at the r.h.s.  are divisible by $p$,
+hence the only way to obtain the term  $x^{pk'+k_0}$ is multiplying
+the $x^{pk'}$ from the first bracket and  $x^{k_0}$ from the second.
+%При раскрытии скобок в правой части мы видим, что все показатели в первой скобке делятся на $p$, поэтому единственный способ получить
+%одночлен $x^{pk'+k_0}$ --- это перемножить $x^{pk'}$ из первой скобки и $x^{k_0}$ из второй.
+Thus we obtain $\binom(n',k')\binom(n_0,k_0)$ and so $\binom(n,k)=\binom(n',k')\binom(n_0,k_0)$.
+Now Lukas' theorem follows by induction.
+\end{problem}
+
+
+\begin{problem}
+%Пусть $m$, $n$, $k$ --- натуральные числа, причем $n$ и $k$ взаимно просты. Докажите, что
+%$C_{mn}^k\equiv 0\pmod n$.
+%\cite[теорема 4]{Loveless}
+a, b) It follows from Kummer's theorem.
+\end{problem}
+
+\begin{problem}
+%Пусть $f_{n,a}=\sum_{k=0}^n (\binom(n,k))^a$.
+%Докажите, что $f_{n,a}=\prod_{i=0}^d f_{n_i,a}\pmod p$.
+\cite{Calkin}.
+%Фактически это упражнение на раскрытие скобок.
+In the following calculation we use that $\binom(n_i,k_i)=0$ for $k_i>n_i$;
+this allows us to apply Lukas' theorem and truncate a lot of summands:
+%это позволяет, применив теорему Люка, отбросить при суммировании большое число слагаемых.
+$$
+f_{n,a}=\sum_{k=0}^n \binom(n,k)^a
+\equiv
+\sum_{k_d=0}^{n_d} \sum_{k_{d-1}=0}^{n_{d-1}}\dots\sum_{k_0=0}^{n_0} \prod_{i=0}^d \binom(n_i,k_i)^a
+\equiv
+\prod_{i=0}^d \sum_{k_i=0}^{n_i}\binom(n_i,k_i)^a
+\equiv
+\prod_{i=0}^d f_{n_i,a} \pmod p.
+$$
+\end{problem}
+
+
+\subsection{Variations on Wolstenholme's theorem}
+
+\begin{problem}
+This is an exercise on reading an article. The statement is proven in article \cite{Vinberg}.
+%Утверждение доказано в статье Винберга, но доказательство не выделено явно.
+Observe that
+$$
+2\sum_{i=1}^{p-1}\frac1i =\sum_{i=1}^{p-1}\frac1i+\frac1{p-i} =p\sum_{i=1}^{p-1}\frac1{i(p-i)}\,.
+$$
+Hence the sum under consideration is divisible by $p$.
+Since $\frac1i \equiv -\frac1{p-i}\pmod p$, it remains to check that
+$$
+\smash{\sum_{i=1}^{p-1}\frac1{i^2} \equiv 0\pmod{p}.}
+$$
+But $\frac1{1^2}$, $\frac1{2^2}$, \dots, $\frac1{(p-1)^2}$ modulo $p$
+is the same set as\footnote{ \ These sets coincide because they contain $p-1$ element each,
+and it is clear that all the reminders in each set are non zero and pairwise distinct.}, что
+$1^2$, $2^2$, \dots, $(p-1)^2$. Therefore it is sufficient to prove that
+\begin{equation}
+\sum_{i=1}^{p-1} i^2 \equiv 0\pmod{p}.
+\label{eq:SumSquaresModP}
+\end{equation}
+Let $\sum\limits_{i=1}^{p-1} i^2 \equiv s\pmod{p}$. It $p>5$ we can always choose $a$, such that $a^2\not\equiv 1\pmod p$.
+Then the sets $\{1, 2, \dots, p-1\}$ and $\{a, 2a, \dots, (p-1)a\}$ coincide (the proof is the same as in the footnote) and
+$$
+s\equiv \sum_{i=1}^{p-1} i^2 = \sum_{i=1}^{p-1} (ai)^2 =a^2 \sum_{i=1}^{p-1} i^2 \equiv a^2s \pmod p\,.
+$$
+Thus $s\equiv 0\pmod p$.
+\end{problem}
+
+
+\begin{problem}
+%Пусть $p=4k+3$ --- простое число. Вычислить
+%$$\frac{1}{0^2+1}+\frac{1}{1^2+1}+\dots+\frac{1}{(p-1)^2+1} \pmod{p}.$$
+\answer $2k+2$.
+This problem of A.\,Golovanov was presented at Tuimaada-2012 olympiad.
+Observe that for $p=4k+3$ the equation $x^2+1=0$
+has no solutions in the set of residues modulo $p$, and hence the denominators of all fractions are non zero.
+
+\medskip
+\solutionn 1. Let $a_i=i^2+1$, $i=0, \dots, p-1$. Then the expression equals
+$$
+\frac{\sigma_{p-1}(a_0, a_1, \dots, a_{p-1})}{\sigma_{p}(a_0, a_1, \dots, a_{p-1})},
+$$
+where $\sigma_i$ is an elementary symmetrical polynomial of degree $i$.
+Find the polynomial for which the numbers $a_i$ are its roots:
+$$
+\prod_{i=0}^{p-1}(x-1-i^2).
+$$
+Change the variable $x-1=t^2$ and obtain
+$$
+\prod_{i=0}^{p-1}(t^2-i^2)=\prod_{i=0}^{p-1}(t-i)\prod_{i=0}^{p-1}(t+i)\equiv(t^p-t)(t^p-t)=t^{2p}-2t^{p+1}+t^2.
+$$
+Now apply the inverse change of variables and obtain for $p=4k+3$
+$$
+\prod_{i=0}^{p-1}(x-1-i^2)\equiv(x-1)^{p}-2(x-1)^{\frac{p+1}2}+(x-1)=x^p+\ldots+(p+2\cdot\tfrac{p+1}{2}+1)x-4.
+$$
+By Viete's theorem $\sigma_p\equiv4\pmod p$, $\sigma_{p-1}\equiv 2\pmod p$, therefore
+$\frac{\sigma_{p-1}}{\sigma_p} \equiv \frac12 \equiv 2k+2\pmod{p}$.
+
+\medskip
+\solutionn 2.
+Split all nonzero residues modulo $p$, except $\pm 1$, on pairs of reciprocal.
+We obtain  $2k$ pairs and in each pair $(i, j)$
+$$
+ij\equiv 1 \quad\Leftrightarrow\quad
+i^2j^2\equiv 1 \quad\Leftrightarrow\quad
+(ij)^2+i^2+j^2+1\equiv i^2+j^2+2 \pmod p.
+$$
+Therefore,
+$$
+1\equiv \frac{(ij)^2+i^2+j^2+1}{(i^2+1)(j^2+1)}\equiv \frac{i^2+j^2+2}{(i^2+1)(j^2+1)}
+=\frac{1}{i^2+1}+\frac{1}{j^2+1}\pmod p.
+$$
+So, the sum is equal to $\frac{1}{0^2+1}+\frac{1}{1^2+1}+\frac{1}{(-1)^2+1}+2k\equiv 2k+2$.
+
+\medskip
+\solutionn 3. By Fermat's little theorem the operations
+$x\mapsto x^{-1}$ and $x\mapsto x^{p-2}$ modulo $p$ coincide.
+So it is sufficient to calculate the sum
+\begin{equation}
+\sum_{x=0}^{p-1}(x^2+1)^{p-2}=\sum_{x=0}^{p-1}\sum_{m=0}^{p-2}\binom(p-2,m)x^{2m}=
+\sum_{m=0}^{p-2}\binom(p-2,m)S_{2m},
+\label{eq:golovanov1}
+\end{equation}
+where $S_{2m}=\sum\limits_{x=0}^{p-1} x^{2m}$.
+Evidently $S_{2m} \equiv -1\pmod p$ for $m=\frac{p-1}2$.
+Prove that $S_{2m}\equiv 0\pmod p$ for all other $m\leq p-1$.
+Indeed, for each $m$ we can choose a non zero residue $a$ such that $a^{2m}\not\equiv 1\pmod p$
+and after that we can reason as in \eqref{eq:SumSquaresModP}.
+%Тогда отображение $x\mapsto ax$ является просто перестановкой множества остатков~и
+%$$
+%a^{2m}S_{2m} =\sum_{x=0}^{p-1} (ax)^{2m}\equiv S_{2m}\,,
+%$$
+%откуда $S_{2m}\equiv 0$.
+For the sum \eqref{eq:golovanov1} we have
+\begin{align*}
+\sum_{m=0}^{p-2}\binom(p-2,m)S_{2m}\equiv - \binom(p-2,\frac{p-1}2)= -\binom(4k+1,2k+1)&=-\frac{(4k+1)\cdot 4k\cdot\ldots\cdot(2k+1)}{1\cdot 2\cdot\ldots\cdot(2k+1)}
+\equiv\\ &\equiv
+-\frac{(-2)\cdot(-3)\dots(2k+2)}{1\cdot 2\cdot\ldots\cdot(2k+1)}\equiv 2k+2\pmod{p}.
+\end{align*}
+\end{problem}
+
+
+\begin{problem}
+%Пусть $k\nekratno (p-1)$. Докажите, что
+%$\displaystyle \frac{1}{1^k}+\frac{1}{2^k}+\ldots+\frac{1}{(p-1)^k}\equiv0 \pmod{p^2}.$
+We found these statements in  \cite{Gessel}.
+
+a) For each prime divisor $p\mid m$ choose $a_p$ such that $p\nmid (a_p^{k}-1)$.
+By the Chinese reminder theorem choose $a$ such that $a\equiv a_p\pmod p$ for all $p$.
+Then the result can be proven by reasoning as in \eqref{eq:SumSquaresModP}.
+
+b) Observe that for odd $k$ by the binomial formula we have $i^k+(p-i^k)\equiv ki^{k-1}p\pmod{p^2}$. Then
+$$
+2\sum_{i=1}^{p-1}\frac{1}{i^{k}}=
+%\biggl(\frac{1}{1^k}+\frac{1}{2^k}+\ldots+\frac{1}{(p-1)^k}\biggr)
+\sum_{i=1}^{p-1}\biggl(\frac{1}{i^k}+\frac{1}{(p-i)^k}\biggr)=
+\sum_{i=1}^{p-1}\frac{i^k+(p-i)^k}{i^k(p-i)^k} \equiv
+\sum_{i=1}^{p-1}\frac{ki^{k-1}p}{i^k(-i)^k}\equiv
+-kp\sum_{i=1}^{p-1}\frac{1}{i^{k+1}}
+\pmod{p^2}.
+$$
+The sum in the r.h.s is divisible by $p$ by the statement a).
+\end{problem}
+
+\begin{problem}
+The congruence holds even modulo $p^7$ (see \cite{Mestrovic}), but it goes a bit strong.
+We can reason as in~\cite{Vinberg}, tracing all powers till $p^4$, and obtain
+\begin{multline}
+    \binom({p-1},{2p-1})=
+    \frac{(2p-1)(2p-2)\cdot\ldots\cdot(p+1)}{p!}
+    =     \left(\frac{2p}1-1\right)
+    \left(\frac{2p}2-1\right)\cdot\ldots\cdot
+    \left(\frac{2p}{p-1}-1\right)
+\equiv\\ \equiv
+1-2p\sum_{i=1}^{p-1}\frac1i
+\smash[b]{  +4p^2\sum_{\substack{i,j=1\\ i<j}}^{p-1} \frac1{ij}
+  -8p^3\sum_{\substack{i,j, k=1\\ i<j<k}}^{p-1} \frac1{ijk}
+  \pmod {p^4}.
+}\label{eqn:Wolst_mod_p^4}
+\end{multline}
+The last sum can be expressed via power sums: %Выразим последнюю сумму через степенные суммы:
+$$
+\sum_{\substack{i,j, k=1\\ i<j<k}}^{p-1} \frac1{ijk}=\frac{S_3}3-\frac{S_1S_2}2+\frac{S_1^3}6\,,
+\quad\text{where  } S_k=\sum\limits_{i=1}^{p-1}\frac1{i^k}.
+$$
+We now that $S_1$ and $S_3$ are divisible by $p^2$ (the latter due to problem \ref{prbl:sums_mod_p^2}b).
+Therefore the last term in the formula \eqref{eqn:Wolst_mod_p^4} can be omitted.
+\end{problem}
+
+\goodbreak
+
+\begin{problem}
+%Эквивалентность трех сравнений
+The problem is from \cite{Vinberg}, variations can be found in \cite{Gardiner}.
+Since
+$$
+2\sum_{k=1}^{p-1} \frac1{k^2} = \sum_{k=1}^{p-1} \Bigl(\frac1{k^2}+\frac1{(p-k)^2}\Bigr)=
+\sum_{k=1}^{p-1} \frac{k^2+(p-k)^2}{k^2(p-k)^2} \equiv
+-2\sum_{k=1}^{p-1} \frac{1}{k(p-k)} \pmod{p^2}\,,
+$$
+the statement 3) is equivalent to the congruence
+$\displaystyle\sum_{k=1}^{p-1} \frac{1}{k(p-k)}\equiv 0 \pmod{p^2}$.
+The statement 2) is equivalent to the same congruence, because
+$\displaystyle 2\sum_{k=1}^{p-1} \frac{1}k =
+2\sum_{k=1}^{p-1}\Bigl( \frac{1}k+\frac{1}{p-k}\Bigr)=2p\sum_{k=1}^{p-1} \frac{1}{k(p-k)}$.
+Finally we know from the previous problem that
+%\begin{equation}\label{2pp-sec}
+$$
+\binom(2p-1, p-1) \equiv
+1-p^2\sum_{i=1}^{p-1}\frac1{i(p-i)} + 4p^2\sum_{\substack{i,j=1\\ i<j}}^{p-1} \frac1{ij}
+  \pmod {p^4}.
+$$
+So the statement 1) is equivalent to the congruence
+\begin{equation}
+\sum_{i=1}^{p-1}\frac1{i(p-i)} \equiv  4\sum_{\substack{i,j=1\\ i<j}}^{p-1} \frac1{ij} \pmod {p^2}.
+\label{eq:bububub}
+\end{equation}
+Rewrite the expression in the r.h.s.:
+$$
+4\sum_{\substack{i,j=1\\ i<j}}^{p-1} \frac1{ij} =
+2\biggl(\sum_{k=1}^{p-1}\frac1i\biggr)^2 - 2\sum_{k=1}^{p-1}\frac1{k^2}
+\equiv
+2\biggl(\sum_{k=1}^{p-1}\frac1i\biggr)^2+
+2\sum_{k=1}^{p-1} \frac{1}{k(p-k)}.
+$$
+The sum in brackets is divisible by $p$, its square is divisible by $p^2$, and we can omit this term.
+Then from \eqref{eq:bububub} we see that the statement 1) is equivalent to the congruence
+$
+\displaystyle\sum_{k=1}^{p-1} \frac{1}{k(p-k)}\equiv 0 \pmod{p^2}
+$.
+\end{problem}
+
+
+\begin{problem}
+%Докажите, что для всякого простого $p$ и произвольных $m$ и $n$ \
+%$(\binom(pn,pm)-\binom(n,m))\kratno p^2$.
+a) \solution 1 (\cite[proposition 2.12]{Taba}). Induction on $n$. Expand brackets in the equality
+$$
+(a+b)^{pn}=(a+b)^{p(n-1)}(a+b)^{p}
+$$
+Equate the coefficients of $a^{pm}b^{p(n-m)}$:
+$$
+\binom(pn,pm)=\binom(p(n-1),pm)\binom(p,0)+\binom(p(n-1),pm-1)\binom(p,1)+\ldots+
+\binom(p(n-1),pm-p+1)\binom(p,p-1)+\binom(p(n-1),pm-p)\binom(p,p)\,.
+$$
+All summands except first and last are divisible by $p^2$, because by Lucas' theorem each
+binomial coefficient is divisible by $p$.
+%каждый биномиальный коэффициент в них делится на $p$ по теореме Люка.
+Hence
+$$
+\binom(pn,pm)\equiv \binom(p(n-1),pm)+\binom(p(n-1),{p(m-1)})\pmod{p^2}.
+$$
+By the induction hypothesis
+$$
+\binom(p(n-1),pm)+\binom(p(n-1),{p(m-1)})\equiv
+\binom(n-1,m)+\binom(n-1,m-1)\equiv\binom(n,m)\pmod{p^2}.
+$$
+
+\medskip
+\solution 2 ([D]). Prove that $\binom(kp, {mp})\equiv \binom(k,m)\pmod{p^2}$ by induction on $m$.
+
+To prove the base $m=1$ we have to check that $\binom(pk,p)-\binom(k,1)\equiv 0\pmod{p^2}$. We have
+\begin{equation}
+\binom(pk,p)-\binom(k,1)=\frac{pk(pk-1)\dots(pk-p+1)}{p!}-k=
+\biggl(\frac{(pk-1)(pk-1)\dots(pk-p+1)}{(p-1)!} -1\biggr).
+\label{eqn:didin1}
+\end{equation}
+Split the multipliers in the numerator onto pairs:
+$$
+(pk-i)(pk-p+i)\equiv pi^2-i^2 \pmod{p^2}.
+$$
+We see that the product modulo~$p^2$ of each pair does not depend on $k$.
+%Как видим, по модулю $p^2$ произведение чисел в парах не зависит от $k$.
+Therefore the difference \eqref{eqn:didin1} modulo~$p^2$ does not depend on $k$, too.
+Since it is equal to 0 for $k=1$, it is equal to 0 for all $k$.
+
+The step of induction. Let $\binom(kp, {(m-1)p})\equiv \binom(k,m-1)\pmod{p^2}$. We have
+\begin{multline}
+\binom(kp,mp)= \binom(kp, {(m-1)p})\cdot \frac{(p(k-m)+1)(p(k-m)+1)\dots(p(k-m)+p)}{pm(pm-1)\dots(pm-p+1)}
+=\\=
+\binom(kp, {(m-1)p})\cdot \frac{(p(k-m)+1)(p(k-m)+1)\dots(p(k-m)+p-1)}{(pm-1)\dots(pm-p+1)}
+\cdot\frac{k-m+1}{m}.
+\label{eqn:didin2}
+\end{multline}
+Remark that both fractions are correctly defined modulo $p^2$. As in the proof of base,
+the expression in the numerator of big fraction does not depend (modulo~$p^2$) on~$k$.
+Then we can put $k=0$ for the calculating the fraction modulo $p^2$
+and obtain that it is congruent to 0.
+For the remaining part of the expression we can apply the induction hypothesis and obtain
+%Пользуясь этим соображением и предположением индукции, мы можем заменить правую часть \eqref{eqn:didin2} на
+$$
+\equiv \binom(k, {m-1})\cdot\frac{k-m+1}{m}=\binom(k,m)\pmod{p^2}.
+$$
+
+
+\medskip
+b) \solution 1 (combinatorial). As it has been suggested in~\cite{Vinberg},
+consider samples of $kp$ objects from the set of $pn$ objects. Let the initial set be split on blocks of  $p$ objects.
+The number of block samples equals $\binom(n,k)$. Hence it remains to check that non block samples is divisible by~$p^3$.
+But the number of non block samples with 3 or more blocks is divisible by $p^3$ (see~\cite{Vinberg}).
+%Как объясняется в статье, количество неблочных выборок с тремя и~более блоками делится на $p^3$.
+For $k>1$ every non block sample consists of at least 3 blocks, so in this case the statement is true.
+It remains to consider a case when $k=1$ and we count the number of non block samples of $p$ objects from the set of $2p$ objects. This number equals $\binom(2p,p)-2$, by Wolstenholme's theorem it is divisible by $p^3$.
+
+\medbreak
+\solutionn 2. %([CSTTVZ]).
+In the formula $\binom(a,b)=\frac{a(a-1)\dots(a-b+1)}{b(b-1)\dots1}$ split the numerator and the denominator
+onto blocks of $p$ terms, reduce the first terms in each block, and collect the quotients in a separate expression:
+%после чего сократим первые множители в~каждом блоке, а частные соберем в отдельное выражение:
+\begin{align*}
+\binom(mp,kp)&=
+\frac{m\!\not\!p\cdot(mp-1)\dots\bigl(mp-(p\!-\!1)\bigr)}{k\!\not\!p\cdot(kp-1)\dots\bigl(kp-(p\!-\!1)\bigr)}\cdot
+\frac{(m\!-\!1)\!\not\!p\cdot\bigl((m\!-\!1)p-1\bigr)\dots\bigl((m\!-\!1)p-(p\!-\!1)\bigr)}%
+     {(k\!-\!1)\!\not\!p\cdot\bigl((k\!-\!1)p-1\bigr)\dots\bigl((k\!-\!1)p-(p\!-\!1)\bigr)}\cdot\ldots
+\times \\ &\qquad\qquad\qquad\qquad\qquad\qquad\times
+\frac{(m\!-\!k\!+\!1)\!\not\!p\cdot\bigl((m\!-\!k\!+\!1)p-1\bigr)\dots\bigl((m\!-\!k\!+\!1)p-(p\!-\!1)\bigr)}%
+     {\not\!p\cdot(p-1)\dots 1}
+=\\ &=
+\binom(m,k)\cdot
+\frac{(mp-1)\dots\bigl(mp-(p\!-\!1)\bigr)}{(kp-1)\dots\bigl(kp-(p\!-\!1)\bigr)}\cdot\ldots\cdot
+\frac{\bigl((m\!-\!k\!+\!1)p-1\bigr)\dots\bigl((m\!-\!k\!+\!1)p-(p\!-\!1)\bigr)}{(p-1)\dots 1}\,.
+\end{align*}
+It remains to check that the product of fractions is congruent to  $1 \pmod{p^3}$.
+For this prove the congruence %Для этого достаточно проверить сравнение
+$$
+\frac{(np-1)\dots\bigl(np-(p\!-\!1)\bigr)}{(rp-1)\dots\bigl(rp-(p\!-\!1)\bigr)}\equiv 1\pmod{p^3}
+$$
+or, even, it would be better to prove the following congruence %или, лучше, вот такое сравнение
+$$
+\frac{(np-1)\dots\bigl(np-(p\!-\!1)\bigr)}{(p-1)!} \equiv
+\frac{(rp-1)\dots\bigl(rp-(p\!-\!1)\bigr)}{(p-1)!} \pmod{p^3}\,.
+$$
+This is true because both parts are congruent to $1 \pmod{p^3}$, that can be shown analogously to the proof of Wolstenholme's theorem.
+%что устанавливается аналогично доказательству теоремы Волстенхолма.
+\end{problem}
+
+\setcounter{footnote}0
+
+\begin{problem}
+%Докажите, что при $p\geq 5$ \ $\binom(p^2,p}\equiv \binom(p,1) \pmod{p^5}$.
+a) \cite[theorem 2.14]{Taba}. Transform the difference
+$$
+\binom(p^2,p)- \binom(p,1)=
+\frac{p^2(p^2-1)\ldots(p^2-(p-1))}{1\cdot2\cdot \ldots\cdot (p-1)p}-p=
+\frac{p}{(p-1)!}\Bigl((1-p^2)(2-p^2)\ldots((p-1)-p^2)-1\cdot2\cdot\ldots\cdot(p-1) \Bigr).
+$$
+It remains to check that
+$$
+(1-p^2)(2-p^2)\ldots((p-1)-p^2) \equiv 1\cdot2\cdot\ldots\cdot(p-1)\pmod{p^4}.
+$$
+Expand brackets in the l.h.s.:
+$$
+(1-p^2)(2-p^2)\ldots((p-1)-p^2)=
+1\cdot2\cdot\ldots\cdot(p-1)+
+\smash[t]{p^2\Bigl(1+\frac12+\ldots+\frac1{p-1}\Bigr)} (p-1)! + \text{terms divisible by $p^4$}.
+$$
+By the problem \ref{prbl:Wolstenholm_reformulated} the second summand is divisible by $p^4$.
+
+
+\medskip
+b) Observe that $\binom(p^{s+1},p)=p^s\cdot\binom(p^{s+1}-1,p-1)$, hence it is sufficient to prove that
+%поэтому достаточно проверить, что
+$\binom(p^{s+1}-1,p-1)\equiv 1\pmod{p^{s+3}}$.
+\begin{multline*}
+\binom(p^{s+1}-1,p-1)=\frac{(p^{s+1}-1)(p^{s+1}-2)\dots(p^{s+1}-(p-1))}{1\cdot2\cdots (p-1)}=
+\biggl(\frac{p^{s+1}}{1}-1 \biggr)\biggl(\frac{p^{s+1}}{2}-1 \biggr)\dots \biggl(\frac{p^{s+1}}{p-1}-1 \biggr)
+\equiv \\ \equiv
+(-1)^{p-1}+p^{s+1}\Bigl(1+\frac12+\ldots+\frac1{p-1} \Bigr) \pmod{p^{s+3}}.
+\end{multline*}
+Since $(-1)^{p-1}=1$ and $1+\frac12+\ldots+\frac1{p-1}\equiv 0\pmod{p^2}$ we are done.
+%В статье \cite{Gardiner} доказывается чуть более общий факт.
+\end{problem}
+
+\goodbreak
+
+\begin{problem}
+The problem is from \cite{Vinberg}, we present solution [T].
+\begin{multline*}
+\binom(p^3,p^2)-\binom(p^2,p)=p\left( \binom(p^3-1,p^2-1)-\binom(p^2-1,p-1) \right)
+=\\=
+p\left( \biggl(\frac{p^3}{1}-1\biggr)\biggl(\frac{p^3}{2}-1\biggr)\dots\biggl(\frac{p^3}{p^2-1}-1\biggr)
+ - \biggl(\frac{p^2}{1}-1\biggr)\biggl(\frac{p^2}{2}-1\biggr)\dots\biggl(\frac{p^2}{p-1}-1\biggr) \right)
+=\\=
+p\biggl(\frac{p^2}{1}-1\biggr)\biggl(\frac{p^2}{2}-1\biggr)\dots\biggl(\frac{p^2}{p-1}-1\biggr)
+\left(\prod_{\substack{k=1 \\ p\nmid k}}^{p^2-1}  \biggl(\frac{p^3}{k}-1\biggr)
+-1\right).
+\end{multline*}
+It is sufficient to prove that the last bracket is divisible by $p^7$.
+Transform the product:
+$$
+\prod_{\substack{k=1 \\ p\nmid k}}^{p^2-1}  \biggl(\frac{p^3}{k}-1\biggr)=
+\prod_{\substack{k=1 \\ p\nmid k}}^{\frac{p^2-1}2}
+\biggl(\frac{p^3}{k}-1\biggr)\biggl(\frac{p^3}{p^2\!-\!k}-1\biggr)=
+\prod_{\substack{k=1 \\ p\nmid k}}^{\frac{p^2-1}2} \biggl(\frac{p^6-p^5}{k(p^2\!-\!k)}+1\biggr)\equiv
+1+p^5(p-1)\sum_{\substack{k=1 \\ p\nmid k}}^{\frac{p^2-1}2}\frac{1}{k(p^2\!-\!k)} \pmod{p^7}.
+$$
+Now we have to check that the last sum is divisible by $p^2$. This is true because by problem 4.3a)
+$$
+\sum_{\substack{k=1 \\ p\nmid k}}^{\frac{p^2-1}2}\frac{1}{k(p^2\!-\!k)}\equiv
+-\sum_{\substack{k=1 \\ p\nmid k}}^{\frac{p^2-1}2}\frac{1}{k^2}
+%\equiv-\sum_{\substack{k=1 \\ p\not\vert k}}^{\frac{p^2-1}2} k^2
+\equiv 0\pmod{p^2}.
+$$
+%(последнее --- по задаче 4.3а).
+\end{problem}
+
+
+\begin{problem}
+%Докажите, что при $n>1$ \ $C_{2^{n+1}}^{2^n}-C_{2^{n}}^{2^{n-1}}$ делится на $2^{2n+2}$.
+The statement is taken from \cite[theorem 5]{KvantFuksFuks}, its generalization can be found in \cite{KvantShirshov}.
+
+\solution  1 (\cite[proposition 2.19]{Taba}).
+Use the fact that the difference $\smash[b]{\binom(2^{k+1}, 2^k)-\binom(2^{k}, 2^{k-1})}$ is equal to the coefficient of $x^{2^k}$
+in the polynomial
+\begin{multline*}
+(1+x)^{2^{k+1}}-(1-x^2)^{2^{k}}=(1+x)^{2^k}\Bigl((1+x)^{2^{k}}-(1-x)^{2^{k}}\Bigr)
+=\\=
+\Biggl(1+\binom(2^k,1)x+\binom(2^k,2)x^2+\ldots+x^{2^k} \Biggr)
+\cdot2 \Biggl(\binom(2^k,1)x+\binom(2^k,3)x^3+\ldots+\binom(2^k,2^k-1)x^{2^k-1} \Biggr).
+\end{multline*}
+Since the second polynomial contains odd exponents only, the coefficient of $x^{2^k}$ in the product equals
+$$
+2 \Biggl(\binom(2^k,1)\binom(2^k,2^k-1)+\binom(2^k,3)\binom(2^k,2^k-3)+\ldots+\binom(2^k,2^k-1)\binom(2^k,1) \Biggr).
+$$
+By problem \ref{prbl:delimost_bin_koef}\,b) $2^k$ divides each binomial coefficient in this expression,
+moreover each term occurs twice in the sum, and the sum itself is multiplied by 2. Thus all the expression
+is divisible by $2^{2k+2}$.
+
+\medskip
+\solution 2 ([CSTTVZ]). Since $\binom(2^{n+1},2^n)=2\binom(2^{n+1}-1,2^n-1)$, it is sufficient to prove that
+$$
+\smash[b]{\binom(2^{n+1}-1,2^n-1)\equiv \binom(2^{n}-1,2^{n-1}-1)\pmod{2^{2n+1}}}.
+$$
+Similarly to \eqref{egn:serb_reduction} we obtain
+$$
+\binom(2^{n+1}-1,2^n-1)=
+\biggl(\frac{2^{n+1}}{1}-1\biggr) \biggl(\frac{2^{n+1}}{3}-1\biggr)\dots
+\biggl(\frac{2^{n+1}}{2^n-1}-1\biggr)\cdot\binom(2^{n}-1,2^{n-1}-1)\,.
+$$
+It is sufficient to prove that
+$$
+L=\biggl(\frac{2^{n+1}}{1}-1\biggr) \biggl(\frac{2^{n+1}}{3}-1\biggr)\dots
+\biggl(\frac{2^{n+1}}{2^n-1}-1\biggr) \equiv 1 \pmod{2^{2n+1}}\,.
+$$
+This is true because
+\begin{multline*}
+L\equiv (-1)^{2^{n-1}}-2^{n+1}\biggl(\frac11+\frac13+\frac15+\ldots+\frac{1}{2^{n}-1} \biggr)
+\equiv \\ \equiv
+1-2^{n+1}\biggl(\frac{2^n}{1\cdot(2^n-1)}+\frac{2^n}{3\cdot(2^n-3)}+\ldots+
+\frac{2^n}{(2^{n-1}-1)(2^{n-1}+1)} \biggr) \equiv 1\pmod{2^{2n+1}}\,.
+\end{multline*}
+\end{problem}
+
+
+\begin{problem}
+%Докажите, что при $p>1$ \
+%$(-1)^\frac{p-1}2\binom(p-1,\frac{p-1}2)\equiv 4^{p-1}\pmod{p^3}$.
+This is theorem of Morley \cite{Morley}.
+
+\solution 1 (author's proof, 1895). It goes a bit beyond the school curriculum.
+%Оно лишь чуть-чуть выходит за рамки школьной программы.
+
+Take the formula which expresses $\cos^{2n+1}x$ via cosines of multiple angles,\footnote{ \
+The reader who is interested in question ``from where do we take it'' and not satisfied by the answer ``from some text-book'' may wish to use the Euler's formula $\cos\varphi=\frac12(e^{i\varphi}+e^{-i\varphi})$ and raise its r.h.s in power $2n+1$ by the binomial formula.}
+or, as they were saying in that times, write $\cos^{2n+1}x$ in the form handy for integrating:
+$$
+2^{2n}\!\cos^{2n+1}\!x= \cos(2n\!+\!1)x + (2n\!+\!1)\cos(2n-1)x+\frac{(2n\!+\!1)\cdot 2n}{1\cdot 2}\cos(2n-3)x+\ldots+
+\frac{(2n\!+\!1)\cdot 2n\dots(n\!+\!2)}{n!}\cos x.
+$$
+Now integrate it\footnote{ \ When we were learning the rules of multiplication, we just memorized that ``minus by minus equals plus''. In this formula we multiply signs. If we need to multiply $n$ minuses, the record $(-)^n$ seems to be appropriate. So we leave the old-fashioned notation $(-)^n$, used by the author, instead of the modern one $(-1)^n$.
+}
+over the interval $[0,\frac\pi2]$:
+\begin{align*}
+2^{2n}\int\cos^{2n+1}x\,dx &= \frac{\sin(2n+1)x}{2n+1}+\frac{2n+1}{2n-1}\sin(2n-1)x+\ldots,
+\\
+2^{2n}\int\limits_0^{\pi/2}\cos^{2n+1}x\,dx &= (-)^n\biggl(\frac{1}{2n+1}-\frac{2n+1}{2n-1}+\ldots\biggr).
+\end{align*}
+Every first grade student of university knows that it is convenient to use integration by parts for calculating this integral:
+%Но любой первокурсник знает, что куда проще этот интеграл вычисляется с помощью формулы понижения, для получения которой нужно всего лишь проинтегрировать по частям:
+\begin{multline*}
+I_{2n+1}=\int\limits_0^{\pi/2}\cos^{2n+1}x\,dx = \int\limits_0^{\pi/2}\cos^{2n}x\cos x\,dx
+= \cos^{2n}x\sin x\biggm\vert_{0}^{\pi/2}+2n\int\limits_0^{\pi/2}\cos^{2n-1}x\sin^2 x\,dx
+=\\=0+2n\int\limits_0^{\pi/2}\cos^{2n-1}x(1-\cos^2 x)\,dx=2n\cdot I_{2n-1}-2n\cdot I_{2n+1}\,,
+\end{multline*}
+therefore $I_{2n+1}=\frac{2n}{2n+1}\cdot I_{2n-1}$. Since $I_1=1$, we can apply the formula $n$ times and obtain
+$$
+\int\limits_0^{\pi/2}\cos^{2n+1}x\,dx=
+\frac{2n\cdot(2n-2)\dots2}{(2n+1)(2n-1)\dots 3}\,.
+$$
+Equating of these two results give us the formula
+$$
+2^{2n}\frac{2n\cdot(2n-2)\dots2}{(2n+1)(2n-1)\dots 3}=
+(-)^n\biggl(\frac{1}{2n+1}-\frac{2n+1}{2n-1}+\ldots+\frac{(2n\!+\!1)\cdot 2n\dots(n\!+\!2)}{n!}\biggr).
+$$
+Let $p=2n+1$ be a prime number. We obtain the desired congruence by multiplying the last formula by~$p$:
+%--- простое число, то домножая на $p$, мы сразу получаем требуемое сравнение
+$$
+2^{2n}\frac{2n\cdot(2n-2)\dots2}{(2n-1)(2n-3)\dots 3}\equiv (-)^n \pmod{p^2}\,.
+$$
+
+\medskip
+\solutionn 2 ([CSTTVZ]). We will use the following notations:
+$$
+A=\sum_{i=1}^{\frac{p-1}2}\frac1i, \qquad
+B=\sum_{1\leq i<j\leq\frac{p-1}2}\frac1{ij}, \qquad
+C=\sum_{\substack{1\leq i \leq p-1\\ i \text{ is odd}}}\frac1i.
+$$
+%Так как $A\equiv 0 \pmod p$,  то
+Then $A^2=\smash{\sum\limits_{i=1}^{\frac{p-1}2}\frac1{i^2}+2B}\equiv 2B\pmod p$ by the problem 4.3b).
+So $A^2\equiv 2B\pmod p$. Further,
+$$
+2C+A=
+\sum\limits_{\substack{1\leq i \leq p-1\\ i \text{ нечетно}}}\frac2i+
+\sum_{i=1}^{\frac{p-1}2}\frac2{2i} =
+\sum_{i=1}^{p-1}\frac2i\equiv0\pmod{p^2}.
+$$
+So $C\equiv-\frac12 A\pmod{p^2}$.
+
+Now transform modulo $p^3$ the parts of the given congruence.
+The l.h.s. is
+$$
+(-1)^\frac{p-1}2\binom(p-1,\frac{p-1}2)
+\equiv
+\Bigl(1-\frac p1\Bigr)\Bigl(1-\frac p2\Bigr)\dots\Bigl(1-\frac p{\frac{p-1}2}\Bigr)
+\equiv
+1-pA+p^2B \equiv 1-pA+\frac12 p^2A^2\pmod{p^3}.
+$$
+For transforming the r.h.d observe that
+\begin{multline*}
+2^{p-1}=\frac{2\cdot 4\cdots(p-1)}{1\cdot2\cdots\frac{p-1}2}\cdot\frac{(p+1)\cdots(2p-2)}{\frac{p+1}2\cdots(p-1)}
+=\frac{(p+1)\cdots(2p-2)}{1\cdot3\cdot5\cdots(p-2)}
+=\\=
+\Bigl(\frac p1+1\Bigr)\Bigl(\frac p3+1\Bigr)\dots\Bigl(\frac p{p-1}+1\Bigr)
+\equiv 1+pC+\frac12p^2C^2\equiv 1-\frac12 pA+\frac18p^2A^2\pmod{p^3}\,.
+\end{multline*}
+Then we have
+$$
+4^{p-1}\equiv \Bigl(1-\frac12 pA+\frac18p^2A^2\Bigr)^2\equiv 1-pA +\frac14p^2A^2+2\cdot\frac18P^2A^2
+= 1-pA+\frac12 p^2A^2\pmod{p^3}.
+$$
+So the l.h.s. is congruent to the r.h.s.
+\end{problem}
+
+\begin{problem}
+%Пусть $m$ --- произвольное натуральное число, $p\geq 5$ --- простое. Докажите, что
+%$$
+%\frac1{mp+1}+ \frac1{mp+2}+ \dots+\frac1{mp+(p-1)}\equiv 0\pmod{p^2}.
+%$$
+We found this statement in \cite{Carlitz}.
+\begin{multline*}
+\sum_{k=1}^{p-1}\frac1{mp+k}=\frac12\sum_{k=1}^{p-1}\Bigl(\frac1{mp+k}+\frac1{mp+p-k}\Bigr)
+=\\=
+p\cdot\frac{2m+1}2\cdot\sum_{k=1}^{p-1} \frac1{(mp+k)(mp+p-k)} \equiv
+-p\cdot\frac{2m+1}2\cdot\sum_{k=1}^{p-1} \frac1{k^2}\equiv 0 \pmod{p^2}.
+\end{multline*}
+\end{problem}
+
+
+\begin{problem}
+%Пусть $p$ и $q$ --- различные простые числа. Докажите, что сравнение
+%$\binom(2pq-1,pq-1)\equiv 1\pmod{pq}$ выполнено в том и только в том случае, когда
+%$\binom(2p-1,p-1)\equiv 1\pmod{q}$ и $\binom(2q-1,q-1)\equiv 1\pmod{p}$.
+We found this statement in \cite{Xin}.
+Since $2pq-1=(2q-1)p+p-1$, the last digit of the number $2pq-1$ in base $p$ is $p-1$,
+and the remaining digits form the number $2q-1$. Similarly the last digit of the number $pq-1$ in base $p$
+is $p-1$, and the remaining part forms the number $q-1$.
+By Lukas' theorem $\binom(2pq-1,pq-1)\equiv \binom(2q-1,q-1)\binom(p-1,p-1)\equiv \binom(2q-1,q-1)\pmod p$.
+On the other hand since $\binom(2pq-1,pq-1)\equiv1\pmod{pq}$, then $\binom(2pq-1,pq-1)\equiv1\pmod{p}$.
+So $\binom(2q-1,q-1)\equiv 1\pmod{p}$. Analogously $\binom(2p-1,p-1)\equiv 1\pmod {q}$.
+
+The inverse statement is trivial.
+\end{problem}
+
+
+%\begin{problem}
+%Модифицируем определение бмномиального коэффициента следующим образом:
+%$$\binom(2n-1,n-1)\strut' = \prod_{\substack{k=1 \\ (n,k)=1}}^n \frac{2n-1}{k}$$
+%(для простых $n$ это совпадает с обычным определением).
+%Докажите, что если $n>3$ --- степень двойки, то
+%$$\binom(2n-1,n-1)\strut' =1+\frac{n^3}2\pmod{n^3}.$$
+%\cite{McIntosh}
+%\end{problem}
+
+
+%\begin{problem}
+%При $p>5$ \ $\binom(4p-1,2p-1)\equiv \binom(4p,p)-1\pmod{p^5}.
+%\cite{SunWan}
+%\end{problem}
+
+
+\subsection{Sums of binomial coefficients}
+
+
+\begin{problem}
+a) %Докажите, что $\sum\limits_{k=0}^{3^a-1} C_{2k}^k$ делится на 3.
+It follows from problem 1.3.
+If $\Delta_0^0$ is a triangle consisting of the first 3 rows of the 3-arithmetical Pascal triangle,
+then the sum of its central binomial coefficients is divisible by 3. For arbitrary $a$
+the sum under consideration contains elements of several central triangles, which are multiples of $\Delta_0^0$.
+So the total sum is divisible by 3, too.
+
+Another solution ([CSTTVZ]) we can derive from the identity
+$\binom(2k,k)=\smash[b]{\sum\limits_{i=0}^k{\binom(k,i)}^2}$. Then
+$\sum\limits_{k=0}^{3^a-1} C_{2k}^k=\sum\limits_{k=0}^{3^a-1}\sum\limits_{i=0}^k{\binom(k,i)}^2$.
+Since $1^2=2^2=1$, $0^2=0 \pmod 3$, the last sum modulo 3 equals the number of nonzero elements
+in the first $3^a$ rows of the Pascal triangle. This number is calculated in the problem 2.1a),
+it is divisible by 3.
+
+\medbreak
+b) %Докажите, что $\sum\limits_{k=0}^{3^a-1} C_{2k}^k$ делится на $3^a$.
+Solution of [D]. The sum is a coefficient of $x^{3^a-1}$ in the polynomial
+\begin{multline*}
+x^{3^a-1}\biggl( 1+ \frac{(x+1)^2}{x}+\frac{(x+1)^4}{x^2}+\ldots+\frac{(x+1)^{2(3^a-1)}}{x^{3^a-1}}  \biggr)
+=
+\frac{\frac{(x+1)^{2\cdot 3^a}}{x^{3^a}}-1}{\frac{(x+1)^2}{x}-1}\cdot x^{3^a-1}=
+\frac{(x+1)^{2\cdot 3^a}-x^{3^a}}{x^2+x+1}
+=\\[3pt]=
+\frac{x^{2\cdot 3^a}+\binom(2\cdot 3^a,1)\cdot x^{2\cdot 3^a-1}+\binom(2\cdot 3^a,2)\cdot x^{2\cdot 3^a-2}+\ldots+1 - x^{3^a}}{x^3-1}\cdot(x-1)\,.
+\end{multline*}
+In order to find this coefficient we will perform the long division of the numerator by the denominator
+and then multiply the result by  $(x-1)$.
+%Чтобы найти нужный коэффициент, достаточно поделить числитель на знаменатель ``в столбик'',
+%и~потом домножить результат на $(x-1)$.
+We do not need to find the quotient at whole, it is sufficient to perform the division till
+the moment when the coefficient of  $x^{3^a-2}$ will be found, remind that we are trying to find this coefficient modulo $3^a$ only.
+Since for $b\nekratno 3$ all the binomial coefficient $\binom(2\cdot 3^a,b)$ are divisible by  $3^a$ (by Kummer's theorem),
+we can collect all these coefficient in a separate sum. When we divide this sum by $x^3-1$ all the coefficients of
+the quotient are divisible by $3^a$ therefore we can discard this sum.
+%Таким образом, не нужно даже доводить деление до конца,  достаточно довести его до нахождения коэффициента при $x^{3^a-2}$, кроме того, напомним, результат нас интересует лишь по модулю $3^a$. Отметим, что при $b\nekratno 3$ все биномиальные коэффициенты
+%$\binom(2\cdot 3^a,b)$ делятся на $3^a$  по теореме Куммера.
+%Сгруппируем слагаемые с этими коэффициентами и будем делить их сумму на $x^3-1$ отдельно. Очевидно,
+%все коэффициенты частного будут тоже делиться на~$3^a$, поэтому все эти слагаемые можно отбросить.
+The remaining expression is
+$$
+\frac{x^{2\cdot 3^a}+\binom(2\cdot 3^a,3)\cdot x^{2\cdot 3^a-3}+\binom(2\cdot 3^a,6)\cdot x^{2\cdot 3^a-6}+\ldots+1 - x^{3^a}}{x^3-1}\cdot(x-1).
+$$
+All the exponents in the numerator are divisible by 3, hence after division by $x^3-1$ all the exponents of the quotient are divisible by 3, too, and after the multiplying it by $x-1$, there will be no exponents of the form $3k+2$.
+So the coefficient that we seek equals $0\pmod{3^a}$.
+
+\end{problem}
+
+\begin{problem}
+%Пусть  $C_k=\frac1{k+1}C_{2k}^k$ --- последовательность чисел Каталана.
+%Докажите, что $\sum\limits_{k=1}^n C_k \equiv1 \pmod 3$ тогда и только тогда, когда троичное разложение
+%числа $n+1$ содержит хотя бы одну цифру 2.
+This problem was published in Monthly \cite{Chapman}.
+Since
+$$
+\binom(2n+2,n+1)-4\binom(2n,n)=2\cdot\frac{2n+1}{n+1}\binom(2n,n)-4\binom(2n,n)=-2C_n\,,
+$$
+then $C_n\equiv \binom(2n+2,n+1)-\binom(2n,n)\pmod 3$. Therefore this sum is telescopic modulo 3:
+$$
+\sum_{k=1}^n C_k\equiv
+\left(\binom(2n+2,n+1)-\binom(2n,n)\right)+\left(\binom(2n,n)-\binom(2n-2,n-1)+\ldots\right)=
+\binom(2n+2,n+1)+1\pmod 3.
+$$
+So by Kummer's theorem we have to clarify  when we have at least one carry in
+the addition of the number ${(n+1)}$ with itself in base 3.
+It it clear that it happens only if $n+1$ contains at least one 2 in base 2.
+%в троичной системе счисления приводит к появлению хотя бы одного переноса.
+%Очевидно, это может быть в том и только том случае, когда в записи $n+1$ есть хотя бы одна двойка.
+\end{problem}
+
+\begin{problem}
+%Пусть $p\geq 3$, $k=[2p/3]$.
+%Докажите, что сумма $\binom(p,1) +\binom(p,2) +\ldots+\binom(p,k)$ делится на $p^2$.
+This is problem A5 of Putnam Math. Competition, 1998.
+Since $\frac1p\binom(p,n) \equiv \frac{(-1)^{n-1}}n\pmod p$, we have
+$$
+\sum_{n=1}^k\frac1p\binom(p,n)\equiv
+\sum_{n=1}^k  \frac{(-1)^{n-1}}n=
+\sum_{n=1}^k  \frac{1}n- 2 \sum_{n=1}^{[k/2]}  \frac{1}{2n} \equiv
+\sum_{n=1}^k  \frac{1}n+ \sum_{n=p-[\frac{k}2]}^{p-1}  \frac{1}n
+\overset{*}=
+\sum_{n=1}^{p-1}  \frac{1}n \equiv 0 \pmod p.
+$$
+The summation in the sum to the left of asterisk really starts from $n=k+1$
+(it is easy to check: for $p=6r+1$  we have $k=4r$ and $p-[\frac{k}2]=4r+1=k+1$, similarly for $p=6r+5$).
+\end{problem}
+
+
+\begin{problem}
+This statement is from \cite{Chapman-2}.
+Solution [CSTTVZ]. Induction on $n$. The base is trivial. Prove the induction step from $n'=n-(p-1)$ to $n$.
+Let $q=\frac{n}{p-1}$. Since
+$$
+\binom(n'+p-1,{x(p-1)}) = \sum_{i=0}^{p-1} \binom(p-1, i)\binom(n',{x(p-1)-i})\,,
+$$
+we can rewrite the sum under consideration in the form
+\begin{multline}
+\binom(n, p\!-\!1)+\binom(n, {2(p\!-\!1)})+\binom(n, {3(p\!-\!1)})+\ldots
+=\sum_{x=1}^q\sum_{i=0}^{p-1} \binom(p\!-\!1, i)\binom(n',{x(p\!-\!1)-i})
+=\\=
+\sum_{i=0}^{p-1} \left(\binom(p\!-\!1, i) \sum_{x=1}^q\binom(n',{x(p\!-\!1)-i})\right).
+\label{eq:sol5.4}
+\end{multline}
+By the problem 1.1\,a) we have $\binom(p-1,i)\equiv(-1)^i\pmod{p}$; let $\binom(p-1,i)=ap+(-1)^i$.
+By the problem 1.6 we have $\smash[b]{\sum\limits_{x=1}^q}\binom(n',{x(p-1)-i})\equiv \binom(p-1,i)\equiv(-1)^i\pmod{p}$
+ for $i=0$, 1, \dots,~$p\!-\!2$;  let $\smash[b]{\sum\limits_{x=1}^q}\binom(n',{x(p-1)-i})=bp+(-1)^i$.
+Then
+\begin{multline*}
+\binom(p\!-\!1, i) \smash{\sum_{x=1}^q}\binom(n',{x(p\!-\!1)-i}) = \bigl(ap+(-1)^i\bigr)\bigl(bp+(-1)^i\bigr)
+\equiv 1+(-1)^i(ap+bp)
+= \\ =
+1+ (-1)^i\left(\!\binom(p\!-\!1,i)\!+\!\sum\limits_{x=1}^q\binom(n',{x(p\!-\!1)\!-\!i})-2\cdot(-1)^i\!\right)
+=(-1)^i\left(\!\binom(p\!-\!1,i)\!+\!\sum\limits_{x=1}^q\binom(n',{x(p\!-\!1)\!-\!i})\!\right)-1 \!\!\!\pmod{p^2}.
+\end{multline*}
+Remind that these transformations hold for $0\leq i\leq p-2$. We can continue equality \eqref{eq:sol5.4},
+by separating the summand for $i=p-1$:
+\begin{multline*}
+\sum_{i=0}^{p-1} \left(\binom(p\!-\!1, i) \sum_{x=1}^q\binom(n',{x(p\!-\!1)\!-\!i})\right)\equiv
+\sum_{i=0}^{p-2} \left((-1)^i\left(\binom(p\!-\!1,i)+\sum\limits_{x=1}^q\binom(n',{x(p\!-\!1)\!-\!i})\right)-1\right)+
+\sum\limits_{x=0}^{q-1}\binom(n',{x(p\!-\!1)})
+=\\ =
+\sum_{i=0}^{p-2}(-1)^i\binom(p\!-\!1,i) +
+\sum_{i=0}^{p-2} \left((-1)^i\sum\limits_{x=1}^q\binom(n',{x(p\!-\!1)-i})\right)-(p-1)+
+\binom(n',0)+\sum\limits_{x=1}^{q-1}\binom(n',{x(p\!-\!1)}).
+\end{multline*}
+The first sum here equals $-1$, because $\binom(p-1,0)-\binom(p-1,1)+\binom(p-1,2)+\ldots=0$.
+By the same reasons the second (double) sum together with the summand $\binom(n',0)$ equals 0.
+The last sum equals $1+p(n'+1)$ by the induction hypothesis. Therefore the whole expression equals
+$-1+0-p+1+1+p(n'+1)=1+pn'$. This is exactly what we need because $1+p(n+1)=1+p(n'+p-1+1)\equiv 1+pn'\pmod{p^2}$.
+\end{problem}
+
+
+\begin{problem}
+%Докажите, что при $0\leq j\leq p-1<n$ и $q=[\frac{n-1}{p-1}]$
+%$$
+%\sum_{m: m\equiv j \pmod{p}} (-1)^m\binom(n,
+%m)\equiv 0\pmod{p^q}.
+%$$
+This is result of Fleck, 1913, it is cited in \cite{Granville-p^q}.
+Solution [CSTTVZ].
+
+For $p=2$ the sum is not alternating and the result is trivial.
+Let $p$ be odd. We use the induction on~$q$. The base follows from the statement 2.5\,a).
+Prove the induction step from $n'=n-(p\!-\!1)$ to~$n$.
+The expression $\sum_x$ below denotes the summation over $x$ in natural bounds
+(i.e.~in bounds for which all the binomial coefficients are correctly defined). We have
+\begin{multline*}
+\pm\!\!\!\!\!\!\!\sum_{m: m\equiv j\!\!\! \pmod{p}} (-1)^m\binom(n,m)
+=\sum_{x}(-1)^x\binom(n'+p-1,xp+j)
+=\sum_{x}(-1)^x\sum_{i=0}^{p-1}\binom(p-1, i)\binom(n',xp+j-i)
+=\\=
+\sum_{i=0}^{p-1}\binom(p-1, i) \sum_{x}(-1)^x \binom(n',xp+j-i).
+\end{multline*}
+By the induction hypothesis $\smash{p^{q-1} \bigm| \sum\limits_{x}(-1)^x \binom(n',xp+j-i)}$;
+by the problem 1.1\,a)  $\binom(p-1,i)\equiv(-1)^i\!\pmod{p}$. Therefore
+$$
+\sum_{i=0}^{p-1}\binom(p-1, i) \sum_{x}(-1)^x \binom(n',xp+j-i)
+\equiv
+\sum_{i=0}^{p-1}(-1)^i \sum_{x}(-1)^x \binom(n',xp+j-i) \pmod{p^q}\,.
+$$
+The last (double sum equals $\binom(n',0)-\binom(n',1)+\binom(n',2)-\binom(n',3)+\ldots=0$.
+\end{problem}
+
+\begin{problem}
+%Докажите, что если $p$ --- нечетное простое, то  $n\kratno p+1$
+%тогда и только тогда, когда
+%$$
+%\binom(n, j)-\binom(n, {j+(p-1)})+
+%\binom(n, {j+2(p-1)})-\binom(n, {3(p-1)})+\ldots
+%\equiv 0 \pmod{p}
+%$$
+%при всех $j=1$, 3, \dots, $p-2$.
+The result of Bhaskaran (1965), it is cited in \cite{Granville-p^q}, solution [CSTTVZ].
+
+Induction on $n$. Let
+$$
+f(n,j)=\binom(n, j)-\binom(n, {j+(p-1)})+ \binom(n, {j+2(p-1)})-\binom(n, {j+3(p-1)})+\ldots
+$$
+The base $n=p+1$ is trivial,
+but observe that  $\binom(p+1,i)\equiv 1\pmod{p}$ for $i=0,1,p,{p+1}$,
+otherwise this binomial coefficient is divisible by $p$.
+Prove the step of induction from $n'=n-(p+1)$ to $n$.
+By the observation above we have
+\begin{multline*}
+\binom({n'+(p+1)}, {j+(p-1)k})=
+\sum_{i=0}^{p+1}\binom({n'}, {j+(p-1)k-i})\binom(p+1,i)\equiv
+\sum_{i\in\{0,1,p,p+1\}}\binom({n'}, {j+(p-1)k-i})
+=\\ =
+\binom({n'}, {j+(p-1)k})+\underline{\binom({n'}, {j-1+(p-1)k})+\binom({n'}, {j-1+(p-1)(k-1)})}+
+\binom({n'}, {j-2+(p-1)(k-1)}) \pmod{p}\,.
+\end{multline*}
+Since $f(n,j)=\sum_k (-1)^k\binom(n, {j+k(p-1)})$ is an alternating sum, the underlined summands cancel (except the first and the last,
+but these summands are equal to 0 due to incorrect binomial coefficietns). So we obtain the equalities
+%\begin{align*}
+$$
+f(n,j)\equiv f(n',j) - f(n',j-2) \quad\text{ при } j>1\,,
+\qquad\qquad\qquad
+f(n,1)\equiv f(n',1) + f(n',p-2)\,.
+%\end{align*}
+$$
+Now the part ``only if'' of the problem statement follows from the induction hypothesis,
+and the part ``if'', too:
+if $f(n,j)\equiv 0 \pmod p$ for $j=1$, 3, \dots, $p-2$, then
+$$
+f(n',p-2)\equiv f(n',p-4) \equiv \ldots\equiv f(n',1)\equiv -f(n',p-2)\,,
+$$
+from where $f(n',j)\equiv 0\pmod p$ for all required $j$, and then $n'\kratno (p+1)$, hence $n\kratno (p+1)$.
+\end{problem}
+
+
+%\clearpage
+
+\bigskip\bigskip
+
+\noindent{\sc References}
+\bigskip
+
+\footnotesize
+
+\noindent
+The authors of many solutions are participants of the conference:
+
+\noindent
+\begin{tabular}{rl}
+[D] & Didin Maxim; \\
+{[К]} & Krekov Dmitri; \\
+{[J]} & Jastin Lim Kai Ze;\\
+{[T]} & Teh Zhao Yang Anzo;\\
+{[CSTTVZ]} & \'Cevid Domagoj, Stoki\'c Maksim, Tanasijevii\'c Ivan, Trifunovi\'c  Petar, Vukorepa Borna, \v{Z}ikeli\'c
+{\fontencoding{T1}\selectfont\char208  or\char158 e}\\
+\end{tabular}
+
+
+\begin{thebibliography}{22}
+
+\bibitem{Vinberg}
+{\it Винберг Э.\,Б.} Удивительные свойства биномиальных коэффициентов. /\!/
+Мат. просвещение. Третья серия. Вып.~12. 2008
+
+\bibitem{Gashkov}
+{\it Гашков С.Б., Чубариков В.Н.}
+Арифметика. Алгоритмы. Сложность вычислений.
+М.: Высш. шк., 2000.
+
+\bibitem{Dynkin}
+{\it Дынкин Е.Б., Успенский В.А.}  Математические беседы. 2-е изд. М.: ФИЗМАТЛИТ, 2004.
+
+\bibitem{spb}
+Петербургские математические олимпиады, 1961--1993. СПб: Лань, 2007.
+
+\bibitem{Taba}
+{\it Табачников С.Л., Фукс Д.Б.} Математический дивертисмент. 30 лекций по классической математике.
+М.: МЦНМО, 2011.
+%{\tt http://www.math.psu.edu/tabachni/Books/taba.pdf}
+
+\bibitem{KvantFuksFuks}
+{\it Фукс Д.Б., Фукс М.Б.} Арифметика биномиальных коэффициентов /\!/ Квант. 1970. №\,6. С. 17--25.
+
+\bibitem{KvantShirshov}
+{\it Ширшов А.И.} Об одном свойстве биномиальных коэффициентов /\!/ Квант. 1971. №\,10. С. 16--20.
+
+\bibitem{Xin}
+{\it Cai T.X., Granville A.} On the residues of binomial coefficients and their products modulo prime powers /!/
+Acta
+
+
+\bibitem{Calkin}
+{\it Calkin  N. J.}
+Factors of sums of powers of binomial coefficients /\!/
+Acta Arith. 1998. Vol. 86. P.~17--26.
+
+\bibitem{Carlitz}
+{\it Carlitz  L.} A note of Wolstenholme's theorem /\!/
+Amer. Math. Monthly. 1954. Vol. 61.  № 3. P.~174--176.
+
+\bibitem{Chapman-2}
+{\it Dimitrov V., Chapman R.}
+Binomial coefficient identity: 11118 /\!/
+Amer. Math. Monthly. 2006. Vol. 113.  № 7. P.~657--658.
+
+\bibitem{Everett}
+{\it Everett W.} Subprime factorization and the numbers of binomial coefficients exactly divided
+by powers of a prime /\!/ Integers. 2011. Vol. 11.  \# A63.
+\verb"http://www.integers-ejcnt.org/vol11.html"
+
+\bibitem{Fine}
+{\it Fine N.}  Binomial coefficient modulo a prime /\!/
+Amer. Math. Monthly. 1947. Vol. 54.  № 10. Part 1.  P.~589--592.
+
+\bibitem{Gardiner}
+{\it Gardiner A.} Four problems on prime power divisibility /\!/
+Amer. Math. Monthly. 1988. Vol. 95.  № 10. P.~926--931.
+
+\bibitem{Gauss}
+{\it Gauss K.} Disquisitiones arithmeticae. 1801. Art. 78.
+
+\bibitem{Gessel}
+{\it Gessel I.} Wolstenholme revisited /\!/
+Amer. Math. Monthly. 1998. Vol. 105.  № 7.  P.~657--658.
+
+\bibitem{Granville-http}
+{\it Granville A.} Arithmetic properties of binomial coefficients.
+%Доступно по адресу \\
+\verb"http://www.dms.umontreal.ca/~andrew/Binomial/"
+
+\bibitem{Granville-p^q}
+{\it Granville A.} Binomial coefficients modulo prime powers.
+
+\bibitem{Granville-Zaphod}
+{\it Granville A.}
+Zaphod Beeblebrox's Brian and the Fifty-ninth Row of Pascal's Triangle /\!/
+Amer. Math. Monthly. 1992. Vol. 99.  № 4.  P.~318--331.
+
+\bibitem{Granville-Zaphod-2}
+{\it Granville A.}
+Correction to: Zaphod Beeblebrox's Brian and the Fifty-ninth Row of Pascal's Triangle /\!/
+Amer. Math. Monthly. 1997. Vol. 104.  № 9.  P.~848--851.
+
+
+\bibitem{Hinz}
+{\it Hinz A.} Pascal's triangle and tower of Hanoi /\!/ Amer. Math. Monthly. 1992. Vol. 99.  № 6. P. 538--544.
+
+\bibitem{Loveless}
+{\it Loveless A.}
+A congruence for products of binomial coefficients modulo a composite /\!/
+Integers: electronic journal of comb. number theory 7 (2007) \# A44
+
+\bibitem{McIntosh}
+{\it McIntosh R.} On the converse of Wolstenhome's theorem /\!/
+Acta Arithmetica. 1995. Vol. 61. №\,4. P. 381--388.
+
+\bibitem{Mestrovic}
+{\it Me\v{s}trovi\'c R.} On the mod $p^7$ determination of $2p-1 \choose p-1$ /\!/
+\verb"http://arxiv.org/pdf/1108.1174v1.pdf"
+
+\bibitem{Chapman}
+{\it More Y., Chapman R.}
+The sum of Catalan numbers, modulo 3: 11165 /\!/
+Amer. Math. Monthly. 2007. Vol. 114.  № 5. P.~454--455.
+
+\bibitem{Morley}
+{\it Morley F.} Note on the congruences $2^{4n}\equiv (-)^n (2n)!/(n!^2)$, where $2n+1$ is a prime /\!/
+Annals of Math. 1894-1895. Vol. 9. №\,1. P. 168--170.
+
+
+\bibitem{Roberts}
+{\it Roberts J.} On binomial coefficient residues /\!/ Canad J. Math. 1957. Vol.~9. P.~363--370.
+
+\bibitem{SunWan}
+{Sun Z.-W., Wan D.} On Fleck quotients /\!/
+\verb"arXxiv:math.0603462v3"
+
+
+\end{thebibliography}
+
+\end{document}

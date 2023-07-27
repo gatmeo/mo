@@ -1,0 +1,9 @@
+\pitem[]{%
+    A subset $M$ of $\{1, 2, . . . , 2006\}$ has the property that for any three elements $x, y, z$ of $M$ with $x < y < z$, $x+ y$ does not divide $z$. Determine the largest possible size of $M$.
+    }{%
+    Consider the stronger condition that there does not exist distinct elements $x,y,z\in M$ such that $x+y=z$
+
+    Suppose $M=\{a_1,a_2,...,a_k\}$ is a subset of such elements. In the usual way, let $M'=\{a_2-a_1,a_3-a_1,...,a_k-a_1\}$. We must have $M\backslash\{a_1\}$ and $M'$ disjoint, else we would have $a_i-a_1=a_j \Leftrightarrow a_i=a_j+a_1$, contradiction. Hence $|M\backslash\{a_1\}|+|M'|= |M\backslash\{a_1\}\cup M'|=2(k-1) \le 2006$ hence $|M|=k\le 1004$. The set $M=\{1003,1004,...,2006\}$ is a set with $1004$ elements that satisfies the condition so we are done.
+    }{%
+    https://artofproblemsolving.com/community/c6h376705p2079626
+}

@@ -1,0 +1,36 @@
+\pitem[2019 China TST Test 4 P6]{%
+    Given positive integer $n,k$ such that $2 \le n <2^k$. Prove that there exist a subset $A$ of $\{0,1,\cdots,n\}$ such that for any $x \neq y \in A$, ${y\choose x}$ is even, and $$|A| \ge \frac{{k\choose \lfloor \frac{k}{2} \rfloor}}{2^k} \cdot (n+1)$$
+    }{%
+    Start by writing $n+1$ in binary, so $n+1=2^{a_1}+\dotsb+2^{a_m}$ for $a_1 > \dotsb > a_m$. We'll use the example $n=154$, where $n+1$ in binary is $10011011$. For each $1$ in the binary representation, create a prefix by replacing that $1$ with a $0$ and keeping everything before that the same. Construct values $q_i$ according to the rule
+    \[q_i=\min(q_{i-1}-1, \lceil a_i/2\rceil)\]and the initial value is $q_1=\lceil a_1/2\rceil$. For our example, we have the following values:
+    \[\begin{array}{l|c|r} \text{prefix} & a_i & q_i \\ \hline 0\dots & 7 & 4 \\ 1000\dots & 4 & 2 \\ 10010\dots & 3 & 1 \\ 1001100\dots & 1 & 0 \\ 10011010 & 0 & -1 \end{array}\]For each $i$, let $S_i$ consist of all numbers whose binary representation consists of the $i$th prefix in the table followed by a string of $a_i$ digits, of which exactly $q_i$ are $1$. If $q_i$ is negative, then $S_i$ is empty.
+
+    We claim $A_n=\bigcup S_i$ is a valid subset. By Lucas' theorem, this is equivalent to no binary representation of one number covering the binary representation of another. By the prefixes, if $y\in S_j$ and $x\in S_i$ are elements of $A$ in binary form, then $y$ can cover $x$ only if $j\geq i$. By construction, the number of $1$s of elements of $S_j$ is at most the number of $1$s of elements of $S_i$, so no covering occurs, as desired.
+
+    Let $f(n)$ denote the size of the set $A_n$ obtained by this construction. It remains to show the lower bound
+    \[f(n)=\sum_{i=1}^{m}\binom{a_i}{q_i}\geq \frac{\binom{k}{\lfloor k/2\rfloor}}{2^k}(n+1).\]
+    We first resolve the case where $q_i=q_{i-1}-1$ always. The case $n+1=2^{a_1}$ is special, and equality holds for $k=a_1$. From now on, let $k=a_1+1$. We wish to show that
+    \[\frac{f(n)}{n+1}=\frac{\sum_{i=1}^{m}\binom{a_i}{q_i}}{\sum_{i=1}^{m}2^{a_i}}\geq \frac{\binom{k}{\lfloor k/2\rfloor}}{2^k}.\][The goal is to reduce to the case $a_i=a_{i-1}-1$, but I made a mistake here. I need to fix this.]
+
+    Then
+    \[f(n)=\sum_{i=1}^{m}\binom{a_1+1-i}{q_1+1-i}=\sum_{i=1}^{m}\binom{a_1+1-i}{\lfloor a_i/2\rfloor}=\binom{a_1+1}{\lfloor a_1/2\rfloor+1}-\binom{a_1+1-m}{\lfloor a_1/2\rfloor+1}.\]Meanwhile,
+    \[n+1=\sum_{i=1}^{m}2^{a_1+1-i}.\]Now we consider the effect of increasing $m$ by $1$. Then $f(n)$ increases by $\binom{a_1-m}{\lfloor a_1/2\rfloor}$ while $n+1$ increases by $2^{a_1-m}$. Since
+    \[\frac{\binom{a_1-m}{\lfloor a_1/2\rfloor}}{2^{a_1-m}}\leq \frac{\binom{a_1}{\lfloor a_1/2\rfloor}}{2^{a_1}}\leq \frac{\binom{k}{\lfloor k/2\rfloor}}{2^k},\]we can assume the worst case scenario of $m=a_1+1$. In this case we have
+    \[\frac{f(n)}{n+1}=\frac{\binom{a_1+1}{\lfloor a_1/2\rfloor+1}}{2^{a_1+1}-1} > \frac{\binom{a_1+1}{\lfloor a_1/2\rfloor+1}}{2^{a_1+1}}=\frac{\binom{k}{\lceil k/2\rceil}}{2^k}.\]
+    We now deal with the remaining cases by strong induction. Suppose for some $i > 1$, we have $q_i=\lceil a_i/2\rceil$. Let $\ell+1=2^{a_i}+2^{a_{i+1}}+\dotsb+2^{a_{m}}$. Then the construction from step $i$ onward is the same as the construction for $\ell$, just with everything shifted, i.e.
+    \[A_n=A_{n-\ell-1}\sqcup \Big((n-\ell)+A_{\ell}\Big).\]Therefore $f(n)=f(n-\ell-1)+f(\ell)$. By the inductive hypothesis, if $n < 2^k$ then
+    \[f(n-\ell-1)+f(\ell)\geq \frac{\binom{k}{\lfloor k/2\rfloor}}{2^k}(n-\ell+\ell+1)=\frac{\binom{k}{\lfloor k/2\rfloor}}{2^k}(n+1)\]as desired.
+    %    For $n\le 2^{k-1}-1$ the bound for $k-1$ is stronger. Hence assume this is not the case.
+    %    Denote by $f(k)$ the value ${k\choose \lfloor \frac{k}{2} \rfloor}$
+    %    Write $n = 2^{k-1}+\sum_{i=1}^r 2^{i_j}, k-1 > i_1 > i_2 > ... > i_r \ge 0$.
+    %
+    %    Claim: $2f(m) \ge f(m+1)$.
+    %
+    %    Proof: Divide into cases $m$ odd and $m$ even. The verification is direct.
+    %
+    %    Let $S_i$ be the set of all numbers not exceeding $2^i$ with $\lfloor i/2\rfloor$ $1$'s in their binary representations, and $a + S_i$ the set with elements of $S_i$ each increased by $a$. Next define $i_0 = k-1$
+    %    $$A := \bigcup_{t=0}^{r} [\left(\sum_{j=0}^{t-1} 2^{i_j} \right)+ S_t] \cup \{n\}$$where when $t = 0, \ \sum_{j=0}^{t-1} 2^{i_j} = 0$.
+    %    It follows that $A$ has size $f(k-1) + \sum_{i=1}^r f(i_j) + 1$ and satisfy "binomial coefficients all even condition" from Lucas' Theorem and that no two numbers from $A$ "contain each other" ($x$ contains $y$ means that a binary digit of $y$ is $1$ only if that same digit for $x$ is $1$). The size can be shown to be greater than desired from our Claim before, so we are done.
+    }{%
+    https://artofproblemsolving.com/community/c6h1812098p22963196
+}

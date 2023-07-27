@@ -1,0 +1,9 @@
+\pitem[Romania TST 2016 Day 2 P1]{%
+Given positive integers $k$ and $m$, show that $m$ and $\binom{n}{k}$ are coprime for infinitely many integers $n\geq k$.
+    }{%
+    First consider the case when $m$ is prime. Choose $\ell$ so that $m^\ell>k$, and consider the number $n=am^\ell+k$ with $a\in\mathbb N$. By Lucas's theorem, we see that $\textstyle\binom{n}{k}$ is $1\pmod{m}$. So taking sufficiently large $n\equiv k\pmod{m^\ell}$ will ensure $\textstyle\binom{n}{k}$ is coprime to $m$.
+
+Now if $m$ is a product of several prime powers, we choose such $n$'s for each of the prime factors as in the preceding paragraph, and combine them via CRT, which should work. $\blacksquare$
+    }{%
+    https://artofproblemsolving.com/community/c6h1538023p9289751
+}

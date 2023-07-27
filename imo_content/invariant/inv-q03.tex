@@ -1,0 +1,9 @@
+\pitem[]{%
+    There are $ n$ markers, each with one side white and the other side black. In the beginning, these $ n$ markers are aligned in a row so that their white sides are all up. In each step, if possible, we choose a marker whose white side is up (but not one of the outermost markers), remove it, and reverse the closest marker to the left of it and also reverse the closest marker to the right of it. Prove that, by a finite sequence of such steps, one can achieve a state with only two markers remaining if and only if $ n - 1$ is not divisible by $ 3$.
+    }{%
+    First, we will show that if $3\nmid n-1$, it is possible. Consider the sequence of moves $$OOOOO\to XXOO\to XOX\to OO$$This shows that if there are 5 white markers at the end, we can remove 3 of them. Using this repeatedly, if $n\equiv 2\pmod 3$, we can get it down to 2 white markers, and if $n\equiv 0\pmod 3$, we can get it to 3, after which one move gets us down to 2 markers.
+
+    Now, we will show $3|n-1$ is impossible. Since we always flip two markers at once, the number of black markers remains even. Now, if we have a state where black markers are at positions $x_1,x_2,\ldots, x_{2k}$, and there are $m$ markers left, I define the leekiness of the arrangement to be $$m-x_1+x_2-x_3+\ldots+x_{2k}\pmod 3$$. It is not hard to show, through casework, that the leekiness is indeed an invariant. Suppose $n\equiv 1\pmod 3$. Then, its initial leekiness is $1$. So, if we get it down to 2 markers, the arrangement should still have a leekiness of 1. However, there are only 2 possible arrangements of markers at 2 markers, namely $XX$ and $OO$, and these have leekinesses of 0 and 2 respectively. Thus, $n\equiv 1\pmod 3$ is impossible.
+    }{%
+    https://artofproblemsolving.com/community/c6t219f6h90046_invariance
+}

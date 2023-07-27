@@ -1,0 +1,22 @@
+\pitem[]{%
+    Wanda the Worm likes to eat Pascal's triangle. One day, she starts at the top of the triangle and eats $\textstyle\binom{0}{0}=1$. Each move, she travels to an adjacent positive integer and eats it, but she can never return to a spot that she has previously eaten. If Wanda can never eat numbers $a,b,c$ such that $a+b=c$, prove that it is possible for her to eat 100,000 numbers in the first 2011 rows given that she is not restricted to traveling only in the first 2011 rows.
+
+    (Here, the $n+1$st row of Pascal's triangle consists of entries of the form $\textstyle\binom{n}{k}$ for integers $0\le k\le n$. Thus, the entry $\textstyle\binom{n}{k}$ is considered adjacent to the entries $\textstyle\binom{n-1}{k-1}$, $\textstyle\binom{n-1}{k}$, $\textstyle\binom{n}{k-1}$, $\textstyle\binom{n}{k+1}$, $\textstyle\binom{n+1}{k}$, $\textstyle\binom{n+1}{k+1}$.)
+    }{%
+    Lemma: Wanda can eat all the odd entries from rows $0$ to $2^n-1$ and ending at $\binom{2^n-1}{0}$ or $\binom{2^n-1}{2^n-1}$.
+
+    Proof of Lemma: The key idea is that Pascal's triangle mod 2 up to row $2^{n+1}-1$ (call it $T_{n+1}$) can be viewed as three copies of the triangle till row $2^n-1$, or $T_n$, in the following fashion:
+    \begin{figure}[H]
+%        \begin{asy}
+%            unitsize(1.5cm); draw((0,0)--(2,0)--2*dir(60)--cycle); draw((1,0)--dir(60)--sqrt(3)*dir(30)--cycle); label("$T_n$",1/sqrt(3)*dir(30)); label("$T_n$",(1,0)+1/sqrt(3)*dir(30)); label("$T_n$",dir(60)+1/sqrt(3)*dir(30)); label("$0$",2/sqrt(3)*dir(30)); dot("$A$",2*dir(60),dir(90)); dot("$B$",dir(60),dir(150)); dot("$C$",sqrt(3)*dir(30),dir(30)); dot("$D$",0,dir(210)); dot("$E$",dir(0),dir(270)); dot("$F$",2*dir(0),dir(-30));
+%        \end{asy}
+        \centering
+        \includegraphics[width=0.2\linewidth]{./bin_coeff-p01_1.pdf}
+    \end{figure}
+    THe statement is obvious for $T_1$. Suppose the problem is true for $T_n$. Use the inductive hypothesis to get all the odds in $ABC$, and end at $B$. Now use the inductive hypothesis on $BDE$ to get to $E$. Use the inductive hypothesis on $ECF$ to get to $F$, and this finishes (note that $T_n$ is symmetric under rotation by $2\pi/3$). This completes the proof. $\blacksquare$
+
+    Now, note that there are no odd $a,b,c$ with $a+b=c$. Note that $T_n$ has $3^n$ odd entries (proof is by induction). We see that using our strategy in the lemma, Wanda can eat all the odd entries till row $2047$. Above row $2011$ are at least a $T_{10}$, two $T_9$s, and two $T_8$s, for a total of at least
+    \[3^{10}+2\cdot 3^9+2\cdot 3^8=111537\ge 100,000\]odd numbers, as desired.
+    }{%
+    https://artofproblemsolving.com/community/c6t45334f6h487118_wanda_the_worm_eating_pascals_triangle
+}

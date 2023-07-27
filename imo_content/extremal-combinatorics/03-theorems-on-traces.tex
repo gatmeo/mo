@@ -1,0 +1,78 @@
+\section{Theorems on Traces}
+
+\begin{theorem}[thm:]{}
+    Let $n>k\geq 0$ be integers. If $\FF\subseteq 2^{[n]}$ satisfies $\left|\FF\right|>\sum_{i=0}^{k}{n\choose i}$, then there exists a $T\in {[n]\choose k+1}$ such that $\FF_{|T}=2^T$, where trace $\FF_{|T}=\left\{F\cap T:F\in \FF\right\}$.
+\end{theorem}
+
+\begin{proof}
+    Suppose contrary, that $\FF\subseteq 2^{[n]}$ with $\FF_{|T}\neq 2^{T}$ for all $T\in {X\choose k+1}$. By \cref{pps:2_5_squashed_hereditary} and \cref{pps:2_6_sqash_bounded_above} we can obtain a hereditary family $\GG\subseteq 2^{[n]}$ with $\left|\GG\right|=\left|\FF\right|$, and still satisfying $\left|\GG_{|T}\right|<2^{|T|}\ \forall\ T\in {X\choose k+1}$. We claim that $\left|G\right|\leq k\ \forall\ G\in \GG$.
+
+    Indeed, if $\left|G\right|\geq k+1$ for some $G\in \GG$, then by hereditary property $2^G\subseteq \GG$, and thus for all $H\in {G\choose k+1}$ we have $\GG_{|H}=2^H$, a contradiction. Consequently, we have proved that $\left|G\right|\leq k\ \forall\ G\in \GG$ and $\left|\GG\right|\leq \sum_{i=0}^{k}{n\choose i}$. But this contradict $\left|\GG\right|=\left|\FF\right|>\sum_{i=0}^{k}{n\choose i}$.
+\end{proof}
+
+\begin{definition}[def:]{Arrow Notation}
+    We define the \vocab{arrow notation} $(n,m)\rightarrow (a,b)$ with the following meaning:
+
+    For every $\FF\subseteq 2^{[n]}$ with $\left|\FF\right|=m$, there exists $T\subseteq [n]$ with $\left|T\right|=a$ such that $\left|\FF_{|T}\right|\geq b$.
+\end{definition}
+
+\begin{theorem}[thm:]{}
+    The following hold.
+    \begin{enumerate}
+        \item $(n,m)\rightarrow (n-1,m)$ for $m\leq n$.
+        \item $(n,m)\rightarrow (n-1,m-1)$ for $m\leq 1+n+\frac{n-1}{2}$.
+        \item $(n,m)\rightarrow (3,7)$ for $m>1+n+\frac{n^2}{4}$.
+    \end{enumerate}
+\end{theorem}
+
+\begin{remark}
+    By \cref{pps:2_6_sqash_bounded_above}, we just need to check for hereditary families. 
+\end{remark}
+
+\begin{proof}
+    \begin{enumerate}
+        \item If $\GG\subseteq 2^{[n]}$ hereditary, then $\emptyset \in \GG$. If, moreover, $m=\left|\GG\right|\leq n$, then exist $x\in [n]$ s.t. $\left\{x\right\}\notin \GG$. Hence $G\notin \GG\ \forall\ G$ where $x\in \GG$. Hence $\GG\subseteq 2^{[n]\setminus \left\{x\right\}}$, $\left|\GG_{|[n]\setminus \left\{x\right\}}\right|=\left|\GG\right|$.
+        \item If $\left\{x\right\}\notin \GG$ for some $m\in [n]$, the above works. Assume $\emptyset \in \GG, \left\{x\right\}\in \GG\ \forall\ x$. Since $m=\left|\GG\right|\leq 1+n+\frac{n-2}{2}$, there is at most $\lfloor \frac{n-1}{2}\rfloor$ more subsets in $\GG$. Hence exist $y\in [n]$ not contained in any $2$-element member of $\GG$. By the hereditary property, the only memeber of $\GG$ containing $y$ is $\left\{y\right\}$. Hence $\GG_{[n]\setminus \left\{y\right\}}=\GG\setminus \left\{y\right\}$.
+        \item If $\left|G\right|=3$ for some $G\in \GG$, then $\left|\GG_{|G}\right|=8$ and the result follows. Assume $\GG\subseteq {[n]\choose 0}\sqcup{[n]\choose 1}\sqcup{[n]\choose 2}$. Let $\GG^{(i)}=\GG\cap {[n]\choose i}$, then $\GG^{(2)}$ is a graph on $n$ vertices. The number of edges is at least $m-\left|\GG^{(0)}\right|-\left|\GG^{(1)}\right|\geq m-1-n>\frac{n^2}{4}$ by the assumption. We can then prove that exist edges $\left\{x,y\right\},\left\{x,z\right\}$ and $\left\{y,z\right\}$(forming a triangle). Now let $T=\left\{x,y,z\right\}$ and get $\GG_{|T}={T\choose 0}\sqcup{T\choose 1}\sqcup{T\choose 2}$, and hence $\left|\GG_{|T}\right|=1+3+3=7$.
+    \end{enumerate}
+\end{proof}
+
+\begin{newenv}[rnd:]{}{Exercise}
+    Let $G$ be a graph on $n$ vertices with more than $n^2/4$ edges. Show that $G$ contains a triangle.
+\end{newenv}
+
+\begin{corollary}[crl:]{}
+    For any $\FF\subseteq 2^X$ and $Y\subseteq X$, the arrow relation
+    \[(\left|X\right|,\left|\FF\right|)\rightarrow (\left|Y\right|,\left|\FF_{|Y}\right|+1)\]
+    is not true.
+\end{corollary}
+
+\begin{definition}[def:]{Hereditary family}
+    Let $n$ be of the form $n=dq$, $d,q\in \mathbb{Z}^+$. Let $X=X_1\sqcup\cdots \sqcup X_q$ be a partition with $\left|X_i\right|=d$, $1\leq i\leq q$. Define a \vocab{hereditary family} $\FF:=\FF(d,q)=2^{X_1}\cup \cdots \cup 2^{X_q}$. Note that $2^{X_i}\cap 2^{X_j}=\left\{\emptyset \right\}$ and $\left|\FF\right|=1+(2^{d}-1)\frac{n}{d}$. If $Y=X\setminus \left\{x\right\}$ for some $x\in X$, then $\FF_{|Y}=\FF\setminus \left\{F\in \FF:x\in F\right\}$. So it follows that $\left|\FF_{|Y}\right|=\left|\FF\right|-2^{d-1}$ for all $Y\subseteq {X\choose n-1}$. Thus the following statement is not true.
+    \[(dq,1+(2^d-1)\frac{n}{d})\rightarrow (dq-1,1+(2^d-1)\frac{n}{d}-2^{d-1}+1)\]
+\end{definition}
+
+\begin{remark}
+    $\FF(d,q)$ is an extremal example by the following theorem.
+\end{remark}
+
+\begin{theorem}[thm:]{}
+    Let $n,d\in \mathbb{Z}^+$, $n>d$ being fixed. Let $\left|X\right|=n$ and let $\FF\subseteq 2^{X}$ be a hereditary family satisfying $\left|\FF\right|\leq 1+\frac{2^d-1}{d}n$. Then one of the following holds:
+    \begin{enumerate}
+        \item $\left|\FF(x)\right|<2^{d-1}$ for some $x\in X$. In this case $\left|\FF_{|Y}\right|>\left|\FF\right|-2^{d-1}$ for $Y=X\setminus \left\{x\right\}$.
+        \item $\FF$ is isomorphic to $\FF(d,q)$ for some $q$ (in particular, $d$ divides $n$). In thise case $\left|\FF_{|Y}\right|=\left|\FF\right|-2^{d-1}$ for all $Y\in {X\choose n-1}$.
+    \end{enumerate}
+\end{theorem}
+
+\begin{newenv}[rnd:]{}{Open Problem}
+    For each $n$ and $s$, determine or estimate the maximum value $m=m(n,s)$ such that $(n,m)\rightarrow (n-1,m-s)$.
+\end{newenv}
+
+\begin{remark}
+    We have $m(n,0)=0$ and $m(n,1)=\lfloor (3n+1)/2\rfloor$. By previous theorem, $m(n,2^{d-1})\geq 1+(2^d-1)\frac{n}{d}$. It can be proved that $m(n,2)=2n$. However, $m(n,s)$ is unknown in general.
+\end{remark}
+
+\begin{newenv}[rnd:]{}{Exercise}
+    Show that $m(n,2)=2n$.
+\end{newenv}
+

@@ -1,0 +1,11 @@
+\pitem[BAMO 2004]{%
+    Consider $n$ real numbers, not all zero, with sum zero.
+    Prove that one can label the numbers as $a_1,a_2,\dots ,a_n$ such that
+    $a_1a_2+a_2a_3+\cdots +a_na_1<0$.
+    }{%
+    Show that a random permutations has expected value at most 0. By summing all the equations with $n!$ permutations. We can get $\sum-a_i^2$. Since they are not all $0$ we have expected value $<0$, hence the sum.
+    \[\EE[a_ia_{i+1}]=\EE[a_i\EE[a_{i+1}\mid a_i]=\EE\left[a_i\left(\frac{-a_i}{n-1}\right)\right]=-\EE\left[\frac{a_i^2}{n-1}\right]<0.\]
+    }{%
+    https://web.evanchen.cc/handouts/ProbabilisticMethod/ProbabilisticMethod.pdf
+    https://www.bamo.org/attachments/bamo2004examsol.pdf
+}

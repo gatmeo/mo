@@ -1,0 +1,25 @@
+\pitem[Putnum 2002 A4]{%
+    In Determinant Tic-Tac-Toe, Player $1$ enters a $1$ in an empty $3 \times 3$ matrix. Player $0$ counters with a $0$ in a vacant position and play continues in turn intil the $ 3 \times 3 $ matrix is completed with five $1$’s and four $0$’s. Player $0$ wins if the determinant is $0$ and player $1$ wins otherwise. Assuming both players pursue optimal strategies, who will win and how?
+    }{%
+    In the game of Determinant Tic-Tac-Toe, player 1, who plays first, is trying to produce a non-zero determinant; player 0, who plays second, is trying to produce a zero determinant. Given optimal play, player 0 must always win.
+
+    First: since any permutation of rows and any permutation of columns does not change whether a determinant is zero, all starting positions are equivalent. WLOG player 1 starts in the center. We will have player 0 respond in the upper left corner. From this position, player 1 has (up to symmetry) 4 possible replies. We will deal with each of these possible replies in turn. We note that any row or column of all 0's will result in a victory for player 0, so in analyzing the game we will assume that player 1 will act to block a row or column that already has two 0's.
+
+    Case I: $\begin{array}{ccc}0 & 1 & \\ &1 & \\ & & \end{array}$ leads to $\begin{array}{ccc}0 & 1 & 0 \\ &1 & \\ & & \end{array},$ which has (up to symmetry) three replies:
+
+    IA: $\begin{array}{ccc}0 & 1 & 0 \\ &1 & \\ &1 & \end{array}$ followed by $\begin{array}{ccc}0 & 1 & 0 \\ 0 & 1 & \\ &1 & \end{array}$ leads to $\begin{array}{ccc}0 & 1 & 0 \\ 0 & 1 & 0 \\ 1 & 1 & 1\end{array}.$
+
+    IB: $\begin{array}{ccc}0 & 1 & 0 \\ &1 & \\ 1 & & \end{array}$ followed by $\begin{array}{ccc}0 & 1 & 0 \\ &1 & 0 \\ 1 & & \end{array}$ leads to $\begin{array}{ccc}0 & 1 & 0 \\ 0 & 1 & 0 \\ 1 & 1 & 1\end{array}.$
+
+    IC: $\begin{array}{ccc}0 & 1 & 0 \\ 1 & 1 & \\ & & \end{array}$ followed by $\begin{array}{ccc}0 & 1 & 0 \\ 1 & 1 & \\ & & 0\end{array}$ leads to $\begin{array}{ccc}0 & 1 & 0 \\ 1 & 1 & 1 \\ 0 & 1 & 0\end{array}.$
+
+    Case II: $\begin{array}{ccc}0 & & 1 \\ &1 & \\ & & \end{array}$ leads to $\begin{array}{ccc}0 & & 1 \\ &1 & \\ 0 & & \end{array}$ leads to $\begin{array}{ccc}0 & & 1 \\ 1 & 1 & \\ 0 & 0 & \end{array}$ leads to $\begin{array}{ccc}0 & 0 & 1 \\ 1 & 1 & 1 \\ 0 & 0 & 1\end{array}.$
+
+    Case III: $\begin{array}{ccc}0 & & \\ &1 & 1 \\ & & \end{array}$ leads to $\begin{array}{ccc}0 & & \\ &1 & 1 \\ 0 & & \end{array}$ leads to $\begin{array}{ccc}0 & & \\ 1 & 1 & 1 \\ 0 & & \end{array},$ which continues as in case 1A, rotated.
+
+    Case IV: $\begin{array}{ccc}0 & & \\ &1 & \\ & & 1\end{array}$ leads to $\begin{array}{ccc}0 & & 0 \\ &1 & \\ & & 1\end{array},$ which continues as in case II.
+
+    This exhausts the possibilities; player 0 can always win.
+    }{%
+    https://artofproblemsolving.com/community/c7t46107f7h469259_putnam_2002_a4
+}

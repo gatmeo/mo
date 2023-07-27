@@ -1,0 +1,23 @@
+\pitem[]{%
+    Odin and Evelyn are playing a game, Odin going first. There are initially $3k$ empty boxes, for some given positive integer $k$. On each player’s turn, they can write a non-negative integer in an empty box, or erase a number in a box and replace it with a strictly smaller non-negative integer. However, Odin is only ever allowed to write odd numbers, and Evelyn is only allowed to write even numbers. The game ends when either one of the players cannot move, in which case the other player wins; or there are exactly $k$ boxes with the number $0$, in which case Evelyn wins if all other boxes contain the number $1$, and Odin wins otherwise. Who has a winning strategy?
+    }{%
+    Evelyn wins for all $k$. We solve $k = 1$ first.
+
+First consider positions where all three boxes are filled.
+
+Claim: If before Odin's turn the smallest number is odd, or the position is $(x, x + 1, x + 1)$ for some even $x \geq 0$, then Evelyn wins.
+
+Proof. It suffices to show that if Odin can move, then Evelyn can move and restore this condition.
+
+First, if the smallest number is odd before Odin's turn, then after Odin's turn the smallest number will still be an odd number $x$, and the position cannot be $(x, x + 1, x + 1)$. If the position is $(x, x, x)$ or $(x, x, x + 1)$, then Evelyn can go to the position $(x - 1, x, x)$. Otherwise, some number is at least $x + 2$ and Evelyn can replace it with $x + 1$, so $x$ remains the smallest number.
+
+Meanwhile, if the position is $(x, x + 1, x + 1)$ before Odin's turn, for $x$ even, then the number Odin writes must be at most $x - 1$ and will be the new smallest number. Then Evelyn replaces an $x + 1$ with $x$ (at least one of them must remain), and the smallest number is odd. $\blacksquare$
+
+Now if Odin starts by placing an odd number $a$ in the first box, Evelyn places $a + 3$ in the second box. If Odin places an odd number in the third box, then Evelyn replaces $a + 3$ with $a + 1$. On the other hand, if Odin replaces the number in the first or second box, then Evelyn places $a + 3$ in the third box. Either way, now all three boxes are filled, the smallest number is odd, and it's Odin's turn. So Evelyn wins.
+
+For general $k$, Evelyn splits the boxes into $k$ sets of three. Whenever Odin plays in one set, Evelyn plays in the same set following the $k = 1$ strategy in that set. Note that Odin cannot move in the position $011$, so eventually Odin must get stuck on each set, and if Evelyn ever writes a $0$ in a set then its other two entries are both $1$'s. So Evelyn wins.
+
+Remark: The motivation for the claim is that for the $k = 1$ case, we can inductively determine who wins every position where all three numbers are filled. We find that if the position is $(x, x + 1, x + 1)$ for any $x$ then whoever is to move loses; otherwise, Evelyn wins if the smallest number is odd and Odin wins if the smallest number is even.
+    }{%
+    https://artofproblemsolving.com/community/c6t224166f6h2671694_combintarics_from_bmo_sl
+}

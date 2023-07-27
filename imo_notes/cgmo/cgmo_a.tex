@@ -1,0 +1,285 @@
+\documentclass[a4paper]{article}
+\usepackage[math_simple,imo]{gatmeo}
+
+\renewcommand{\courseTitle}{\FirstBigRestSmallCaps{CGMO}}
+\renewcommand{\courseTopic}{\FirstBigRestSmallCaps{CGMO 1}}
+\DTMsavedate{mydate}{2022-11-26}
+
+\toggletrue{ownans}
+\togglefalse{officialans}
+\rfoot{}
+
+\begin{document}
+\maketitle
+\thispagestyle{empty}
+%\tableofcontents
+\begin{question*}[]{}
+  \pitem{%
+    Ana and Bety play a game alternating turns. Initially, Ana chooses an odd possitive integer and composite $n$ such that $2^j<n<2^{j+1}$ with $2<j$. In her first turn Bety chooses an odd composite integer $n_1$ such that
+    \[n_1\leq \frac{1^n+2^n+\dots+(n-1)^n}{2(n-1)^{n-1}}.\]Then, on her other turn, Ana chooses a prime number $p_1$ that divides $n_1$. If the prime that Ana chooses is $3$, $5$ or $7$, the Ana wins; otherwise Bety chooses an odd composite positive integer $n_2$ such that \[n_2\leq \frac{1^{p_1}+2^{p_1}+\dots+(p_1-1)^{p_1}}{2(p_1-1)^{p_1-1}}.\]After that, on her turn, Ana chooses a prime $p_2$ that divides $n_2,$, if $p_2$ is $3$, $5$, or $7$, Ana wins, otherwise the process repeats. Also, Ana wins if at any time Bety cannot choose an odd composite positive integer in the corresponding range. Bety wins if she manages to play at least $j-1$ turns. Find which of the two players has a winning strategy.
+    }{%
+    We will show that Ana can always win.
+Her strategy is to choose the smallest prime $p$ number that divides $n_k$.
+See that, with $n$ being composite, $p^2\mid n$ or $q\mid n$ for some prime $q>p$. In both cases, $n\geq p^2$.
+Moreover, for $n>2$, $k^n+(n-1-k)^n<(n-1)^k$ $\forall$ $1\leq k\leq n-2$, so $f(n)=\frac{1^n+2^n+\dots+(n-1)^n}{2(n-1)^{n-1}}<\frac{(\frac{n-2}{2}+1)(n-1)^n}{2(n-1)^{n-1}}=\frac{n(n-1)}{4}<\frac{n^2}{4}$.
+Finally, see that $n_1<\frac{n^2}{4}<2^{2j}$ and $n_{k+1}<\frac{p_k^2}{4}\leq \frac{n_k}{4}$. If Bety manages to play at least $j-2$ turns, we have $n_{j-2}<2^6$, but the smallest composite number without factors $2,3,5,7$ is $11^2>2^6$, so Ana can win in her next move.
+Motivation: $f(n)$ seems to be increasing. Ana's movement just restricts the size of the integer that Bety will choose next. So she must select the smallest prime that divides $n$. Knowing that, Bety must choose $n=p^2$ for the largest prime $p$ she can choose. So the problem resumes to estimate $f(n)$ to show if the sequence of primes can stay greater than $7$ after $j-2$ turns (the initial number is $\approx 2^j$, so we need some bound like $p_{k+1}>\text{ or }<\frac{p_k}{2}$).
+Intuitively, $f(n)$ is asymptotically linear, although I didn't find an elementary way to show the upper bound. But this leads to a bound like $p_{k+1}<\sqrt{Cp_k}$, which is much better than $p_{k+1}<\frac{p_k}{2}$. Then, Ana must win.
+    }{%
+    https://artofproblemsolving.com/community/c6t177f6h2951124_two_girls_play_the_longest_game_ever
+  }
+
+  \pitem{%
+Let $ABC$ be an acute triangle with $AB< AC$. Denote by $P$ and $Q$ points on the segment $BC$ such that $\angle BAP = \angle CAQ < \frac{\angle BAC}{2}$. $B_1$ is a point on segment $AC$. $BB_1$ intersects $AP$ and $AQ$ at $P_1$ and $Q_1$, respectively. The angle bisectors of $\angle BAC$ and $\angle CBB_1$ intersect at $M$. If $PQ_1\perp AC$ and $QP_1\perp AB$, prove that $AQ_1MPB$ is cyclic.
+    }{%
+    We first delete several useless points.
+
+    We delete point $B_1$ because it does nothing.
+    Proving $AQ_1PB$ was cyclic would solve the problem as then $M$ would be simply be the midpoint of its arc $Q_1P$. Thus, we can ignore $M$ as well.
+    Since \[ \measuredangle Q_1PP_1 = 90^{\circ} - \measuredangle PAC = 90^{\circ} - \measuredangle BAQ = \measuredangle Q_1QP_1 \]so $PP_1Q_1Q$ is cyclic, and we can delete point $C$ too.
+
+So after cutting away all the smoke and mirrors, the problem says: let $PP_1Q_1Q$ be cyclic with $A = \overline{P_1P} \cap \overline{Q_1Q}$ and $B = \overline{PQ} \cap \overline{P_1Q_1}$. Given that $\overline{P_1Q} \perp \overline{AB}$, prove $AQ_1PB$ is cyclic.
+
+Well, Brokard's theorem says $\overline{AB}$ is the polar of $\overline{PQ_1} \cap \overline{P_1Q}$, so that forces $(P_1PQQ_1)$ to have diameter $\overline{P_1Q}$. It follows $P_1$ is exactly the orthocenter of $\triangle ABQ$, and $AQ_1PB$ is cyclic.
+    }{%
+    https://artofproblemsolving.com/community/c6t1535812f6h2949021_bisectors_perpendicularity_and_circles
+  }
+
+  \pitem{%
+
+Celeste has an unlimited amount of each type of $n$ types of candy, numerated type 1, type 2, $\dots$, type $n$. Initially she takes $m>0$ candy pieces and places them in a row on a table. Then, she chooses one of the following operations (if available) and executes it:
+
+$1.$ She eats a candy of type $k$, and in its position in the row she places one candy type $k-1$ followed by one candy type $k+1$ (we consider type $n+1$ to be type 1, and type 0 to be type $n$).
+
+$2.$ She chooses two consecutive candies which are the same type, and eats them.
+
+Find all positive integers $n$ for which Celeste can leave the table empty for any value of $m$ and any configuration of candies on the table.
+    }{%
+    We may substitute any given candy of type $k$ with a candy of type $k-3$ while leaving the rest of the candies unchanged, through the following sequence of operations:
+$$(k)\to(k-1,k+1)\to(k-2,k,k+1)\to(k-3,k-1,k-1,k+1,k+1)\to(k-3).$$By trivial induction for which the previous result is the base case, we may substitute any given candy in the row of type $k$ by a candy of type $k-3t$, where $t$ is any positive integer, and we use cyclic notation modulo $n$. Now, if $n$ is coprime with $3$, an integer $t$ exists such that $k-3t$ takes any desired remainder modulo $n$, or given two consecutive candies $k,k'$, a $t$ exists such that $k-3t\equiv k'\pmod n$, and we may perform operations leading from $(k,k')$ to $(k-3t,k')$, and then eliminate both through an operation of type 2. If $m$ is initially odd, we perform first an operation of type 1, resulting in an even $m$. Once $m$ is even, $\frac{m}{2}$ sequences of transformations $(k,k')$ to $(k-3t,k')$ followed by elimination of the two consecutive candies of the same type results in all candies being removed from the table.
+
+Assume now that $n$ is a multiple of $3$, and let $m=m_1+m_2+m_3$, where $m_i$ is the number of candies of any type $k$ such that $k\equiv i\pmod3$. Note that since $n$ is a multiple of $3$, regardless of the value of $k$, when an operation of type 1 is perfomed on a candy of type $k$, one of $m_1,m_2,m_3$ decreases by $1$, and the other two increase by $1$. On the other hand, an operation of type 2 results in one of $m_1,m_2,m_3$ decreasing by $2$, and the other two remaining unchanged. Therefore, in each operation, either all of $m_1,m_2,m_3$ switch their parities, or all their parities remain unchanged. As a result, if initially not all of $m_1,m_2,m_3$ have the same parity, no sequence of operations may make them all simultaneously even, and thus not all three of them may be made simultaneously zero. Or, some candy will always remain on the table.
+
+We conclude that it is possible to clear the table for any initial configuration of candies iff $n$ is coprime with $3$.
+    }{%
+    https://artofproblemsolving.com/community/c6t1535812f6h2687954_unlimited_candy_in_pagmo
+  }
+
+  \pitem{%
+Let $a_1, a_2, \dots$ be a sequence of real numbers satisfying $a_{i+j} \leq a_i+a_j$ for all $i,j=1,2,\dots$. Prove that
+\[ a_1 + \frac{a_2}{2} + \frac{a_3}{3} + \cdots + \frac{a_n}{n} \geq a_n \]
+for each positive integer $n$.
+    }{%
+    We will prove this by induction. Note that the inequality holds for $ n=1$. Assume that the inequality holds for $ n=1,2,\ldots,k$, that is,
+\[ a_1\ge a_1, \\ a_1+\frac{a_2}2\ge a_2, \\ a_1+\frac{a_2}2+\frac{a_3}3\ge a_3, \\ \vdots \\ a_1+\frac{a_2}3+\frac{a_3}3+\cdots+\frac{a_k}k\ge a_k. \]
+Sum them up:
+\[ ka_1+(k-1)\frac{a_2}2a_2+\cdots+\frac{a_k}{k}\ge a_1+a_2+\cdots+a_k. \]Add $ a_1+\ldots+a_k$ to both sides:
+\[ (k+1)\left(a_1+\frac{a_2}2+\cdots+\frac{a_k}k\right)\ge (a_1+a_k)+(a_2+a_{k-1})+\cdots+(a_k+a_1)\ge ka_{k+1}. \]
+Divide both sides by $ k+1$:
+\[ a_1+\frac{a_2}2+\cdots+\frac{a_k}k\ge\frac{ka_{k+1}}{k+1}, \] i.e.
+\[ a_1 + \frac{a_2}{2} + \frac{a_3}{3} + \cdots + \frac{a_n}{n} \geq a_n. \]
+    }{%
+    https://artofproblemsolving.com/community/c6h79787
+  }
+\end{question*}
+
+\begin{question}[]{}
+  \pitem[A]{%
+    Given a positive integer $n$, determine the maximal constant $C_n$ satisfying the following condition: for any partition of the set $\{1,2,\ldots,2n \}$ into two $n$-element subsets $A$ and $B$, there exist labellings $a_1,a_2,\ldots,a_n$ and $b_1,b_2,\ldots,b_n$ of $A$ and $B$, respectively, such that
+$$ (a_1-b_1)^2+(a_2-b_2)^2+\ldots+(a_n-b_n)^2\ge C_n. $$
+    }{%
+    We're trying to maximize $$C_n=\sum_{i=1}^{n}(a_i-b_i)^2=\sum_{i=1}^{2n}i^2-2\sum_{i=1}^{n}a_ib_i=\frac{2n(2n+1)(4n+1)}{6}-2\sum_{i=1}^{n}a_ib_i$$, so we need to minimize $S:=\sum_{i=1}^{n}a_ib_i$.
+
+Lemma. The minimum of $S$ is achieved when none of the pairs $(a_i,b_i)$ are both greater than $n$.
+
+Proof. Assume not, then there are four numbers $i,j,k,l \in \{1,2,3,\dots,n\}$ such that $(n+i)(n+j)+lk$ appears in $S$, but we can replace these numbers with $(n+i)l+(n+j)k$ and decrease $S$ because $(n+i)(n+j-l)\geq k(n+j-l)$. $\blacksquare$
+
+So, we can let $A=\{1,2,\dots ,n\}$ and $B=\{n+1,n+2,\dots ,2n\}$ and by rearrangement inequality we get that $$S\geq \sum_{i=1}^{n} i(2n+1-i)=\frac{n(n+1)(2n+1)}{3}$$.
+Hence, we have $C_n=\frac{2n(2n+1)(4n+1)}{6}-2S\leq \frac{n(2n+1)(2n-1)}{3}$.
+    }{%
+    https://artofproblemsolving.com/community/c6t169f6h1908505_inequality_with_permutations
+  }
+
+  \pitem[]{%
+There are 20 people at a party. Each person holds some number of coins. Every minute, each person who has at least 19 coins simultaneously gives one coin to every other person at the party. (So, it is possible that $A$ gives $B$ a coin and $B$ gives $A$ a coin at the same time.) Suppose that this process continues indefinitely. That is, for any positive integer $n$, there exists a person who will give away coins during the $n$th minute. What is the smallest number of coins that could be at the party?
+    }{%
+    The answer is 190.
+First, we construct a solution using 190 total coins; the people have 0, 1, ..., 19 coins in some order. After every minute, the coin counts remain the same up to permutation. The party is valid because it never ends.
+
+Now, we show that all parties must have at least 190 coins total.
+Assume that the acts of giving occur neither compulsively nor simultaneously; each minute, a single arbitrary person with at least 19 coins gives a coin to everyone else. This does not make the party harder to sustain (nor easier, though proving that is nontrivial and unnecessary for this problem) Click to reveal hidden text
+
+We will prove the stronger statement: all parties lasting at least 19 rounds will require at least 190 coins total. So we will truncate the infinite party to its first 19 rounds.
+Let a person be useless if he will not perform the act of giving a coin to everyone else in the remainder of the party.
+A coin given to a useless person will never be passed on to anyone else.
+
+Initially, there are 19 minutes of the party remaining. Each of those minutes is an opportunity to give, so there are at most 19 distinct people who will give, and at least 1 person who will not give; 1 person who is useless.
+Since one coin is distributed to everyone, at least 1 coin will be given to useless people in the first minute.
+
+In the second minute, there are 18 minutes remaining so at least 2 people who will not give again; in the second minute, at least 2 coins will be given to useless people.
+
+Continuing the pattern tells us that in the $k$-th minute, at least $k$ coins will be given to useless people.
+Hence $1 + 2 + \ldots + 19 = 190$ coins will be given to useless people.
+Those $190$ coins will all be distinct; the party must have at least $190$ coins total, and we are done.
+    }{%
+    https://artofproblemsolving.com/community/c6t309f6h545081_coin_operation
+  }
+
+  \pitem[]{%
+    Let $ABC$ be a triangle with incenter $I$, and $A$-excenter $\Gamma$. Let $A_1,B_1,C_1$ be the points of tangency of $\Gamma$ with $BC,AC$ and $AB$, respectively. Suppose $IA_1, IB_1$ and $IC_1$ intersect $\Gamma$ for the second time at points $A_2,B_2,C_2$, respectively. $M$ is the midpoint of segment $AA_1$. If the intersection of $A_1B_1$ and $A_2B_2$ is $X$, and the intersection of $A_1C_1$ and $A_2C_2$ is $Y$, prove that $MX=MY$.
+    }{%
+Lemma: $X$ is the midpoint in $A_1B_1$. Similarly, $Y$ is the midpoint in $A_1C_1$.
+
+Proof: Since $I$ is inside $ABC$ and lines $AB,AC$ are tangent to $\Gamma$, $A_1$ is inside segment $IA_2$ and $B_2$ is inside segment $IB_1$. By Menelaus' theorem applied to $A_2,X,B_2$ on the sides of triangle $IA_1B_1$, and using that $IA_1\cdot IA_2=IB_1\cdot IB_2$ is the power of $I$ with respect to $\Gamma$, the Lemma is equivalent to $IB_1\cdot B_1B_2=IA_1\cdot A_1A_2$. Note that the power of $I$ with respect to $\Gamma$ also equals $II_A^2-\rho^2$, where $\rho=I_AA_1$ is the radius of $\Gamma$. Or, denoting by $\alpha$ the angle between $IA_1$ and $BC$, we have $\angle IA_1I_A=90^\circ+\alpha$, and using the Cosine Law we obtain
+$$IA_1\cdot A_1A_2=IA_1\cdot IA_2-IA_1^2=II_A^2-I_AA_1^2-IA_1^2=-2I_AA_1\cdot IA_1\cos\angle IA_1I_A=2\rho\cdot IA_1\sin\alpha=2\rho\cdot r.$$Similarly, $IB_1\cdot B_1B_2=2\rho\cdot r=IA_1\cdot A_1A_2$. The first part of the Lemma follows, and the second one is proved analogously, exchanging $B$ and $C$.
+
+Since by the Lemma $X$ is the midpoint in $A_1B_1$, $Y$ is the midpoint in $A_1C_1$ and by definition $M$ is the midpoint of $A_1A$, triangle $XYM$ is similar to triangle $B_1C_1A$. Or since $AB_1C_1$ is isosceles at $A$, $MXY$ is isosceles at $M$. The conclusion follows.
+    }{%
+    https://artofproblemsolving.com/community/c6t48f6h2687957_incenter_excenter_and_intersections
+  }
+
+  \pitem[]{%
+Prove that the system \begin{align*} x^6+x^3+x^3y+y & = 147^{157} \\ x^3+x^3y+y^2+y+z^9 & = 157^{147} \end{align*} has no solutions in integers $x$, $y$, and $z$.
+    }{%
+    We want to mod 19 since then $z^9$ will congruent to $0,1,-1$.
+
+    First, add and subtract the equations to get
+    $(x^3+y+1)^2-1+z^9=147^{157}-157^{147}$
+    $(x^3-y)(x^3+y)-z^9=147^{157}-157^{147}$
+
+    Now, assume that $x,y,z$ are a solution and work mod 19. $147^{157}\equiv2$ and $157^{147}\equiv11,$ so
+    $(x^3+y+1)^2+z^9\equiv14$,
+    Since 9th powers are congruent to $\pm1$, either $(x^3+y+1)^2\equiv13$ or $(x^3+y+1)^2\equiv15$. Neither of these values is a square mod 19, so there is no solution and we are done.
+    }{%
+    https://artofproblemsolving.com/community/c6t169f6h34315_weird_looking_system_of_equations
+  }
+\end{question}
+
+\begin{question}[c]{}
+  \pitem[N]{%
+Let $n$ be a positive integer with at least $4$ positive divisors. Let $d(n)$ be the number of positive divisors of $n$. Find all values of $n$ for which there exists a sequence of $d(n) - 1$ positive integers $a_1$, $a_2$, $\dots$, $a_{d(n)-1}$ that forms an arithmetic sequence and satisfies the following condition: for any integers $i$ and $j$ with $1 \leq i < j \leq d(n) - 1$, we have $\gcd(a_i , n) \neq \gcd(a_j , n)$.
+    }{%
+    The answer is $n = \boxed{8}$, $n = \boxed{12}$, and $n=\boxed{pq}$ for distinct primes $p,q$. I will use $\tau$ instead of $d$ since I am more used to it.
+
+To see that these work, note that $n = 8$ works since we can take the arithmetic sequence $(a_1, a_2, a_3) = (4, 6, 8)$ (note $3 = \tau(8)-1$), and $\gcd(4, 8) = 4$, $\gcd(6, 8) = 2$, $\gcd(8, 8) = 8$ which are all pairwise distinct, and $n = 12$ works since we can take the arithmetic sequence $(a_1, a_2, a_3, a_4, a_5) = (6, 7, 8, 9, 10)$ (note $5 = \tau(12) - 1$), and $\gcd(6, 12) = 6$, $\gcd(7, 12) = 1$, $\gcd(8, 12) = 4$, $\gcd(9, 12) = 3$, $\gcd(10, 12) = 2$, which are all pairwise distinct. To see that $n = pq$ works for distinct primes $p, q$, WLOG suppose that $p < q$, then $q\neq 2$. Then, take $(a_1, a_2, a_3) = (1, ap, 2ap-1)$ for some positive integer $a$ such that $a\equiv \frac{1}{2p}\pmod{q}$ (note that $3 = \tau(pq)-1$), which is well defined since $q > p\geq 2$. This works since $\gcd(1, pq) = 1$, $\gcd(ap, pq) = p$ ($q\nmid ap$ since $ap\equiv \frac{1}{2}\pmod{q}$), and $q\mid 2ap-1$, so $\gcd(2ap-1, pq)\in \{q, pq\}$, so all the $\gcd$s are pairwise distinct.
+
+Now, we will show that this is these are the only such $n$ that work. Note that since all of the $\gcd(a_i, n)$'s are distinct, and there are $\tau(n)-1$ of them, and they all divide $n$, we must have $$\{\gcd(a_i, n) \mid 1\leq i\leq \tau(n)-1\} = \{d \mid d\mid n \} \setminus \{x\},$$for some $x\mid n$.
+
+First, we will rule out some special cases.
+
+Special Case 1: $n$ is a power of a prime.
+Then, $n = p^r$ for some $r\geq 3$ (as $\tau(n) \geq 4$). First, assume for the sake of contradiction that $r\geq 4$. If we let $b_i = \gcd(i, n) = \gcd(i, p^r)$, note that we must leave out $1$ in the $b_i$, else all of the $b_i$ besides one of them are divisible by $p$, so it follows that all of the $a_i$ besides one of them are divisible by $p$. However, since $\tau(n)-1 = r \geq 4$, it follows that there must exist two consecutive $a_i$ divisible by $p$. However, that would mean that their common difference is divisible by $p$, so all of the terms would be divisible by $p$, contradiction. Thus, $\{b_i\}_\{1\leq i\leq r\} = \{p, p^2, \cdots, p^r\}$. However, now we can apply the same argument to divisibility by $p^2$ -- $p^2$ dividing some $a_i$ is equivalent to $p^2$ dividing some $b_i$ since $r > 2$, so since all the $b_i$ besides one of them is divisible by $p^2$, all of the $a_i$ besides one of them is divisible by $p^2$, but since there are $r\geq 4$ terms, there exist two consecutive $a_i$ divisible by $p^2$, so their common difference is divisible by $p^2$, so all of the $a_i$ are divisible by $p^2$, contradiction. Thus, we must have that $r = 3$. Now, we will show that $p = 2$. Assume the contrary. Then, note that at least two of the $b_i$ must be divisible by $p$, so at least two of the $a_i$ are divisible by $p$. If they are adjacent, then by the previous argument all of the $a_i$ are divisible by $p$. Else, we must have that $a_1$ and $a_3$ are divisible by $p$, so since $p\neq 2$, $a_2 = \frac{a_1+a_3}{2}$ must also be divisible by $p$. Thus, all of the $a_i$ are divisible by $p$, so all of the $b_i$ are divisible by $p$, implying that $\{b_i\}_\{1\leq i\leq 3\} = \{p, p^2, p^3\}$. Then, two of the $b_i$ are divisible by $p^2$, so two of the $a_i$ are divisible by $p^2$, so just repeat the previous argument to get a contradiction. Thus, we have that $p = 2$ and $r = 3$, so $n = 2^3 = 8$ is the only prime power with at least $4$ divisors that works. $\square$
+
+Special Case 2: $\tau(n) \leq 6$, $n$ is not a prime power.
+Then, if $\tau(n) = 4$, we have that $n = pq$ for primes $p\neq q$, which we already showed works. If $\tau(n) = 5$, $n$ must be a prime power. If $\tau(n) = 6$, then the only non-prime such $n$ that can work are $n = pq^2$ for primes $p\neq q$. To see that this implies that $(p, q) = (3, 2)$, assume for the sake of contradiction that $q> 2$. Note that $4$ of the divisors of $n$ are divisible by $q$, so there are at least three $b_i$'s divisible by $q$, so at least three $a_i$'s divisible by $q$. Since $\tau(n)-1 = 5$, it follows that there either exist two adjacent $a_i$'s divisible by $q$ or two $a_i$'s that are two apart (i.e. $a_j$ and $a_{j+2}$) divisible by $q$. If there exist two adjacent $a_i$'s divisible by $q$, then all the $a_i$'s are divisible by $q$ as discussed earlier several times, so all of the $5$ $b_i$'s are divisible by $q$, however, at most $4$ are divisible by $q$ since there are only $4$ divisiors of $n$ that are divisible by $q$, contradiction. Else, if there exists two $a_i$'s that are two apart divisible by $q$, then since $q\neq 2$, their average must be divisible by $q$, so we get two adjacent $a_i$'s divisible by $q$ (one of the original $a_i$'s and their average; i.e. $a_{i+1}$), which is a contradiction from the above case. Thus, we must have $q = 2$. Now, assume for the sake of contradiction that $p > 3$. Then, $3$ of the divisors of $n$ are divisible by $p$, so there are at least $2$ $b_i$'s divisible by $p$. Then, there are at least $2$ $a_i$'s divisible by $p$, say $a_i$ and $a_j$ for $1\leq i < j\leq 5$. If $j = i+1$, then by previous logic we can see that all the $a_i$'s are divisible by $p$, so all of the $5$ $b_i$'s are divisible by $p$, contradiction since there are only $3$ divisors of $n$ divisible by $p$. If $j = i+2$, then $a_{i+1} = \frac{a_i + a_{i+2}}{2}$ must be divisible by $p$ since $p > 3$, so $a_i, a_{i+1}$ divisible by $p$, contradiction as mentioned above. If $j = i+3$, then $a_{i+1} = \frac{2}{3}a_i + \frac{1}{3}a_{i+3}$ must be divisible by $p$ since $p > 3$, so $a_i, a_{i+1}$ divisible by $p$, contradiction. If $j = i+4$, then $a_{i+1} = \frac{3}{4}a_i + \frac{1}{4}a_{i+4}$ must be divisible by $p$ since $p > 3$, so $a_i$, $a_{i+1}$ divisible by $p$, contradiction. Thus, $p \leq 3$, so since $q = 2$, $p = 3$, and so $n=pq^2 = 12$. $\square$
+
+Now, suppose that $n$ was not a prime power and $\tau(n) > 6$. Now, assume for the sake of contradiction was not squarefree, i.e. there existed a prime $p$ dividing $n$ with $\nu_p(n) \geq 2$. Then, note that $\frac{\nu_p(n)}{\nu_p(n)+1}\tau(n)-1 \geq \frac{2}{3}\tau(n)-1$ of the $b_i$'s must be divisible by $p$, so at least $\frac{2}{3}\tau(n)$ of the $a_i$'s must be divisible by $p$. Not all the $a_i$'s can be divisible by $p$, since then all the $b_i$'s would be divisible by $p$, so at least $\tau(n)-1$ divisors of $n$ must be divisible by $p$, but since $n$ is not a prime power, there exists a prime $q\neq p$ dividing $n$, and $1, q$ are distinct divisors not divisible by $p$, contradiction. Thus, there exists a $j$ for which $p\nmid a_j$. Now, note that arithmetic sequences repeat modulo $p$, so if we take the largest $k$ for which $\{a_1, a_2, \cdots, a_k\}$ all have distinct residues mod $p$ (this implies that $a_{k+1} = a_1$ since if $a_{k+1} = a_j$ for $j > 1$, then $a_{k-j+2} = a_1$, contradiction since $k-j+2\leq k$), then there is at most one $0\pmod{p}$ in $\{a_1, a_2, \cdots, a_k\}$ and at least one nonzero element mod $p$ since we know there exists a nonzero element in this arithmetic progression (and everything is contained in $\{a_1, a_2, \cdots, a_k\}$ since we know $a_{k+1} \equiv a_1\pmod{p}$ and so it repeats). If $k = 1$, then there are no elements divisible by $p$ due to the existence of a nonzero element mod $p$, and if $k\geq 2$, then at most $1$ in each block, so at most $\left \lceil \frac{\tau(n)-1}{k}\right \rceil \leq \left \lceil \frac{\tau(n)-1}{2}\right \rceil$ in total. Thus, we have that since at least $\frac{2}{3}\tau(n)-1$ of the $a_i$ must be divisible by $p$, we have that $$\left \lceil \frac{\tau(n)-1}{2}\right \rceil \geq \frac{2}{3}\tau(n) - 1,$$so since the ceiling will add at most $\frac{1}{2}$ to the value, $$\frac{\tau(n)}{2} \geq \frac{2}{3}\tau(n) - 1,$$so $$1 \geq \frac{1}{6}\tau(n),$$so $$\tau(n) \leq 6,$$a contradiction since $\tau(n) > 6$.
+
+Now, suppose that $n$ was squarefree (and $\tau(n) > 6$, and $n$ is not a prime power). Then, $n = p_1p_2\cdots p_k$ for some $k\geq 3$. Then, note that for any prime $p_i$, exactly $2^{k-1}$ such divisors of $n$ are divisible by $p_i$. Therefore, the number of $b_j$ divisible by some $p_i$ is in $\{2^{k-1} - 1, 2^{k-1}\}$, so the number of $a_j$ divisible by some $p_i$ is in $\{2^{k-1}-1, 2^{k-1}\}$. Note that $2^{k-1} < 2^k-1$, so not all the $a_j$'s are divisible by $p_i$. Now, as done in the above case, take the largest $r$ for which $\{a_1, a_2, \cdots, a_r\}$ all produce distinct residues mod $p_i$; then $a_{r+1}\equiv a_1\pmod{p_i}$ and it repeats as proven earlier. Then, assume for the sake of contradiction that $r\neq 2$. If we had $r = 1$, then since there exists a nonzero residue mod $p_i$ in the $a_j$'s, it follows that all residues are nonzero, but since $2^{k-1} - 1 > 0$, we have a contradiction. If we had $r \geq 3$, then at most $1$ in each block of $r$ is $0\pmod{p_i}$, so the number of $a_i$ divisible by $p_i$ is at most $$\left \lceil \frac{2^k-1}{r}\right \rceil \leq \left \lceil \frac{2^k-1}{3}\right \rceil \leq \frac{2^k-1}{3} + 1 = \frac{2^k+2}{3},$$so $$\frac{2^k+2}{3} \geq 2^{k-1} = \frac{2^k}{2},$$implying $$2\cdot 2^k + 4\geq 3\cdot 2^k,$$so $$2^k \leq 4,$$a contradiction. Thus, we must have $r = 2$. Since $2^{k-1} - 1 > 0$, it follows that exactly one of $\{a_1, a_2\}$ are divisible by $p_i$, so we have that in general, $a_j$ is divisible by $p_i$ iff $j$ is a certain parity. Since $k\geq 3$ by PHP there exist two $p_i$ (WLOG suppose they are $p_1, p_2$) with the same such parity which makes $a_j \mid p_i$. Then, $p_1\mid a_i\iff p_2 \mid a_i$, so there are no such $a_i$ divisible by $p_1$ but not $p_2$. Then, there are no such $b_i$ divisible by $p_1$ but not $p_2$. However, there are $2^{k-2} \geq 2$ such divisors of $n$ divisible by $p_1$ but not $p_2$, so at least one $b_i$ divisible by $p_1$ but not $p_2$, a contradiction.
+
+Thus, we've exhausted all cases and so the only $n$ which work are $n = 8, n=12$, and $n=pq$ for distinct primes $p\neq q$, as claimed. $\blacksquare$
+    }{%
+    https://artofproblemsolving.com/community/c6t177f6h3116579_gcd_and_arithmetic_sequence
+  }
+
+  \pitem[]{%
+Let $ABC$ be an acute triangle and point $P$ lies inside the triangle (excluding the vertices on the boundary) such that lines $AP$ and $BC$ are not orthogonal. Let $X$ and $Y$ be the points symmetric to $P$ wrt lines $AB$ and $AC$, respectively, and let $\omega$ be the circumcircle of triangle $AXY$. Point $Q$ lies inside triangle $ABC$ (excluding the vertices on the boundary) and satisfies $\angle QBC = \angle CAP$, $\angle QCB = \angle BAP$. Line $AQ$ intersects $\omega$ at a point $R$, distinct from $A$ and $Q$. Prove that the circumcircles of triangles $ABC$, $PQR$, and $\omega$ have a common point.
+    }{%
+    Let $AP\cap \odot(ABC)=T,XP\cap AC=W,YP\cap AB=V,\odot(ABC)\cap\odot(AXY)=Z$
+Suppose $PV\cap BQ=G,PW\cap QC=H$
+$\mathrm{Lemma.1}\ \ A,X,Y,V,W $are cyclic
+$\mathrm{Proof.}$
+Note that $\angle AVY=90^{\circ}-\angle BAC=\angle AXY$
+Similarly $\angle AWX=\angle AYX$
+Which menas that $A,X,Y,V,W$ are cyclic
+$\mathrm{Lemma.2}$ point $T$ and $Q$ are symmetric about line segment $BC$
+$\mathrm{Proof.}$
+Note that $\angle TBC=\angle TAC=\angle QBC$
+$\angle TCB=\angle TAB=\angle QCB$
+Which menas that point $T$ and $Q$ are symmetric about line segment $BC$
+$\mathrm{Lemma.3}$ $\triangle PVW\sim \triangle QBC$
+$\mathrm{Proof.}$
+Notice $\angle PVW=\angle YXP=\angle PAC=\angle QBC$
+Similarly $\angle PWV=\angle QCB$
+Which means that $\triangle PVW\sim \triangle QBC$
+$\mathrm{Lemma.4}$ $AT\bot VW$
+$\mathrm{Proof.}$
+Consider that $VP\bot AW,WP\bot AV$
+So $P$ is the orthocenter of $\triangle AVW$
+Which means that $AT\bot VW$
+$\mathrm{Lemma.5}$ $P,Q,T,Z$ are cyclic
+$\mathrm{Proof.}$
+Note that $\angle GVL=\angle GBL$
+So $B,V,L,G$ are cyclic
+Similarly $H,L,C,W$ are cyclic
+Hence $\angle PGQ=\angle BGV=\angle BLV=\angle WLC=\angle WHC=\angle QHC$
+Which menas that $P,Q,G,H$ are cyclic
+Consider that $QT\bot BC$
+So $\angle PTQ=\angle BLV=\angle PGQ$
+which means that $P,G,T,H,Q$ are cyclic
+Consider that $\angle VZW=180^{\circ}-\angle BAC=\angle BZC$
+So $\triangle VZW\sim\triangle BZC$
+Which menas that $B,V,Z,L$ and $Z,L,W,C$ are cyclic
+So $\angle PVZ=\angle GBZ$
+Finally $\dfrac{PV}{BQ}=\dfrac{VW}{BC}=\dfrac{VZ}{BZ}$
+So $\triangle PVZ\sim \triangle QBZ$
+Hence $\angle GPZ=\angle GQZ$
+Which means that $P,Q,T,Z$ are cyclic
+$\mathrm{Lemma.6}$ $Q,T,Z,R$ are cyclic
+$\mathrm{Proof.}$
+Consider that $\angle QTZ=\angle QGZ$
+$\angle QRZ=\angle AWZ$
+$\angle QTZ+\angle QRZ=\angle QGZ+\angle AWZ=\angle QGZ+\angle HCZ=180^{\circ}$
+Which menas that $P,Q,T,Z$ are cyclic
+$\mathrm{Finally}$ $P,Q,Z,R$ are cyclic
+Which means that $\odot(ABC),\odot(AXY),\omega$have a common point
+$\mathrm{Q,E,D}$
+    }{%
+    https://artofproblemsolving.com/community/c6t48f6h3116593_japanese_geo
+  }
+
+  \pitem[]{%
+    There are $n \geq 2$ coins numbered from $1$ to $n$. These coins are placed around a circle, not necesarily in order.
+
+    In each turn, if we are on the coin numbered $i$, we will jump to the one $i$ places from it, always in a clockwise order, beginning with coin number 1. For an example, see the figure below.
+
+    Find all values of $n$ for which there exists an arrangement of the coins in which every coin will be visited.
+    }{%
+    Clearly the last coin visited is numbered $n$, after which the moves clearly consist on staying in place indefinitely. The sum of total moves (regardless of their order) until we reach the coin numbered $n$ is $1+2+\cdots+(n-1)=\frac{(n-1)n}{2}$.
+
+If $n$ is odd, this is a multiple of $n$, ie we have made $\frac{n-1}{2}$ full turns to the arrangement. Or the starting coin is numbered both $n$ and $1$, contradiction. Thus no such arrangement exists for odd $n$.
+
+If $n$ is even, we can place the coins such that we visit them in order $1,p-2,3,p-4,5,p-6,\dots$. Using cyclic notation and assuming that coin numbered $1$ is located at position $0$, this means that coin $n-2k$ is located at position $k$ for $k=1,2,\dots,\frac{n}{2}-1$ and coin $2k+1$ is located at position $-k$ for $k=0,1,\dots,\frac{n}{2}-1$. Setting coin numbered $n$ in position $\frac{n}{2}$, clearly all $n$ positions in the coin arrangement are assigned a coin with a distinct number, and hence all $n$ numbered coins are assigned to a different position. By trivial induction we can show that after $2k$ moves we are at position $-k$ on coin numbered $2k+1$, and after $2k+1$ moves we are at position $k+1$ on coin numbered $n-2k-2$, and we are done.
+    }{%
+    https://artofproblemsolving.com/community/c6t1535812f6h2687946_coins_in_a_circle
+  }
+
+  \pitem[]{%
+Let $(a_n)_{n\geq 1}$ be a sequence of positive real numbers with the property that
+$$(a_{n+1})^2 + a_na_{n+2} \leq a_n + a_{n+2}$$for all positive integers $n$. Show that $a_{2022}\leq 1$.
+    }{%
+    It will be helpful to rewrite the inequality as
+$$(1-a_n)(1-a_{n+2}) \leq 1-a_{n+1}^2$$Assume $a_{2022}>1$. We first claim that
+
+Claim: We have either
+
+    $a_{2020} < 1$, $a_{2021} > 1$, $a_{2022} > 1$, $a_{2023} < 1$, or
+    $a_{2021} < 1$, $a_{2022} > 1$, $a_{2023} > 1$, $a_{2024} < 1$.
+
+Proof. We have $(1-a_{2021})(1-a_{2023}) < 0$, so we have two cases:
+
+    If $a_{2021} < 1$ and $a_{2023}>1$, we note $(1-a_{2022})(1-a_{2024}) < 0$, implying that $a_{2024}<1$.
+    If $a_{2021} > 1$ and $a_{2023}<1$, we note $(1-a_{2020})(1-a_{2022}) < 0$, implying that $a_{2020} < 1$. $\blacksquare$
+
+
+Then, we prove the following, which, together with the first claim, will obviously finish the problem.
+
+Claim: There does not exists a positive integer $n$ such that
+$$a_n < 1, a_{n+1} > 1, a_{n+2}>1, a_{n+3}<1$$Proof. We have
+\begin{align*} 1-a_{n+2} < (1-a_n)(1-a_{n+2}) \leq 1-a_{n+1}^2 &\implies a_{n+1}^2 < a_{n+2} \\ 1-a_{n+1} < (1-a_{n+1})(1-a_{n+3}) \leq 1-a_{n+2}^2 &\implies a_{n+2}^2 < a_{n+1}, \end{align*}so we have $a_{n+1}^4 < a_{n+2}^2 < a_{n+1}$, forcing $a_{n+1}<1$, a contradiction. $\blacksquare$
+    }{%
+    https://artofproblemsolving.com/community/c6t169f6h3107323_weird_sequence
+  }
+\end{question}
+
+\end{document}

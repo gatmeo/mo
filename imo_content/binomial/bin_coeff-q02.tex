@@ -1,0 +1,14 @@
+\pitem[]{%
+    For prime $p$, prove that ${p\choose n}-\lfloor \frac{n}{p}\rfloor$ is divisible by $p$.
+    }{%
+    Let $n=a_0+a_1p+a_2p^2+a_3p^3+\cdots$ for some integers $a_0,a_1,a_2,\ldots$ where $0\le a_i\le p-1$ for all $i$. Then, by Lucas' Theorem,
+    \begin{align*}
+        \binom np
+    &\equiv\binom{a_0}0\binom{a_1}1\binom{a_2}0\binom{a_3}0\cdots
+    \equiv\binom{a_1}1\\
+    &\equiv a_1 \equiv a_1+a_2p+a_3p^2+\cdots\\
+    &\equiv\left\lfloor\frac np\right\rfloor\pmod p
+    \end{align*}
+    }{%
+    https://artofproblemsolving.com/community/c6t113704f6h1865757_beautiful_lemma
+}

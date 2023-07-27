@@ -1,0 +1,18 @@
+\pitem[2009 USA TST P3]{%
+    For each positive integer $ n$, let $ c(n)$ be the largest real number such that
+    \[ c(n) \le \left| \frac {f(a) - f(b)}{a - b}\right|\]
+    for all triples $ (f, a, b)$ such that
+    \begin{itemize}
+        \item $f$ is a polynomial of degree $ n$ taking integers to integers, and
+        \item $a, b$ are integers with $ f(a) \neq f(b)$.
+    \end{itemize}
+    Find $ c(n)$.
+    }{%
+    Let $L = \operatorname{lcm}(1,\dots,n)$. We claim the answer is $c(n) = 1/L$.
+
+    By shifting suitably, we seek \[ c(n) = \min_{\substack{f(0)=0 \\ \deg f = n}} \min_{\substack{x \\ f(x) \neq 0}} \left\lvert \frac{f(x)}{x} \right\rvert. \]Taking the basis $\tbinom x1$, $\tbinom x2$, ..., $\tbinom xn$ for ${\mathbb Z} \to {\mathbb Z}$ polynomials, we may write $f(x) = a_1 \tbinom x1 + a_2 \tbinom x2 + \dots + a_n \tbinom xn$. Now for a fixed $x$ the smallest nonzero value of $f(x)$ across all choices of $f$ is exactly $\gcd_{1 \le k \le n} \tbinom xk$, by using Euclidean algorithm on $a_k$. So we now interchange the order of the $\min$ operators to obtain \[ \boxed{c(n) = \min_{x \neq 0} \frac{\left\lvert G(x) \right\rvert}{x}} \quad\text{where}\quad \boxed{G(x) \overset{\text{def}}{=} \gcd\left( \tbinom x1, \tbinom x2, \dots, \tbinom xn \right)}. \]First, we note $G(L) = 1$, since if $p^e$ exactly divides $L$ (even if $e=0$) then $p \nmid \tbinom{L}{p^e}$ by Lucas theorem, say. Thus $c(n) \le 1/L$.
+
+    On the other hand since \[ L \cdot \binom xk = L \cdot \frac{x}{k} \binom{x-1}{k-1} = x \cdot \frac Lk \binom{x-1}{k-1} \in x \cdot {\mathbb Z} \]we see that $L \cdot G(x) \ge x$ for any $x \in {\mathbb Z}$. Hence $c(n) \ge 1/L$, as desired.
+    }{%
+    https://artofproblemsolving.com/community/c6h289583p9716991
+}

@@ -1,0 +1,21 @@
+\pitem[]{%
+    Let $\mathcal{F}$ be a finite family of (closed) segments of the real line such that among any $p$ segments in $\mathcal{F}$ there are two mutually disjoint. Prove that $\mathcal{F}$ may be partitioned into $p -1$ subfamilies such that any two segments in one subfamily are disjoint.
+    }{%
+    Let $\mathcal{F} = \{I_k\}_{k=1}^{n}$ such that $I_k = [a_k,b_k],$ where $a_k < b_k.$ Then $|\mathcal{F}| = n.$
+    By induction on $n,$ we will try to prove this.
+
+    Base Case: It is trivial for $n = 2.$
+    Inductive Step: First of all we are looking for that interval has smallest $b_k,$ where $k=1, \cdots n.$
+    Assume that $k_0$ is that index we needed , i.e. in the $I_{k_{0}} = [a_{k_0}, b_{k_0}]$ in the right hand of any intervals have smallest $b_k.$ We put $\mathcal{S} = \mathcal{F} \setminus I_{k_0},$ so $|\mathcal{S}| = n-1.$
+    we suppose that if any $p$ segments in $\mathcal{S}$ such that there are two mutually disjoint, then $\mathcal{S}$ may be partitioned into $p-1$ subfamilies such that any two segments in one subfamily are disjoint.
+
+    Hence, if we add the interval $I_{k_{0}}$ to $\mathcal{S}, $then $I_{k_{0}}$ wouldn't have any intersection with of the $p-1$ portions. Yields, $I_{k_{0}}$ inside of one of classes of $p-1$ classes.
+
+    Now, we want to show this procedure detail by detail. Let we partited $\mathcal{S}$ to $p-1$ parts such as $\mathcal{A}_1, \mathcal{A}_2, \cdots, \mathcal{A}_{p-1}.$ In the other hands, for every $I_{t_i}$ and $I_{t_j}$ we don't have any intersection.
+
+    We consider that if for all $i = 1,2,\cdots p-1$ we have $I_{k_0} \cap \mathcal{A}_i \neq \emptyset$. Assume that $x \in I_{k_0} \cap \mathcal{A}_i.$ Hence, it is a contradiction by minimality of $b_{k_0}.$ So, $I_{k_0}$ will be inside of one of $\mathcal{A}_i$ ,i.e. at least we can find one of families of partitions of $\mathcal{S}$ to this segment has intersections with that. So $I_{k_0} \in \mathcal{A}_i$.
+
+    At the end, $\mathcal{A}_1, \mathcal{A}_2, \cdots, \mathcal{A}_{p-1}$ is also partition of 
+    }{%
+    https://artofproblemsolving.com/community/c6t45313f6h1800899_hellys_theorem_prove_that_mathcalf_may_be_partitioned_into_p_1_subfam
+}

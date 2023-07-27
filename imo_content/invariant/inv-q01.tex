@@ -1,0 +1,30 @@
+\pitem[Putnam 2008 A3]{%
+    Start with a finite sequence $ a_1,a_2,\dots,a_n$ of positive integers. If possible, choose two indices $ j < k$ such that $ a_j$ does not divide $ a_k$ and replace $ a_j$ and $ a_k$ by $ gcd(a_j,a_k)$ and $ lcm(a_j,a_k),$ respectively. Prove that if this process is repeated, it must eventually stop and the final sequence does not depend on the choices made. (Note: $gcd$ means greatest common divisor and $lcm$ means least common multiple.)
+    }{%
+    We first prove that the process stops. Note first that the product $a_1 \cdots a_n$ remains constant, because $a_j a_k = gcd(a_j, a_k) lcm(a_j, a_k)$. Moreover, the last number in the sequence can never decrease, because it is always replaced by its least common multiple with another number.  Since it is bounded above (by the product of all of the numbers), the last number must eventually reach its maximum value, after which it remains constant throughout. After this happens, the next-to-last number will never decrease, so it eventually becomes constant, and so on. After finitely many steps, all of the numbers will achieve their final values, so no more steps will be possible. This only happens when $a_j$ divides $a_k$ for all pairs $j < k$.
+
+    We next check that there is only one possible final sequence.  For $p$ a prime and $m$ a nonnegative integer, we claim that the number of integers in the list divisible by $p^m$ never changes. To see this, suppose we replace $a_j, a_k$ by $gcd(a_j, a_k),lcm(a_j,a_k)$.
+    If neither of $a_j, a_k$ is divisible by $p^m$, then neither of $gcd(a_j, a_k),lcm(a_j,a_k)$ is either.
+    If exactly one $a_j, a_k$ is divisible by $p^m$, then $lcm(a_j,a_k)$ is divisible by $p^m$ but $gcd(a_j, a_k)$ is not.
+    If both $a_j,a_k$ is divisible by $p^m$, then both $gcd(a_j, a_k),lcm(a_j,a_k)$ are as well.
+
+    If we started out with exactly $h$ numbers not divisible by $p^m$,
+    then in the final sequence $a'_1, \dots, a'_n$, the numbers
+    $a'_{h+1}, \dots, a'_n$ are divisible by $p^m$ while the numbers
+    $a'_1, \dots, a'_h$ are not. Repeating this argument for each
+    pair $(p,m)$ such that $p^m$ divides the initial product
+    $a_1,\dots,a_n$, we can determine the exact prime factorization
+    of each of $a'_1,\dots,a'_n$. This proves that the final sequence
+    is unique.
+
+    \textbf{Remark:}
+    Here are two other ways to prove the termination.
+    One is to observe that $\prod_j a_j^j$
+    is \emph{strictly} increasing at each step, and bounded above by
+    $(a_1\cdots a_n)^n$. The other is to notice that $a_1$ is nonincreasing
+    but always positive, so eventually becomes constant; then
+    $a_2$ is nonincreasing but always positive, and so on.
+
+    }{%
+    https://math.hawaii.edu/home/pdf/putnam/Putnam_2008.pdf
+}

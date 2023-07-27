@@ -1,0 +1,21 @@
+\pitem[2019 ELMO Shortlist C2]{%
+    Adithya and Bill are playing a game on a connected graph with $n > 2$ vertices, two of which are labeled $A$ and $B$, so that $A$ and $B$ are distinct and non-adjacent and known to both players. Adithya starts on vertex $A$ and Bill starts on $B$. Each turn, both players move simultaneously: Bill moves to an adjacent vertex, while Adithya may either move to an adjacent vertex or stay at his current vertex. Adithya loses if he is on the same vertex as Bill, and wins if he reaches $B$ alone. Adithya cannot see where Bill is, but Bill can see where Adithya is. Given that Adithya has a winning strategy, what is the maximum possible number of edges the graph may have? (Your answer may be in terms of $n$.)
+
+    }{%
+    The answer is $\boxed{\binom{n-1}{2} + 1}.$
+
+    Our construction is as follows. Take the $n-1$ vertices apart from $B$ and form an edge between every pair of them. Then, add an edge from $B$ to some other vertex apart from $A,$ call it $C.$ Adithya can then stay on $A$ for his first turn, move to $C$ on his second turn, and then move to $B.$ Meanwhile, Bill is forced to move to $C$ on his first turn, move to a vertex other than $C$ on his second turn, and move to a vertex other than $B$ on his third turn.
+
+    To show that $\binom{n-1}{2} + 1$ edges is optimal, we make the following claim.
+
+    Claim. There do not exist any triangles containing $B.$
+
+    Proof. We proceed by contradiction. Assume that there does exist a triangle containing $B.$ Without loss of generality, assume that Bill knows beforehand which path Adithya will take. This path cannot contain one move, since $A$ and $B$ are not adjacent. If the path contains an even number of moves (staying at a vertex counts as a move), Bill can alternate between going between $B$ and an adjacent vertex. If it contains an odd number of moves, Bill can traverse the triangle and return at $B$ after three moves, and then alternate going between $B$ and an adjacent vertex. In all cases, Adithya cannot guarantee a win. $\square$
+
+    Let $B$ be adjacent to $k$ vertices. Since no two of these $k$ vertices may be connected, at most $\binom{n-1}{2} - \binom{k}{2}$ edges apart from those containing $B$ can be made. Thus, we get the upper bound
+
+    $$k + \binom{n-1}{2} - \binom{k}{2} = \binom{n-1}{2} - \frac{k^2 - 3k}{2} \leq \binom{n-1}{2} + 1,$$
+    and we are done.
+    }{%
+    https://artofproblemsolving.com/community/c6t45487f6h1864635_chasing_people_on_a_connected_graph
+}

@@ -1,0 +1,504 @@
+\documentclass[a4paper]{article}
+\usepackage[math_simple,imo]{gatmeo}
+
+\renewcommand{\courseTitle}{\FirstBigRestSmallCaps{IMO Phase}}
+\renewcommand{\courseTopic}{\FirstBigRestSmallCaps{Combinatorics: Long list}}
+\DTMsavedate{mydate}{2021-01-01}
+
+\toggletrue{ownans}
+\togglefalse{officialans}
+\rfoot{}
+
+\begin{document}
+\maketitle
+\thispagestyle{empty}
+
+\begin{question*}{}
+    
+    \pitem[2017 Belarus Team Selection Test 6.2]{%
+        Any cell of a $5\times 5$ table is colored black or white.  Find the greatest possible value of the ways to place a $T$-tetramino on the table so that it covers exactly two white and two black cells (for various colorings of the table).
+        }{%
+        The answer is $37.$
+
+        To see that $37$ is attainable, consider the following table, where $W$ means white and $B$ means black.
+
+        \[ \begin{bmatrix} W & W & B & B & W \\ B & B & W & W & B \\ W & W & B & B & B \\ B & B & W & W & B \\ W & W & B & B & W \end{bmatrix} \]
+        Now, we will show that $37$ is optimal. For a $T-$tetromino, we will define its $\mathbf{core}$ as the cell which is in its center (the one neighboring the other three). Notice that any point is the core of at most $3$ $T-$tetrominoes, with equality iff it is surrounded by $3$ cells of its opposite color and $1$ of the same color. Furthermore, any point on the boundary is the core of at most $1$ $T-$tetromino and the corners cannot be the cores of any $T-$tetrominoes. Therefore, this gives an upper bound of $3 * 3 * 3 + 12 * 1 = 27 + 12 = 39.$
+
+        Assuming that $39$ was possible, we can WLOG assume that the center is white and then uniquely determine the other cells (up to rotation) one by one, and easily find that $39$ is not possible.
+
+        Hence, we've shown that the answer is at most $38.$ Now, notice that in the case for $38,$ there is only one of the squares which is "bad," in the sense that it's the core of one too few $T-$tetrominoes. Then, caseworking on whether this bad square is on the edge or in the middle $3 \times 3$, and then splitting into subcases on where it is will finish (it's pretty straightforward, since using the non-bad squares turns out to always be enough to uniquely determine the grid).
+
+        Note that an interior cell is bad iff it has $2$ neighbors of each color.
+        }{%
+        https://artofproblemsolving.com/community/c6h1813398p12089401
+    }
+
+    \pitem[BMO 2020 q3]{%
+        A $2019\times2019$ grid is made up of $2019^2$ unit cells. Each cell is colored either black or white. A coloring is called balanced if, within every square subgrid made up of $k^2$ cells for $1\leq k\leq2019$, the number of black cells differs from the number of white cells by at most one. How many different balanced colorings are there?
+
+        (Two colorings are different if there is at least one cell that is black in exactly one of them.)
+        }{%
+        I believe the answer is $\boxed{2^{1011} - 6}.$
+
+        First of all, there are $2$ ways to color the $2019 \times 2019$ board checkerboard style, and these two colorings obviously work.
+
+        We'll now show that there are $2^{1011} - 8$ other colorings which work.
+
+        Call a row or column tasty in a given coloring if the squares in that row or column are colored alternately black and white.
+
+        Claim. In any balanced coloring, either every row is tasty of every column is tasty.
+
+        Proof. If the coloring is checkerboard style, the claim is obvious. Else there must exist two adjacent squares which are the same color. WLOG they are in the same row, the other case is similar. Then, it's easy to see that the columns containing these two squares are both tasty and are identical. From here, it's not hard to see that all columns must be tasty (if not, consider the "closest" non-tasty column to the two columns).
+
+        $\blacksquare$
+
+        Note that since we're looking at colorings which aren't checkerboard style, we only have two cases.
+
+        Case 1. All rows are tasty.
+
+        We claim that there are $2^{1010}-4$ ways to choose the leftmost column which generate a balanced $2019 \times 2019$ grid (which isn't colored checkerboard style) after enforcing the condition that all rows are tasty. This would solve the problem because the case where all columns are tasty is similar.
+
+        Note that the condition of being balanced is equivalent to any $1 \times t$ subgrid of the column having its numbers of black and white squares differ by at most $1$, for any odd $t.$
+
+        Since the coloring isn't checkerboard style, there are two adjacent squares in the column which are the same color. Now, partition the column into dominoes and a single $1 \times 1$ square at one end of the column so that these two adjacent squares are not in the same domino. We claim that the two squares of any domino are oppositely colored. Indeed, this is not hard to verify with induction by consider $k \times k$'s with $k$ odd.
+
+        After this observation, the finish is not far. Indeed, there are two ways to tile into dominoes (pick where the $1 \times 1$ is) and two ways to select each piece, for a total of $2 \cdot 2^{1009} = 2^{1010}$ ways to color the column. However, observe that the two colorings where the column is alternately colored are each counted twice in this calculation, so our true total is $2^{1010} - 2 \cdot 2 = 2^{1010} - 4.$
+
+        Case 2. All columns are tasty.
+
+        This case is analogous to the above.
+
+        Considering all cases, we arrive at our answer of $2 \cdot (2^{1010}-4) + 2 = \boxed{2^{1011} - 6}.$
+        }{%
+        https://artofproblemsolving.com/community/c6h2009907p14093485
+    }
+
+    \pitem[Dutch IMO TST 2015 day 2 p4]{%
+        Each of the numbers $1$ up to and including $2014$ has to be coloured; half of them have to be coloured red the other half blue. Then you consider the number $k$ of positive integers that are expressible as the sum of a red and a blue number. Determine the maximum value of $k$ that can be obtained.
+        }{%
+        I will point out the important parts in the solution:
+
+        1) We note that in order to have two consecutive numbers to be a sum of a blue and red number we would need to have an odd and an even number in the same color. Hence this means that there exist at least 2 consecutive numbers in the same color.
+
+        2) The interval in which such number can be is $[3, 4027]$ so $k\leq 4025$ (Since the sum of the smallest numbers is 3 and of the largest - 4027).
+
+        3) For this case we partition the interval of the expressible integers to $[3, 2014]$ and $[2015, 4027]$.
+        General result: We can express each integer in the interval $[2i+1, j]/\{i+3\}$ as a sum of a red and blue number when:
+        wlog let $i$ be a blue number then $i+1$ and $i+2$ are red, $i+2t$ are blue and $i+2t+1$ are red. It is obvious that such construction covers each number in the upper mentioned interval for an arbitrary integer $j$. In our case as we want to cover as much numbers as possible then $i=1$. Hence the statement in the problem is true for the integers in $[3, 2014]/\{5\}$ when $j=2012$.
+
+        4) In order to cover the interval of integers $[2015, 4027]$ we would need a similar construction to 3). Now 2013 should be blue as well and 2014 is left out to be red. Note that this construction sustains the equality of red and blue numbers. Hence the statement is true for all integers in $[2015,4027]/\{4025\}$.
+        Combining 3) and 4) we get that $k\geq 4023$.
+
+        5) From 1), 3) and 4) we see that we must have 2 pairs of consecutive numbers in the same color (one for each of the intervals $[3, 2014]$ and $[2015, 4027]$) so we could express odd and even numbers in the required way. Hence $k\neq 4024, 4025$ which wields the answer $k=4023$.
+
+        Decided to write the used construction for $k=4023$ so it is clear:
+        wlog $1$ is blue, $2, 3$ are red, $4+2i$ are blue for $i=0,1...1004$, $4+2j+1$ are red for $j=0,1...1003$, 2013 is blue and 2014 is red.
+        }{%
+        https://artofproblemsolving.com/community/c6t45241f6h1906764_each_of_numbers_12014_colored_red_and_blue_half_each_max_sum_2_balls
+
+        https://www.wiskundeolympiade.nl/phocadownload/jaarverslagen/dmo2014.pdf
+        P.33
+    }
+
+    \pitem[Indonesian MO (INAMO) 2020, Day 1, Problem 4]{%
+        A chessboard with $2n \times 2n$ tiles is coloured such that every tile is coloured with one out of $n$ colours. Prove that there exists 2 tiles in either the same column or row such that if the colours of both tiles are swapped, then there exists a rectangle where all its four corner tiles have the same colour.
+        }{%
+        Since there are $2n \cdot 2n = 4n^2$ tiles coloured with $n$ colours, there exists a colour $k$ used on at least $4n$ tiles. Consider all the $4n$ tiles with this colour.
+
+        For each index $1 \leq i \leq 2n$, let $f(i)$ be the number of tiles with colour $k$ at row $i$. Then, we have $\sum_{i = 1}^{2n} f(i) = 4n$ and $f(i) \leq 2n$ for each $1 \leq i \leq 2n$. In particular:
+
+        1. There exists at least two indices $i$ such that $f(i) \geq 2$.
+        Indeed, otherwise $4n = \sum_{i = 1}^{2n} f(i) \leq (2n) + 1 \cdot (2n - 1) = 4n - 1$, a contradiction.
+
+        2. Consider the set $S$ of all indices $i$ such that $f(i) \geq 2$. Then, $\sum_{i \in S} f(i) > 2n$.
+        This has the same proof as above. By definition of $S$, $\sum_{i \not\in S} f(i) \leq \sum_{i \not\in S} 1 = 2n - |S| \leq 2n - 2 < 2n$ due to the previous observation, so
+        \[ \sum_{i \in S} f(i) = 4n - \sum_{i \not\in S} f(i) > 2n. \]
+        Now, consider the set $T$ of all tiles with coordinate $(i, j)$ of colour $k$ with $i \in S$. These correspond to all the tiles with colour $k$ who has another tile within the same row with colour $k$ as well. The number of such pairs (or tiles) is $\sum_{i \in S} f(i)  > 2n$, so by the pigeonhole principle, there exist two distinct tiles in $T$ in the same column, say $(i_1, j)$ and $(i_2, j)$. Consider two tiles $(i_1, j'), (i_2, j'') \in T$ with $j', j'' \neq j$; they exist by our construction and previous argument. If $j' = j''$, we can swap two random tiles other than those four tiles we mentioned. If $j' \neq j''$, we swap $(i_2, j')$ and $(i_2, j'')$ and we are done.
+        }{%
+        https://artofproblemsolving.com/community/c6t45241f6h2303115_colouring_2n_tiles_and_rectangles_combinatorics
+    }
+
+    \pitem[2011 Indonesia TST stage 2 test 3 p3]{%
+        Given a board consists of $n \times n$ unit squares ($n \ge 3$). Each unit square is colored black and white, resembling a chessboard. In each step, TOMI can choose any $2 \times 2$ square and change the color of every unit square chosen with the other color (white becomes black and black becomes white). Find every $n$ such that after a finite number of moves, every unit square on the board has a same color.
+        }{%
+        The answer is $\boxed{n = 4k, \forall k \in \mathbb{Z}^+}$.
+
+        Let the chessboard operate in $\mathbb{F}_2$, with the squares alternatively labeled $0$ and $1$. Thus, the step given corresponds to adding $1$ to each unit square in the selected $2 \times 2$ square (or a bitwise XOR operation). Let $A$ be the set of columns on a given board. Consider the sum of the numbers in an arbitrary $a \in A$ to be $S(a)$. We use the following claims. Claim 1. There does not exist a step that can change $S(a)$ for an arbitrary $a \in A$.
+        Proof. The given step adds $1$ to each of two unit squares in a column that the move affects. However, $S(a) + 1 + 1 = S(a)$ because the chessboard operates in $\mathbb{F}_2$, so it is impossible to change the sum of the numbers in a column under the given conditions. $\square$
+
+        Claim 2. In order for all squares to be labeled with the same number, $S(a) = S(b)$ must be true for all choices of $a, b \in A$.
+        Proof. This is obvious, because if every column is identical, their sums will also be identical. $\square$
+
+        Claim 3. If $n$ is even, in order for all of the unit squares to be labeled the same number, $S(a) = 0$ must be true for all $a \in A$.
+        Proof. If $n$ is even, there are an even number of numbers in each column. Thus, for any $a \in A$, it must be true that $S(a) = 0$ if all squares have the same number (note that this is true in both cases; where all the squares are labeled with $0$ or all the squares are labeled with $1$). $\square$
+        Assume that $n$ is odd. By (1), if $b \in A$ is adjacent to any $a \in A$, $S(a) = S(b) + 1$ always holds after any number and choice of steps. However, this contradicts (2), so $n$ must be even.
+
+        Assume that $n \equiv 2 \pmod 4$. Then, $S(a) = 1$ for any $a \in A$. However, due to (1), this contradicts (3). So it is only possible that $n \equiv 0 \pmod 4$.
+
+        It now suffices to provide a construction for $n=4$, as any chessboard with $n=4k$ for all $k \in \mathbb{Z}, k \geq 2$ can be subdivided into $4 \times 4$ squares with the same orientation. The moves are shown two at a time by the bolded $2 \times 2$ sets of numbers.
+        $$ \begin{array}{ |c|c|c|c| } \hline \mathbf{0} & \mathbf{1} & \color[rgb]{0.5, 0.5, 0.5} 0 & \color[rgb]{0.5, 0.5, 0.5} 1 \\ \hline \mathbf{1} & \mathbf{0} & \color[rgb]{0.5, 0.5, 0.5} 1 & \color[rgb]{0.5, 0.5, 0.5} 0 \\ \hline \color[rgb]{0.5, 0.5, 0.5} 0 & \color[rgb]{0.5, 0.5, 0.5} 1 & \mathbf{0} & \mathbf{1} \\ \hline \color[rgb]{0.5, 0.5, 0.5} 1 & \color[rgb]{0.5, 0.5, 0.5} 0 & \mathbf{1} & \mathbf{0} \\ \hline \end{array} \rightarrow \begin{array}{ |c|c|c|c| } \hline \color[rgb]{0.5, 0.5, 0.5} 1 & \color[rgb]{0.5, 0.5, 0.5} 0 & \color[rgb]{0.5, 0.5, 0.5} 0 & \color[rgb]{0.5, 0.5, 0.5} 1 \\ \hline \mathbf{0} & \mathbf{1} & \mathbf{1} & \mathbf{0} \\ \hline \mathbf{0} & \mathbf{1} & \mathbf{1} & \mathbf{0} \\ \hline \color[rgb]{0.5, 0.5, 0.5} 1 & \color[rgb]{0.5, 0.5, 0.5} 0 & \color[rgb]{0.5, 0.5, 0.5} 0 & \color[rgb]{0.5, 0.5, 0.5} 1 \\ \hline \end{array} \rightarrow \begin{array}{ |c|c|c|c| } \hline \color[rgb]{0.5, 0.5, 0.5} 1 & \mathbf{0} & \mathbf{0} & \color[rgb]{0.5, 0.5, 0.5} 1 \\ \hline \color[rgb]{0.5, 0.5, 0.5} 1 & \mathbf{0} & \mathbf{0} & \color[rgb]{0.5, 0.5, 0.5} 1 \\ \hline \color[rgb]{0.5, 0.5, 0.5} 1 & \mathbf{0} & \mathbf{0} & \color[rgb]{0.5, 0.5, 0.5} 1 \\ \hline \color[rgb]{0.5, 0.5, 0.5} 1 & \mathbf{0} & \mathbf{0} & \color[rgb]{0.5, 0.5, 0.5} 1 \\ \hline \end{array} \rightarrow \begin{array}{ |c|c|c|c| } \hline 1 & 1 & 1 & 1 \\ \hline 1 & 1 & 1 & 1 \\ \hline 1 & 1 & 1 & 1 \\ \hline 1 & 1 & 1 & 1 \\ \hline \end{array} $$Thus, $n=4k$ works for all $k \in \mathbb{Z}^+$.
+        }{%
+        https://artofproblemsolving.com/community/c6t45241f6h2377321_after_a_finite_number_of_moves_every_unit_square_on_nxn_board_has_same_color
+    }
+
+    \pitem[Croatia TST 2016]{%
+        Let $N$ be a positive integer. Consider a $N \times N$ array of square unit cells. Two corner cells that lie on the same longest diagonal are colored black, and the rest of the array is white. A move consists of choosing a row or a column and changing the color of every cell in the chosen row or column.
+        What is the minimal number of additional cells that one has to color black such that, after a finite number of moves, a completely black board can be reached?
+        }{%
+        For $2 \times 2$, it's clear to see that there's no need for additional cells.
+
+        For $N \times N$ with $N \ge 3$, we rephrase the problem to have a better approach. We denote a black cell as it has $-1$ in it, a white cell as it has $1$ in it. A move is denoted as choosing a column or a row and times every number in that row (or column) by $-1$. Hence, if we denote $a_1,a_2, \cdots , a_N$ as the number of times we time column $1,2 \cdots , N$ by $-1$ (or number of times making a move), respectively. Similar to $b_1,b_2, \cdots , b_N$ for column. Hence, after some move to get all black board, cell $(i,j)$ (column $i$, row $j$) has timed to $(-1)^{a_i+b_j}$.
+
+        This means that if a cell $(i,j)$ has black as its initial colour, or has $-1$ as it initial number, then $(-1)\cdot(-1)^{a_i+b_j}=-1$ or $a_i+b_j$ is even. If a cell $(i,j)$ has $1$ as it initial number, then $a_i+b_j$ is odd.
+
+        Now, to the finding minimum part.
+
+        Case 1. Initially, if column $1$ has only cell $(1,1)$ coloured black (or has $-1$ written on it) then $a_1+b_i$ must have the same parity for all $2 \le i \le N$ (since they all start with white colour and all end with black colour) or $b_i \; ( 2 \le i \le N)$ have the same parity. On the other hand, since cell $(N,N)$ is black cell therefore, cells $(N,i) \; (2 \le i \le N)$ must also have black cells at the beginning in order to satisfy all $b_i \; (2 \le i \le N)$ have same parity.
+
+        Since $b_i \; (2 \le i \le N)$ must have the same parity so consider any column from $2$ to $N-1$, either it has $1$ black cell at the beginning or $N-1$ black cells at the beginning. So, each column from $2$ to $N-1$ need at least $1$ black cell. So the number of additional cells in this case is $2N-4$.
+        We can easily check that this minimum works by add come black cells as below figure. We reach a completely black board by changing colour for the first $N-1$ column and then changes the colour of the first row.
+        [asy] fill((0,8)--(8,8)--(8,9)--(0,9)--cycle, gray); fill((8,8)--(9,8)--(9,0)--(8,0)--cycle, gray); for (int i=0; i<=9; ++i) { draw((0,i)--(9,i)^^(i,0)--(i,9)); } [/asy]
+
+        Case 2. If there are at least $2$ black cells in column $1$, let says $x \ge 2$ black cells in column $1$. Similar to case 1, by considering the parity of $b_i$, we obtain each next column either have $x \ge 2$ black cells or $n-x \ge 2$ black cells. Hence, the minimum number of cells required is $2(N-2)+2=2N-2>2N-4$. So $2N-4$ is the better minimum.
+
+        Thus, for $N \ge 3$, the answer is $2N-4$.
+        }{%
+        https://artofproblemsolving.com/community/c6t45241f6h1234383_flipping_rows_on_a_matrix_in_f2
+    }
+
+    \pitem[2019 China TST Test 3 P3]{%
+        Does there exist a bijection $f:\mathbb{N}^{+} \rightarrow \mathbb{N}^{+}$, such that there exist a positive integer $k$, and it's possible to have each positive integer colored by one of $k$ chosen colors, such that for any $x \neq y$ , $f(x)+y$ and $f(y)+x$ are not the same color?
+        }{%
+        Yes, such a bijection exists, and it allows us to color $\mathbb{N}^+$ in two colors complying to the condition.
+
+        Setting $u=f(x)+y; v=x+f(y)$ , one can see that it's equivalent to require $x+y$ and $f(x)+f^{-1}(y)$ to be of different colors, providing $y\neq f(x)$. The idea is to define consecutively $f$ starting from $f(1)$ and in the same time to color appropriately one by one the natural numbers. Let $f(1):=2; f(3):=1$. It imposes that the color of $f(1)+f^{-1}(1)=2+3=5$ is different from the color of $1+1=2$. So far, this is the only condition, we must comply to. So, we color $2$ in white and $5$ in black.
+        We say $f$ is not fully defined at point $x\in\mathbb{N}^+$ if we haven't yet defined $f(x)$ or $f^{-1}(x)$. Till now, the only point $f$ is fully defined at is $x=1$. Now, we consecutively apply the following:
+
+        Extension step. Let $n$ be the first natural $f$ is not fully defined at. It means either $f(n)$ or $f^{-1}(n)$ or both are not defined.
+        Consider first the case $f(n)$ doesn't exists. Let $D$ be the subset of naturals where $f^{-1}$ is defined. We should ensure that $f(n)+f^{-1}(x)$ and $n+x$ are of different colors for any $x\in D$. Denote $D':=\{n+x : x\in D\}$. If there exists $y\in D'$ which is not yet colored, we color it arbitrary. Then choose $N$ big enough such that the minimal element of the set $\{N+f^{-1}(x):x\in D \} $ is bigger than the maximal colored natural number. Then we define $f(n):=N$ and for any $x\in D$ we color $f(n)+f^{-1}(x)$ in the color opposite to the color of $n+x$.
+
+        The case when $f^{-1}(n)$ is not defined is similar with appropriate changes - we should ensure $f^{-1}(n)+f(x)$ is of different color compared to $n+x$.
+        In the case both $f(n), f^{-1}(n)$ are not yet defined, we first define $f(n)$ as above and then apply again the same step to define $f^{-1}(n)$
+
+        Applying consecutively that extension step, we define $f$ over $\mathbb{N}^+$ and it is bijection. If there is still not colored naturals, we can color them arbitrary
+        }{%
+        https://artofproblemsolving.com/community/c6t45241f6h1808605_bijection_exist
+    }
+
+    \pitem[China TSTST 3 Day 2 Q3]{%
+        Every cell of a $2017\times 2017$ grid is colored either black or white, such that every cell has at least one side in common with another cell of the same color. Let $V_1$ be the set of all black cells, $V_2$ be the set of all white cells. For set $V_i (i=1,2)$, if two cells share a common side, draw an edge with the centers of the two cells as endpoints, obtaining graphs $G_i$. If both $G_1$ and $G_2$ are connected paths (no cycles, no splits), prove that the center of the grid is one of the endpoints of $G_1$ or $G_2$.
+        }{%
+
+        }{%
+        https://artofproblemsolving.com/community/c6h1406297p7878263
+    }
+
+    \pitem[India TST 2016 Day 3 Problem 3]{%
+        Let $n$ be an odd natural number. We consider an $n\times n$ grid which is made up of $n^2$ unit squares and $2n(n+1)$ edges. We colour each of these edges either $\color{red} \textit{red}$ or $\color{blue}\textit{blue}$. If there are at most $n^2$ $\color{red} \textit{red}$ edges, then show that there exists a unit square at least three of whose edges are $\color{blue}\textit{blue}$.
+        }{%
+        Simple one, I was surprised that this was a P3. Here's my solution.
+
+        I will prove the equivalent result that if at least $n^2 + 2n$ edges are coloured blue in an $n$x$n$ grid, then some cell must have three blue edges. Let $n=2k+1$ since its odd.
+
+        First, define the weight of a cell to be the number of blue edges it has. Suppose FTSOC that $n^2 + 2n$ edges can be coloured blue without any cell having three edges. Then, the sum of weights of all cells is at most $2n^2$ since there are $n^2$ cells and each has at most $2$ blue edges.
+
+        Also, every blue edge contributes to the weights of at most $2$ cells and contributes to one cell only if it is a boundary edge. So, the sum of contributions to weights by border edges is at most $4n$ since there are $4n$ edges on the boundary.
+
+        So, the remaining edges contribute at least $(n^2 + 2n-4n)(2) = 2n^2 - 4n$ to the weights and so the sum of contributions becomes exactly $2n^2$ and so equality holds everywhere in all the inequalities. This means that all the $4n$ edges on the boundary have to be coloured blue.
+
+        Now, consider the inner $(n-2)$x$(n-2)$ grid. Since equality had held, it also means that every cell must have exactly $2$ blue edges. So, this means that all the edges on the boundary of this $(n-2)$x$(n-2)$ grid must be colored blue. Similarly, we can repeat this again for a $(n-4)$x$(n-4)$ grid and so on. But at the end, we will reach a $1$x$1$ grid which needs to have all of its border edges coloured blue. But, this is impossible since that would mean that this cell has $4$ blue edges.
+
+        Therefore, it is not possible to have at most $n^2$ red edges and not have a cell with at least $3$ blue edges
+        }{%
+        https://artofproblemsolving.com/community/c6h1276390p6696375
+    }
+
+    \pitem[Turkey EGMO TST 2018]{%
+        In how many ways every unit square of a $2018$ x $2018$ board can be colored in red or white such that number of red unit squares in any two rows are distinct and number of red squares in any two columns are distinct.
+        }{%
+        We consider $n\in \mathbb{N}$ instead of $2018.$
+
+        Firstly, we have to prove the following lemma.
+
+        \textbf{Lemma:} The $n$ distinct numbers of rows and columns must be ${1,2,\cdots,n}$ or ${0,1,2,\cdots,n-1}.$
+
+        \textbf{Proof of the Lemma:} Clearly, totally $n+1$ distinct numbers ${0,1,\cdots,n}$ may occur in $n$ rows and $n$ columns. Suppose some $1<i<n$ does not contained in rows (resp. columns), which implies both $0$ and $n$ are contained in rows (resp. columns), therefore, the $n$ distinct numbers of red squares for each column (resp. rows), says $c(i), 1\leq i\leq n,$ satisfies $1\leq c(i) \leq n-1,$ which is $n-1$ distinct numbers in total. Obviously, it is impossible.
+
+        It is obvious to see that the ways for ${1,2,\cdots,n}$ is equal to the ways for ${0,1,2,\cdots,n-1}.$ (By considering white instead of red.) So we only sovle the first case.
+
+        Next, we denote $(r_1,r_2,\cdots,r_n; c_1,c_2,\cdots,c_n)$ some possible way for coloring, where $r_i$ denotes the numbers of red squares of the $i-th$ row, and $c_i$ denotes the $i-th$ column.
+
+        Finally, we only need to prove that there exists the unique way satisfying $r_i=a_i,$ $c_i=b_i,$ for any distinct $1\leq a_i,b_i\leq n.$
+
+        \textbf{The proof of existence:} Consider the original way $(m_{ij})_{1\leq i,j\leq n}$(the $i-th$ row and $j-th$ column) satisfying $m_{ij}$ is $red$ if $i\leq j$. Now we rearrange each rows and columns so that the way satisfies $(a_1,a_2,\cdots,a_n; b_1,b_2,\cdots,b_n).$ Then it's easy to check the new way is as desire. (NOTE: When swapping, the number of blocks in rows and columns does not affect each other.)
+
+        \textbf{The proof of uniqueness:} $n=1$ works. We assume it also works for any $i<n.$ For the case $n$, WOLG, the first row's number is $n$ and the first column's is $1$, now we throw away these two lines and we obtain the uniqueness for $n-1.$ Due to each line we just throw away, which is full of red squares, is also unique for any possible way, we finish the proof.
+
+        Therefore, the answer is $$2\times\left|\left\{(r_1,r_2,\cdots,r_n; c_1,c_2,\cdots,c_n)|, 1\leq r_i\neq r_j\leq n, 1\leq c_i\neq c_j\leq n, 1\leq i,j\leq n\right\}\right|=2\cdot (n!)^2.$$
+        }{%
+        https://artofproblemsolving.com/community/c6t45241f6h2053991_a_counting_problem_about_coloring
+    }
+
+    \pitem[]{%
+        A $m*n$ rectangular grid is covered by dominoes. Prove that the vertices of the grid can be colored using three colors so that any two vertices with distance $1$ apart are colored with different colors if and only if their segment lies on the boundary of a domino.
+        }{%
+        We will show a slightly stronger statement. Indeed, we'll show that we can color the vertices of the grid in three colors so that the desired condition is satisfied, but in addition any two vertices which are distance $2$ apart and are both on the perimeter of the grid are similarly colored. In other words, we also enforce the condition that the vertices along any edge of the grid alternate between two colors. Call such a coloring (which satisfies this stronger set of conditions) wangy.
+
+        Suppose that $n$ is even, WLOG, since clearly one of $m$ and $n$ is even. Suppose that our three colors are called $1, 2,$ and $3.$
+
+        It's easy to solve our problem in the case where all dominoes are placed horizontally. Simply label all vertices which appear on the "midline" of a domino with color $1$, and then label all other vertices $2$ and $3$ alternately as to make the coloring wangy.
+
+        Define a tasty to be the operation where we take two dominoes of the tiling which together fill a $2 \times 2$, and change their orientation (e.g. vertical to horizontal and vice versa) so that they still fill the same $2 \times 2.$
+
+        The key idea is to utilize the following lemma in an appropriate manner.
+
+        Lemma 1. For any two tilings of the $m \times n$ with dominoes, we can reach one from the other by applying tasties.
+
+        Proof
+
+        This next lemma will pave the way for the construction of an algorithm to construct a wangy coloring for any tiling.
+
+        Lemma 2. Consider an arbitrary tiling of the $m \times n$ grid. Suppose that $A, B, C$ are distinct vertices of the grid so that $AB = BC = 1$, $A, B, C$ are collinear, and each of $AB, BC$ is a midline of a domino. Suppose also that $B$ is not on the perimeter of the grid. Then, the two distinct vertices $D, E$ which satisfy $BD = BE = 1$, $BD \perp AB$, and $BE \perp BC$ must be of the same color in any wangy coloring of the grid.
+
+        Proof
+
+        From here, the algorithm is easy to construct.
+
+        Consider an arbitrary tiling $T$ of the grid. We will construct a wangy coloring of it as follows. Start with the trivial tiling of the board (all dominoes horizontal), and consider a wangy coloring of the vertices of the grid. Now, consider the sequence of tasties which we need to perform to turn this trivial tiling into $T.$ This exists by Lemma $1.$
+
+        At each step, we will perform the necessary tasty, but then recolor the vertices as follows.
+
+        Suppose that $ABCD$ and $BEFC$ were the original positions of the two dominoes involved in the tasty, where $AB = BE = FC = CD = 1$ and $AD = BC = EF = 2.$ Let $M, N, X$ be the midpoints of $AD, EF, BC,$ respectively. Originally, we have that $B, X, C$ are the same color and $M, N$ are also similarly colored with a color different from the color of $B, X,$ and $C$. After performing the tasty, we will recolor $X$ to be the same color as $M$ and $N.$ It's easy to see that this maintains the property that the coloring is wangy.
+
+        Hence, after performing the necessary sequence of tasties, while updating the colors after each tasty as outlined above, we arrive at a wangy coloring of the tiling $T.$
+
+        Since $T$ was arbitrary, we're done.
+
+        }{%
+        https://artofproblemsolving.com/community/c6t45241f6h1898907_grid_coloring_combined_with_dominoes
+    }
+
+    
+\end{question*}
+
+\section{Counting}
+
+\begin{question*}{}
+    \pitem[Romanian Master Of Mathematics 2012]{%
+        Given a positive integer $n\ge 3$, colour each cell of an $n\times n$ square array with one of $\lfloor (n+2)^2/3\rfloor$ colours, each colour being used at least once. Prove that there is some $1\times 3$ or $3\times 1$ rectangular subarray whose three cells are coloured with three different colours.
+        }{%
+        denote $f(n)$ to be the maximum number of colors that can be used in an $ n\times n $ square, each color used at least once, without having a straight triomino whose three cells are coloured with three different colours. Obviously $f(0)=0,f(1)=1,f(2)=4$. We shall prove when $n \ge 3$, $f(n) \le f(n-3)+2n$,for $n$ is even and
+        $f(n) \le f(n-3)+2(n-1)$,for $n$ is odd.
+        Consider the first $n \times 3$ cells. The first row can have at most two colors, whenever we add two rows ( or $2 \times 3$ cells) to it, we can use at most 2 new colors. Suppose on the contrary, any two of the 3 new colors cannot be on the same column, and the three cells whose row has two new colors should all be painted with these two new colors, then we have one $3 \times 1$ subarray that are colored with three different colours,contradiction. So the first $n \times 3$ cells can be painted with at most $2\lceil \frac{n+1}{2} \rceil$ colors.
+        Similarly, the bottom $3 \times (n-3)$ (excluding the left bottom $3 \times 3$ cells) can be painted with at most $2\lceil \frac{n-3}{2} \rceil$ new colors. So the first $n \times 3$ and the bottom $3 \times n$ cells can be painted with at most $2n$($n$ is even), or $2(n-1)$ ($n$ is odd) colors in total.
+        We have $f(3)=4, f(4)=9, f(5) \le 12$, and $f(n) \le f(n-6)+4n-8$. So
+        \[ f(n) \le \frac{n(n+2)}{3} (n=6k,6k+1),f(n) \le \frac{n(n+2)+4}{3} (n=6k+2) \]
+        \[ f(n) \le \frac{n(n+2)-3}{3} (n=6k+3),f(n) \le \frac{n(n+2)+3}{3} (n=6k+4) \]
+        \[ f(n) \le \frac{n(n+2)+1}{3} (n=6k+5) \]
+        if the square is painted with at least $f(n)+1$ colors, there is some straight triomino whose three cells are coloured with three different colours
+        }{%
+        https://artofproblemsolving.com/community/c6t45317f6h467560_a_1_x_3_or_3_x_1_array_with_three_different_colours
+    }
+
+    <++>
+\end{question*}
+
+\section{Invariant}
+
+\begin{question*}{}
+    \pitem[ARO 2011]{%
+        A $2010\times 2010$ board is divided into corner-shaped figures of three cells. Prove that it is possible to mark one cell in each figure such that each row and each column will have the same number of marked cells.
+        }{%
+        For some marking of the trominos let $r_i$ and $c_j$ denote the number of marked cells in the $i^{\text{th}}$ row and $j^{\text{th}}$ column respectively. Then let $R_i = \textstyle\sum_{k=1}^i r_k$ and $C_j = \textstyle\sum_{k=1}^j c_j$. First mark the corner cell of each tromino on the board.
+
+        Now suppose for some $i$ we have $R_i > 670\cdot i$ then there must be at least $3R_i - 2010i$ trominos with a marked cell in row $i$ and a free cell in row $i+1$. Otherwise, the first $i$ rows would contain less than $\frac{2010i - 2(3R_i-2010i)}{3} + (3R_i-2010i) = R_i$ marked cells, which is absurd because that is the definition of $R_i$. By a similar argument, if $R_i < 670\cdot i$ then there are at least $2010i-3R_i$ trominos with a marked cell in row $i+1$ and a free cell in row $i$.
+
+        For each row $i$ with $R_i>670i$ we want to take $R_i-670i$ of the $\ge 3(R_i - 670i)$ potential trominos with marked cells in row $i$ and shift them to neighbouring cells row $i+1$. And for rows with $R_i < 670$ we take $670i-R_i$ cells from row $i+1$ and shift them to row $i$. If we do the same with columns then all rows and columns will end up with the same number of marked cells. It is left to show that we can select the correct number of cells for both rows and columns without choosing a tetromino for both a row and column (i.e. needing to shift the marked cell in two directions).
+
+        So define a bipartite graph $G$ with $V=A\cup B$. Vertices in $A$ represent all the potential tominos whose marked cells could be shifted to equalise the $R_i$s and $C_j$s. Vertices in $B$ represent the 4020 rows and columns. Then a vertex in $A$ is connected to its row or column in which it is to be shifted. All we must show is that there exists a subgraph $H$ such that no two vertices in $B$ share a common neighbour and for all $v\in B, \,\,\, d_H(v)\ge \textstyle\frac{1}{3}d_G(v)$. But this is simple, because vertices in $A$ have $d(v)\le 2$ so let all vertices of degree $1$ go to their neighbours in $B$, and the remaining graph decomposes into even cycles or paths (where each vertex in $B$ is the end of at most one path). discarding every other edge of each cycle or path we end up with subgraph such that each vertex $v\in B$ is connected to at least $\textstyle\frac{1}{2}d_G(v)$ vertices, which is more than we needed. This completes the proof 
+        }{%
+        https://artofproblemsolving.com/community/c6t45317f6h467560_a_1_x_3_or_3_x_1_array_with_three_different_colours
+    }
+
+    \pitem[]{%
+        Let $S = \{1,2,3,\ldots,n\}$. Consider a function $f\colon S\to S$. A subset $D$ of $S$ is said to be invariant if for all $x\in D$ we have $f(x)\in D$. The empty set and $S$ are also considered as invariant subsets. By $\deg (f)$ we define the number of invariant subsets $D$ of $S$ for the function $f$.
+
+        i) Show that there exists a function $f\colon S\to S$ such that $\deg (f)=2$.
+
+        ii) Show that for every $1\leq k\leq n$ there exists a function $f\colon S\to S$ such that $\deg (f)=2^{k}$.
+        }{%
+        For a fixed positive integer $k \in [1,n]$ consider the function
+
+        \[f(x) = \begin{cases} x + 1 & \text{for} , 1\le x\le n-k-1 \\ 1 & \text{for} , x\ge n-k \end{cases} \]
+        Now consider $A =\{ 1 ,2,\cdots , n-k \}$ and $B =\{n-k+1,\cdots ,n\}$
+
+        Now Any subset $D$ of $S$ with $D= A \cup R$ (Where $R$ is subset of $B$) is invariant Under $f$ .
+
+        Since there is $2^k$ subsets of $B$ thus , There can have $2^k$ subset $D$ of $S$ for which $D$ is invariant under $f$ .
+
+        By definition $ \deg (f) =2^k$
+
+
+        Now for part (i) just take $k=1$
+        }{%
+        https://artofproblemsolving.com/community/c6t219f6h479491_degree_of_f2k
+    }
+
+    \pitem[]{%
+        Given $2004$ vertices $a_1,a_2,\cdots,a_{2004}$ circling a table in clockwise order. Initially, $a_1$ is labeled $0$ and $a_2,a_3,\cdots,a_{2004}$ are labeled $1$. In every step, we choose three vertices $a_{i-1},a_i,a_{i+1}$ with labels $a,b,c$ and change them into $1-a,1-b,1-c$ respectively. Is it possible to change all labels into $0$?
+        }{%
+        The answer is no; between any two numbers write down their absolute difference, and consider the circle containing only these absolute differences. To be more rigorous, let $b_i = |a_{i+1} - a_i|$, where we take $a_{2005} = a_1$. Then $b_1 = b_2 = 1$ and $b_3 = b_4 = \cdots = b_{2004} = 0$. Observe that an operation consists of choosing two numbers and flipping them. To be more rigorous, flipping vertices $a_{i-1}, a_i, a_{i+1}$ corresponds to flipping the numbers $b_{i-1}$ and $b_{i+2}$. We show that it's impossible to have $b_i = 0$ for all $1 \leq i \leq 2004$; this clearly implies the condition.
+
+        Consider the numbers $b_1, b_4, b_7, \cdots, b_{2002}$, i.e. those with indices which are 1 mod 3. There are $\dfrac{2004}{3} = 668$ of these, and initially only one of these is labeled $1$. Any operation preserves the parity of the number of 1s; that is, it is always odd no matter how many times we operate. Thus we can never have $b_1 = b_4 = \cdots = 0$, which clearly implies the result.
+        }{%
+        https://artofproblemsolving.com/community/c6t219f6h2269808_is_it_possible_to_make_all_labels_zero
+    }
+
+    \pitem[USA TST for EGMO 2020]{%
+        Vulcan and Neptune play a turn-based game on an infinite grid of unit squares. Before the game starts, Neptune chooses a finite number of cells to be flooded. Vulcan is building a levee, which is a subset of unit edges of the grid (called walls) forming a connected, non-self-intersecting path or loop*.
+
+        The game then begins with Vulcan moving first. On each of Vulcan’s turns, he may add up to three new walls to the levee (maintaining the conditions for the levee). On each of Neptune’s turns, every cell which is adjacent to an already flooded cell and with no wall between them becomes flooded as well. Prove that Vulcan can always, in a finite number of turns, build the levee into a closed loop such that all flooded cells are contained in the interior of the loop, regardless of which cells Neptune initially floods. *More formally, there must exist lattice points $\mbox{\footnotesize \(A_0, A_1, \dotsc, A_k\)}$, pairwise distinct except possibly $\mbox{\footnotesize \(A_0 = A_k\)}$, such that the set of walls is exactly $\mbox{\footnotesize \(\{A_0A_1, A_1A_2, \dotsc , A_{k-1}A_k\}\)}$. Once a wall is built it cannot be destroyed; in particular, if the levee is a closed loop (i.e. $\mbox{\footnotesize \(A_0 = A_k\)}$) then Vulcan cannot add more walls. Since each wall has length $\mbox{\footnotesize \(1\)}$, the length of the levee is $\mbox{\footnotesize \(k\)}$.
+        }{%
+        We can draw a square containing all initially flooded cells; let the side length be $s$. We will prove the problem when the all cells inside this square are initially flooded, since removing initially flooded cells does not harm Vulcan. In this four-step construction, Vulcan will build 3 new walls each turn.
+
+        The following diagrams include the square of side length $s$ outlined in green, the flooded cell boundary outlined in blue, the newly built walls in red, and the previously built walls in black.
+
+        Step 1
+        [asy] pair A, B, C; A = (-15, 0); B = (0, 0); C = (0, -15); draw(A--B--C, red+linewidth(2)); pair X, Y; X = (-10, 0); Y = (0, -10); draw(A--X, blue); draw((-10, 0)--(-10, -1)--(-9, -1)--(-9, -2)--(-8, -2)--(-8, -3), blue); draw((0, -15)--(0, -10)--(-1, -10)--(-1, -9)--(-2, -9)--(-2, -8)--(-3, -8), blue); draw((0, -15)--(-1, -15)--(-1, -16)--(-2, -16)--(-2, -17)--(-3, -17), blue); draw((-15, 0)--(-15, -1)--(-16, -1)--(-16, -2)--(-17, -2)--(-17, -3), blue); draw((-25, -10)--(-25, -15)--(-24, -15)--(-24, -16)--(-23, -16)--(-23, -17)--(-22, -17), blue); draw((-25, -10)--(-24, -10)--(-24, -9)--(-23, -9)--(-23, -8)--(-22, -8), blue); draw((-15, -25)--(-10, -25)--(-10, -24)--(-9, -24)--(-9, -23)--(-8, -23)--(-8, -22), blue); draw((-15, -25)--(-15, -24)--(-16, -24)--(-16, -23)--(-17, -23)--(-17, -22), blue); draw((-4.5, -6.5)--(-6.5, -4.5), dotted+blue+linewidth(2)); draw((-20.5, -6.5)--(-18.5, -4.5), dotted+blue+linewidth(2)); draw((-20.5, -18.5)--(-18.5, -20.5), dotted+blue+linewidth(2)); draw((-4.5, -18.5)--(-6.5, -20.5), dotted+blue+linewidth(2)); draw((-15, -15)--(-15, -10)--(-10, -10)--(-10, -15)--cycle, heavygreen); label("$s$", (-12.5, 0), N); label("$2s$", (-5, 0), N); [/asy]
+        In Vulcan's first $2s$ turns, he will build the top right corner of the levee such that the top and right walls are $2s$ away from the top and right sides of the square. This is possible because only immediately after $2s$ turns does the flood boundary reach the levee.
+
+
+        Step 2
+        [asy] draw((-50, -15)--(-50, 0)--(-15, 0), red+linewidth(2)); draw((-15, 0)--(0, 0)--(0, -15), black+linewidth(2)); draw((0, -15)--(0, -40), red+linewidth(2)); draw((-15, -15)--(-15, -10)--(-10, -10)--(-10, -15)--cycle, heavygreen); draw((-50, -15)--(-49, -15)--(-49, -16)--(-48, -16)--(-48, -17)--(-47, -17)--(-47, -18)--(-46, -18), blue); draw((0, -40)--(-1, -40)--(-1, -41)--(-2, -41)--(-2, -42)--(-3, -42)--(-3, -43)--(-4, -43), blue); draw((-15, -50)--(-10, -50), blue); draw((-10, -50)--(-10, -49)--(-9, -49)--(-9, -48)--(-8, -48)--(-8, -47), blue); draw((-15, -50)--(-15, -49)--(-16, -49)--(-16, -48)--(-17, -48)--(-17, -47)--(-18, -47)--(-18, -46), blue); draw((-7, -46)--(-5, -44), blue+dotted); draw((-19, -45)--(-45, -19), blue+dotted); label("$3s$", (-7.5, 0), N); label("$7s$", (-65/2, 0), N); label("$3s$", (-50, -7.5), W); label("$5s$", (0, -55/2), E); [/asy]
+        In each of the next $5s$ turns, Vulcan will build one wall downward on the right side of the levee and two walls to finish $7s$ of the top wall and continue downward on the left side. The left side of the flood boundary just reaches the left side of the levee after $7s$ turns in total.
+
+
+        \myrightasy[2.2in]{
+            3. In each of the next $5s$ turns, Vulcan will build two walls on the left side of the levee and one wall on the right, so the left and right walls are equal in length.
+            }{
+            import MOgeom;
+            draw((-50, -15)--(-50, 0)--(-15, 0), linewidth(2)); draw((-15, 0)--(0, 0)--(0, -15), linewidth(2)); draw((0, -15)--(0, -40), linewidth(2)); draw((-15, -15)--(-15, -10)--(-10, -10)--(-10, -15)--cycle, heavygreen); draw((0, -40)--(0, -65), red+linewidth(2)); draw((-50, -15)--(-50, -65), red+linewidth(2)); draw((-50, -40)--(-49, -40)--(-49, -41)--(-48, -41)--(-48, -42)--(-47, -42)--(-47, -43)--(-46, -43), blue); draw((0, -65)--(-1, -65)--(-1, -66)--(-2, -66)--(-2, -67)--(-3, -67)--(-3, -68)--(-4, -68), blue); draw((-15, -75)--(-10, -75), blue); draw((-10, -75)--(-10, -74)--(-9, -74)--(-9, -73)--(-8, -73)--(-8, -72), blue); draw((-15, -75)--(-15, -74)--(-16, -74)--(-16, -73)--(-17, -73)--(-17, -72)--(-18, -72)--(-18, -71), blue); draw((-7, -71)--(-5, -69), blue+dotted); draw((-19, -70)--(-45, -44), blue+dotted); label("$10s$", (-25, 0), N); label("$3s$", (-50, -7.5), W); label("$8s$", (0, -20), E); label("$10s$", (-50, -40), W); label("$5s$", (0, -105/2), E); 
+        }
+
+        Step 4
+        [asy] draw((-50, -15)--(-50, 0)--(-15, 0), linewidth(2)); draw((-15, 0)--(0, 0)--(0, -15), linewidth(2)); draw((0, -15)--(0, -40), linewidth(2)); draw((-15, -15)--(-15, -10)--(-10, -10)--(-10, -15)--cycle, heavygreen); draw((0, -40)--(0, -65), linewidth(2)); draw((-50, -15)--(-50, -65), linewidth(2)); draw((-50, -65)--(-50, -145)--(0, -145)--(0, -65), linewidth(2)+red); draw((-50, -110)--(-49, -110)--(-49, -111)--(-48, -111)--(-48, -112)--(-47, -112)--(-47, -113)--(-46, -113), blue); draw((0, -135)--(-1, -135)--(-1, -136)--(-2, -136)--(-2, -137)--(-3, -137)--(-3, -138), blue); draw((-15, -145)--(-10, -145), blue); draw((-10, -145)--(-10, -144)--(-9, -144)--(-9, -143)--(-8, -143), blue); draw((-15, -145)--(-15, -144)--(-16, -144)--(-16, -143)--(-17, -143)--(-17, -142)--(-18, -142)--(-18, -141), blue); draw((-7, -141)--(-5, -139), blue+dotted); draw((-19, -140)--(-45, -114), blue+dotted); label("$10s$", (-25, 0), N); label("$13s$", (-50, -65/2), W); label("$16s$", (-50, -105), W); [/asy]
+        In the final $14s$ moves, we increase the length downward of one of the left or right walls by 1 and the other by 2. Once the total length of the left or right wall reaches length $29s$, we begin constructing the bottom wall of the levee. Note that after these $14s$ moves (and $26s$ moves in total), the bottom edge of the flood boundary just hits the bottom of levee ($26s$ below the bottom edge of the green square).
+        }{%
+        https://artofproblemsolving.com/community/c6t309f6h1970142_roman_gods_flood_the_world
+
+        https://artofproblemsolving.com/community/c6h1970140_greek_gods_flood_the_world
+    }
+
+    \pitem[Turkey TST 2014 Day 3 Problem 9]{%
+        At the bottom-left corner of a $2014\times 2014$ chessboard, there are some green worms and at the top-left corner of the same chessboard, there are some brown worms. Green worms can move only to right and up, and brown worms can move only to right and down. After a while, the worms make some moves and all of the unit squares of the chessboard become occupied at least once throughout this process. Find the minimum total number of the worms.
+        }{%
+        Suppose we have a $n\times n$ chessboard and there are $a$ brown worms and $b$ green worms. Label a square $s_i$ for a worm if it can reach there after $i$ moves from the starting square. Similarly label a square $e_i$ for a worm if it can reach the ending square after $i$ moves from it.
+        Each worm's path consists of $2n-1$ squares. So all the worms have crossed total $(2n-1)(a+b)$ squares. Note that for brown worms and $i<a$, there are $i$ $s_i$s. But when we counted each individual worms' path, we counted $a$ of them. So we have overcounted $a-i$ squares. Similarly for $e_i$s, $i<a$, we have overcounted more $a-i$ squares. Thus the number of overcounted squares resulted from brown worms' overlapping paths is at least $\sum_{i<a} 2(a-i)=a(a-1)$. And for green worms' overlapping paths, the number of overcounted squares is at least $b(b-1)$. Similarly, each brown and green worms have overlapped their paths at least once. Thus we overcounted at least $ab$ more squares. Hence \[(2n-1)(a+b)\ge n^2+a(a-1)+b(b-1)+ab\]Assuming $a+b=x$, it can be rewritten as $ab\ge (n-x)^2$. Hence $x^2\ge 4ab\ge 4(n-x)^2\implies x\ge \frac 2 3 n$.
+
+        So $x\ge \left \lceil \frac {2n} 3\right\rceil$. It is also easy to construct an example for $x=\left \lceil \frac {2n} 3\right\rceil$ (Just like people did in earlier posts.) So the minimal number of worms is $\left \lceil \frac {2n} 3\right\rceil$
+        }{%
+        https://artofproblemsolving.com/community/c6t309f6h580322_worms_that_are_allowed_to_move_one_way
+    }
+
+    \pitem[]{%
+        Given a binary representation of a positive integer $n$, prove that you can always "cut" the representation into few parts, such that when adding those parts together (as numbers in binary) we can get a perfect power of $2$.
+
+        For example, we can cut $110001110$ this way: $1100|0|11|1|0 $, and adding gives $1100 + 0 + 11+1+0=10000$ which is indeed a power of $2$.
+        }{%
+        Note: All variables are positive integers unless otherwise stated.
+
+        For any $n$, let $f(n)$ be the number of $1$s in the binary representation of $n$. For any $k,m$, we say that $k$ is $m$-cuttable if, for every $n$ with $f(n) = k$, you can cut the binary representation of $n$ to get a sum of $m$.
+
+        Claim 1: $k$ is $k$-cuttable for every $k$.
+        Proof: For $n$ with $f(n) = k$, just cut the representation of $n$ into single digits.
+
+        Claim 2: $2$ is $3$-cuttable.
+        Proof: Take $n$ with $f(n) = 2$. If the two $1$s in the binary representation of $n$ are consecutive, then cut out $11$; otherwise, the leftmost $1$ is followed by a $0$, so cut out $10$ and $1$. Either way, we get a sum of $3$.
+
+        Claim 3: If $k_1$ is $m_1$-cuttable and $k_2$ is $m_2$-cuttable then $k_1+k_2$ is $(m_1+m_2)$-cuttable.
+        Proof: Take $n$ with $f(n) = k_1+k_2$, and cut the binary representation of $n$ just before the $(k_1+1)$th $1$. Then the left and right pieces have $k_1$ and $k_2$ $1$s, respectively, so they can be cut to get sums of $m_1$ and $m_2$, which together give a sum of $m_1+m_2$.
+
+        Claim 4: For every $k \leq m \leq \big\lfloor\tfrac{3}{2} k\big\rfloor$, $k$ is $m$-cuttable.
+        Proof: By induction on $k$. The base cases $k = 1$ and $k = 2$ are immediate from claims 1 and 2. Now, assume the claim holds for $k - 2$, and let $k \leq m \leq \big\lfloor\tfrac{3}{2} k\big\rfloor$. If $m = k$, then obviously $k$ is $m$-cuttable from claim 1. Otherwise, $k - 2 \leq m - 3 \leq \big\lfloor\tfrac{3}{2} k\big\rfloor - 3 = \big\lfloor\tfrac{3}{2} (k - 2)\big\rfloor$, so by the IH, $k-2$ is $(m-3)$-cuttable; also, $2$ is $3$-cuttable. Then, by claim 3, $k$ is $m$-cuttable, as desired.
+
+        Claim 5: If (i) $k-3$ is $(m-7)$-cuttable, (ii) $k-2$ is $(m-6)$-cuttable, (iii) $k-2$ is $(m-5)$-cuttable, and (iv) $k-1$ is $(m-4)$-cuttable, then $k$ is $m$-cuttable.
+        Proof: Take $n$ with $f(n) = k$. Cut off the first three digits of $n$, which we'll call $\ell$, and call the rest $r$.
+        If $\ell = 111$, then $f(r) = k-3$, so by (i), $r$ can be cut to get a sum of $m-7$; adding $\ell$ gives a sum of $m$.
+        If $\ell = 110$, then $f(r) = k-2$, so by (ii), $r$ can be cut to get a sum of $m-6$; adding $\ell$ gives a sum of $m$.
+        If $\ell = 101$, then $f(r) = k-2$, so by (iii), $r$ can be cut to get a sum of $m-5$; adding $\ell$ gives a sum of $m$.
+        If $\ell = 100$, then $f(r) = k-1$, so by (iv), $r$ can be cut to get a sum of $m-4$; adding $\ell$ gives a sum of $m$.
+
+        Claim 6: $4$ is $8$-cuttable.
+        Proof: Claim 4 implies $1$ is $1$-cuttable, $2$ is $2$-cuttable, $2$ is $3$-cuttable, and $3$ is $4$-cuttable. Now apply claim 5.
+
+        Claim 7: $7$ is $11$-cuttable.
+        Proof: $4$ is $8$-cuttable by claim 6, and $3$ is $3$-cuttable by claim $1$. Now apply claim 3.
+
+        Claim 8: $9$ is $16$-cuttable.
+        Proof: Claim 4 implies $6$ is $9$-cuttable, $7$ is $10$-cuttable, and $8$ is $12$-cuttable. Also, $7$ is $11$-cuttable by claim 7. Now apply claim 5.
+
+        Claim 9: $10$ is $16$-cuttable.
+        Proof: $4$ is $8$-cuttable by claim 6, and $6$ is $8$-cuttable by claim 4. Now apply claim 3.
+
+        Claim 10: For all $k \geq 6$, $k$ is $a(k)$-cuttable, where $a(k)$ is the smallest power of $2$ that's greater than or equal to $k$.
+        Proof: By induction on $k$. The cases $6 \leq k \leq 8$ and $k = 11$ are immediate from claim 4. The cases $k = 9$ and $k = 10$ are given by claims 8 and 9, respectively. Now, fix $k \geq 12$, and assume the claim holds for all $6 \leq j < k$. If $k = a(k) - 1$, then $k$ is $a(k)$-cuttable by claim 4. Otherwise, let $j_1 = \lfloor\tfrac{k}{2}\rfloor$ and $j_2 = \lfloor\tfrac{k+1}{2}\rfloor$. Notice that $6 \leq j_1 \leq j_2 < k$, so by the IH $j_1$ is $a(j_1)$-cuttable and $j_2$ is $a(j_2)$-cuttable. But $j_1 + j_2 = k$ and $a(j_1) + a(j_2) = \tfrac{1}{2}a(k) + \tfrac{1}{2}a(k) = a(k)$. It follows from claim 3 that $k$ is $a(k)$-cuttable, completing the induction.
+
+        It is also immediate from claim $4$ that for $1 \leq k \leq 4$, $k$ is $a(k)$-cuttable. It remains to show that for any $n$ with $f(n) = 5$, you can cut the binary representation of $n$ into parts that sum to a power of 2. Indeed, if the $1$s in the binary representation of $n$ are all consecutive, then take $1111$ and $1$ (and whatever $0$s remain) for a sum of $16$. Otherwise, $n$ must contain the string $100$ or the string $101$; in either case, cut out the 3-digit string and cut everything else into single digits, and you will get a sum of $8$.
+        }{%
+        https://artofproblemsolving.com/community/c6t309f6h2536382_create_power_of_2
+    }
+
+    \pitem[Brazil National Olympiad 2020]{%
+        Let $k$ be a positive integer. Arnaldo and Bernaldo play a game in a table $2020\times 2020$, initially all the cells are empty. In each round a player chooses a empty cell and put one red token or one blue token, Arnaldo wins if in some moment, there are $k$ consecutive cells in the same row or column with tokens of same color, if all the cells have a token and there aren't $k$ consecutive cells(row or column) with same color, then Bernaldo wins. If the players play alternately and Arnaldo goes first, determine for which values of $k$, Arnaldo has the winning strategy.
+        }{%
+        We can number the table as follows (can be generalised):
+
+        \begin{tabular}{| c | c | c | c | c | c |} \hline 1&1&3&4&5&5\\ \hline 2&2&3&4&6&6\\ \hline 7&8&9&9&11&12\\ \hline 7&8&10&10&11&12\\ \hline 13&13&15&16&17&17\\ \hline 14&14&15&16&18&18\\ \hline \end{tabular}
+        With this numbering in mind, for each move of Arnaldo, Bernaldo can choose the cell with the same number as the one last chosen by Arnaldo and colour it with the colour not chosen by Arnaldo in Arnaldo's last move.
+
+        This means that if $k \ge 5$ then Bernaldo wins.
+        }{%
+        https://artofproblemsolving.com/community/c6t309f6h2494018_k_consecutive_tokens
+    }
+
+    <++>
+\end{question*}
+
+\section{unsorted}
+\begin{question*}{}
+    \pitem[ARO 2011]{%
+        A $2010\times 2010$ board is divided into corner-shaped figures of three cells. Prove that it is possible to mark one cell in each figure such that each row and each column will have the same number of marked cells.
+        }{%
+        For some marking of the trominos let $r_i$ and $c_j$ denote the number of marked cells in the $i^{\text{th}}$ row and $j^{\text{th}}$ column respectively. Then let $R_i = \textstyle\sum_{k=1}^i r_k$ and $C_j = \textstyle\sum_{k=1}^j c_j$. First mark the corner cell of each tromino on the board.
+
+        Now suppose for some $i$ we have $R_i > 670\cdot i$ then there must be at least $3R_i - 2010i$ trominos with a marked cell in row $i$ and a free cell in row $i+1$. Otherwise, the first $i$ rows would contain less than $\frac{2010i - 2(3R_i-2010i)}{3} + (3R_i-2010i) = R_i$ marked cells, which is absurd because that is the definition of $R_i$. By a similar argument, if $R_i < 670\cdot i$ then there are at least $2010i-3R_i$ trominos with a marked cell in row $i+1$ and a free cell in row $i$.
+
+        For each row $i$ with $R_i>670i$ we want to take $R_i-670i$ of the $\ge 3(R_i - 670i)$ potential trominos with marked cells in row $i$ and shift them to neighbouring cells row $i+1$. And for rows with $R_i < 670$ we take $670i-R_i$ cells from row $i+1$ and shift them to row $i$. If we do the same with columns then all rows and columns will end up with the same number of marked cells. It is left to show that we can select the correct number of cells for both rows and columns without choosing a tetromino for both a row and column (i.e. needing to shift the marked cell in two directions).
+
+        So define a bipartite graph $G$ with $V=A\cup B$. Vertices in $A$ represent all the potential tominos whose marked cells could be shifted to equalise the $R_i$s and $C_j$s. Vertices in $B$ represent the 4020 rows and columns. Then a vertex in $A$ is connected to its row or column in which it is to be shifted. All we must show is that there exists a subgraph $H$ such that no two vertices in $B$ share a common neighbour and for all $v\in B, \,\,\, d_H(v)\ge \textstyle\frac{1}{3}d_G(v)$. But this is simple, because vertices in $A$ have $d(v)\le 2$ so let all vertices of degree $1$ go to their neighbours in $B$, and the remaining graph decomposes into even cycles or paths (where each vertex in $B$ is the end of at most one path). discarding every other edge of each cycle or path we end up with subgraph such that each vertex $v\in B$ is connected to at least $\textstyle\frac{1}{2}d_G(v)$ vertices, which is more than we needed. This completes the proof 
+        }{%
+        https://artofproblemsolving.com/community/c6t45317f6h467560_a_1_x_3_or_3_x_1_array_with_three_different_colours
+    }
+
+    \pitem[2019 China TST Test 3 P3]{%
+        Does there exist a bijection $f:\mathbb{N}^{+} \rightarrow \mathbb{N}^{+}$, such that there exist a positive integer $k$, and it's possible to have each positive integer colored by one of $k$ chosen colors, such that for any $x \neq y$ , $f(x)+y$ and $f(y)+x$ are not the same color?
+        }{%
+        Yes, such a bijection exists, and it allows us to color $\mathbb{N}^+$ in two colors complying to the condition.
+
+        Setting $u=f(x)+y; v=x+f(y)$ , one can see that it's equivalent to require $x+y$ and $f(x)+f^{-1}(y)$ to be of different colors, providing $y\neq f(x)$. The idea is to define consecutively $f$ starting from $f(1)$ and in the same time to color appropriately one by one the natural numbers. Let $f(1):=2; f(3):=1$. It imposes that the color of $f(1)+f^{-1}(1)=2+3=5$ is different from the color of $1+1=2$. So far, this is the only condition, we must comply to. So, we color $2$ in white and $5$ in black.
+        We say $f$ is not fully defined at point $x\in\mathbb{N}^+$ if we haven't yet defined $f(x)$ or $f^{-1}(x)$. Till now, the only point $f$ is fully defined at is $x=1$. Now, we consecutively apply the following:
+
+        Extension step. Let $n$ be the first natural $f$ is not fully defined at. It means either $f(n)$ or $f^{-1}(n)$ or both are not defined.
+        Consider first the case $f(n)$ doesn't exists. Let $D$ be the subset of naturals where $f^{-1}$ is defined. We should ensure that $f(n)+f^{-1}(x)$ and $n+x$ are of different colors for any $x\in D$. Denote $D':=\{n+x : x\in D\}$. If there exists $y\in D'$ which is not yet colored, we color it arbitrary. Then choose $N$ big enough such that the minimal element of the set $\{N+f^{-1}(x):x\in D \} $ is bigger than the maximal colored natural number. Then we define $f(n):=N$ and for any $x\in D$ we color $f(n)+f^{-1}(x)$ in the color opposite to the color of $n+x$.
+
+        The case when $f^{-1}(n)$ is not defined is similar with appropriate changes - we should ensure $f^{-1}(n)+f(x)$ is of different color compared to $n+x$.
+        In the case both $f(n), f^{-1}(n)$ are not yet defined, we first define $f(n)$ as above and then apply again the same step to define $f^{-1}(n)$
+
+        Applying consecutively that extension step, we define $f$ over $\mathbb{N}^+$ and it is bijection. If there is still not colored naturals, we can color them arbitrary
+        }{%
+        https://artofproblemsolving.com/community/c6t45241f6h1808605_bijection_exist
+    }
+
+\end{question*}
+\end{document}

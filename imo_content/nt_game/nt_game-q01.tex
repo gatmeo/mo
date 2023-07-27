@@ -1,0 +1,36 @@
+\pitem[Brazilian Mathematical Olympiad 2018 P3]{%
+    Let $k$, $n$ be fixed positive integers. In a circular table, there are placed pins numbered successively with the numbers $1, 2 \dots, n$, with $1$ and $n$ neighbors. It is known that pin $1$ is golden and the others are white. Arnaldo and Bernaldo play a game, in which a ring is placed initially on one of the pins and at each step it changes position. The game begins with Bernaldo choosing a starting pin for the ring, and the first step consists of the following: Arnaldo chooses a positive integer $d$ any and Bernaldo moves the ring $d$ pins clockwise or counterclockwise (positions are considered modulo $n$, i.e., pins $x$, $y$ equal if and only if $n$ divides $x-y$). After that, the ring changes its position according to one of the following rules, to be chosen at every step by Arnaldo:
+
+    Rule 1: Arnaldo chooses a positive integer $d$ and Bernaldo moves the ring $d$ pins clockwise or counterclockwise.
+
+    Rule 2: Arnaldo chooses a direction (clockwise or counterclockwise), and Bernaldo moves the ring in the chosen direction in $d$ or $kd$ pins, where $d$ is the size of the last displacement performed.
+
+    Arnaldo wins if, after a finite number of steps, the ring is moved to the golden pin. Determine, as a function of $k$, the values of $n$ for which Arnaldo has a strategy that guarantees his victory, no matter how Bernaldo plays.
+    }{%
+    Call a pair $(n,k)$ good if $k$ lefts remainder $1$ when divided by the odd part of $n$. We claim that the good pairs are the only ones such that Arnaldo has a winning strategy.
+
+    Step 1: If Arnaldo has a winning strategy, then $(n,k)$ is good.
+    Proof:
+    Assume that $(n,k)$ is not good, i.e., exists an odd prime $p$ so that $p \mid n$ and $k \not\equiv 1 \pmod p.$ We will show that Bernaldo can guarantee that the ring is never placed at a pin $1$ modulo $p$ and hence it can never be placed at the pin $1.$
+
+    First, Bernaldo places the pin at any pin which is not $1$ modulo $p.$ We will show that, whenever the ring is not placed at a $1$ modulo $p$ pin, Bernaldo can gurantees that, no matter how Arnaldo plays, in the next step the ring will not be placed at a $1$ modulo $p$ pin; which proves the claim.
+
+    Indeed, assume that the ring is placed at a pin $l \not\equiv1 \pmod p.$ We have two cases:
+    $\bullet$ If Arnaldo plays as in rule $1,$ then Bernaldo can reach his goal unless that $l+d \equiv l-d \equiv 1 \pmod p.$ But this would imply $d \equiv -d \pmod p$ and since $p$ is odd, this implies $d \equiv 0 \pmod p.$ Then $l \equiv l+d \equiv l-d \equiv 1 \pmod p$ which contradicts our hypothesis.
+    $\bullet$ If Arnaldo plays as in rule $1,$ then again Bernaldo can reach his goal unless $l\pm d \equiv l \pm dk \equiv 1 \pmod p$ (where the two $\pm$ signs are equal); but this would imply $d\equiv dk \pmod p;$ then, since $k\neq 1 \pmod p$ and $p$ is prime, it follows that $d \equiv 0 \pmod p$ which again yelds a contradiction. $\square.$
+
+    Step 2: If $(n,k)$ is a good pair, then Arnaldo has a winning strategy.
+    Proof:
+    Let $n=2^ab$ where $a$ and $b$ are non-negative integers with $b$ odd. By hypothesis, $k \equiv 1 \pmod b.$
+
+    First, let $l$ be the starting pin choosen by Bernaldo. At any step, denote by $t$ the pin position. We start making $t \equiv 1 \pmod {2^a}$ in a finite number of steps. In order to do it, Arnaldo performs the following algorithm:
+    Quote:
+    At the first step, Arnaldo chooses $d$ so that $l$ and $d$ have different parities. So that no matter how Bernaldo plays, $t$ is now odd. Then, at the second step the base $2$ representation of $t$ is ${(d_md_{m-1}\dots d_0)}_2$ where $d_0 = 1.$ We aim to perform steps so that the first $a$ digits from right to left are $0's,$ except the right-most one. But this is very easy, whenever we have not reached our goal, select $d=2^k,$ where $k$ is the left-most non-zero digit among the first $a;$ then either Bernaldo will delete this digit(i.e. replace it by $0$) or he will move it to the left. Clearly this works.
+
+    Finally, after performing the above algorithm, we will have the pin placed at a position $t\equiv 1\pmod {2^a}.$ Then Arnaldo performs rule $1$ to fix $d=2^a;$ after that, no matter how Bernaldo plays we will still have $t \equiv 1 \pmod {2^a}.$ Now, since by hypothesis $k\equiv 1 \pmod b;$ rule $2$ turns to be: Arnaldo moves the ring either clockwise or counterclowise at a number $\equiv 2^a \pmod b$ and $0\pmod 2^a.$ Hence, since $gcd(2^a,b)=1,$ if he fixes any direction and performs rule $2$ consecutively at this fixed direction, he will eventually reach a pin $\equiv 1 \pmod {b}$ and $1 \pmod {2^a};$ i.e. a pin $1 \pmod {n}.$ So Arnaldo wins!$\square.$
+
+
+    So expressing the possible values of $n$ as a function of $k: \{2^a b : a,b \in {\mathbb{Z}}_{\ge 0}, \text{b is odd and } b \mid k-1 \}.$
+    }{%
+    https://artofproblemsolving.com/community/c6t45487f6h1739464_game_with_number_theory
+}

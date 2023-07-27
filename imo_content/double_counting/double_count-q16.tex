@@ -1,0 +1,17 @@
+\pitem[USA December TST 2014 Q3]{%
+    Let $n$ be an even positive integer, and let $G$ be an $n$-vertex graph with exactly $\frac{n^2}{4}$ edges, where there are no loops or multiple edges (each unordered pair of distinct vertices is joined by either 0 or 1 edge). An unordered pair of distinct vertices $\{x,y\}$ is said to be amicable if they have a common neighbor (there is a vertex $z$ such that $xz$ and $yz$ are both edges). Prove that $G$ has at least $2\binom{n/2}{2}$ pairs of vertices which are amicable.
+    }{%
+    We count amicable pairs, and as the title of this solution suggests, we use extremely dumb bounds, which actually manage to solve this problem. This bound is: the max of some numbers $a_1, a_2, \cdots, a_n$ is at least the average of these numbers.
+
+    Let $n = 2k$ for convenience, so that $G$ has $k^2$ edges.
+
+    We count amicable pairs a given vertex is $A$ is in. Let $B$ be an arbitrary neighbor of $A$. Using the aforementioned bound, we find that $A$ is in at least
+    \begin{eqnarray*} \max{(\deg (B))} - 1 \geq \frac{\sum \deg (B)}{\deg{(A)}} - 1 \end{eqnarray*}amicable pairs.
+
+    Summing across all $A$, we find that there are at least
+    \begin{eqnarray*} \frac{1}{2}\sum \left[\frac{\sum \deg (B)}{\deg{(A)}} - 1\right] & = & \frac{1}{2}\sum\frac{\sum \deg (B)}{\deg{(A)}} - \frac{1}{2}\sum{1} \\ & = & \frac{1}{2}\sum\frac{\sum \deg (B)}{\deg{(A)}} - k \mbox{,} \end{eqnarray*}where the sums range across all $A$, and all $B$ that are neighbors of $A$, respectively (we divide by $2$ since each amicable pair contain $2$ vertices, and order is irrelevant). We can now rewrite this sum as
+    \begin{eqnarray*} \frac{1}{2}\sum_{\{A, B\}}\left[\frac{\deg (A)}{\deg{(B)}} + \frac{\deg{(B)}}{\deg{(A)}}\right] - k \mbox{,} \end{eqnarray*}Applying AM-GM, we find that there are at least
+    \begin{eqnarray*} \frac{1}{2}\sum_{\{A, B\}}(2) - k & = & \sum_{\{A, B\}}(1) - k \mbox{.} \end{eqnarray*}amicable pairs. Note that each unordered pair $\{A, B\}$ corresponds to an edge in $G$, since $A$ and $B$ are neighbors. Hence, $ \sum_{\{A, B\}}(1) = k^2$. It follows that there are at least $k^2 - k$ amicable pairs. Recall that $k = \frac{n}{2}$. Thus, there are at least $\frac{n}{2}\left(\frac{n}{2} - 1\right) = 2\binom{n/2}{2}$ amicable pairs, as desired. $\Box$
+    }{%
+    https://artofproblemsolving.com/community/c474725h1471295_combinatorics_post__1_double_counting
+}

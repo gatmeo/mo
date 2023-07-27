@@ -1,0 +1,12 @@
+\pitem[NIMO 7.3]{%
+    Richard has a four infinitely large piles of coins: a pile of pennies (worth 1 cent each), a pile of nickels (5 cents), a pile of dimes (10 cents), and a pile of quarters (25 cents). He chooses one pile at random and takes one coin from that pile. Richard then repeats this process until the sum of the values of the coins he has taken is an integer number of dollars. (One dollar is 100 cents.) What is the expected value of this final sum of money, in cents?
+    }{%
+    We let $E_n$ denote the expected value of the number of additional cents needed to get an integer, if Richard currently has $n$ cents modulo $100$, and he has not just started. Thus, by definition $E_0 = 0$, for example.
+
+    More generally, for any $0 < k < 100$, we then have \[ E_k = \frac{(E_{k+1}+1) + (E_{k+5}+5) + (E_{k+10}+10) + (E_{k+25}+25)}{4} \]since if Richard picks up a penny, he gained one cent and expects to gain $E_{k+1}$ more, and similarly for the other three types of coins. Simplifying, \[ E_k = \frac{E_{k+1} + E_{k+5} + E_{k+10} + E_{k+25} + 41}{4}. \]
+    Also, the actual answer to the problem is given by the value of \begin{align*} E_{\text{initial}} &= \frac{(E_1+1) + (E_5+5) + (E_{10}+10) + (E_{25}+25)}{4} \\ &= \frac{E_1 + E_5 + E_{10} + E_{25} + 41}{4} \end{align*}by the same reasoning.
+
+    Adding these $99$ equations involving $E_k$ gives \[ \sum_{k \ge 1} E_k = \sum_{k \ge 1} E_k - \frac{E_1 + E_5 + E_{10} + E_{25}}{4} + \frac{41}{4} \cdot 99. \]Thus $E_1 + E_5 + E_{10} + E_{25} = 41 \cdot 99$. Consequently, $E_{\text{initial}} = 41 \cdot 25 = 1025$.
+    }{%
+    https://artofproblemsolving.com/community/c139h536001
+}

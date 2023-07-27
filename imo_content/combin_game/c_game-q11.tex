@@ -1,0 +1,37 @@
+\pitem[2020 Dutch IMO TST 2.2]{%
+    Ward and Gabrielle are playing a game on a large sheet of paper. At the start of the game, there are $999$ ones on the sheet of paper. Ward and Gabrielle each take turns alternatingly, and Ward has the first turn.
+    During their turn, a player must pick two numbers a and b on the sheet such that $gcd(a, b) = 1$, erase these numbers from the sheet, and write the number $a + b$ on the sheet. The first player who is not able to do so, loses.
+    Determine which player can always win this game.
+    }{%
+    Gabrielle can always win using the following strategy: during each of her
+    turns, she picks the largest two numbers on the sheet as a and b. Using
+    induction on k, we will prove that she is always allowed to do so, and that
+    after her k-th turn, the sheet contains the number 2k + 1 and 998 − 2k
+    ones.
+    In his first turn, Ward can only pick a = b = 1, after which the sheet
+    contains the number 2 and 997 ones. Gabrielle then picks the two largest
+    numbers, a = 2 and b = 1, after which the sheet contains 3 and 996 ones.
+    This finishes the basis k = 1 of the induction.
+    Now suppose that for some $m\geq1$ after Gabrielle’s m-th turn the sheet
+    contains the number 2m + 1 and 998 − 2m ones. If 998 − 2m = 0, then
+    Ward cannot make a move. If not, then Ward can do one of two things,
+    either pick a = b = 1 or pick a = 2m + 1 and b = 1. We consider these two
+    cases separately:
+    • If Ward picks a = b = 1, then the sheet contains the number 2m + 1,
+    the number 2, and 996 − 2m ones. Gabrielle then picks the two largest
+    numbers, so a = 2m + 1 and b = 2 (which is allowed since their gcd is
+    1). After her turn the sheet contains the numbers 2m+3 = 2(m+1)+1
+    and 996 − 2m = 998 − 2(m + 1) ones.
+    • If Ward picks a = 2m + 1 and b = 1, then the sheet contains the
+    number 2m+2 and 997−2m ones. Gabrielle then picks the two largest
+    numbers, so a = 2m + 2 and b = 1 (which is allowed since their gcd is
+    1). Note that there is a one left, as 997 − 2m is odd, so not equal to 0.
+    After her turn the sheet contains the numbers 2m + 3 = 2(m + 1) + 1
+    and 996 − 2m = 998 − 2(m + 1) ones.
+    This completes the induction.
+    Therefore Gabrielle can always make a move. After Gabrielle’s turn 499
+    the only number left on the sheet is 999, so Ward can no longer make a
+    move, and Gabrielle wins.
+    }{%
+    https://www.wiskundeolympiade.nl/phocadownload/jaarverslagen/dmo2020.pdf
+}

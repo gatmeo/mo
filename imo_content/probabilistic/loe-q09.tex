@@ -1,0 +1,9 @@
+\pitem[Russia 1996]{%
+    In the Duma there are 1600 delegates, who have formed 16000 committees of 80 persons each. Prove that one can find two committees having no fewer than four common members.
+    }{%
+    Consider a random couple of committees, and let $X$ be the number of delegates that join both of them. Consider $a_{d}$ the number of committees that include delegate ${d}$. As the average person is on $16000\cdot 80/1600=800$, by Jensen's inequality the expected value of $X$ is
+    \[\mathbb E [X]=\sum_{d} \frac{\binom{a_{d}}{2}}{\binom{16000}{2}}\geq \frac{1600\binom{\frac{\sum a_{d}}{1600}}{2}}{\binom{16000}{2}}= \frac{1600\binom{\frac{16000 \cdot 80}{1600}}{2}}{\binom{16000}{2}} = \frac{1600\binom{800}{2}}{\binom{16000}{2}}>3,\]
+    and the conclusion follows.
+    }{%
+    https://artofproblemsolving.com/community/c6h530232p3025510
+}

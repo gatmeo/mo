@@ -1,0 +1,30 @@
+\pitem[China 1993]{%
+    A group of 10 people went to a bookstore. It is known that
+    \begin{enumerate}
+        \item Everyone bought exactly 3 books;
+        \item For every two persons, there is at least one book that both of them bought.
+    \end{enumerate}
+    What is the least number of people that could have bought the book purchased by the greatest number
+    of people?
+    }{%
+    Let $b_1, b_2,\dots,b_p$ the distinct books, purchased in $n_1, n_2,\dots$ respectively $n_p$ copies.
+    $N=n_1+n_2+\dots+n_p=30$.
+    If a person $P$ buys the books $b_i, b_j,b_k, 1\le i,j,k\le p$, denote $B_P=\{b_i, b_j, b_k\}$.
+    For each another person $Q$ is true the statement:
+    $b_i\in B_Q$ or $b_j\in B_Q$ or $b_k\in B_Q$.
+    Results: $(n_i-1)+(n_j-1)+(n_k-1)\ge 9 \quad (1)\Longrightarrow$
+    $\Longrightarrow \max{(n_i, n_j,n_k)}\ge4 \Longrightarrow \max\limits_{1\le q\le p}n_q\ge4$.
+
+    If $\max\limits_{1\le q\le p}n_q=4$, for any $B_P=\{b_i, b_j, b_k\}$ results $(n_i-1)+(n_j-1)+(n_k-1)\le 9$.
+    From $(1)$, we have $(n_i-1)+(n_j-1)+(n_k-1)\ge 9$.
+    Results $n_q=4, \forall 1\le q\le p$, hence the total number of purchased books is $N=4p$.
+    But $N=30$ and $4\nmid30$, contradiction.
+    Results $\max\limits_{1\le q\le p}n_q$ can not be $4$.
+
+    For $\max\limits_{1\le q\le p}n_q=5$ exists at least a solution, for example:
+    $(b_1,b_2,b_3);\quad (b_1,b_3,b_4);\quad (b_1,b_4,b_5);\quad (b_1,b_5,b_6);\quad (b_1,b_5,b_6)$;
+    $(b_2,b_3,b_5);\quad (b_2,b_3,b_5);\quad (b_2,b_4,b_6);\quad (b_2,b_4,b_6);\quad (b_3,b_4,b_6)$.
+    Conclusion: the least possible $\max\limits_{1\le q\le p}n_q$ is $5$.
+    }{%
+    https://artofproblemsolving.com/community/c6t45317f6h1552203_china_1993
+}

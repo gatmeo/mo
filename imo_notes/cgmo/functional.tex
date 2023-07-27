@@ -1,0 +1,178 @@
+\documentclass[a4paper]{article}
+\usepackage[math_simple,imo]{gatmeo}
+
+\renewcommand{\courseTitle}{\FirstBigRestSmallCaps{CGMO (Functional Equation)}}
+\renewcommand{\courseTopic}{}
+\DTMsavedate{mydate}{2023-07-24}
+
+\toggletrue{ownans}
+\togglefalse{officialans}
+\rfoot{}
+
+\begin{document}
+\maketitle
+\thispagestyle{empty}
+%\tableofcontents
+
+
+\begin{question*}[]{}
+
+  \pitem[Bijections]{%
+    Find all functions $f:\mathbb{R}\rightarrow \mathbb{R}$ such that
+    \[
+      f(f(x)^2+f(y))=xf(x)+y\qquad \ \forall\ x,y\in \mathbb{R}.
+    \]
+    }{%
+    <++>
+    }{%
+    Evan Chan's
+    https://web.evanchen.cc/handouts/FuncEq-Intro/FuncEq-Intro.pdf
+  }
+
+  \begin{theorem}[thm:]{}
+    Suppose $f:\mathbb{R}\rightarrow \mathbb{R}$ satisfies $f(x+y)=f(x)+f(y)$. Then $f(qx)=qf(x)$ for any $q\in \mathbb{Q}$. Moreover, $f$ is linear if any of the following are true:
+    \begin{itemize}
+      \item $f$ is continuous in any interval.
+      \item $f$ is bounded (either above or below) in any nontrivial interval.
+    \end{itemize}
+  \end{theorem}
+
+  \pitem[]{%
+    Solve over $\mathbb{R}$:
+    \[
+      f(x+y)=f(x)+f(y)\textnormal{ and }f(xy)=f(x)f(y).
+    \]
+    }{%
+    <++>
+    }{%
+    <++>
+  }
+
+  \pitem[]{%
+    Solve over $\mathbb{R}$:
+    \[
+      f(x^2+y)=f(x^{27}+2y)+f(x^4).
+    \]
+    }{%
+    <++>
+    }{%
+    <++>
+  }
+
+  \pitem[]{%
+    Solve over $\mathbb{R}$:
+    \[
+      (x-y)f(x+y)-(x+y)f(x-y)=4xy(x^2-y^2).
+    \]
+    }{%
+    <++>
+    }{%
+    <++>
+  }
+
+  \pitem[BMO 2023 Problem 1]{%
+Find all functions $f\colon \mathbb{R} \rightarrow \mathbb{R}$ such that for all $x,y \in \mathbb{R}$,
+\[xf(x+f(y))=(y-x)f(f(x)).\]
+    }{%
+    Let $P(x,y)$ denotes the given assertion. Then $P(x,x)$ yields $f(x+f(x))=0$ for all $x\ne 0$. Further, $P(0,x)$ gives with $x\ne 0$ that $f(f(0))=0$. Combining, $f(x+f(x))=0$ holds for all $x$. Now, let there is an $x_0$ such that $f(f(x_0))\ne 0$. If $f(y_1)=f(y_2)$ for some $y_1,y_2$, then considering $P(x_0,y_1)$ and $P(x_0,y_2)$ we obtain $y_1=y_2$: $f$ is injective. Using $f(x+f(x))=0$, we get $x+f(x)=c$ for some constant $c$, which yields $f(x)=-x+c$. Lastly, suppose $f(f(x))=0$ for all $x$, so that $xf(x+f(y)) = 0$ for all $x,y$. Taking $y=f(r)$, we get $xf(x) =0$ for all $x$, so $f(x)=0$ for $x\ne 0$. Lastly, taking $x\ne 0$ and using $f(f(x)) = 0$, we get $f(0)=0$, too. So $f\equiv 0$ identically.
+    }{%
+    https://artofproblemsolving.com/community/c6t169f6h3069477_functional_xfxfyyxffx_for_all_reals_xy
+  }
+
+  \pitem[]{%
+Find all $f \colon \mathbb{R} \to \mathbb{R}$ such that for all reals $x,y$
+\[f(x^2+y^2) = xf(x)+yf(y)\]
+    }{%
+    Let $P(x,y)$ be the given assertion
+
+    Claim: $f(x^2) = xf(x)$ and $f$ is odd.
+    Proof
+    $P(x, 0)$
+
+    Claim: $f$ is additive
+    Proof
+    From the claim above, we have that $f(x+y)=f(x)+f(y)$ for all $x\ge0,y\ge0$(1)
+    if $x < 0$ and $y < 0$ then because $f$ is odd we get $f(x+y) = f(x) + f(y)$(2)
+    if $x \ge 0 > y$ and $|x| \ge |y|$ then $f(x) = f(x + y - y) = f(x+y) - f(y)$ (by (1))
+    if $x \ge 0 > y$ and $|x| < |y|$ then $f(y) = f(y + x - x) = f(y+x) - f(x)$ (by (2))
+
+    Claim: $\boxed{f(x) = ax\quad\forall x}$ for any $a\in\mathbb R$
+    Proof
+    This step is typical when trying to show that an additive function is linear.
+
+    $P(x + 1, 0)\implies f(x^2 + 2x + 1) = (x + 1)f(x+1)\implies f(x^2) + 2f(x) + f(1) = xf(x) + f(x) + f(1) x + f(1)$
+    Thus $f(x) = f(1)x\quad\forall x$
+
+    Any $a\in\mathbb R$ works.
+    }{%
+    https://artofproblemsolving.com/community/c6t169f6h3112909_fe_similar_to_usamo_2002
+  }
+
+  \pitem[Swiss MO 2023/5]{%
+Let $D$ be the set of real numbers excluding $-1$. Find all functions $f: D \to D$ such that for all $x,y \in D$ satisfying $x \neq 0$ and $y \neq -x$, the equality $$(f(f(x))+y)f \left(\frac{y}{x} \right)+f(f(y))=x$$holds.
+    }{%
+$$(f(f(x))+y)f \left(\frac{y}{x} \right)+f(f(y))=x...(\alpha)$$In $(\alpha) x=y\neq 0:$
+$$\Rightarrow (f(f(x))+x)f(1)+f(f(x))=x$$$$\Rightarrow f(f(x))(f(1)+1)=x(1-f(1))$$Since $f(1)\neq -1:$
+$$\Rightarrow f(f(x))=x(\frac{1-f(1)}{f(1)+1})$$$$\Rightarrow f(f(x))=cx, \forall x\in D, x\neq 0...(I)$$Replacing $(I)$ in $(\alpha):$
+$$\Rightarrow (cx+y)f(\frac{y}{x})+cy=x, \forall x\in D, x\neq 0...(\beta)$$In $(\beta) x=1, y\neq -1:$
+$$\Rightarrow (c+y)f(y)+cy=1$$$y\neq -c:$
+$$\Rightarrow f(y)=\frac{1-cy}{c+y}, \forall y\in D, y\neq 0,-1,-c...(II)$$Since $\frac{1-cy}{c+y}\neq -1, \forall y\in D, y\neq 0,-1,-c$
+$$\Rightarrow 1-cy\neq -c-y, \forall y\in D, y\neq 0,-1,-c$$$\color{red}\boxed{\textbf{If c}\neq \textbf{1}}$
+$\color{red}\rule{24cm}{0.3pt}$
+$$\Rightarrow y\neq \frac{c+1}{c-1}, \forall y\in D, y\neq 0,-1,-c$$$$\Rightarrow \frac{c+1}{c-1}=0,-1,-c $$$$\Rightarrow c\in \{ -1, 0\}$$$\color{red}\boxed{\textbf{If c}=\textbf{-1}}$
+By $(II):$
+$$\Rightarrow f(x)=\frac{x+1}{x-1}, \forall y\in D, y\neq 0,-1,1$$Replacing in $(I):$
+$$\Rightarrow \frac{\frac{x+1}{x-1}+1}{\frac{x+1}{x-1}-1}=-x, \forall y\in D, y\neq 0,-1,1$$$$\Rightarrow x=-x, \forall y\in D, y\neq 0,-1,1(\Rightarrow \Leftarrow)$$$\color{red}\boxed{\textbf{If c}=\textbf{0}}$
+By $(II):$
+$$\Rightarrow f(x)=\frac{1}{x}, \forall y\in D, y\neq 0,-1$$Replacing in $(I):$
+$$\Rightarrow \frac{1}{\frac{1}{x}}=0, \forall y\in D, y\neq 0,-1$$$$\Rightarrow x=0, \forall y\in D, y\neq 0,-1(\Rightarrow \Leftarrow)$$$\color{red}\rule{24cm}{0.3pt}$
+$\color{red}\boxed{\textbf{If c}=\textbf{1}}$
+$\color{red}\rule{24cm}{0.3pt}$
+By $(II):$
+$$\Rightarrow f(x)=\frac{1-x}{x+1}, \forall y\in D, y\neq 0,-1$$It is easy to verify that it complies
+$\color{red}\rule{24cm}{0.3pt}$
+$$\Rightarrow \boxed{f(x)\equiv \frac{1-x}{x+1}\textbf{is the only solution}_\blacksquare}$$$\color{blue}\rule{24cm}{0.3pt}$
+    }{%
+    https://artofproblemsolving.com/community/c6t169f6h3030781_functional_equation_with_1_missing_from_domain
+  }
+
+  \pitem[]{%
+    Let $\mathbb{R}$ be the set of real numbers. Determine all functions $f: \mathbb{R} \to \mathbb{R}$ such that \[ f(x^2 - y^2) = x f(x) - y f(y) \] for all pairs of real numbers $x$ and $y$.
+    }{%
+    $f(x^{2}-y^{2})=xf(x)-yf(y)\Rightarrow f(x^{2})=xf(x)$
+Setting $x=-x$ in this relation we get $f(x^{2})=xf(x)=-xf(-x)$
+Hence $f$ is odd
+The initial equation reduces to
+$f(x^{2}-y^{2})= f(x^{2})+f(-y^{2})$
+from which we can conlude that
+$f(a+b)=f(a)+f(b)$ for every $a\geq0$ and $b\leq0$
+But since f is odd we have $f(a+b)=f(a)+f(b)$ for every real $a,b$
+In $f(x^{2})=xf(x)$ we set $x=x+1$ and since $f$ satisfies Cauchy we get
+$f(x)=xf(1)$
+Setting this value in the initial equation we conclude $ f(x)=ax$ for every real $a$
+    }{%
+    https://artofproblemsolving.com/community/c6h54046p337857
+  }
+
+  \pitem[]{%
+    Find all $f:\mathbb{R}\to\mathbb{R}$ such that for all $x,y\in\mathbb{R}$, $f(x)+f(y) = f(x+y)$ and $f(x^{2013}) = f(x)^{2013}$.
+    }{%
+    From Cauchy's functional equation, $f(q_0x) = q_0f(x)$ for any rational number $q_0$ and real $x$; we for any can then write \begin{align*} [f(x + q_0)]^{2013} &= [f(x) + f(q_0)]^{2013} \\ &= f(x)^{2013} + 2013f(x)^{2012}f(q_0) + \dots + f(q_0)^{2013} \\ &= f(x)^{2013} + 2013q_0f(1)f(x)^{2012} + \dots + [q_0f(1)]^{2013} \end{align*} and also \begin{align*} [f(x + q_0)]^{2013} &= f[(x + q_0)^{2013}] \\ &= f(x)^{2013} + 2013f(x^{2012}q_0) + \dots + f(q_0^{2013}) \\ &= f(x)^{2013} + 2013q_0f(x^{2012}) + \dots + [q_0f(1)]^{2013} \end{align*} For $x$ fixed, the difference between these two expressions is a polynomial in $q_0$; since it has infinitely many zeroes (these two expressions are equal for all rational $q_0$) it must be identically zero. Comparing linear coefficients we find $f(x^{2012}) = f(1)f(x)^{2012}$, so that $f$ has the same sign as $f(1)$ on the non-negative reals. This establishes boundedness, which together with Cauchy's FE means all solutions are of the form $f(x) = cx$ for a constant $c$. Substituting, we require $c^{2013} = c$ for $c$ real. Clearly $c \in \{-1, 0, 1\}$ all of which give valid solutions (i.e. $f(x) = -x$, $f(x) = 0$, and $f(x) = x$).
+    }{%
+    https://artofproblemsolving.com/community/c6h545068p3151936
+  }
+
+\end{question*}
+
+
+
+\end{document}
+
+  %\pitem[]{%
+  %  Construct a function $f:\mathbb{Q}^{>0}\rightarrow \mathbb{Q}^{>0}$ such that $f(x(f(y)))=\frac{f(x)}{y}$ for all $x,y\in \mathbb{Q}^{>0}$.
+  %  }{%
+  %  <++>
+  %  }{%
+  %  <++>
+  %}
+  

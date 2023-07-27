@@ -1,0 +1,26 @@
+\pitem[IMO 1998 Q2]{%
+    In a contest, there are $m$ candidates and $n$ judges, where $n\geq 3$ is an odd integer. Each candidate is evaluated by each judge as either pass or fail. Suppose that each pair of judges agrees on at most $k$ candidates. Prove that \[{\frac{k}{m}} \geq {\frac{n-1}{2n}}. \]
+    }{%
+    We double count triplets $(J_p, J_q, C)$, where $J_p$ and $J_q$ are judges, and candidate $C$ is agreed upon by the two judges. Let $T$ be the number of such triplets.
+
+    We first count by pairs of judges. Pick two judges, $A$ and $B$. Then, there are at most $k$ candidates $A$ and $B$ agree upon. Since there are $\binom{n}{2}$ choices for $(A, B)$, $T \leq k\binom{n}{2}$.
+
+    Next, we count by candidates. Let $a(x)$ be the number of judges who PASS candidate $x$. We find that $T = \sum \left(\binom{a(x)}{2} + \binom{n - a(x)}{2}\right)$, where the sum ranges across all candidates.
+
+    The rest of the solution is just boring algebra. We include it here for completeness.
+
+    By convexity, we have (recall that $n$ is odd)
+    \[
+         \binom{a(x)}{2} + \binom{n - a(x)}{2}  \geq  \binom{\left(\frac{n + 1}{2}\right)}{2} + \binom{\left(\frac{n - 1}{2}\right)}{2} =  \frac{(n - 1)^2}{4} \mbox{.} 
+    \]
+    Since there are $m$ candidates, we find that
+    \begin{eqnarray*} T & \geq & \frac{m(n - 1)^2}{4} \mbox{.} \end{eqnarray*}
+    Thus,
+    \begin{eqnarray*}
+    k\binom{n}{2} & \geq & \frac{m(n - 1)^2}{4} \\
+\frac{1}{2}kn(n - 1) & \geq & \frac{m(n - 1)^2}{4} \\
+\frac{k}{m} & \geq & \frac{n - 1}{2n}.
+k\end{eqnarray*}
+    }{%
+    https://artofproblemsolving.com/community/c474725h1471295_combinatorics_post__1_double_counting
+}

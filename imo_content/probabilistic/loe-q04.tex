@@ -1,0 +1,15 @@
+\pitem[Kürschák 2003, problem 3]{%
+    Prove that the following inequality holds with the exception of finitely many positive integers $n$:
+
+    \[\sum_{i=1}^n\sum_{j=1}^n gcd(i,j)>4n^2.\]
+    }{%
+    Let $g_p(x,y)$ for prime $p$ and $x,y\in \mathbb Z^+$ be $p$ if $p\mid \gcd(x,y)$ and $0$ otherwise. Since $\gcd(x,y)\geq \sum_{\text{prime }p\mid \gcd(x,y)}p$, it suffices to show that $\mathbb E\left[\sum_{\text{prime }p}g_p(x,y)\right]>4$. In fact, by LoE we have $\mathbb E\left[\sum_{\text{prime }p}g_p(x,y)\right]=\sum_{\text{prime }p}\mathbb E\left[g_p(x,y)\right]=\sum_{\text{prime }p}\frac{1}{p}>4\ \Box$.
+
+    Or
+
+    Here's a pretty quick but sloppy approach:
+
+    \begin{align*} \sum_{i,j=1}^n \text{gcd}(i,j)&\ge \sum_{1\le i\le j\le n} \text{gcd}(i,j)=\sum_j \sum_{1\le i\le j}\text{gcd}(i,j) \\ &=\sum_{j=1}^n \sum_{d|j}d\cdot \varphi\left(\frac{j}{d}\right) \\ &=\sum_{ab\le n}a\cdot \varphi(b) =\sum_{b=1}^n \varphi(b) \sum_{1\le a\le \frac{n}{b}}a \\ &\ge \sum_{1\le b\le n/2} \varphi(b)\cdot \frac{(n/b)^2}{4}, \end{align*}from which it is clear that we are done if we can prove that the series $\sum_{b=1}^\infty \frac{\varphi(b)}{b^2}$ diverges, which is obvious, because the sum of the reciprocals of the primes is $\infty$ (but the sum of the reciprocals squared is finite), and the series contains the summands $\frac{\varphi(p)}{p^2}=\frac1p-\frac1{p^2}$.
+    }{%
+    https://artofproblemsolving.com/community/c6h596988p7647237
+}

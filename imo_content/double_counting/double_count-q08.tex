@@ -1,0 +1,23 @@
+\pitem[]{%
+    $n >2$ is an integer and $p(>2n-4)$ a prime. Let $M$ be a set of $n$ points on a plane. No three points are collinear. Integers are written on each point, satisfying following conditions.
+    \begin{enumerate}
+        \item There are exactly one integer which is $0 \pmod p$;
+        \item If $A,B,C$ are different three points of $M$, sum of integers on circumcircle of $ \triangle ABC$ is $0 \pmod p$.
+    \end{enumerate}
+    Prove that all points of $M$ are on a circle.
+    }{%
+    Let $n$ integers are $0, x_1 ,x_2 , \cdots, x_{n-1} (x_i \not \equiv 0 \pmod p )$. Let $S(C)$ be sum of numbers on a circle $ C $.
+    Suppose there are $k_i $ circles that include $0$ and $x_i $. Sincec every 3 points lie in a circle, each $x_j\neq x_i$ lies in exactly one of the $k_i$ circles. Denote $S=x_1 +x_2 + \cdots +x_{n-1}$.
+    For a circle which include $0$ and $x_i $, the sum of numbers on this circle is $0 \pmod p$. Hence $\sum_{j=1}^{k_i}S(C_j)=\sum_{j=1}^{n-1}x_j-k_ix_i=0$, or we have
+    \[
+        S \equiv (-x_i ) \times k_i +0+ x_i \equiv x_i (1-k_i ) \pmod p \cdots (*)
+    \]
+    On the other hand, we calculate $\sum_{C} S(C) \equiv 0 \pmod p$ when $C$ includes $0,x_i ,x_j $.
+    From the fact that each $x_i $ is on exactly $k_i$ circles,
+    $0\equiv \sum_{C} S(C) \equiv \sum_{i} x_i k_i $.
+
+    By summing all $(*)$ for each $i$ , we get $(n-1)S \equiv S- \sum_{i} k_i x_i \equiv 0$, i.e. $S\equiv 0 \pmod p$. Hence $p|x_i (1-k_i )$ for all $i$. From $p\not | x_i$ and $k_i \leq n-2$, we get $k_i =1$ for all $i.$
+    This means all points are on a same circle.
+    }{%
+    https://artofproblemsolving.com/community/c6t45317f6h1505693_sum_of_integers_on_circles_0_mod_p
+}

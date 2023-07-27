@@ -1,0 +1,22 @@
+\pitem[2019 Canadian Mathematical Olympiad Problem 5]{%
+    A 2-player game is played on $n\geq 3$ points, where no 3 points are collinear. Each move consists of selecting 2 of the points and drawing a new line segment connecting them. The first player to draw a line segment that creates an odd cycle loses. (An odd cycle must have all its vertices among the $n$ points from the start, so the vertices of the cycle cannot be the intersections of the lines drawn.) Find all $n$ such that the player to move first wins.
+    }{%
+    Let $A$ and $B$ denote the first and second player. We will prove that $A$ wins with best play if and only if $n \equiv 2 \pmod{4}$.
+
+First of all, observe that the final state of the game is a complete bipartite graph $K_{a, b}$ with $a + b = n$. This means that $A$ wins if only if $a$ and $b$ are both odd.
+
+Define a balanced connected bipartite graph (on more than 1 vertex) to be one where both color classes have equal cardinality. We also say a general bipartite graph is balanced if each nontrivial connected component (of more than 1 vertex) is balanced. Claim. If $n$ is odd then $B$ wins.
+Proof. If the final state is $K_{a, b}$, one of $a$ and $b$ must be even. Lemma. If $n$ is even, then either player $S \in \{A, B\}$ can force the final state $K_{n/2, n/2}$.
+Proof. Let $T$ be the other player.
+
+The strategy for $S$ is to ensure that the graph is always balanced after their turn (in particular, there are an even number of isolated vertices); certainly this is true at the outset. To see this is always possible, we take two cases on $T$'s move.
+
+    If $T$ joins an isolated vertex to a nontrivial connected component $\gamma$, then $S$ can simply connect another isolated vertex to the opposite color class in $\gamma$.
+    Otherwise, $T$ leaves the graph balanced. In this case, $S$ may draw a new edge involving zero or two isolated vertices; this leaves the graph balanced.
+
+Thus $S$ can always ensure the graph is balanced on their turn, forcing the final state $K_{n/2, n/2}$. Corollary. If $n \equiv 2 \pmod{4}$ then $A$ wins. If $n \equiv 0 \pmod{4}$ then $B$ wins.
+
+The desired conclusion follows.
+    }{%
+    https://artofproblemsolving.com/community/c6t45487f6h1812972_a_game_where_construction_of_an_odd_cycle_loses
+}

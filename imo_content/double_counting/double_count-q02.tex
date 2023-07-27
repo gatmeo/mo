@@ -1,0 +1,9 @@
+\pitem[]{%
+    A stage course is attended by $n \ge 4$ students. The day before the final exam, each group of three students conspire against another student to throw him/her out of the exam. Prove that there is a student against whom there are at least $\sqrt[3]{(n-1)(n- 2)}$ conspirators.
+    }{%
+    We count the number of triplets $T=(A,B,C,D)$ where $(A,B,C)$ conspire against $D$. First we choose $(A,B,C)$, this can be done in $\binom{n}{3}$ ways and by the given hypothesis we get there is at least one such $D$. Hence $T\geq \binom{n}{3}$. Let the number of conspirators against particular person $i$ be atmost $k$. Then after choose $D$ we can select $(A,B,C)$ in atmost $\binom{k}{3}$ ways so $T<n\cdot \binom{k}{3}$. Therefore
+    \[n\cdot \binom{k}{3}>\binom{n}{3} \implies k^3>k(k-1)(k-2)>(n-1)(n-2) \implies k>\sqrt[3]{(n-1)(n-2)}.\]
+    Hence there is a person against whom at least $\sqrt[3][{(n-1)(n-2)}$ people conspired and we are done.
+    }{%
+    https://artofproblemsolving.com/community/c6t45317f6h376714_least_number_of_conspiring_students
+}

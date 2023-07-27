@@ -1,0 +1,10 @@
+\pitem[]{%
+    For $n\geq 0$, prove that
+    \[
+        \sum_{k=0}^{n}\binom{x+k}{k}=\binom{x+n+1}{n}.
+    \]
+    }{%
+    Consider a choice of $n$ elements out of $x+n+1$ elements. Among the last $n+1$ there must be at least one unchosen element. Denote the unchosen element with the biggest number with $x+k+1$. We know that the $n-k=(x+n+1)-(x+k+1)$ elements having bigger numbers are selected, thus in order to determine the choice of the $n$ elements completely, we have to select the rest $n-(n-k)=k$ elements from the remaining $x+k$ elements. This reasoning shows that the given equality is a partition of all possible choices of $n$ elements out of $x+n+1$ elements by the number of the largest unchosen element.
+    }{%
+    1.12
+}

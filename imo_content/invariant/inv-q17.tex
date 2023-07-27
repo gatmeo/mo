@@ -1,0 +1,46 @@
+\pitem[2022 China TST, Test 1, P3]{%
+    Let $a, b, c, p, q, r$ be positive integers with $p, q, r \ge 2$. Denote
+    \[Q=\{(x, y, z)\in \mathbb{Z}^3 : 0 \le x \le a, 0 \le y \le b , 0 \le z \le c \}. \]Initially, some pieces are put on the each point in $Q$, with a total of $M$ pieces. Then, one can perform the following three types of operations repeatedly:
+    \begin{enumerate}
+        \item 
+            Remove $p$ pieces on $(x, y, z)$ and place a piece on $(x-1, y, z)$;
+        \item Remove $q$ pieces on $(x, y, z)$ and place a piece on $(x, y-1, z)$;
+        \item Remove $r$ pieces on $(x, y, z)$ and place a piece on $(x, y, z-1)$.
+    \end{enumerate}
+    Find the smallest positive integer $M$ such that one can always perform a sequence of operations, making a piece placed on $(0,0,0)$, no matter how the pieces are distributed initially.
+    }{%
+    The answer is $p^aq^br^c$. Let $f(x,y,z)$ be the number of pieces on the lattice point $(x,y,z)$. For sets $X,Y,Z$, let $X\times Y\times Z = \{ (m,n,t) | m\in X, n\in Y, t\in Z\}$
+
+    I first show $M\ge p^aq^br^c$. Let $$N=\sum\limits_{0\le x\le a, 0\le y\le b, 0\le z\le c} f(x,y,z)p^{-x}q^{-y}r^{-z}$$
+    Note $N$ is an invariant. In the end, $f(0,0,0)\ge 1$. Therefore, if $M<p^aq^br^c$, setting $f(a,b,c)=M$ gives $N<1$, contradiction.
+
+    Now I show $p^aq^br^c$ always works. We proceed by strong induction, and we will use the inductive hypothesis very strongly. The key intuition is that almost all the pieces must be on $(a,b,c)$ while there must be a piece on $x=0$. Combining these two gives a way to place a cell in $(0,0,0)$.
+
+    Case 1: there are no pieces with $x=0$. We group the $p^aq^br^c$ pieces into $p$ random groups of $p^{a-1}q^br^c$ pieces. Each move uses pieces in the same group only. By inductive hypothesis on $(a-1,b,c)$ on $\{1,\cdots,a\} \times \{0,\cdots,b\} \times \{0,\cdots, c\}$, each group of $p^{a-1}q^br^c$ piece can result in one piece on $(1,0,0)$. Now there are $p$ pieces on $(1,0,0)$, we can use these to get one piece on $(0,0,0)$.
+
+    Case 2: There is a piece with $x=0$, a piece with $y=0$ and a piece with $z=0$.
+
+    \noindent\textbf{Claim:}
+    There are at most $(b+1)(c+1)-2$ pieces in $\{0,\cdots,a-1\} \times \{0,\cdots,b\} \times \{0,\cdots,c\}$.
+
+    \begin{proof}
+        We can move $\lfloor \frac{f(a,n,t)}{p} \rfloor$ pieces from $(a,n,t)$ to $(a-1,n,t)$. After transferring all cells from $(a,n,t)$ to $(a-1,n,t)$ for $0\le n\le b, 0\le t\le c$.  
+        Let $A$ be the number of pieces in $\{0,\cdots,a-1\} \times \{0,\cdots,b\} \times \{0,\cdots,c\}$. If $A+\sum\limits_{0\le n\le b, 0\le t\le c} \lfloor \frac{f(a,n,t)}{p} \rfloor \ge p^{a-1}q^br^c$, by inductive hypothesis on $(a-1,b,c)$, we can place a cell on $(0,0,0)$. Therefore, it suffices to handle the case where
+        \begin{equation}
+            \label{eq:inv-q17-01}
+A+\sum\limits_{0\le n\le b, 0\le t\le c} \lfloor \frac{f(a,n,t)}{p} \rfloor \le p^{a-1}q^br^c-1.
+        \end{equation}
+        Since there are a total of $p^aq^br^c$ pieces on the board, we also have
+        \begin{equation}
+            \label{eq:inv-q17-02}
+            A+\sum\limits_{0\le n\le b, 0\le t\le c} f(a,n,t) =p^aq^br^c.
+        \end{equation}
+        $p\ref{eq:inv-q17-01}-\ref{eq:inv-q17-02}$ gives $(p-1)A - \sum_{0\le n\le b, 0\le t\le c} R(f(a,n,t),p) \le -p$.  
+        It follows that $(p-1)A - \sum_{0\le n\le b, 0\le t\le c} (p-1) \le -p$ so $A\le (b+1)(c+1)-2$.
+    \end{proof}
+    Using similar arguments, we can see that the number of stones in $\{0,\cdots,a\} \times \{1,\cdots,b\} \times \{0,\cdots,c\}$ is at most $(a+1)(c+1)-2$ and the number of stones in $\{0,\cdots,a\} \times \{0,\cdots,b\} \times \{1,\cdots,c\}$ is at most $(a+1)(b+1)-2$. This means the number of stones not in $(a,b,c)$ is at most $(a+1)(b+1)+(b+1)(c+1)+(c+1)(a+1)-6$, so the number of stones in $(a,b,c)$ is at least $p^aq^br^c -(a+1)(b+1)+(b+1)(c+1)+(c+1)(a+1) + 6$.
+
+    Let $X=(0,k,l)$ be a square with at least one cell. If I can transfer $q^kr^l-1$ stones to $X$, I win by inductive hypothesis on $a=0, b=k, c=l$. To transfer $q^kr^l-1$ stones to $X$, I need $(q^kr^l-1)(p^aq^{b-k}r^{c-l}) = p^aq^br^c - p^aq^{b-k}r^{c-l} \le p^aq^br^c-p^a$. Therefore, if $p^a\ge (a+1)(b+1)+(b+1)(c+1)+(c+1)(a+1)-6$ I am done. Similarly, if $q^b, r^c\ge (a+1)(b+1)+(b+1)(c+1)+(c+1)(a+1)-6$ I am also done.
+    }{%
+    https://artofproblemsolving.com/community/c6t219f6h2808544_moving_pieces_in_a_lattice
+}

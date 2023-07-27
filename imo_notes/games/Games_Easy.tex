@@ -1,0 +1,90 @@
+\pitem[Rioplatense Olympiad 2013, Level 3, Problem 4]{%
+    Two players $A$ and $B$ play alternatively in a convex polygon with $n \geq 5$ sides. In each turn, the corresponding player has to draw a diagonal that does not cut inside the polygon previously drawn diagonals. A player loses if, after his turn, one quadrilateral is formed such that its two diagonals are not drawn. $A$ starts the game.
+    For each positive integer $n$, find a winning strategy for one of the players.
+    }{%
+    When $n$ is odd, $B$ has a winning strategy. By induction - for $n=5$, it's obvious that $A$ loses in the first move. If $n=2k+1$ for $k>2$, then $A$ in first move forms two polygons - one with $2l+1$ sides and other with $2m$, where $m>2$ and $m+l=k+1$. Now $B$ draws a diagonal such that $2m$-gon is divided into $2m-1$-gon (obviously not quadrilateral) and triangle. Now $2m-1$ and $2l+1$ are both smaller than $2k+1$, so $B$ can win in both of them by induction. So she just responds to a diagonal in the polygon it was drawn.
+
+    When $n$ is even, $A$ has a winning strategy. For $n=6$ she divides the hexagon into triangle and pentagon and $B$ loses in the next move. For $n=2k$ with $k>3$, she divides the $n$-gon to two $k+1$-gons (she can because $k>3$) and plays symmetrically.
+    }{%
+    https://artofproblemsolving.com/community/c6t224166f6h603549_playing_on_a_convex_nagon_and_winning_strategies
+}
+
+\pitem[]{%
+    There are 1999 numbers $1, 2, 4, 8, \dots , 2^{1998}$ on the blackboard.
+    Ann and Bob subtract 1 from exactly 5 numbers each turn.
+    A player wins if the other cannot move, i.e. the blackboard has less than 5 numbers.
+    If Ann starts first, who has the strategy to always win?
+    }{%
+    I think Ann is the answer.
+    Let $N=1998$. And there is $N+1$ different number $X_0,X_1,\cdots X_N$.
+    Note that when we choose $5$ different number, we can choose at least one in $X_0,X_1,\cdots X_{N-4}$.
+    So it means that $X_0+X_1+\cdots+X_{N-4}$ decrease for each turn.
+    Now I focus that $X_{N-3}\cdots X_{N}$ can't be $0$.
+
+    Here is the answer.
+    First, Ann choose $2^0,2^{N-3},2^{N-2},2^{N-1},2^{N}$.
+    And then Bob will choose something, Ann just follow it.
+    }{%
+    https://artofproblemsolving.com/community/c6t224166f6h1328465_game_combinatorics
+}
+
+\pitem[]{%
+    General Tilly and the Duke of Wallenstein play "Divide and rule!" (Divide et impera!).
+    To this end, they arrange $N$ tin soldiers in $M$ companies and command them by turns.
+    Both of them must give a command and execute it in their turn.
+
+    Only two commands are possible: The command "Divide!" chooses one company and divides it into two companies, where the commander is free to choose their size, the only condition being that both companies must contain at least one tin soldier.
+    On the other hand, the command "Rule!" removes exactly one tin soldier from each company.
+
+    The game is lost if in your turn you can't give a command without losing a company. Wallenstein starts to command.
+
+    a) Can he force Tilly to lose if they start with $7$ companies of $7$ tin soldiers each?
+
+    b) Who loses if they start with $M \ge 1$ companies consisting of $n_1 \ge 1, n_2 \ge 1, \dotsc, n_M \ge 1$ $(n_1+n_2+\dotsc+n_M=N)$ tin soldiers?
+    }{%
+
+    Claim: If the Duke starts the game, then no matter how he plays, Tilly will always have a winning strategy.
+
+    Proof of the claim: Call a company 'even' if it has an even no. of tin soldiers, otherwise 'odd'. To win the game, all Tilly needs to do is to make all 'even' companies 'odd' in each of his move.
+
+    We shall now show that Tilly can always make this move. In his first move, if the Duke gives the command "Rule", then Tilly will be left with only 'even' companies and so, he can make his desired move by using the command "Rule".
+
+    Suppose in his first move, the Duke gives the command "Divide". It is easy to notice that the partition of an odd number into two numbers will incude two numbers of opposite parity. Since $7$ is odd, so Tilly will be left with an 'even' company in his turn and so he can easily make the desired move.
+
+    Using analogous logic, it can be seen that after each move of the Duke, Tilly will always be left with atleast one 'even' company and so the game will go in his favour.
+
+    Hence, required answer is "NO".
+
+    }{%
+    https://artofproblemsolving.com/community/c6t224166f6h1441664_a_martial_game_with_two_options
+}
+
+\pitem[]{%
+    Let ${k}$ be a fixed positive integer. A finite sequence of integers ${x_1,x_2, ..., x_n}$ is written on a blackboard. Pepa and Geoff are playing a game that proceeds in rounds as follows.
+    - In each round, Pepa first partitions the sequence that is currently on the blackboard into two or more contiguous subsequences (that is, consisting of numbers appearing consecutively). However, if the number of these subsequences is larger than ${2}$, then the sum of numbers in each of them has to be divisible by ${k}$.
+    - Then Geoff selects one of the subsequences that Pepa has formed and wipes all the other subsequences from the blackboard.
+    The game finishes once there is only one number left on the board. Prove that Pepa may choose his moves so that independently of the moves of Geoff, the game finishes after at most ${3k}$ rounds.
+    }{%
+    For any sequence, we define its initial segment sum to be the sum $x_1+x_2+....+ x_z$, reduced mod k, for some z.
+    We define the total sum to be $x_1+x_2+....x_n$ (mod k)
+    Define its richness to be the number of different initial segment sum mod k.
+    A sequence is last-distinctive if not other initial segment sum equals the total sum.
+
+    Given any sequence, we claim that in 3 moves, Geoff can reduces its richness by 1.
+    Note that any continuous sub-block of the sequence has a $\leq $ richness of the original sequence
+
+    Aim of move 1 is to obtain a sequence that has total sum being 0 (mod k)
+    Move 1: Consider the total sum, there may or may not exist another initial segment sum congruent to this.
+    If yes, split the sequence into the first such initial segment and the rest. The first part is last-distinctive. The rest is of total sum 0 ( mod k)
+    If not, then it is last-distinctive, so we can just do move 3.
+
+    Move 2: For a sequence with total sum divisible by k.
+    Splits the sequences into maximal amount of continuous blocks such that each block is divisible by k. Then easily each block is last-distinctive.
+
+    Move 3: We can reduce the richness of a last-distinctive sequence by 1:
+    Simply cut off the last digit. The game is finished if Geoff chooses the last one, otherwise, by the definition of last-distinctive, the leftover segment has reduced richness.
+
+    So in 3k moves, Geoff must have chosen Move 3 accepting the last digit. The proof is complete
+    }{%
+    https://artofproblemsolving.com/community/c6t224166f6h1520188_pepa_amp_geoff_game_strategy_with_contiguous_subsequences
+}

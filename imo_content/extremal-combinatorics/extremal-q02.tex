@@ -1,0 +1,18 @@
+\pitem[]{%
+    Let $A_1,A_2,\dots,A_{2016}$ be sets saisfying$:$
+    \begin{enumerate}
+        \item Each set $A_i$ contains exactly $20$ elements.
+        \item Each intersection $A_i\cap A_j,$ $i\neq j,$ of two distinct sets contains exactly one element.
+    \end{enumerate}
+    Prove that there exists an element belonging to all $2016$ sets$.$
+    }{%
+    We observe that if an element belongs to all $2016$ sets, all of the pairwise intersections of those sets will be the set containing only that element, and vice versa.
+
+    We claim that it must be the case that all of the pairwise intersections of the $2016$ sets are the same.
+
+    We see that if we compare $A_2,A_3...A_{2016}$ to $A_1$, by the Pidgeonhole principle, at least one element $E_1$ will be shared among at least $101$ sets, including $A_1$. Let this set of sets be $S$. For the sake of contradiction, let $A_2$ be a set that does not share this element. There are $20$ possible intersections between $A_2$ and any other set $A_i$ as $A_2$ has $20$ elements, so there must be some element $E_2$ in $A_2$ that is the intersection between $A_2$ and at least two sets in $S$. As $E_2$ cannot be $E_1$ as $E_1$ is not in $A_2$, these sets in $S$ share more than one element with each other which contradicts part $b$ of their definition.
+
+    Thus, our assumption that a set $A_i$ exists that does not contain $E_1$ is incorrect, and all sets $A_i$ contain $E_1$.
+    }{%
+    https://artofproblemsolving.com/community/c6t275f6h2328689_set_theory
+}

@@ -1,0 +1,11 @@
+\pitem[]{%
+    Prove the identity: \[ \sum_{k=0}^{n} \binom{n}{k} \cdot \binom{n+k}{k} = \sum_{k=0}^{n} 2^{k} \cdot \binom{n}{k}^2 \]
+    }{%
+    We claim that both sides are calculating the number of ways to choose an $n$-person subset from $n$ boys and $n$ girls, with some boys labeled special.
+
+    RHS: casework on the number of boys. Say we have $n$ boys and $n$ girls and want to choose an $n$-person subset of people. There are $\binom{n}{k}$ ways to choose $k$ boys and $\binom{n}{n-k}=\binom{n}{k}$ ways to choose the girls. After choosing our subset, we can label some boys special; there are $2^k$ ways for this. Combining, we get $\sum_{k=0}^{n}2^k\binom{n}{k}^2$.
+
+    LHS: casework on the number of boys that are special. There are $\binom{n}{k}$ ways to label $k$ boys special. Then there are $\binom{2n-k}{n-k}$ ways to complete our $n$-person subset. Combining, we get $\sum_{k=0}^{n} \binom{n}{k}\binom{2n-k}{n-k}$. If we rewrite $\binom{n}{k}$ as $\binom{n}{n-k}$ and replace $n-k$ with $k$, we obtain the desired sum $\sum_{k=0}^{n}\binom{n}{k}\binom{n+k}{k}$.
+    }{%
+    https://artofproblemsolving.com/community/c6h1490210p8741641
+}

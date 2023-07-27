@@ -1,0 +1,218 @@
+\section{Operations on Sets and Set Systems}
+
+\begin{definition}[def:]{Set Operations}
+    For $A,B\subseteq X$, we have four natural operations:
+    \[A\cap B, A\cup B, A\setminus B=\left\{x\in A:x\notin B\right\}, A\triangle B=(A\setminus B)\cup (B\setminus A),\]
+    the last one is called \vocab{symmetric difference}.
+
+    We define \vocab{distance} $d(A,B)=\left|A\triangle B\right|$, $2^X$ becomes a \vocab{metric space}.
+\end{definition}
+
+\begin{remark}
+    Check that $d(A,b)=0$ iff $A=B$, and $d(A,C)\leq d(A,B)+d(B,C)$.
+\end{remark}
+
+\begin{definition}[def:]{Complement}
+    For $A\subseteq X$, the set $X\setminus A$ is called the \vocab{complement} of $A$, and if $X$ is fixed we simply denote it as $A^c$. 
+
+    For a family $\FF\subseteq 2^X$, the \vocab{complement family} is defined by $\FF^c=\left\{F^c:F\in \FF\right\}$.
+\end{definition}
+
+\begin{remark}
+    We have $A\cap A^c=\emptyset $, $A\cup A^c=X$, and $\left|A\cup B\right|+\left|A\cap B\right|=\left|A\right|+\left|B\right|$.
+\end{remark}
+
+\subsection{Squash}
+
+\begin{definition}[def:]{Squash}
+    Let $\FF\subseteq 2^X, x\in X$ be a fixed element. The operation \vocab{squash} at an element $x$ is defined by
+    \[S_x(\FF)=\left\{F_x:F\in \FF\right\},\]
+    where
+    \[F_x = 
+        \begin{cases}
+            F\setminus \left\{x\right\}&\textnormal{ if } x\in F\subseteq \FF\textnormal{ and }F\setminus \left\{x\right\}\notin \FF,\\
+            F&\textnormal{ otherwise.}
+        \end{cases}
+    \]
+\end{definition}
+
+\begin{remark}
+    By definition, we have $|S_x(\FF)|=|\FF|$.
+\end{remark}
+
+\begin{example}[exp:]{}
+    If $\FF=\left\{\left\{x,y,z\right\},\left\{x,y\right\},\left\{y,z\right\},\left\{z\right\}\right\}$, then $S_x(\FF)=\left\{\left\{x,y,z\right\},\left\{y\right\},\left\{y,z\right\},\left\{z\right\}\right\}$.
+\end{example}
+
+\begin{observation}[obv:]{}
+    Let $F\in S_x(\FF)$ and $x\in F$. Then both $F$ and $F\setminus \left\{x\right\}$ are members of $\FF\cap S_x(\FF)$.
+\end{observation}
+
+\begin{definition}[def:]{Diameter}
+    We define \vocab{diameter} $\diam(\FF)$ of $\FF$ by
+    \[\diam(\FF)=\max_{A,B\in \FF}\left|A\triangle B\right|.\]
+\end{definition}
+
+\begin{proposition}[pps:]{}
+    \[\diam(S_x(\FF))\leq \diam(\FF).\]
+\end{proposition}
+
+\begin{proof}
+    Consider the squash of $\FF$ at $x$. Take arbitrary $A,B\in \FF$, if $A_x\triangle B_x\subseteq A\triangle B$, then it is fine. The only other case is $A_x\triangle B_x=(A\triangle B)\sqcup\left\{x\right\}$, which we have $x\in A\cap B$. WLOG, let $x\in A_x, x\notin B_x$. By the observation, $A\setminus \left\{x\right\}\in \FF$. Now $A_x\triangle B_x=(A\setminus \left\{x\right\})\triangle B$ implies $\diam(S_x(\FF))\leq \diam(S_x(\FF))\leq \diam(\FF)$.
+\end{proof}
+
+\begin{remark}
+    Applying the operation squash at different elements $x,y\in X$ will produce a family independent of the order of operations, that is, $S_x(S_y(\FF))=S_y(S_x(\FF))$.
+\end{remark}
+
+\begin{definition}[def:]{Squashed family}
+    We denote $\tilde{\FF}$ be the family after applying operation squash at all $x\in X$ at $\FF$ just once. It has the property: 
+    For all $x\in X$, if $x\in F\subseteq \tilde{\FF}$ then $F\setminus \left\{x\right\}\in \tilde{\FF}$.
+\end{definition}
+
+\begin{definition}[def:]{Hereditary}
+    A family $\FF$ is \vocab{hereditary} (or a downset) if $G\subseteq F\in \FF$ implies $G\in \FF$.
+
+    In other words, $\FF$ is hereditary if it is a union of power sets.
+\end{definition}
+
+\begin{proposition}[pps:2_5_squashed_hereditary]{}
+    A squashed family $\tilde{\FF}$ is hereditary. 
+\end{proposition}
+
+\begin{proof}
+    Let $G\subseteq F\in \FF$. We show that $G\in \tilde{\FF}$ by induction on $|F\setminus G|$. For $|F\setminus G|=1$, its just the property. For induction, choose $H$ with $G\subsetneqq H\subsetneqq F$, then $F\in \FF$ and induction yields $H\in \FF$. And apply induction to $(G,H)$ yields $G\in \FF$.
+\end{proof}
+
+\begin{definition}[def:]{Trace}
+    For a family $\FF\subseteq 2^X$ and a subset $T\subseteq X$, we define \vocab{trace} $\FF_{|T}$ by
+    \[\FF_{|T}=\left\{F\cap T:F\subseteq \FF\right\}.\]
+\end{definition}
+
+\begin{remark}
+    $F_{|T}$ is a usual family, i.e. subset of $2^T$. Consequently, $\left|\FF_{|T}\right|\leq 2^{|T|}$.
+\end{remark}
+
+\begin{proposition}[pps:2_6_sqash_bounded_above]{}
+    Let $\FF\subseteq 2^X$ and $x\in X$. For every $T\subseteq X$ one has
+    \[\left|S_x(\FF)_{|T}\right|\leq \left|\FF_{|T}\right|.\]
+\end{proposition}
+
+\begin{proof}
+    If $x\notin T$, squash does not affect the trace on $T$. Let $T=\left\{x\right\}\sqcup T'$ and $T_0\subseteq T'$. If $\left\{x\right\}\cup T_0\in S_x(\FF)$, then $\left\{T_0,\left\{x\right\}\cup T_0\right\}\subseteq S_x(\FF)\cap \FF$ by the observation. If $\left\{x\right\}\cup T_0\notin S_x(\FF)$ and $T_0\in S_x(\FF)$, then $T_0\in \FF$ or $\left\{x\right\}\cup T_0\in \FF$ by squash. Hence we always have
+    \[\left|S_x(\FF)_{|T}\cap \left\{T_0,\left\{x\right\}\cup T_0\right\}\right|\leq \left|\FF_{|T}\cap \left\{T_0,\left\{x\right\}\cup T_0\right\}\right|.\]
+    Summing this for all $2^{|T|-1}$ choices of $T_0\subseteq T'$, hence the equation.
+\end{proof}
+
+\subsection{Shift}
+
+\begin{definition}[def:]{Shifting}
+    For $1\leq i\neq j\leq n$, we are going to define the \vocab{$(i,j)$-shift} $S_{i,j}$ form families $\FF\subseteq 2^{[n]}$. The formula is as follow:
+    \[S_{i,j}(\FF)=\left\{s_{i,j}(F):F\in \FF\right\},\]
+    where
+    \[s_{i,j}(F)=
+        \begin{cases}
+            (F\setminus \left\{j\right\})\cup \left\{i\right\}&\textnormal{ if }i\notin F,j\in F\textnormal{ and }(F\setminus \left\{j\right\})\cup \left\{i\right\}\notin \FF,\\
+            F&\textnormal{ otherwise.}
+        \end{cases}
+    \]
+\end{definition}
+
+\begin{definition}[def:]{Intersecting and Shadow}
+    Let $t\in \mathbb{Z}^+$, we say a family $\FF\subseteq 2^X$ is \vocab{$t$-intersecting} if $\left|F\cap F'\right|\geq t\ \forall\ F,F'\in \FF$.
+
+    We simply say a family is \vocab{intersecting} if it is 1-intersecting. 
+
+    For $p\in \mathbb{Z}^+, 1\leq p\leq n$, define the \vocab{$p$-shadow} $\sigma _p(\FF)$ by
+    \[\sigma _p(\FF)=\left\{P\in {[n]\choose p}:\exists\ F\in \FF, P\subseteq F\right\}.\]
+\end{definition}
+
+\begin{proposition}[pps:2_9_shifting_preserve_intersecting]{}
+    If $\FF\subseteq 2^X$ is $t$-intersecting, then $S_{i,j}(\FF)$ is $t$-intersecting as well.
+\end{proposition}
+
+\begin{proof}
+    Suppose contradiction that exist $F,G\in \FF$ with $\left|S_{i,j}(F)\cap s_{i,j}(G)\right|<t\leq \left|F\cap G\right|$. WLOG, assume $s_{i,j}(F)=F$ but $s_{i,j}(G)\neq G$, with $F\cap \left\{i,j\right\}=G\cap \left\{i,j\right\}=\left\{j\right\}$. The fact that $s_{i,j}(F)=F$ is because of that $F':=(F\setminus \left\{j\right\})\cup \left\{i\right\}\in \FF$. However, $\left|F'\cap G\right|=\left|s_{i,j}(F)\cap s_{i,j}(G)\right|$, contradicting the $t$-intersecting property of $\FF$.
+\end{proof}
+
+\begin{proposition}[pps:2_10_shifted_subset]{}
+    $\sigma _p(\sij(\FF))\subseteq \sij(\sigma _{p}(\FF))$.
+\end{proposition}
+
+\begin{proof}
+    Let $P\in \sigma _{p}(S_{i,j}(\FF))$. If $\left|P\cap \left\{i,j\right\}\right|=0\textnormal{ or }2$, then we can find $F\in \FF$ s.t. $P\subseteq F$, and it follows that $P\in \sigma _p(\FF)$ and $P\in S_{i,j}(\sigma _p(\FF))$. So we may assume $\left|P\cap \left\{i,j\right\}\right|=1$. Set $R=P\setminus \left\{i,j\right\}$. Since $P\in \sigma _p(S_{i,j}(\FF))$, there is $Q\in S_{i,j}(\FF)$ s.t $P\subseteq Q$.
+
+    First suppose $P=R\sqcup\left\{i\right\}$. If $Q\in \FF$ then $P\in \sigma _p(\FF)$ and $P\in S_{i,j}(\sigma _p(\FF))$. If $Q\notin \FF$ then $F:=(Q\setminus \left\{i\right\})\cup \left\{j\right\}\in \FF$ and $R\sqcup\left\{j\right\}\subseteq F$. Thus $R\sqcup\left\{j\right\}\in \sigma _p(\FF)$ and $P=R\sqcup\left\{i\right\}\in S_{i,j}(\sigma _p(\FF))$.
+
+    Next suppose $P=R\sqcup\left\{j\right\}$. Then $Q\in \FF$ and $P\in \sigma _p(\FF)$. If $i\in Q$ then $R\sqcup\left\{i\right\}\in \sigma _p(\FF)$. If $i\in Q$ then $(Q\setminus \left\{j\right\})\cup \left\{i\right\}\in \FF$ and $R\sqcup\left\{i\right\}\in \sigma _p(\FF)$ again. Thus $s_{i,j}(P)=P$ and $P\in S_{i,j}(\sigma _a(\FF))$.
+\end{proof}
+
+\begin{definition}[def:]{s-union}
+    We say that a family $\GG\subseteq 2^X$ is \vocab{$s$-union} if $\left|G\cup G'\right|\leq \left|X\right|-s\ \forall\ G,G'\in \GG$.
+
+    We say a family is \vocab{union} if it is 1-union.
+\end{definition}
+
+\begin{newenv}[rnd:]{}{Exercise}
+    Let $s\in \mathbb{Z}^+$, $s\leq |X|$.
+    \begin{enumerate}
+        \item $\GG\subseteq 2^X$ is $s$ iff $\GG$ is $s$-intersecting.
+        \item Show that if $\GG\subseteq 2^X$ is $s$-union then $\sij(\GG)$ is $s$-union.
+    \end{enumerate}
+\end{newenv}
+
+\begin{newenv}[rnd:]{}{Exercise}
+    Show that if a family $\GG\subseteq 2^X$ is union, then $\left|\GG\right|\leq 2^{\left|X\right|-1}$.
+\end{newenv}
+
+\begin{remark}
+    If $G:=s_{i,j}(F)\neq F$ then $\sum_{a\in F}^{}a-\sum_{a\in G}^{}a=j-i$. 
+\end{remark}
+
+\begin{observation}[pps:]{}
+    If $G:=s_{i,j}(F)\neq F$ then $\sum_{a\in F}^{}a-\sum_{a\in G}^{}a=j-1$. Hence if $1\leq i<j\leq n$ and $\sij(\FF)\neq \FF\subseteq 2^X$, then
+    \[\sum_{F\in \FF}^{}\sum_{a\in F}^{}a>\sum_{G\in \sij(\FF)}^{}\sum_{a\in G}^{}a.\]
+\end{observation}
+
+\begin{remark}
+    Since the sum has a lower bound, after repeatedly apply $(i,j)$-shift for various $1\leq i<j\leq n$, we can get the following:
+\end{remark}
+
+\begin{definition}[def:]{Shifted family}
+    After repeatedly applying $(i,j)$-shift, we end up with a family $\TF$ satisfying $\sij(\TF)=\TF\ \forall\ 1\leq i<j\leq n$. Such family is called \vocab{shifted}.
+\end{definition}
+
+\begin{remark}
+    From \cref{pps:2_9_shifting_preserve_intersecting}, it is clear that in establishing upper bounds for the size of $t$-intersecting (or $s$-union) families we can restrict ourselves to shifted families. And by \cref{pps:2_10_shifted_subset}, the saem is true when trying to prove lower bounds on the size of $p$-shadow.
+\end{remark}
+
+\begin{theorem}[thm:]{Kruskal-Katona Theorem (integer version)}
+    Let $0\leq p<k\leq x$ be integers. Suppose that $\FF$ is a family of $k$-element subsets with $\left|\FF\right|\geq {x\choose k}$. Then $\left|\sigma _p(\FF)\right|\geq {x\choose p}$.
+\end{theorem}
+
+\begin{proof}
+    Let $p<k$ be fixed. We will prove by induction on $x$. $x=k$ is trivial. For $x\geq k+1$, i.e. $x-1\geq k$. By \cref{pps:2_10_shifted_subset}, we may suppose $\FF$ is shifted. First consider $p=k-1$. 
+
+    \begin{claim}[clm:]{}
+        $\sigma_{k-1}(\FF(\overline{1}))\subseteq \FF(1)$.
+        \tcblower
+        \begin{proof}
+            Let $G\in \sigma_{k-1}(\FF(\overline{1}))$. Then $G\cup \left\{j\right\}\in \FF$ for some $j\notin \left\{1\right\}\sqcup G$. By shiftedness, $G\cup \left\{1\right\}\in \FF$, i.e. $G\in \FF(1)$.
+        \end{proof}
+    \end{claim}
+    \begin{claim}[clm:]{}
+        $\left|\FF(1)\right|\geq {x-1\choose k-1}$.
+        \tcblower
+        \begin{proof}
+            Suppose contrary, i.e. $\left|\FF(1)\right|<{x-1\choose k-1}$. We infer that
+            \[\left|\FF(\overline{1})\right|=\left|\FF\right|-\left|\FF(1)\right|>{x\choose k}-{x-1\choose k-1}={x-1\choose k}.\]
+            Hence may apply induction to $\FF(\overline{1})$, and get $\left|\sigma_{k-1}(\FF(\overline{1}))\right|\geq {x-1\choose k-1}>\left|\FF(1)\right|$.
+        \end{proof}
+    \end{claim}
+    Since $\sigma_{k-1}(\FF)\supseteq \FF(1)\sqcup\left\{\left\{1\right\}\sqcup G:G\in \sigma_{k-2}(\FF(1))\right\}$. Clearly $\sigma_{k-1}(\FF)$ contains $\FF(1)$, where $1\notin \FF(1)$. If $G\in \sigma_{k-2}(\FF(1))$, then there is $H\in \FF(1)$ s.t. $G\subseteq H$, and $\left\{1\right\}\sqcup G\subseteq \left\{1\right\}\sqcup H\in \FF$,  yielding that $\left\{1\right\}\sqcup G \in \sigma_{k-1}(\FF)$. Thus
+    \[\left|\sigma_{k-1}(\FF)\right|\geq \left|\FF(1)\right|+\left|\sigma_{k-2}(\FF(1))\right|.\]
+    Applying induction hypothesis by claim(2) to $\FF(1)$, we infer $\left|\sigma_{k-2}(\FF(1))\right|\geq {x-1\choose k-2}$. This proves
+    \[\left|\sigma_{k-1}(\FF)\right|\geq {x-1\choose k-1}+{x-1\choose k-2}={x\choose k-1}.\]
+    We prove the general case $p<k$ by induction on $i:=k-p$, where we proved $i=1$. Suppose the statement is true for the case $i$, i.e., $\left|\FF\right|\geq {x\choose k}$ implies $\left|\sigma_{k-i}(\FF)\right|\geq {x\choose k-i}$. Since $\sigma_{k-(i+1)}(\FF)=\sigma_{(k-i)-1}(\sigma_{k-i}(\FF))$, we can imply the induction hypothesis to the case $k'=k-i$ and $p'=k'-1$ (i.e. $i'=1$); we get $\left|\sigma_{k-(i+1)}(\FF)\right|=\left|\sigma_{k'-1}(\sigma_{k'}(\FF))\right|\geq {x\choose k'-1}={x\choose k-(i+1)}$.
+\end{proof}
+

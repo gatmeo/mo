@@ -1,0 +1,11 @@
+\pitem[2019 Pan-African Mathematics Olympiad P6]{%
+    Find the $2019$th strictly positive integer $n$ such that $\binom{2n}{n}$ is not divisible by $5$.
+    }{%
+    Kummer's theorem tells us that that number of times a prime $p$ divides $\binom{n}{m}$ is equal to the number of carries when calculating $n = m + (n - m)$ in base $p$. In this case, we see that there must be no carries when calculating $n + n = 2n$ in base $5$, and so the base $5$ digits of $n$ must all be at most $2$.
+
+    Lucas' Theorem implies that $\binom{2n}{n}$ is divisible by $5$ if any of the base $5$ digits of $2n$ are smaller than the corresponding base $5$ digit of $n$. This is again equivalent to any of the digits of $n$ being larger than $2$.
+
+    We are thus seeking the $2019\text{th}$ natural number $n$ such that the base $5$ expansion of $n$ consists only of the digits $0$, $1$, and $2$. If we ignore the fact that the expansion is a number in base $5$, then the string of digits can also be interpreted as a number in base $3$, and so we see that the $2019\text{th}$ valid string of digits is given by the base $3$ expansion of $2019$, which is $2202210_3$. It follows that the number that we are looking for is $2202210_5 = 37805$.
+    }{%
+    <++>
+}

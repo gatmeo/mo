@@ -1,0 +1,16 @@
+\pitem[]{%
+    A sequence is defined as $a_n=a_{n-1}+(n-1)a_{n-2}$ for all positive integers $n$, where $a_1=1$ and $a_2=2$. Prove that
+    $$a_{2n} = \sum\limits_{k=0}^n \binom{2n}{2k} \binom{2n-2k}{n-k} \frac{(n-k)!}{2^{n-k}}$$
+    }{%
+    There is indeed a clever combinatoric argument - that $a_n$ gives the number of ways to partition the set $\{1,2,3,\dots ,n\}$ into disjoint subsets of size $1$ and $2$, lets call this $x_n$.
+
+    Part 1:
+    We will prove equivalence to the recursive sequence $a_n=a_{n-1}+(n-1)a_{n-2}$ by strong induction. Suppose that, for all integers $1\le i\le n-1$, $a_i=x_i$. We will prove that this implies $a_n=x_n$.
+
+    To partition the set $\{1,2,3,\dots ,n\}$, consider how we will place element $n$ in the partition. If we place it in a set by itself, then clearly there are $a_{n-1}$ ways to partition the remaining elements. If we place it in a set with another element, there are $n-1$ choices for this other element, and then $a_{n-2}$ ways to partition the remaining elements. Thus, $x_n=a_{n-1}+(n-1)a_{n-2}$, and this completes the equivalence.
+
+    Part 2:
+    For proving equivalence to the summation function, consider the number of ways to partition the set $\{1,2,3,\dots ,2n\}$ into exactly $k$ subsets of size $2$, and the remaining elements into sets of size $1$. Let's call the subsets of size $2$ "$2$-sets." First, there are $\binom{2n}{2k}$ ways to choose the numbers that will be included in $2$-sets. Now, consider how we may place these numbers on a $2$ by $k$ board, where each pair of numbers in the same column will be put in a $2$-set. There are $\binom{2k}{k}$ ways to select $k$ of the previously chosen numbers to be placed in the top row in an arbitrary order, and $k!$ ways to then place the remaining elements on the bottom row. Finally, we divide by $2^k$ to account for the double counting, as for any $2$-set $\{a,b\}$, it is irrelevant whether $a$ is placed on the top row and $b$ is placed on the bottom, or if $a$ is placed on the bottom row and $b$ is placed on the bottom. Thus, there are $$\binom{2n}{2k}\binom{2k}{k}\frac{k!}{2^n}$$ways to partition the set $\{1,2,3,\dots ,2n\}$ into exactly $k$ $2$-sets, and since we can have anywhere from $0\le k\le n$ 2-sets, this gives the desired $$x_{2n}=\sum_{k=0}^n \binom{2n}{2k}\binom{2k}{k}\frac{k!}{2^k}$$This completes the equivalence and we are done.
+    }{%
+    https://artofproblemsolving.com/community/c6t45317f6h1438420_recurrence_and_binomial_coefficients
+}

@@ -1,0 +1,18 @@
+\pitem[USAMO 1994]{%
+    The sides of a 99-gon are initially colored so that consecutive sides are red, blue, red, blue, $\dots$, red, blue, yellow. We make a sequence of modifications in the coloring, changing the color of one side at a time to one of the three given colors (red, blue, yellow), under the constraint that no two adjacent sides may be the same color. By making a sequence of such modifications, is it possible to arrive at the coloring in which consecutive sides are red, blue, red, blue, red, blue, $\dots $, red, yellow, blue?
+    }{%
+    We first observe that we can only modify the color of a side if and only if the two neighboring sides is of the same color, i.e. the middle edge $y$ of the consecutive sides which is of color $x,y,x$ with $x\neq y$, as otherwise for $x,y,z$ with all of them different, $y$ cannot change color.
+
+    We will then construct the invariant as follows: for the $i^{th}$ side ($1\le i\le99$), we label $a_i=0$ if the side is red, $a_i=1$ if the side is blue, and $a_i=2$ if the side is yellow. We define
+    \[P=(a_2-a_1)(a_3-a_2)\cdots(a_{99}-a_{98})(a_1-a_{99})\pmod3.\]
+    Since $a_i\neq a_{i+1}$, $P$ is not 0.
+    To check that it is invariant, by the observation mentioned above, the only action we can make is turning $x,y,x$ to $x,z,x$ with $y\neq z$. Applying this action the only part $P$ changes is from $(y-x)(x-y)$ to $(z-x)(x-z)$. However, the only nonzer quadratic residue modulo 3 is $1$. Hence 
+    \[(y-x)(x-y)\equiv(z-x)(x-z)\equiv-1\pmod3.\]
+    Since the original $P$ is (starting with red and ending with yellow, $a_{2k-1}=0$ and $a_{2k}=1$, except for $a_{99}=2$),
+    \[[(1)(-1)\cdots(1)(-1)(1)](1)(-2)\equiv(-1)^{\frac{97-1}{2}}(-2)\equiv1\pmod3,\]
+    while the new $P$ is (starting with blue and ending with yellow, $a_{2k-1}=1$ and $a_{2k}=0$, except for $a_{99}=2$),
+    \[[(-1)(1)\cdots(-1)(1)(-1)](-1)(2)\equiv(-1)^{\frac{97+1}{2}}(-2)\equiv2\pmod3,\]
+    it is not possible to arrive the ending position from the starting position.
+    }{%
+    https://artofproblemsolving.com/community/c6t219f6h57391_colored_99gon
+}

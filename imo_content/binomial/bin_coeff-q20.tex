@@ -1,0 +1,16 @@
+\pitem[RMM2011, P2, Day 1]{%
+    Determine all positive integers $n$ for which there exists a polynomial $f(x)$ with real coefficients, with the following properties:
+
+    \begin{itemize}
+        \item for each integer $k$, the number $f(k)$ is an integer if and only if $k$ is not divisible by $n$;
+        \item the degree of $f$ is less than $n$.
+    \end{itemize}
+    }{%
+    The only positive integers $n$ which satisfy our conditions are the powers of prime numbers.
+
+    Applying the Lagrange's interpolation formula on some $n$ values of $f$ which are integral, one may conclude that $f \in \mathbb{Q}[X]$. Therefore, we may consider $F(X)=N\cdot f(X)$ where $N$ is the common denominator of all the coefficients of $f$. Thus, $F \in \mathbb{Z}[X]$ with the condition that $N \mid F(k)$ if and only if $n \nmid k$. Let $d=\gcd (N,n)$. We see that if $n \nmid k$ then $d \mid N \mid F(k)$. Moreover, we claim that $d \nmid F(0)$. Indeed, choose $k=n$ and see that our condition gives that $N \nmid F(n)$. However, if $g=\frac{N}{d}$ then $\gcd (n,g)=1$ and we have $n \equiv r \bmod g$ for some $1 \le r \le g-1$. This yields that $F(n) \equiv F(r) \equiv 0 \bmod g$. Therefore, $d \nmid F(n)$, however, $F(n) \equiv F(0) \bmod d$. Now, we claim that $d=n$. Suppose not, and let $d < n$. Set $k=dm$ for some positive integer $m$ relatively prime to $n$. We have $n \nmid dm$ and so $N \mid F(dm)$, in particular, $F(dm) \equiv F(0) \bmod d$, which is clearly false. We conclude that $d=n$. Thus, we have the new condition: $n \mid F(j)$ for all $1 \le j \le n-1$ and $n \nmid F(0)$. Suppose that $n$ is not a prime power. Then let $p$ be a prime with exponent $a$ such that $p^a \mid n$. We have $p^a \mid n \mid F(p^a)$ yielding that $p^a \mid F(0)$. Applying this for all prime powers dividing $n$, we get $n \mid F(0)$. Thus, we arrive at a contradiction. Note that the above argument doesn't yield a contradiction if $n$ is a prime power since then $1 \le p^a \le n-1$ does not hold.
+
+For $n=p^a$, consider the polynomial $F(X)=\frac{(X+1)\cdot \dots \cdot (X+p^a-1)}{p^b}$ where $b=v_p((p^a-1)!)$. It can be seen that this indeed satisfies our hypothesis, by applying Kummer-Lucas theorem. Indeed, we see that $v_p(F(0))=0$ and $v_p(F(r))=v_p\left(\binom{r+p^a-1}{r}\right)+v_p((p^a-1)!)-v_p(p^b)=v_p\left(\binom{r+p^a-1}{r}\right)=a$ for all $1 \le r \le p^a-1$.
+    }{%
+    https://artofproblemsolving.com/community/c6h393649p3332756
+}

@@ -1,0 +1,15 @@
+\pitem[EGMO 2019 P5]{%
+    Let $n\ge 2$ be an integer, and let $a_1, a_2, \cdots , a_n$ be positive integers. Show that there exist positive integers $b_1, b_2, \cdots, b_n$ satisfying the following three conditions:
+
+    $\text{(A)} \ a_i\le b_i$ for $i=1, 2, \cdots , n;$
+
+    $\text{(B)} \ $ the remainders of $b_1, b_2, \cdots, b_n$ on division by $n$ are pairwise different; and
+
+    $\text{(C)} \ $ $b_1+b_2+\cdots b_n \le n\left(\frac{n-1}{2}+\left\lfloor \frac{a_1+a_2+\cdots a_n}{n}\right \rfloor \right)$
+    }{%
+    Note that if $a_i\ge n$, we can replace $a_i$ with $a_i-n$ and also $b_i$ with $b_i-n$ without affecting the validity of the problem (and if it holds for $a_i>0$, there is no reason for it to fail at $a_i=0$); therefore, we may assume that each $a_i$ is between 0 and $n-1$.
+
+    Define a new sequence $c_i=b_i\pmod{n}$. For some $a_i$, we randomly select the value of the corresponding $c_i$; notice that there is a $\frac{a_i}{n}$ chance that the value of $c_i$ is less than $a_i$, and therefore it will be necessary that $b_i$ is equal to $c_i+n$. We have $\sum b_i\le \sum a_i+\sum c_i$ by LoE; notice that $\sum c_i=\frac{n(n-1)}{2}$, and by mod $n$, we can indeed replace $\sum a_i$ with $n\lfloor\frac{\sum a_i}{n}\rfloor$, and therefore obtaining the bound in the original problem statement.
+    }{%
+    https://artofproblemsolving.com/community/c6h1819303p20292058
+}

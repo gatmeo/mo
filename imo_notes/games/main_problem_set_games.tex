@@ -1,0 +1,98 @@
+\documentclass[a4paper]{article}
+\usepackage[math_simple,imo]{gatmeo}
+
+\renewcommand{\courseTitle}{\FirstBigRestSmallCaps{2020 IMO Phase III Level 2}}
+\renewcommand{\courseTopic}{\FirstBigRestSmallCaps{Problem Set: Games and Algorithms}}
+\DTMsavedate{mydate}{2021-02-27}
+
+\toggletrue{ownans}
+\togglefalse{officialans}
+\rfoot{}
+
+\begin{document}
+\maketitle
+\thispagestyle{empty}
+
+\begin{question*}{}
+    \pitem[USAMO 1999 Problem 5]{%
+        The Y2K Game is played on a $1 \times 2000$ grid as follows. Two players in turn write either an S or an O in an empty square. The first player who produces three consecutive boxes that spell SOS wins. If all boxes are filled without producing SOS then the game is a draw. Prove that the second player has a winning strategy.
+        }{%
+        For brevity, let the first and second players be named A and B, respectively. Also, we call the three configurations of boxes (S, empty, S), or (S, O, empty), or (empty, O, S) winning configurations (since if any of these configurations are ever achieved, the next player to play can win).
+
+        Define a group of four consecutive boxes to be deadly if the first and last contain the letter S, and the middle two boxes are empty. Notice that if any move is made in the two empty boxes of a deadly group, the next player to play can win: if an S is written, the (S, empty, S) configuration is achieved, and if an O is written, the (S, O, empty) or (empty, O, S) configuration is achieved.
+
+        Lemma: B can always force the existence of a deadly group.
+
+        Proof: If A writes an S on his first turn, then B can write an S three boxes away, producing a deadly group. If A writes an O on his first turn, then B can write an S somewhere at least $100$ tiles away from the O and from each end of the grid (the exact number is not important, only that it is far enough from the O that no winning configurations can be achieved next). Then, on B's second turn, he will either win immediately if it is possible, or he can place a second S three boxes away, opposite the direction of A's second move.
+
+        After B produces a deadly group, he can proceed as follows until the only empty boxes remaining lie in deadly group. After each of A's moves, if it is not possible for B to win immediately, then B chooses an empty box $X$ that is not in a deadly group. If the neighboring boxes are both empty, B writes an O in box $X$. If a neighboring box contains an O, B writes an O in box $X$. If a neighboring box contains an S but neither contain O, B writes an S in box $X.$ These moves will not produce any winning configurations. (Specifically, in the third case, notice that writing an S cannot produce a (S, empty, S) configuration opposite the neighboring S, since that would mean that box $X$ is in a deadly group.)
+
+        Eventually, the only squares left will lie in deadly groups. Since deadly groups have two empty boxes and the game began with an even number (2000) of empty boxes, this means that it will be A's turn when this occurs. Then A is forced to make a move in a deadly group, so B wins.
+        }{%
+        https://artofproblemsolving.com/community/c6h54505p340040
+    }
+
+    \pitem[JBMO Shortlist 2017 C3]{%
+        We have two piles with $2000$ and $2017$ coins respectively.
+        Ann and Bob take alternate turns making the following moves:
+        The player whose turn is to move picks a pile with at least two coins removes from that pile $t$ coins for some $2\le  t \le 4$, and adds to the other pile $1$ coin. The players can choose a different $t$ at each turn, and the player who cannot make a move loses.
+        If Ann plays first determine which player has a winning strategy.
+        }{%
+        Denote the number of coins in the two piles by $X$ and $Y$.  We say that the pair $(X,Y)$ is losing if the player who begins the game loses and that the pair $(X,Y)$ is winning otherwise.   We  shall  prove  that  $(X,Y)$  is  loosing  if $X-Y\equiv 0,1,7(\textnormal{mod }8)$,  and  winning  if$X-Y\equiv 2,3,4,5,6(\textnormal{mod }8)$. 
+
+        Lemma 1. If we have a winning pair $(X,Y)$ then we can always play in such a way that the other player is then faced with a losing pair.
+
+        Proof of Lemma 1.Assume $X\geq Y$ and write $X=Y+8k+l$ for some non-negative integer $k$ and some $l\in \left\{2,3,4,5,6\right\}$.  If $l=2,3,4$ then we remove two coins from the first pile and add one coin to the second pile.  If $l=5,6$ then we remove four coins from the first pile and add one coin to the second pile.  In each case, we then obtain a losing pair.
+
+        Lemma 2. If we are faced with a losing distribution then either we cannot play, or, however, we play, the other player is faced with a winning distribution.
+
+        Proof of Lemma 2. Without loss of generality, we may assume that we remove $k$ coins from the first pile.   The following table shows the new difference for all possible values of $k$ and all possible differences $X-Y$.  So however we move, the other player will be faced with a winning distribution. 
+        \begin{tabular}{cccc}
+            k/ X-Y & 0&1&7\\
+            2&5&6&4\\
+            3&4&5&3\\
+            4&3&4&2
+        \end{tabular}
+
+        Since initially the coin difference is 1 mod 8, by Lemmas 1 and 2 Bob has a winning strategy: He can play so that he is always faced with a winning distribution while Ann is always faced with a losing distribution.  So Bob cannot lose.  On the other hand, the game finishes after at most 4017 moves, so Ann has to lose.
+        }{%
+        https://artofproblemsolving.com/community/c6t224166f6h1679724_2_piles_with_2000_and_2017_coins_winning_strategy
+    }
+
+    \pitem[IOM 2020 P5]{%
+        There is an empty table with $2^{100}$ rows and $100$ columns. Alice and Eva take turns filling the empty cells of the first row of the table, Alice plays first. In each move, Alice chooses an empty cell and puts a cross in it; Eva in each move chooses an empty cell and puts a zero. When no empty cells remain in the first row, the players move on to the second row, and so on (in each new row Alice plays first).
+        The game ends when all the rows are filled. Alice wants to make as many different rows in the table as possible, while Eva wants to make as few as possible. How many different rows will be there in the table if both follow their best strategies?
+        }{%
+        <++>
+        }{%
+        https://artofproblemsolving.com/community/c6t224166f6h2384039_alice_amp_eva_take_turns_filling_an_empty_table_with_2100_rows_and_100_columns
+    }
+
+    \pitem[IMOSL 2012 C4]{%
+        Players A and B play a game with $N\geq 2012$ coins and 2012 boxes arranged
+        around a circle. Initially A distributes the coins among the boxes so that there
+        is at least 1 coin in each box. Then the two of them make moves in the order
+        B, A, B, A, … by the following rules:
+        On every move of his B passes 1 coin from every box to an adjacent box.
+        On every move of hers A chooses several coins that were not involved in B 's
+        previous move and are in different boxes. She passes every chosen coin to
+        an adjacent box.
+        Player A 's goal is to ensure at least 1 coin in each box after every move of
+        hers, regardless of how B plays and how many moves are made. Find the
+        least N that enables her to succeed.
+        }{%
+        <++>
+        }{%
+        <++>
+    }
+
+    \pitem[IMOSL 2004 C5]{%
+        A and B play a game, given an integer $N$, A writes down 1 first, then every player sees the last number written and if it is $n$ then in his turn he writes $n + 1$ or $2n$, but his number cannot be bigger than $N$. The player who writes $N$ wins. For which values of $N$ does B win?
+        }{%
+        <++>
+        }{%
+        <++>
+    }
+
+\end{question*}
+\end{document}

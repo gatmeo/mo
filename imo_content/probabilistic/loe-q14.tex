@@ -1,0 +1,12 @@
+\pitem[Caro-Wei Theorem]{%
+    Consider a graph $G$ with vertex set $V$ . Prove that one can find an independent set of $V$ (pairwise non-adjacent) with size at least
+    \[\sum_{v\in V}^{}\frac{1}{\deg v + 1}.\]
+    \begin{remark}
+        By applying Jensen's inequality, our independent set has size at least $\frac{n}{d+1}$, where $d$ is the average degree. This result is called Turan's Theorem.
+    \end{remark}
+    }{%
+    Randomly order the vertices $\left\{v_1,\dots ,v_n\right\}$ of $G$, and take $W$ to be the subset of those $v_i$ which occur before all their neighbors. Then
+    \[\EE[|W|]=\sum_{i}^{}ind(v_i\in W)=\sum_{i}^{}\frac{1}{deg(v)+1}.\]
+    }{%
+    https://cs.stackexchange.com/questions/100650/alternate-proof-of-the-caro-wei-theorem-for-lower-bounding-the-independence-numb
+}

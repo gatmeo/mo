@@ -1,0 +1,17 @@
+\pitem[USAMO 2003 Problem 6]{%
+    At the vertices of a regular hexagon are written six nonnegative integers whose sum is $2003^{2003}$. Bert is allowed to make moves of the following form: he may pick a vertex and replace the number written there by the absolute value of the difference between the numbers written at the two neighboring vertices. Prove that Bert can make a sequence of moves, after which the number 0 appears at all six vertices.
+    }{%
+    We do the following moves alternately: (a) from a position with odd sum to a position with exactly one odd number; (b) from a position with exactly one odd number to a position with odd sum, and with smaller maximum too, or to the all-zero position. The maximum value never increases and move (b) decreases the maximum, so this process must terminate at the all-zero position. Now we shall prove that the moves are always possible. Assume we have a position with odd sum $ (a,b,c,d,e,f)$, so either $ a+c+e$ is odd or $ b+d+f$ is odd. Without loss of generality assume $ a+c+e$ is odd. Now consider everything modulo 2. If one of them is odd, say $ a$, we can do the following moves: $ (1,b,0,d,0,f)\rightarrow(1,1,0,0,0,1)\rightarrow(0,1,0,0,0,1)\rightarrow(0,1,0,0,0,0)$. If all three of them are odd, we do the following: $ (1,b,1,d,1,f)\rightarrow(1,0,1,0,1,0)\rightarrow(1,0,0,0,0,0)$. Therefore move (a) is always possible. Now assume we have a position with exactly one odd number, say $ a$, and the maximum is $ m$.
+
+(i) First case, $ m$ is even. The following moves give us a position with odd sum:
+$ (1,0,0,0,0,0)\rightarrow(1,1,0,0,0,0)\rightarrow(1,1,1,0,0,0)\rightarrow(1,1,1,1,0,0)\rightarrow(1,1,1,1,1,0)$
+Call this last position $ (a',b',c',d',e',f')$. Note that $ a',b',c',d',e'$ are odd. But $ m$ is even. Also, $ f'=|a'-e'|\le\max\{{a',e'\}<m}$. So the maximum value must be decreased.
+
+(ii) Second case, $ m$ is odd. That is, $ m=a$. Assume $ c>0$. We do the moves:
+$ (1,0,0,0,0,0)\rightarrow(1,1,0,0,0,0)\rightarrow(1,1,0,0,0,1)\rightarrow(0,1,0,0,0,1)\rightarrow(0,1,0,0,0,0)$
+Call the last position $ (a',b',c',d',e',f')$. If the sum does not decrease, then the maximum is the odd number, that is $ b'$. But $ b'=|a-c|<a$. If $ e>0$, we do the same thing, interchanging $ b$ and $ c$ with $ f$ and $ e$ respectively. If $ c=e=0$, we can reach the desired position $ (a,b,0,d,0,f)\rightarrow(a,a,0,0,0,a)\rightarrow(0,a,0,0,0,a)\rightarrow(0,0,0,0,0,0)$.
+
+So our proof is complete.
+    }{%
+    https://artofproblemsolving.com/community/c6t219f6h53673_usamo_2003_problem_6
+}

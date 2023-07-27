@@ -1,0 +1,14 @@
+\pitem[IMOSL 2005 C5]{%
+    There are $n$ markers, each with one side white and the other side black. In the beginning, these $n$ markers are aligned in a row so that their white sides are all up. In each step, if possible, we choose a marker whose white side is up (but not one of the outermost markers), remove it, and reverse the closest marker to the left of it and also reverse the closest marker to the right of it. Prove that, by a finite sequence of such steps, one can achieve a state with only two markers remaining if and only if $n - 1$ is not divisible by 3 .
+    }{%
+    Denote by $L$ the leftmost and by $R$ the rightmost marker. To start with, note that the parity of the number of black-side-up markers remains unchanged. Hence, if only two markers remain, these markers must have the same color up.
+
+    We'll show by induction on $n$ that the game can be successfully ﬁnished if and only if $n\equiv 0\textnormal{ or }n\equiv 2(\textnormal{mod }3)$, and that the upper sides of L and R will be black in the ﬁrst case and white in the second case.  The statement is clear for n 2 3. Assume that we ﬁnished the game for some n, and denote by k the position of the marker X (counting from the left) that was last removed. Having ﬁnished the game, we have also ﬁnished the subgames with the k markers from L to X and with the n k 1 markers from X to R (inclusive). Thereby, before X was removed, the upper side of L had been black if k 0 and white if k 2 (mod 3), while the upper side of R had been black if n k 1 0 and white if n k 1 2 (mod 3). Markers L and R were reversed upon the removal of X. Therefore, in the ﬁnal position L and R are white if and only if k n k 1 0, which yields n 2 (mod 3), and black if and only if k n k 1 2, which yields n 0 (mod 3).
+
+    On the other hand, a game with n markers can be reduced to a game with n 3 markers by removing the second, fourth, and third marker in this order. This ﬁnishes the induction.
+
+    Second solution. An invariant can be deﬁned as follows. To each white marker with k black markers to its left we assign the number 1 k . Let S be the sum of the assigned numbers. Then it is easy to verify that the remainder of S modulo 3 remains unchanged throughout the game: For example, when a white marker with two white neighbors and k black markers to its left is removed, S decreases
+    by 3 1 t .
+    }{%
+    <++>
+}

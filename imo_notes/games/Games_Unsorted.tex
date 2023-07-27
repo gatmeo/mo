@@ -1,0 +1,81 @@
+\pitem{%
+    IMOSL 09CL Coloring
+    }{%
+    <++>
+    }{%
+    <++>
+}
+
+\pitem{%
+    Later read ladder game
+    }{%
+    <++>
+    }{%
+    https://artofproblemsolving.com/community/c6t224166f6h2335495_ladder_game_victory_if_you_get_the_zero_ladder
+}
+
+\pitem{%
+    Strange one 1999 sticks
+    }{%
+    <++>
+    }{%
+    https://artofproblemsolving.com/community/c6t224166f6h1993291_albert_and_barbara_paly_a_game_with_1999_sticks_winning_strategy_wanted
+}
+
+\pitem{%
+    Teaser 3b1b
+    }{%
+    <++>
+    }{%
+    https://artofproblemsolving.com/community/c6t45487f6h2437692_a_game_with_byte_and_money
+}
+
+\pitem{%
+    Invariant
+    }{%
+    <++>
+    }{%
+    https://artofproblemsolving.com/community/c6t224166f6h60773_one_of_my_favourite_invariant_problems
+}
+
+\pitem[]{%
+    A grid consists of all points of the form $(m, n)$ where $m$ and $n$ are integers with $|m|\le 2019,|n| \le 2019$ and $|m| +|n| < 4038$. We call the points $(m,n)$ of the grid with either $|m| = 2019$ or $|n| = 2019$ the boundary points. The four lines $x = \pm 2019$ and $y= \pm 2019$ are called boundary lines. Two points in the grid are called neighbours if the distance between them is equal to $1$.
+    Anna and Bob play a game on this grid.
+    Anna starts with a token at the point $(0,0)$. They take turns, with Bob playing first.
+    1) On each of his turns. Bob deletes at most two boundary points on each boundary line.
+    2) On each of her turns. Anna makes exactly three steps , where a step consists of moving her token from its current point to any neighbouring point, which has not been deleted.
+    As soon as Anna places her token on some boundary point which has not been deleted, the game is over and Anna wins.
+    Does Anna have a winning strategy?
+    }{%
+    We prove that Anna cannot win.
+
+    We define the following modification, call it $I'$, of the game from the statement: the game is played on the same board, but Bob is allowed to delete only points from the bottom edge (instead of from any edge), and Anna wins if she reaches the bottom edge (instead of any edge); if Anna reaches any other edge, the game simply continues (Anna still makes three steps in each her move, but she is not allowed to go beyond the boundary lines).
+
+    Lemma 1. If Anna has a winning strategy in the original game, then she also has a winning strategy in the game $I'$.
+
+    Proof. Suppose the contrary: Bob has a strategy to stop Anna from reaching the bottom edge in the game $I'$. Then Bob can also defeat Anna in the original game, by applying analogous strategies on each of the remaining three edges. $\square$
+
+    Therefore, it is enough to prove that Bob can defeat Anna in the game $I'$. For the rest of the solution, we consider only the game $I'$ (the original game will never be mentioned anymore).
+
+    Lemma 2. Suppose that, at a given point in time, Anna can choose between making the step to a point $P$ and making the step to a point $Q$, where $Q$ is one unit below and one unit either left or right of $P$. If Anna can force a win by making the step to the point $P$, then she also can force a win by making the step to the point $Q$.
+
+    Proof. Since this is the part of the solution that is the hardest to comprehend, I will write it in a very formal manner. (An informal account is given at the end of the proof, if you prefer that way.)
+
+    Anna's strategy can be formally described as a function $f$ defined on triples $(X,{\mathcal D},i)$, where:
+    • $X$ is a point on the playing grid (Anna's current position);
+    • $\mathcal D$ is a set of deleted points on the bottom edge;
+    • $i\in\{1,2,3\}$, which denotes whether Anna is about to make the first, the second, or the third step within a move;
+    $f$ maps such a triple to a point at the distance $1$ from the point $X$ (that is, $f$ determines which point Anna should move the token to). Note that $f$ does not have to be defined at any such triple, but it must be defined at any triple reachable from a triple that is known as winning for Anna (here we mean reachable under Anna's optimal play and Bob's any play---since Anna, in order to win, must have a response to any possible Bob's move); in other words, if $f(X,\mathcal D,i)$ is defined, then, if $i=1,2$, we have that $f(f(X,\mathcal D,i),\mathcal D,i+1)$ also has to be defined, while if $i=3$, $f(f(X,\mathcal D,i),\mathcal D',1)$ has to be defined for any $\mathcal D'$ such that $|\mathcal D'|=|\mathcal D|+2$.
+
+    By the conditions of the lemma, the point $Q$ is either $P-(1,1)$ or $P+(1,-1)$. Assume, w.l.o.g., the former case. By the assumption that Anna can force a win by making the step to the point $P$, we have that $f(P,\mathcal D,i)$ is defined for the corresponding $i$ and any set of deleted points $\mathcal D$ that can appear after Anna's step (if Bob is on the move after Anna's step; if not, then $\mathcal D$ equals the set of deleted points before Anna's step). Assume that Anna steps to the point $Q$ instead of the point $P$. We shall now describe how Anna can win from this position. Assume that after Bob's move (if any) the set of deleted points is $\mathcal B$. We know that $f(P,\mathcal B,i)$ is defined; if it represents a point that is one unit down or left from the point $P$ (call this “Case One”), then this point is also reachable from the point $Q$, and by moving her token there, Anna obtains a winning position (since $f(P,\mathcal B,i)$ is a winning position for Anna by the definition of $f$). Assume now that $f(P,\mathcal B,i)$ is up or right from the point $P$ (call this “Case Two”). Then Anna should also step up, respectively right, from the point $Q$. Now Anna's token is at the position $f(P,\mathcal B,i)-(1,1)$, and we can now repeat the reasoning above (with the point $f(P,\mathcal B,i)$ playing the role of $P$). Since the board is finite, sooner or later Case One will happen, after which Anna will be able to move her token to a winning position, as we have already seen.
+
+    (Here is a shorter, though informal, description of the main idea of the presented proof. Standing at the point $Q$, Anna imagines a shadow standing at the point $P$. Anna and Bob then play a game “in reality,” and the shadow moves according to its winning strategy, responding to the moves Bob makes in the “real game”---note that, since we have assumed that there would be a winning strategy for Anna if she were at the point $P$, this means that the shadow will have a winning response to any Bob's move. Anna's aim is to merge with the shadow; that is, if the shadow steps to a point that Anna can also step to, Anna goes there and achieves the aim, while if the shadow moves away from Anna, Anna continues to chase it and waits for the opportunity to merge with it, which must happen sooner or later.) $\square$
+
+    Lemma 3. Suppose that Anna can win. Then she can win by first going straight down until she reaches the line $y=-2018$, and only then making steps to the left and to the right.
+
+    Proof. If Anna can win, then she can win by never making a step up: indeed, by the previous lemma, if Anna could win by making a step up, then she could also win by making a step to the left or to the right instead. Also by the previous lemma, if Anna could win by making a horizontal step (on some line above $y=-2018$), then she could also win by making the step down instead. $\square$
+
+    Therefore, in order to reach a contradiction with the assumption that Anna can win, it is enough to show that Anna cannot win by first going straight down until she reaches the line $y=-2018$, and only then making steps to the left and to the right. We give a strategy for Bob to defeat this Anna's strategy. During the first $673$ moves, Bob deletes all the points whose $x$-coordinate is from the interval $[-672,673]$. Before her $673^{\text{rd}}$ move, Anna is at the point $(0,-2016)$, and she now has to make two steps down and then one step left or right. If she goes left, Bob deletes the next two points on the left, and if she goes right, Bob deletes one point on the left and one point on the right. In every following move, Bob deletes the next two points in Anna's direction. It is a straightforward calculation to see that, by continuing to play this way, Bob will have (just) enough time to prevent Anna from reaching the bottom edge.
+    }{%
+    https://artofproblemsolving.com/community/c6t224166f6h1832249_winning_strategy_for_balkans_bmo_2019_p4
+}

@@ -1,0 +1,9 @@
+\pitem[Brazil National Olympiad 2020]{%
+    Let $n$ be a positive integer, where $2n$ people are in a spacecraft, and any two of them are friends or enemies(the relationship is reciprocal). Two aliens play the following game: Alternately, each player chooses one person, such that the chosen one(of each round) is friend of the person chosen(by the other player) in the previous round. In the first round, the player can choose any person, each person can be chosen in at most one round, and the player who can not play anymore, loses the game. Prove that the second player has the winning strategy, if and only if, the $2n$ people can be splitted into $n$ pairs, such that two people on the same pair are friends.
+Note: In each round, only one player plays.
+    }{%
+    Take the obvious graph interpretation. If $G$ has a perfect matching $X \cup Y$, then the second player plays symmetrical with respect the first player, i.e., if $A$ plays in $X$, then $B$ plays in its neighbor in $Y$. In this way, $B$ makes the last move, so $B$ wins.
+Now, if such matching does not exist, consider the maximal matching $H$ of $G$. In its first movement, $A$ picks a vertex $v_0$ not in $H$. By the maximality of $H$, all the neighbors of $v_0$ are in $H$, so $B$ chooses a vertex $u_0 \in H$. Then, $A$ chooses a neighbor $v_1 \in H$ of $u_0$. Now, observe that $v_1$ cannot have another neighbor $v$ not in $H$, otherwise the graph would have the path $v_0-u_0-v_1-v$, so we could take $(v_0,u_0)$ and $(u_1,v)$ and increase the size of $H$, a contradiction. Thus, since $H$ has a matching with $B$ playing first, and the players keep playing in $H$ after $A$ making its first movement, we have that $A$ wins, so we are done! $\quad \blacksquare$
+    }{%
+    https://artofproblemsolving.com/community/c6t45487f6h2493983_aliens_play_a_graph_game
+}

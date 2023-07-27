@@ -1,0 +1,17 @@
+\pitem[SMMC 2017 A1]{%
+    The five sides and five diagonals of a regular pentagon are drawn on a piece of paper. Two people play a game, in which they take turns to colour one of these ten line segments. The first player colours line segments blue, while the second player colours line segments red. A player cannot colour a line segment that has already been coloured. A player wins if they are the first to create a triangle in their own colour, whose three vertices are also vertices of the regular pentagon. The game is declared a draw if all ten line segments have been coloured without a player winning. Determine whether the first player, the second player, or neither player can force a win.
+    }{%
+    We will prove that the first player can force a win. In other words, we will prove that no matter
+    how the second player responds, the first player can win.
+    Suppose that the vertices of the pentagon are P1, P2, P3, P4, P5. Let the first player start the
+    game by colouring the line segment P1P2. Without loss of generality, we may assume that the
+    second player responds by colouring P2P3 or P3P4.
+    \begin{itemize}
+        \item Case 1: The second player responds by colouring P2P3.  The first player then colours P2P4, forcing the second player to colour P1P4 to avoid losing.  The first player then colours P2P5 and wins the game by colouring either P1P5 or P4P5 on their next move.
+        \item Case 2: The second player responds by colouring P3P4.  The first player then colours P1P5, forcing the second player to colour P2P5 to avoid losing.  The first player then colours P1P3 and wins the game by colouring either P2P3 or P3P5 on their next move.
+    \end{itemize}
+    Thus, we have shown that no matter how the second player responds, the first player can win.
+    }{%
+    https://www.simonmarais.org/20173.html
+    https://www.simonmarais.org/uploads/8/2/3/5/82358688/smmc-2017-solutions-preliminary_1.pdf
+}

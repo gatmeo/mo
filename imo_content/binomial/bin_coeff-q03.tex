@@ -1,0 +1,19 @@
+\pitem[Olimpiada Rioplatense 2015 Level 3 P5]{%
+    For a positive integer number $n$ we denote $d(n)$ as the greatest common divisor of the binomial coefficients $\dbinom{n+1}{n} , \dbinom{n+2}{n} ,..., \dbinom{2n}{n}$.
+    Find all possible values of $d(n)$
+    }{%
+    We see that for any $p \mid d(n)$ then $p \mid n+1$. So pick a prime divisor $p$ of $d(n)$ then $p \mid n+1$. We can write $n$ base $p$ as $n= \left( \overline{a_ka_{k-1} \cdots a_1(p-1)} \right)_p$ where $0 \le a_k,a_{k-1}, \cdots , a_1 \le p-1$ and $a_k \ne 0$.
+
+    If there exists a number $a_i \le p-2$ then we have $n <n+p^i \le n+p^k<2n$ and
+    $$n+p^i= \left( \overline{a_ka_{k-1} \cdots a_{i+1}(a_i+1)a_{i-1} \cdots a_1(p-1)} \right)_p.$$
+    Therefore, according to Lucas theorem, we have 
+    $$\binom{n+p^i}{n} \equiv \binom{a_k}{a_k} \cdots \binom{a_{i+1}}{a_{i+1}} \binom{a_i+1}{a_i} \cdots \binom{a_1}{a_1} \equiv a_i+1 \pmod{p}.$$
+    Hence such exitence of $a_i \le p-2$ implies $p \nmid \binom{n+p^i}{n}$, a contradiction.
+    Thus, we must have $a_i=p-1$ for all $1 \le i \le k$ or $n=p^{k+1}-1$ for $k \ge 0$. This representation of $n$ is unique, so this means that if $n \ne p^l-1$ for some prime $p$ and $l \ge 1$ then $d(n)=1$.
+
+    If $n=p^l-1$, we will prove that $d(n)=p$. Indeed, since there will be no other prime $p_1 \ne p$ and $l_1 \ge 1$ so that $n=p^l-1=p_1^{l_1}-1$ so $d(n)=p^x$. Now, by using Kummer's theorem for $n=p^{l}-1$, we will have $\nu_p \left( \binom{p^{l-1}+n}{n} \right)=1$ since there is one carry when we plus $n=p^l-1$ and $p^{l-1}$ in base $p$. Therefore, $\nu_p (d(n))=1$. Thus, $d(n)=p$.
+
+    In conclusion, if $n \ne p^l-1$ for some prime $p$ and positive integer $l$ then $d(n)=1$. If $n=p^l-1$ then $d(n)=p$.
+    }{%
+    https://artofproblemsolving.com/community/c6t45334f6h1265997_find_all_possible_values
+}

@@ -1,0 +1,12 @@
+\pitem[Online Math Open q29]{%
+    Kevin has $2^n-1$ cookies, each labeled with a unique nonempty subset of $\left\{1,2,\dots ,n\right\}$. Each day, he chooses one cookie uniformly at random out of the cookies not yet eaten. Then, he eats that cookie, and all remaining cookies that are labeled with a subset of that cookie. Compute the expected value of the number of days that Kevin eats a cookie before all cookies are gone.
+    }{%
+    The number of days equals the number of times a cookie is chosen (rather than merely eliminated). Let $C$ be the set of cookies chosen by the process and $S=\left\{1,\dots ,n\right\}$, so
+    \[\EE[\#\textnormal{days}]=\EE[|C|]=\sum_{A\subseteq S}^{}\EE[ind(A\in C)]=\sum_{A\subseteq S}^{}\mathbb{P}(A\in C).\]
+    And since cookie $A$ is uneaten iff all its supersets are also uneaten, we have
+    \[\mathbb(A\in C)=\frac{1}{\#\left\{\textnormal{supersets of }A\right\}}=\frac{1}{2^{n-|A|}}.\]
+    Hence 
+    \[\sum_{A\subseteq S}^{}\mathbb{P}(A\in C)=\sum_{A\subseteq S}^{}2^{|A|-n}=\sum_{1\leq k\leq n}^{}\frac{{n\choose k}}{2^{n-k}}=\frac{3^n-1}{2^n}.\]
+    }{%
+    services.artofproblemsolving.com/download.php?id=YXR0YWNobWVudHMvMS9kL2E1NjhiZDZlNWMzMDJiODZiMTViMzMwMjI5NDMwOTY5NmY2MDhm&rn=T01PRmFsbDEzU29sbnMucGRm
+}

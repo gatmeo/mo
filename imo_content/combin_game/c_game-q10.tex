@@ -1,0 +1,8 @@
+\pitem[2019 XXII All-Ukrainian Tournament of Young Mathematicians P17]{%
+    $n$ points are marked on the board points that are vertices of the regular $n$ -gon. One of the points is a chip. Two players take turns moving it to the other marked point and at the same time draw a segment that connects them. If two points already connected by a segment, such a move is prohibited. A player who can't make a move, lose. Which of the players can guarantee victory?
+    }{%
+    First player always wins. We will splite the vertices into two sets: $\left\{1,2\right\}$ and $S=\left\{3,\dots ,n\right\}$.
+    In the first move, player 1 makes edge $(1,2)$, for whatever moves player 2 moves, say $(2,k)$ for $k\in S$, player 1 makes move $(k,1)$. With this process, the game will always be played on a complete bipartile graph $K_{2,n-2}$. Since there's are even number of edges, and player $2$ makes the first move in the bipartile graph, we have player $1$ always win.
+    }{%
+    https://artofproblemsolving.com/community/c6t224166f6h2850901_2_player_game_moving_a_chips_along_vertices_of_a_regular_ngon
+}

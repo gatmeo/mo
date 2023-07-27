@@ -1,0 +1,26 @@
+\pitem[]{%
+    Prove that
+    \begin{itemize}
+        \item All the binomial coefficients ${n\choose k}$, where $0<k<n$, are divisible by $p$ iff $n$ is a power of $p$.
+        \item ALl the binomial coefficients ${n\choose k}$, where $0\leq k\leq n$ are not divisble by $p$ iff $n+1$ is divisble by $p^d$, in other words, all the digits of $n$, expect the leftmost, in base $p$ are equal to $p-1$.
+    \end{itemize}
+    }{%
+    \begin{enumerate}
+        \item 
+            If $p$ does not divide $\binom nk$, then there are no carries when we add  $k$ and $n-k$ in base $p$.
+            For a fixed $n$ it means that  we can choose $i$-th digit of $k$ in base $p$ by $n_i+1$ ways.
+            Hence we have a row with 2 elements only not divisible by $p$.
+        \item If $p^d\mid (n+1)$, then $n=\overline{a(p-1)(p-1)\ldots(p-1)}$ in base $p$.
+            Then for any $k$, $0\leq k\leq n$, each digit of $k$ does not exceed the corresponding digit of $n$.
+            Therefore all the binomial coefficients $\binom{n_i}{k_i}$ are not equal to 0 and $\not\equiv 0\pmod p$.
+            By Lukas' theorem $\binom{n}{k}$ is not divisible by $p$.
+
+            The reverse statement. Assume that all the coefficients $\binom{n}{k}$ are not divisible by $p$,
+            but $n$ is not the number of the form $\overline{a(p-1)(p-1)\ldots(p-1)}$.
+            Therefore one of its digits, say, $n_i$ is less than $p-1$. Choose $k=(p-1)\cdot p^i$.
+            Then $k_i=p-1$ and hence $\binom{n_i}{k_i}=0$, and  $p\mid\binom{n}{k}$ by Lukas' theorem.
+            A contradicition.
+    \end{enumerate}
+    }{%
+    Amazing property 2.5
+}

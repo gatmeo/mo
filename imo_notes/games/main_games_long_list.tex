@@ -1,0 +1,60 @@
+\documentclass[a4paper]{article}
+\usepackage[tut]{omegat}
+
+\newcommand{\myasignname}{Games and Algorithms}
+\title{\myasignname}
+\newcommand{\asigntitle}{\section*{\myasignname}}
+\newcommand{\omegatongid}{\FirstBigRestSmallCaps{Omega Tong}}
+
+\toggletrue{ownans}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\iftoggle{ownans}{\color{red}}{}{\Large\FirstBigRestSmallCaps{Games and Algorithms }}\iftoggle{ownans}{(With Solution)}{}}
+\fancyhead[C]{\iftoggle{ownans}{}{IMO Phase III Level 2 }}
+\fancyhead[R]{\iftoggle{ownans}{\color{red}}{}\omegatongid}
+\fancyfoot[R]{\iftoggle{ownans}{\color{red}}{}Page \rule[-2pt]{1pt}{11pt} \thepage}
+
+\geometry{
+    top=0.95in,
+    %top=1in,
+    headsep=.25in
+}
+
+\newtoggle{plabel}
+\toggletrue{plabel}
+\newcommand{\pitem}[4][]{
+    \noindent \textbf{Problem }\refstepcounter{qcounter}\theqcounter .\iftoggle{plabel}{\addbrackets{#1}}{}
+        #2 \iftoggle{ownans}{\\\\\noindent \textbf{Ans. } #3\\}{}
+
+    \iftoggle{officialans}{#4}{}
+\ifinarry
+}
+
+\begin{document}
+
+\section{Easy Games}
+
+\begin{shortque*}{}
+    \input{./Games_Easy.tex}
+\end{shortque*}
+
+\section{Normal Games}
+
+\begin{shortque*}{}
+    \input{./Games_Normal.tex}
+\end{shortque*}
+
+\section{SL Games}
+
+\begin{shortque*}{}
+    \input{./Games_SL.tex}
+\end{shortque*}
+
+\section{Unsorted Games}
+
+\begin{shortque*}{}
+    \input{./Games_Unsorted.tex}
+\end{shortque*}
+
+\end{document}

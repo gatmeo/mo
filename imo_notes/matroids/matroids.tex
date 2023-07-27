@@ -1,0 +1,751 @@
+\documentclass[a4paper,10pt]{article}
+\usepackage[common_math_textnormal,imo,todonotes,math_base_note,math_simple]{gatmeo}
+\usepackage{blkarray}
+%\usepackage[math_simple,imo]{omegat}
+
+\renewcommand{\courseTitle}{\FirstBigRestSmallCaps{IMO Phase III Level 2}}
+\renewcommand{\courseTopic}{\FirstBigRestSmallCaps{Matroids}}
+\DTMsavedate{mydate}{2023-03-04}
+\renewcommand{\vocab}[1]{\textbf{#1}}
+
+%\toggletrue{ownans}
+
+\newcommand{\ee}{\mathbf{e}}
+\newcommand{\II}{\mathcal{I}}
+\newcommand{\IIm}{\mathcal{I}^{\max}}
+\newcommand{\CC}{\mathcal{C}}
+\newcommand{\MM}{\mathcal{M}}
+\newcommand{\PP}{\mathcal{P}}
+\renewcommand{\AA}{\mathcal{A}}
+\newcommand{\BB}{\mathcal{B}}
+\newcommand{\hh}{\mathbf{h}}
+\newcommand{\vv}{\mathbf{v}}
+\newcommand{\uu}{\mathbf{u}}
+\newcommand{\xx}{\mathbf{x}}
+\newcommand{\ga}{\mathfrak{a}}
+\newcommand{\ff}{\mathbf{f}}
+\renewcommand{\tt}{\mathbf{t}}
+
+\usepackage[titles]{tocloft}
+\setlength{\cftbeforechapskip}{0pt}
+
+\begin{document}
+\maketitle
+\tableofcontents
+
+\section{Introduction}
+
+The main idea of \textbf{matroid} is to \emph{capture the abstract/combinatorial essence of independence}. Matroid originated from linear algebra and graph theory. It is a concept first introduced by Hassler Whitney in 1935, also independently discovered by Takeo Nakasaw. But in the past decade, there have been quite some breakthroughs regarding matroids. Indeed, one recent Fields medalist June Huh also has works based on matroids.
+
+In today's lecture, we will first define independence in two important contexts: linear algebra and graph theory. Then, we will define matroids from three different viewpoints: independence sets, circuits, and bases. After that, we will look into a concept that matroids handle exceptionally well: duality. And we will conclude the lecture with some graph theories from the matroid point of view.
+
+\section{Independency}
+
+\nbf{Linear Algebra}
+
+The most common concept of independence is in linear algebra.
+
+\begin{definition}[def:lin_dep]{Linearly Dependency}
+  A sequence of vectors $\vect{v}_1,\vect{v}_2,\dots ,\vect{v}_k$ from a vector space $V=\mathbb{R}^n$ is said to be \vocab{linearly dependent}, if there exist scalars $a_1,a_2,\dots ,a_k$, not all zero, such that
+  \[
+    a_1\vect{v}_1+a_2\vect{v}_2+\cdots +a_k\vect{v}_k=\vect{0}.
+  \]
+  A sequence of vectors $\flds{\vect{v}}{,}{k}$ is said to be linearly independent otherwise, i.e. $\sum_{i=1}^{k}a_i\vect{v}_k=0\iff a_i=0\ \forall\ i$.
+  \begin{remark}
+    When $\flds{\vect{v}}{,}{k}$ is linearly dependent, i.e. at least one of the scalars $a_i$ is nonzero, say $a_1\neq 0$, then the above equation can be rewritten as
+    \[
+      \vect{v}_1=-\frac{a_2}{a_1}-\cdots -\frac{a_k}{a_1}\vect{v}_k.
+    \]
+    Thus, a set of vectors is linearly dependent iff one of them is zero or a linear combination of the others.
+  \end{remark}
+\end{definition}
+
+A good way to think of linear dependency is to use the concept of linear span.
+
+\begin{definition}[def:]{Linear Span}
+  The span of a finite set of vectors $E=\left\{\flds{\vect{v}}{,}{k}\right\}$ is defined as the set of all linear combinations of elements of $E$, i.e.
+  \[
+    \Span(E)=\left\{\sum_{i=1}^{k}a_i\vect{v}_i\mid \vect{v}_i\in E,a_i\in \mathbb{R}\right\}.
+  \]
+  The set $\Span(E)$ is a vector subspace of $\mathbb{R}^n$, i.e. it is closed under addition and multiplication by scalars.
+\end{definition}
+
+\begin{definition}[def:]{Basis}
+  A basis $B$ of a vector space $V$ is a linearly independent subset of $V$ that spans $V$. 
+  \begin{remark}
+    A basis can also be treated as a maximal linearly independent set, as any additional vectors will be a linear combination of the maximal linearly independent set.
+  \end{remark}
+\end{definition}
+
+\begin{definition}[def:]{Rank}
+  The $\rank(V)$ of a vector space $V$ is the cardinality $|B|$ of a basis $B$ of $V$.
+  \begin{remark}
+    Rank can be thought of as the "dimension" of the vector space. It is a good exercise to prove that all bases have the same cardinality.
+  \end{remark}
+  \begin{remark}
+    By the definition of rank, we can see that $|E|=\rank(\Span(E))$ iff $E$ is linearly independent.
+  \end{remark}
+\end{definition}
+
+\begin{example}[exp:matroid_lin_indep]{Linearly Independency}
+  \Cref{fig:exp_matroids} will be our main example for introducing matroids. We will start with our linear algebra case \Cref{fig:exp_linear_algebra}.
+  Since $f$ is the zero vector, by the remark of \cref{def:lin_dep}, $f$ will never be part of a linearly independent set. And since $e=2d$, $\left\{d,e\right\}$ is linearly dependent. Similarly, we have $b+c/2-d=0$, hence $\left\{b,c,d\right\}$ is linearly dependent.
+
+  Now, with the linear span point of view, since $\Span(\{d,e\})$ is one "dimension", they are dependent. And since $\Span(\{b,c,d\})$ is the two "dimension" $xy$-plane, they are dependent as well. Note that the vector $a$ is the only vector pointed outside of the $xy$-plane, we see that any maximal independent set contains $a$ (as adding vector $a$ to the set will always increase the "dimension" of the linear span).
+\end{example}
+
+\begin{figure}[H]
+  \centering
+  \begin{subfigure}{0.33\linewidth}
+    \centering
+    \begin{asy}
+      import MOgeom;
+      size(0,1.2inch);
+      pointfontsize=7;
+      pair B=(1,0), C=(-1,-1), D=(.5,-.5), E=(1,-1), A=(0,1);
+      defaultarrow=EndArrow;
+      D(o--D("a(0,0,1)",3*A));
+      D(o--D("b(1,0,0)",3*B));
+      D(o--D("c(0,2,0)",3*C));
+      D(o--D("d(1,1,0)",3*D,(1,0)));
+      D(o--D("e(2,2,0)",3*E));
+      D("f(0,0,0)",o,W);
+    \end{asy}
+    \caption{Linear Algebra}
+    \label{fig:exp_linear_algebra}
+  \end{subfigure}
+  \begin{subfigure}{0.32\textwidth}
+    \centering
+    \begin{asy}
+      import MOgeom;
+      size(0,1inch);
+      pair C[] = CircleOfUnity(3), D=(2,0);
+      D("1",C[0],S);
+      D("2",C[1]);
+      D("3",C[2]);
+      D("4",D,S);
+      D(C[0]--C[1]);
+      D(C[0]--C[-1]);
+      D(C[1]..(C[1].x-0.3,0)..C[-1]);
+      D(C[1]..(C[1].x+0.3,0)..C[-1]);
+      label("$d$",(C[1].x+.3,0),E);
+      label("$e$",(C[1].x-.3,0),W);
+      label("$b$",(C[0]+C[1])/2,N);
+      label("$c$",(C[0]+C[-1])/2,S);
+      label("$a$",(1.5,0),N);
+      D(C[0]--D);
+      real dis=.8;
+      D(D..(D.x+dis/2,-dis/4)..(D.x+dis,0)..(D.x+dis/2,+dis/4)..D);
+      label("$f$",(D.x+dis,0),E);
+    \end{asy}
+    \caption{Graph}
+    \label{fig:exp_graph}
+  \end{subfigure}
+  \begin{subfigure}{0.32\textwidth}
+    \[
+      \begin{blockarray}{ccccccc}
+        &a & b & c & d & e&f\\
+        \begin{block}{c[cccccc]}
+          1 & 1 & -1 & 1 & 0 & 0 & 0 \\
+          2 & 0 & 1 & 0 & -1 & 1 & 0 \\
+          3 & 0 & 0 & -1 & 1 & -1 & 0 \\
+          4 & -1 & 0 & 0 & 0 & 0 & 0 \\
+        \end{block}
+      \end{blockarray}
+    \]
+    \vspace{-2em}
+    \caption{Representation}
+    \label{fig:exp_representation}
+  \end{subfigure}
+  \caption{Example: Matroids}
+  \label{fig:exp_matroids}
+\end{figure}
+
+In this note, we use "maximal" and "minimal" with respect to inclusion. It is not hard to have the following observation about linear dependency:
+
+\begin{lemma}[lem:ind_subset]{}
+  If a set of vectors $E$ of the vector space $\mathbb{R}^n$ is linearly independent, then any subset of $E$ is linearly independent. If $E$ is linearly dependent, then $E\cup F$ is linearly dependent for any set of vectors $F$ of $\mathbb{R}^n$.
+\end{lemma}
+
+Hence to record the collection of all linearly independent sets, it is enough to record the maximal linearly independent sets. Similarly, to record the collection of all linearly dependent sets, it is enough to record the minimal dependent sets. For our example \Cref{fig:exp_linear_algebra}, we have the following collections.
+
+\begin{enumerate}
+  \item Linear independent set: $\left\{a,b,c,d,e,ab,ac,ad,ae,bc,bd,be,cd,ce,abd,abe,abc,acd,ace\right\}$.
+  \item Maximal independent set: $\{abd,abe,abc,acd,ace\}$.
+  \item Minimal dependent set: $\left\{f,de,bcd,bce\right\}$
+\end{enumerate}
+
+\nbf{Graph}
+
+For linear algebra, a combinatorial property of a set of vectors is their linear independence. For graphs, the "corresponding" combinatorial property of a set of edges is if they contain a cycle. Hence the "base set" in the graph case will be the set of edges (w.r.t. the set of vectors in linear algebra).
+
+For the pure combinatorial purpose, we assume our graphs to be undirected. And for a graph $G$, we denote $E(G)$ and $V(G)$ to be the set of edges and vertices of $G$ respectively.
+
+\begin{definition}[def:]{Cycle}
+  A cycle is a non-empty trail in which only the first and last vertices are equal.
+\end{definition}
+
+\begin{definition}[def:]{Independency -- Graph}
+  A set of edges is called independent if it does not contain a cycle.
+  \begin{remark}
+    In the case where the graph $G$ is connected, a maximal independent would hence be a spanning tree.
+  \end{remark}
+\end{definition}
+
+With this notion of independency, for the graph \Cref{fig:exp_graph}, we see that all the observations in \cref{exp:matroid_lin_indep} can be applied also. Indeed, one can check that \Cref{fig:exp_linear_algebra} and \Cref{fig:exp_graph} shares the exact collection of independent sets, maximal independent sets, and minimal dependent sets.
+
+\nbf{Combinatorial Essence of Independence}
+
+If we are only interested in the concept of dependency, a set of vectors or a graph obviously contain too much information. In the linear algebra case, it is obvious that the length of the vector will not affect the dependency. Moreover, the directions of the vectors do not matter also to some extent. For example, in our example \Cref{fig:exp_linear_algebra}, tilting the vector $a$ from $(0,0,1)$ to $(1,1,1)$ will not affect the dependency. 
+
+In the graph case, how the edges are connected exactly will not affect the dependency as well. For example, which vertex is the loop $f$ placed on will not affect the dependency. It is not hard to see that rotating some other edges will keep the dependency as well.
+
+Indeed, here we have two different mathematical objects, but they share the same dependency. It makes us wonder if we can extract the dependency information from them.
+
+\section{Definition of Matroids}
+
+There are several ways (perspectives) to define a matroid, namely independent sets, circuits, bases, flats, rank functions, and so on. They treat different points of view on the same concept of independence. We will introduce the first three perspectives today.
+
+\nbf{Independent Sets}
+
+\begin{definition}[def:matroid_indep]{Matroid (Independence)}
+  A \vocab{matroid} $M$ is an ordered pair $(E,\II)$ consisting of a finite set $E$ and a collection $\II\subseteq 2^E$ of subsets of $E$ having the following properties:
+  \begin{enumerate}
+    \item [I1.] $\emptyset \in \II$.
+    \item [I2.] If $I_1\in \II$ and $I_2\subseteq I_1$ then $I_1\in \II$, i.e., $\II$ is closed under taking subsets.
+      %$\ceil{\II}=\II$, i.e., $\II$ is closed under taking subsets.
+    \item [I3.] (Independent set exchange property) If $I_1$ and $I_2$ are in $\II$ and $|I_1|>|I_2|$, then there is an element $e$ of $I_1-I_2$ such that $I_2\cup e\in \II$.
+  \end{enumerate}
+  The members of $\II$ are the \vocab{independent sets} of $M$, and $E$ is the group set of $M$. A subset of $E$ that is not in $\II$ is called \textbf{dependent}. We often write $\II(M)$ for $\II$ and $E(M)$ for $E$.
+\end{definition}
+
+%We are going to show that both linear algebra and graphs form matroids.
+The name "matroid" was coined by Whitney (1935) because a class of fundamental examples of such objects arises from matrices. Indeed, we can rephrase our linear algebra example as follows.
+
+\begin{theorem}[thm:matrix_matroid]{}
+  Let $E$ be the set of column labels of an $m\times n$ matrix $A$, and let $\II$ be the set of subsets $X$ of $E$ for which the multiset of columns labeled by $X$ is linearly independent. Then $(E,\II)$ is a matroid.
+  \begin{proof}
+    $I1$ and $I2$ follows from \cref{lem:ind_subset}. For $I3$, consider $W=\Span(I_1\cup I_2)$, we have $\rank(W)\geq |I_2|$. If $I_1\cup e$ is dependent for all $e\in I_2\setminus I_1$, then $\Span(I_1)=W$. But $\rank(\Span(I_1))=|I_1|<|I_2|\leq \rank(W)$, contradiction.
+  \end{proof}
+\end{theorem}
+
+\nbf{Circuits}
+
+\begin{definition}[def:]{Circuit}
+  A minimal dependent set in a matroid $M$ will be called a \vocab{circuit}. We will denote the collection of circuits of $M$ by $\CC$ or $\CC(M)$.
+\end{definition}
+
+From \cref{def:matroid_indep}, to define a matroid (to specify $\II$), we can instead specify the complement $2^E\setminus \II$, or the collection of dependent sets. In view of \cref{lem:ind_subset}, the collection of all dependent sets can be specified by only the collection of minimal dependent sets. Hence, once $\II(M)$ has been specified, $\CC(M)$ can be determined. Similarly, $\II(M)$ can be determined from $\CC(M)$: the members of $\II(M)$ are those subsets of $E(M)$ that contain no member of $\CC(M)$.
+Thus a matroid is uniquely determined by its collection $\CC$ of circuits.
+
+By the "minimal" property of circuits, it is obvious that $\CC$ satisfies:
+\begin{enumerate}
+  \item [C1.] $\emptyset \not\in \CC$.
+  \item [C2.] If $C_1, C_2\in \CC$ and $C_1\subseteq C_2$, then $C_1=C_2$.
+\end{enumerate}
+
+Furthermore:
+\begin{lemma}[lem:]{Circuit Elimination Axiom}
+  The set $\CC$ of circuits of a matroid satisfies:
+  \begin{enumerate}
+    \item [C3.] If $C_1,C_2\in \CC$ with $C_1\neq C_2$ and $\ee\in C_1\cap C_2$, then exist $C_3\in \CC$ such that $C_3\subseteq (C_1\cup C_2)-\ee$.
+  \end{enumerate}
+  \begin{proof}
+    Assume $C_1\cup C_2\setminus \ee$ is in $\II$. By $C2$, the set $C_2-C_1$ is non-empty, so we can choose an element $f$ from this set. As $C_2$ is a minimal dependent set, $C_2-f\in \II$. Now choose a subset $I$ of $C_1\cup C_2$ which is maximal with the properties that it contains $C_2-f$ and is independent. Evidently $f\notin I$. Moreover, as $C_1$ is a circuit, some element $g$ of $C_1$ is not in $I$. As $f\in C_2-C_1$, the elements $f$ and $g$ are distinct. Hence 
+    \[
+      |I|\leq |(C_1\cup C_2)-\left\{f,g\right\}|=|C_1\cup C_2|-2<|(C_1\cup C_2)-e|.
+    \]
+    Now Apply $I3$, taking $I_1$ and $I_2$ to be $I$ and $(C_1\cup C_2)-e$, respectively. The resulting independent set contradicts the maximality of $I$.
+  \end{proof}
+\end{lemma}
+
+And turns out this $C3$ is enough for us to characterize the collections of circuits:
+
+\begin{theorem}[thm:]{}
+  Let $E$ be a set and $\CC$ be a collection of subsets of $E$ satisfying $C1$--$C3$. Let $\II$ be the collection of subsets of $E$ that contain no member of $\CC$. Then $(E,\II)$ is a matroid having $\CC$ as its collection of circuits.
+  \begin{proof}
+    I1: By $C1$, $\emptyset\notin \CC$, so $\emptyset \in \II$.
+    I2: If $I$ contains no member of $\CC$ and $I'\subseteq I$, then $I'$ contains no member of $\CC$. With some tedious work of chasing the definition, we can prove I3, which we will omit here.
+  \end{proof}
+\end{theorem}
+
+\begin{proposition}[pps:]{}
+  Suppose that $I$ is an independent set in a matroid $M$ and $e$ is an element of $M$ such that $I\cup e$ is dependent. Then $M$ has a unique circuit contained in $I\cup e$, and this circuit contains $e$.
+  \begin{proof}
+    Clearly, $I\cup e$ contains a circuit, and all such circuits must contain $e$. Let $C$ and $C'$ be distinct such circuits, then $(C\cup C')-e$ contains a circuit. But $(C\cup C')-e\subseteq I$, contradiction.
+  \end{proof}
+\end{proposition}
+
+\begin{proposition}[pps:]{Cycle Matroid}
+  Let $E$ be the set of edges of a graph $G$ and $\CC$ be the set of edge sets of cycles of $G$. Then $\CC$ is the set of circuits of a matroid on $E$.
+  \begin{remark}
+    We call the matroid derived above from the graph $G$ the \vocab{cycle matroid} of $G$. 
+  \end{remark}
+  \begin{proof}
+    Clearly $\CC$ satisfies $C1$ and $C2$. For $C3$, let $C_1$ and $C_2$ be the edge sets of two distinct cycles of $G$ that have $e$ as a common edge. Let $u$ and $v$ be the endpoints of $e$. We now construct a cycle of $G$ whose edge set is contained in $(C_1\cup C_2)-e$. For each $i$ in $\left\{1,2\right\}$, let $P_i$ be the path from $u$ to $v$ in $G$ whose edge set is $C_i-e$. Beginning at $u$, traverse $P_1$ towards $v$ letting $w$ be the first vertex at which the next edge of $P_1$ is not in $P_2$. Continue traversing $P_1$ from $w$ towards $v$ until the first time a vertex $x$ is reached that is distinct from $w$ but is also in $P_2$. Since $P_1$ and $P_2$ both end at $v$, such a vertex must exist. Now adjoin the section of $P_1$ from $w$ to $x$ to the section of $P_2$ from $x$ to $w$. The result is a cycle, the edge set of which is contained in $(C_1\cup C_2)-e$. 
+  \end{proof}
+\end{proposition}
+
+In the sense of matroid, the connectedness of a graph does not affect its matroidal structure to some extent:
+
+\begin{proposition}[pps:]{}
+  Let $M$ be a graphic matroid. Then $M\simeq M(G)$ for some connected graph $G$.
+  \begin{proof}
+    As $M$ is graphic, $M\simeq M(H)$ for some graph $H$. If $H$ is connected, the result is proved. If not, suppose $\flds{H}{,}{n}$ are the connected components of $H$. For each $i$ in $\left\{1,\dots ,n\right\}$, choose a vertex $v_i\in H_i$. Form a new graph $G$ by identifying $\flds{v}{,}{n}$ as a single vertex. Clearly $E(H)=E(G)$ and $G$ is connected. The proof follows by observing that if $X\subseteq E(H)$, then $X$ is the set of edges of a cycle in $H$ iff $X$ is the set of edges of a cycle in $G$. 
+  \end{proof}
+\end{proposition}
+
+\newpage
+\nbf{Bases}
+
+\begin{definition}[def:]{Basis or Base}
+  We call a maximal independent in a matroid $M$ a \vocab{bases} or a \vocab{base}.
+\end{definition}
+
+\begin{lemma}[lem:]{}
+  If $B_1$ and $B_2$ are bases of a matroid $M$, then $|B_1|=|B_2|$.
+\end{lemma}
+
+If $M$ is a matroid and $\BB$ is its collection of bases, then by $I1$, we have $\BB$ satisfies:
+\begin{enumerate}
+  \item [B1.] $\BB$ is non-empty.
+\end{enumerate}
+And corresponding to $I3$ and $C3$, we have the following property of $\BB$:
+
+\begin{lemma}[lem:]{Basis Exchange Property}
+  The set $\BB$ of bases of a matroid satisfies:
+  \begin{enumerate}
+    \item [B2.] If $B_1$ and $B_2$ are members of $\BB$ and $x\in B_1-B_2$, then there is an element $y\in B_2-B_1$ s.t. $(B_1-x)\cup y\in \BB$.
+  \end{enumerate}
+\end{lemma}
+
+And again, we can show that $B1$ and $B2$ characterize the bases of a matroid:
+\begin{theorem}[thm:]{}
+  Let $E$ be a set and $\BB\subseteq 2^E$ satisfying $B1$ and $B2$. Let $\II$ be the collection of subsets of $E$ that are contained in some member of $\BB$. Then $(E,\II)$ is a matroid having $\BB$ as its collection of bases.
+\end{theorem}
+
+\begin{corollary}[crl:fund_cir_of_basis]{Fundamental Circuit of $e$ w.r.t. $B$}
+  Let $B$ be a basis of a matroid $M$. If $e\in E(M)-B$, then $B\cup e$ contains a unique circuit, $C(e,B)$. Moreover, $e\in C(e,B)$.
+\end{corollary}
+
+\section{Duality}
+
+The concept of duality appears in basically any mathematics object: graph theory, vector space, and so on. Certainly, matroids also have duality, which serves as one of their most attractive features.
+
+\begin{theorem}[thm:]{Dual Matroid}
+  Let $M$ be a matroid and $\BB^*(M)$ be $\left\{E(M)-B:B\in \BB(M)\right\}$. Then $\BB^*(M)$ is the set of bases of a matroid on $E(M)$. 
+  \begin{remark}
+    This matroid with ground set $E(M)$ and bases $\BB^*(M)$ is called the \vocab{dual} of $M$ and is denoted by $M^*$. Hence $\BB(M^*)=\BB^*(M)$.
+  \end{remark}
+  \begin{lemma}[lem:]{}
+    The set $\BB$ of bases of a matroid $M$ has the following property:
+    \begin{enumerate}
+      \item [B2$^*$.] If $B_1,B_2\in \BB$ and $x\in B_2-B_1$, then there is an element $y$ of $B_1-B_2$ s.t. $(B_1-y)\cup x\in \BB$.
+    \end{enumerate}
+    \begin{proof}
+      By \cref{crl:fund_cir_of_basis}, $B_1\cup x$ contain a unique circuit $C(x,B_1)$. As $C(x,B_1)$ is dependent and $B_2$, is independent, $C(x,B_1)-B_2$ is non-empty. Let $y$ be an element of this set. Evidently, $y\in B_1-B_2$. Moreover, $(B_1-y)\cup x$ is independent since it does not contain $C(x,B_1)$. As $|(B_1-y)\cup x|=|B_1|$, it follows that $(B_1-y)\cup x$ is a basis.
+    \end{proof}
+  \end{lemma}
+  \begin{proof}
+    As $\BB(M)$ is non-empty, so is $\BB^*(M)$. Hence $\BB^*(M)$ satisfies $B1$. Now suppose $B_1^*$ and $B_2^*$ are in $\BB^*(M)$ and $x\in B_1^*-B_2^*$. Let $E:=E(M)$, and let $B_i=E-B_i^*$ for each $i=1,2$. Then $B_i\in \BB(M)$ and $B_1^*-B_2^*=B_1^*\cap (E-B_2^*)=(E-B_1)\cap B_2=B_2-B_1$. By $B2^*$, as $x\in B_2-B_1$, there is an element $y$ of $B_1-B_2$ s.t. $(B_1-y)\cup x\in \BB(M)$. Clearly $y\in B_2^*-B_1^*$ and $E-((B_1-y)\cup x)\in \BB^*(M)$. But $E-((B_1-y)\cup x)=((E-B_1)-x)\cup y=(B_1^*-x)\cup y$. Thus $\BB^*(M)$ satisfies $B2$, and $\BB^*(M)$ is indeed the set of bases of a matroid on $E$.
+  \end{proof}
+\end{theorem}
+
+The bases of $M^*$ are called cobases of $M$. A similar convention applies to other distinguished subsets of $E(M^*)$. For example, the circuits and independent sets of $M^*$ are called cocircuits and coindependent sets. 
+
+\begin{proposition}[pps:intersection_circuit_cocircuit]{}
+  In a matroid $M$, let $C$ be a circuit and $C^*$ be a cocircuit. Then $|C\cap C^*|\neq 1$.
+  \begin{proof}
+    We first obvserve the following equivalence for $X\subseteq E(M)$:
+    \begin{enumerate}
+      \item $X$ is a non-spanning set of $M$ but $X\cup y$ is spanning for all $y\notin X$ (or equivalently $X$ is of rank $r(M)-1$).
+      \item $E-X$ is dependent in $M^*$ but $(E-X)-y$ is independent in $M^*$ for all $y$ in $E-X$ (or equivalently $E-X$ is a cocircuit of $M$).
+    \end{enumerate}
+    Assume contrary $C\cap C^*=\{x\}$. Since $C$ is a circuit, $C-x$ is independent. We can then extend it to maximal independent set $B$ of $M-C^*$, which by (1) is of rank $r(M)-1$, and $B+y$ for any $y\in C^*$ is a basis of $M$. In particular, $B+x$ is a basis. But $C\subseteq B+x$, contradiction.
+  \end{proof}
+\end{proposition}
+
+For the particular type of matroids we are introducing, cycle matroid, we give a specific name to its dual:
+
+\begin{definition}[def:]{Bond/Cocycle Matroid}
+  For a graph $G$, we denote the dual of the cycle matroid of $G$ by $M^*(G)$. We call this matroid \vocab{bond matroid} or \vocab{cocycle matroid}.
+\end{definition}
+
+We will see later that the duality of a graph matroid has a deep connection with the duality of graphs. The graphs we will focus on are a specific type:
+
+\begin{definition}[def:]{Planar Embedding}
+  A \vocab{planar embedding} of a graph $G$ is a mapping from every vertice to a point on a plane, and from every edge to a plane curve on that plane, such that the extreme points of each curve are the points mapped from its end nodes, and all curves are disjoint except on their extreme points. 
+\end{definition}
+
+\begin{definition}[def:]{Plane Graph}
+  A \vocab{plane graph} is a graph $G$ together with a planar embedding of $G$. We call a graph \textbf{planar} if it has a planar embedding.
+\end{definition}
+
+\begin{example}[exp:]{}
+  Not every graph is planar, and some graph may seem non-planar but indeed is.
+  \begin{figure}[H]
+    \centering
+    \begin{subfigure}{0.45\textwidth}
+      \centering
+      \begin{subfigure}{0.45\textwidth}
+        \centering
+        \begin{asy}
+          import MOgeom;
+          size(0,.9inch);
+          pair A=(-1,-1), B=(-1,1), C=(1,1), D=(1,-1); 
+          D(D(A)--D(B)--D(C)--D(D)--cycle);
+          D(A--C);
+          D(B--D);
+        \end{asy}
+      \end{subfigure}
+      \textrightarrow
+      \begin{subfigure}{0.45\textwidth}
+        \centering
+        \begin{asy}
+          import MOgeom;
+          size(0,.9inch);
+          pair A=(-1,-1), B=(-1,1), C=(1,1), D=(1,-1); 
+          D(D(A)--D(B)--D(C)--D(D)--cycle);
+          D(A..(-1.2,1.2)..C);
+          D(B--D);
+        \end{asy}
+      \end{subfigure}
+    \caption{Planar Graphs: $K_4$}
+    \end{subfigure}
+    \begin{subfigure}{0.45\textwidth}
+      \begin{subfigure}{0.45\textwidth}
+        \centering
+        \begin{asy}
+          import MOgeom;
+          size(0,.9inch);
+          pair C[] = CircleOfUnity(5)*dir(18);
+          DCP(C,ar=None);
+          D(C[0]--C[2]);
+          D(C[1]--C[3]);
+          D(C[2]--C[4]);
+          D(C[3]--C[0]);
+          D(C[4]--C[1]);
+        \end{asy}
+      \end{subfigure}
+      \textrightarrow
+      \begin{subfigure}{0.45\textwidth}
+        \centering
+        \begin{asy}
+          import MOgeom;
+          size(0,.9inch);
+          pair C[] = CircleOfUnity(5)*dir(18);
+          DCP(C,ar=None);
+          D(C[0]..(0,1.2)..C[2]);
+          D(C[1]--C[3]);
+          D(C[2]..(0,-1.2)..C[4]);
+          D(C[3]--C[0]);
+          D(C[4]--C[1]);
+        \end{asy}
+      \end{subfigure}
+      \caption{Non-Planar Graphs: $K_5$}
+    \end{subfigure}
+  \end{figure}
+\end{example}
+
+\begin{definition}[def:]{Dual Graph}
+  For a graph $G$ with at least one edge, the construction of $G^*$, the \vocab{dual} of $G$, is formally described as follows: Choose a single point $v_F$ in each face of $F$ of $G$. These points are to be the vertices of $G^*$. Suppose that the set of edges common to the boundaries of two faces $F$ and $F'$ is $\left\{\flds{e}{,}{k}\right\}$. Then we join $v_F$ and $v_{F'}$ by $k$ edges $\flds{e'}{,}{k}$, where $e_i'$ crosses $e_i$ but no other edge of $G$, and each $e_i'$ is a simple curve. The only points common to two distinct edges of $G^*$ can be their endpoints. If the edge $e$ of $G$ lies on the boundary of a single face $F$, we add a loop $e'$ at $v_F$ crossing $e$ but no other edge of $G$ or $G^*$.
+  \begin{remark}
+    It is not difficult to show that $G^*$ is connected. And if $G$ is connected, $(G^*)^*=G$.
+  \end{remark}
+\end{definition}
+
+\begin{example}[exp:]{Dual Graphs}
+  Here we provide some examples of dual graphs. Note that a dual graph depends on a planer embedding. In \cref{fig:diff_embedding}, we can see that $G_1$ and $G_2$ represent the same graph, but $G_1^*$ and $G_2*$ are not isomorphic. Yet, we can prove that $G_1^*$ and $G_2^*$ have isomorphic cycle matroids. 
+  \begin{figure}[H]
+  \centering
+  \begin{subfigure}{0.35\textwidth}
+    \centering
+    \begin{asy}
+      import MOgeom;
+      size(0,.9inch);
+      pair C[] = CircleOfUnity(3), D=(2.5,0);
+      pair M[];
+      D(C[0]);
+      D(C[1]);
+      D(C[2]);
+      D(D);
+      D(C[0]--C[1]);
+      D(C[0]--C[-1]);
+      D(C[1]..(C[1].x-0.3,0)..C[-1]);
+      D(C[1]..(C[1].x+0.3,0)..C[-1]);
+      D(C[0]--D);
+      real dis=1;
+      D(D..(D.x+dis/2,-dis/4)..(D.x+dis,0)..(D.x+dis/2,+dis/4)..D);
+      M[0]=(C[1].x,0);
+      M[1]=o+0.3;
+      M[2]=((C[0].x+D.x)/2,1);
+      M[3]=D+dis/2;
+      pointpen=green;
+      pathpen=grey+dashed;
+      for (int i:sequence(4)){D(M[i]);}
+      D(M[0]--M[1]--M[2]--M[3]);
+      D(M[0]..(-1.5,2)..(0.2,1.5)..M[2]);
+      D(M[1]..(0.4,-0.1)..(5,0)..(3.5,1.3)..M[2]);
+      D(M[2]..(3,.8)..(2*M[3]-M[2])*.8..((C[0].x+D.x)/2,0)..M[2]);
+    \end{asy}
+    \caption{Example of Dual Graphs}
+  \end{subfigure}
+  \begin{subfigure}{0.6\textwidth}
+    \centering
+    $G_1$
+    \begin{asy}
+      import MOgeom;
+      size(0,.9inch);
+      pair A=(-1,-1), B=(-1,1), C=(1,1), D=(1,-1), E=(3,0), F=(-3,0); 
+      D(D(A)--D(B)--D(C)--D(D)--cycle);
+      D(A--D(F)--B);
+      D(C--D(E)--D);
+      pointpen=green;
+      pathpen=grey+dashed;
+      pair O=D((0,0)), N=D((-2,0)), P=D((2,0)), T=D((0,2));
+      D(T--O--P);
+      D(O--N);
+      D(T..(1.3,1.3)..P);
+      D(T..(3,0.8)..(3.5,0)..(3,-0.5)..P);
+      D(T..(-1.3,1.3)..N);
+      D(T..(-3,0.8)..(-3.5,0)..(-3,-0.5)..N);
+      D(T..(3.7,0.8)..(3.7,-0.8)..(1,-1.5)..O);
+    \end{asy}
+    \qquad \quad 
+    $G_1^*$
+    \begin{asy}
+      import MOgeom;
+      size(0,.9inch);
+      pointpen=green;
+      pathpen=grey;
+      pair C[] = CircleOfUnity(4);
+      D(D(C[1])--D(C[3])--D(C[2]));
+      D(C[3]--D(C[0]));
+      D(C[1]..(0.9*dir(135))..C[2]);
+      D(C[1]..(0.6*dir(135))..C[2]);
+      D(C[1]..(0.9*dir(45))..C[0]);
+      D(C[1]..(0.5*dir(45))..C[0]);
+      D(C[1]..(1.5,0)..C[3]);
+    \end{asy}
+    \vspace{0.4em}
+
+    $G_2$
+    \begin{asy}
+      import MOgeom;
+      size(0,.9inch);
+      pair A=(-1,-1), B=(-1,1), C=(3,1), D=(3,-1), E=(1.2,0), F=(-3,0); 
+      D(D(A)--D(B)--D(C)--D(D)--cycle);
+      D(A--D(F)--B);
+      D(C--D(E)--D);
+      pointpen=green;
+      pathpen=grey+dashed;
+      pair O=D((0,0)), N=D((-2,0)), P=D((2.3,0)), T=D((0,2));
+      D(T--O--N);
+      D(O..(1.2,-0.5)..P);
+      D(O..(1.2,+0.5)..P);
+      D(T..(3,1.5)..(3.5,0.5)..P);
+      D(T..(B+(-0.3,0.3))..N);
+      D(T..(-3,0.8)..(-3.5,0)..(-3,-0.5)..N);
+      D(T..(3.7,0.8)..(3.7,-0.8)..(1,-1.5)..O);
+    \end{asy}
+    \qquad \quad 
+    $G_2^*$
+    \begin{asy}
+      import MOgeom;
+      size(0,.9inch);
+      pointpen=green;
+      pathpen=grey;
+      pair C[] = CircleOfUnity(4);
+      D(D(C[1])--D(C[3])--D(C[2]));
+      D(C[1]--D(C[0]));
+      D(C[1]..(0.9*dir(135))..C[2]);
+      D(C[1]..(0.6*dir(135))..C[2]);
+      D(C[3]..(0.9*dir(-45))..C[0]);
+      D(C[3]..(0.5*dir(-45))..C[0]);
+      D(C[1]..(1.5,0)..C[3]);
+    \end{asy}
+    \caption{Different embeddings giving different geometric duals}
+    \label{fig:diff_embedding}
+  \end{subfigure}
+    \caption{Example}
+\end{figure}
+\end{example}
+
+\begin{definition}[def:]{Edge Cut}
+  For a set $X$ of edges in a graph $G$, we shall denote by $G\setminus X$ the subgraph of $G$ obtained by deleting all the edges in $X$. If $G\setminus X$ has more connected components than $G$, we call $X$ an \vocab{edge cut} of $G$.
+\end{definition}
+
+\begin{definition}[def:]{Bond/Cocycle}
+  We call a minimum edge cut a \vocab{bond} or \vocab{cocycle} of $G$.
+\end{definition}
+
+It turns out that the circuits of the dual of a cycle matroid (bond matroid) of $G$ are exactly the bonds of $G$. Or more generally,
+
+\begin{lemma}[lem:]{}
+  If $G^*$ is a geometric dual of a connected planer graph $G$, then
+  \[
+    M(G^*)\simeq M^*(G).
+  \]
+  \vspace{-2em}
+  \begin{proof}
+    Let $G^*$ be the geometric dual of a planar embedding $G_0$ of $G$. The construction of $G^*$ from $G_0$ determines a bijection $\alpha$ from $E(G_0)$ to $E(G^*)$. We shall show that, under the map $\alpha$, $M(G_0)\simeq M^*(G^*)$. Since $M(G_0)=M(G)$, the required result will be the following.
+
+    Let $C$ be a circuit in $M(G_0)$. We want to show that $\alpha(C)$ is a bond in $G^*$. Now $C$ forms a Jordan curve (a closed curve that does not self-intersect) in the plane, and each edge in $\alpha(C)$ has one endpoint inside and the other endpoint outside this closed curve. Thus $\alpha(C)$ is an edge cut in $G^*$. The fact that $\alpha(C)$ is a minimal edge cut will follow from what we shall show next, namely, that if $X$ is a minimal edge cut in $G^*$, then $\alpha^{-1}(X)$ contains a cycle of $G_0$. Evidently, on deleting the edges of $X$ from $G^*$, we obtain a graph having two components, $G_1^*$ and $G_2^*$. Moreover, every edge in $X$ has one endpoint in $G_1^*$ and the other is $G_2^*$. If $|X|=1$, then it follows from the construction of $G^*$ that the single edge in $\alpha^{-1}(X)$ is a loop of $G_0$. Now suppose that $|X|>1$ and let $F$ be a face of $G^*$ s.t. some edge, say $x$, of $X$, is in the set $F'$ of boundary edges of $F$. Then, as $x$ is not a cut-edge of $G^*$, it is not difficult to check that $x$ is not a cut-edge of $G^*[F']$. It is now an easy exercise in graph theory to show that $F'$ contains a circuit $C_x$ of $M(G^*)$ that contains $x$. 
+
+    Since $X$ is a cocircuit of $M(G^*)$ and $x\in X\cap C_x$, it follows, by \cref{pps:intersection_circuit_cocircuit}, that $|X\cap C_x|\geq 2$. Hence if a face of $G^*$ meets an edge of $X$, it meets more than one such edge. Since $G_0$ is connected, $(G^*)^*=G_0$. Thus the faces of $G^*$ correspond to vertices of $G_0$. Therefore, every vertex of $G_0$ meeting an edge of $\alpha^{-1}(X)$ meets at least two such edges. Now a graph in which every vertex has a degree of at least two contains a cycle. Thus the induced graph $G_0[\alpha^{-1}(X)]$ contains a cycle of $G_0$. 
+  \end{proof}
+\end{lemma}
+
+\begin{corollary}[crl:]{}
+  TFAE for a subset $X$ of the set of edges of a graph $G$:
+  \begin{enumerate}
+    \item $X$ is a circuit of $M^*(G)$.
+    \item $X$ is a cocircuit of $M(G)$.
+    \item $X$ is a bond of $G$.
+  \end{enumerate}
+\end{corollary}
+
+\begin{theorem}[thm:]{}
+  Let $M$ be a matroid.
+  \begin{enumerate}
+    \item A set $C^*$ is a cocircuit of $M$ iff $C^*$ is a minimal set having a non-empty intersection with every basis of $M$.
+    \item A set $B$ is a basis of $M$ iff $B$ is a minimal set having a non-empty intersection with every cocircuit of $M$.
+  \end{enumerate}
+\end{theorem}
+
+This blocking property suggests the following two-person game. Given a matroid $M$ with ground set $E$, two players B and C alternately tag elements of $E$. The goal for B is to tag all the elements of some basis of $M$, while the goal for C is to prevent this. Equivalently, by the last result, C’s goal is to tag all the elements of some cocircuit of $M$. We shall specify when B can win against all possible strategies of C. If B has a winning strategy playing second, then it will certainly have a winning strategy playing first. This game has some interesting results.
+
+\begin{theorem}[thm:]{}
+  The following statements are equivalent to a matroid $M$ with ground set $E$.
+  \begin{enumerate}
+    \item Player C plays first and player B can win against all possible strategies of C.
+    \item The matroid $M$ has 2 disjoint bases.
+    \item For all subsets $X$ of $E$, $|X|\geq 2(r(M)-r(M\setminus X))$.
+  \end{enumerate}
+  \begin{remark}
+    Edmonds also specified when player C has a winning strategy but this is more complicated and we omit it.
+  \end{remark}
+\end{theorem}
+
+\section{The Greedy Algorithm}
+
+\begin{definition}[def:]{Weight Function}
+  Let $G$ be a connected graph and let $w$ be a function from $E(G)$ into $\mathbb{R}$. We call $w$ a weight function on $G$ and, for all $X\subseteq E(G)$, we define the \vocab{weight} $w(X)$ of $X$ to be $\sum_{x\in X}^{}w(x)$.
+\end{definition}
+
+For a given $G$ and $w$, we are interested in finding a spanning tree of $G$ of minimum weight. The solution to this question is by the greedy algorithm. This optimization problem can be extended to a matroid-like setting:
+
+Let $\II\subseteq 2^E$ and suppose $\II$ satisfies $I1$ and $I2$. Let $w$ be a function from $E$ into $\mathbb{R}$. Similarly, define $w(X):=\sum_{x\in X}^{}w(x)$ for $X\subseteq E$. The optimzation problem for the pair $(\II,w)$ is as follows:
+
+\begin{mdframed}
+  \textbf{Optimazation Problem}. 
+  \textit{Find a maximal member $B$ of $\II$ of maximum weight.}
+\end{mdframed}
+
+\begin{lemma}[lem:]{}
+  If $(E,\II)$ is a matroid $M$, then $B_G$ constructed by the greedy algorithm define below is a solution to the optimization problem:
+  \begin{enumerate}
+    \item Set $X_0=\emptyset $ and $j=0$.
+    \item If $E-X_j$ contains an element $e$ s.t. $X_j\cup e\in \II$, choose such an element $e_{j+1}$ of maximum weight, let $X_{j+1}=X_j\cup e_{j+1}$, and go to (3.); otherwise, let $B_G=X_j$ and go to (4.).
+    \item Add $1$ to $j$ and go to (2.).
+    \item Stop.
+  \end{enumerate}
+\end{lemma}
+
+Indeed, greedy algorithms characterize matroids.
+
+\begin{theorem}[thm:]{}
+  Let $\II\subseteq 2^E$. Then $(E,\II)$ is a matroid iff $\II$ satisfies $I1$, $I2$, and
+  \begin{enumerate}
+    \item [G.] For all weight funcs $w:E\rightarrow \mathbb{R}$, the greedy algorithm produces a maximal member of $\II$ of max weight.
+  \end{enumerate}
+\end{theorem}
+
+\section{Classification of Matroids}
+
+Matroids not only capture the essence of independence from linear algebra and graph but also allow us to define new types of "independence" in the following sense: We call a matroid \vocab{representable} over field $\mathbb{F}$ if it is isomorphic to the matroid arise from a matrix $A$ with entries in $\mathbb{F}$ in the sense of \cref{thm:matrix_matroid}. And we call a matroid that is isomorphic to the cycle matroid of some graph \vocab{graphic}. Indeed, all graphic matroids are representable.
+
+\begin{proposition}[pps:]{}
+  If $G$ is a graph, then the cycle matroid of $G$ is representable over every field.
+  \begin{proof}
+    We can arbitrarily assign a direction to each edge of $G$. Then for each edge $e$ with head at vertex $i$ and tail at vertex $j$, we assign to each $e$ a column vector $\vect{v}_e$ with entry equals $1$ at the $i$-th entry; $-1$ at the $j$-th entry; and $0$ otherwise. Then we can check that such a set of column vectors form the same matroid.
+  \end{proof}
+  \begin{remark}
+    An example would be our main example \cref{fig:exp_matroids}.
+  \end{remark}
+\end{proposition}
+
+But almost all matroids are non-representable. Such a result is only proven very recently in 2010 by Peter Nelson. Some of the non-representable matroids can be drawn with a graphical representation.
+
+\begin{definition}[def:]{Graphical Representation (rank 3 or below)}
+  For a matroid $M$, if we can draw $E$ as the set of points with a set of lines (need not be straight) such that for $X\in \II$ we have $|X|\leq 3$ and $X$ does not contain $3$ collinear points.
+\end{definition}
+
+We have the following famous example of non-representable matroids:
+\begin{figure}[H]
+  \centering
+  \begin{subfigure}{0.45\textwidth}
+    \centering
+    \begin{asy}
+      import MOgeom;
+      size(0,1inch);
+      pair C[] = CircleOfUnity(3)*dir(-30);
+      pair D[]={(0,C[0].y)};
+      DCP(C,li=false);
+      D(CR(o,-C[0].y));
+      D[1]=D[0]*dir(120);
+      D[2]=D[0]*dir(240);
+      D.cyclic=true;
+      for (int i:sequence(3)){D(D(string(i+1),C[i])--D(string(4+i),D[i+2]));}
+      D("7",o);
+    \end{asy}
+    \caption{Fano Matroid (Only 2-representable)}
+  \end{subfigure}
+  \begin{subfigure}{0.45\textwidth}
+    \centering
+    \begin{asy}
+      import MOgeom;
+      size(0,1inch);
+      pair A[] = {(-1,1),(.9,1),(2,1)};
+      pair B[] = {(-1.1,-1),(.8,-1),(1.9,-1)};
+      D(B[2]--A[0]--A[2]--B[0]--B[2]--A[1]--B[0]);
+      D(A[0]--B[1]--A[2]);
+      for (int i:sequence(3)){
+        D(string(i+1),A[i]);
+        D(string(i+4),B[i]);
+      }
+      D("7",IP(A[0]--B[1],A[1]--B[0]));
+      D("8",IP(A[0]--B[2],A[2]--B[0]));
+      D("9",IP(A[1]--B[2],A[2]--B[1]));
+    \end{asy}
+    \caption{Non-Pappus Matroid (Not representable)}
+  \end{subfigure}
+\end{figure}
+
+\section*{Conclusion}
+
+Hope that this note provides a new perspective to understand graphs, and hopefully raises your interest in matroids. For those who are interested, you may look into the survey "What is Matroids?" by Oxley, or his textbook "Matroid Theory".
+
+%\input{../imo_content/probabilistic/linearility_of_expectation.tex}
+%
+%\newpage
+%\begin{question}[]{}
+%  \input{../imo_content/probabilistic/loe-q07.tex}
+%  \input{../imo_content/probabilistic/loe-q09.tex}
+%  %\input{../imo_content/probabilistic/loe-q00.tex}
+%  %\input{../imo_content/probabilistic/loe-q01.tex}
+%  %\input{../imo_content/probabilistic/loe-q02.tex}
+%  \input{../imo_content/probabilistic/loe-q10.tex}
+%  %\input{../imo_content/probabilistic/loe-q04.tex}
+%  %\input{../imo_content/probabilistic/loe-q05.tex}
+%  %\input{../imo_content/probabilistic/loe-q08.tex}
+%  \input{../imo_content/probabilistic/loe-q12.tex}
+%  \input{../imo_content/probabilistic/loe-q13.tex}
+%  \input{../imo_content/probabilistic/loe-q06.tex}
+%  \input{../imo_content/probabilistic/loe-q03.tex}
+%  \input{../imo_content/probabilistic/loe-q11.tex}
+%  \input{../imo_content/probabilistic/loe-q14.tex}
+%\end{question}
+
+
+\end{document}

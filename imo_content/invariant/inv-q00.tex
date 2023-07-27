@@ -1,0 +1,7 @@
+\pitem[]{%
+    Several stones are placed on an infinite (in both directions) strip of squares. As long as there are at least two stones on a single square, you may pick up two such stones, then move one to the preceding square and one to the following square. Is it possible to return to the starting configuration after a finite sequence of such moves?
+    }{%
+    Label the squares from $-\infty $ to $\infty $ with consecutive integers, and let $n_i$ denote the label of the square containing stone $i$.  Let $X=\sum_{i}^{}n_i^2$, we see that when we move two stones in the same square with label $t$, $X$ decreases by $2t^2$ as we remove two stones from some square $t$, and $X$ increases by $(t-1)^2+(t+1)^2=2t^2+2$ as we replace the stones in squares $t-1$ and $t+1$. Therefore, every move causes $X$ to increase by exactly 2.  In particular, after any sequence of moves, $X$ will always be higher than where it began, so we could not possibly be in the same position we began in.
+    }{%
+    https://web.mit.edu/yufeiz/www/wc08/invariants.pdf
+}

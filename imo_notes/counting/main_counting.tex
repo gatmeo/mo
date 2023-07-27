@@ -1,0 +1,168 @@
+\documentclass[a4paper]{article}
+\usepackage[math_simple,imo]{gatmeo}
+
+\renewcommand{\courseTitle}{\FirstBigRestSmallCaps{2021 IMO Phase I Level 2}}
+\renewcommand{\courseTopic}{\FirstBigRestSmallCaps{Combinatorics: Counting}}
+\DTMsavedate{mydate}{2021-08-03}
+
+\toggletrue{ownans}
+\togglefalse{officialans}
+\rfoot{}
+
+\begin{document}
+\maketitle
+\thispagestyle{empty}
+
+\begin{question*}{}
+    \pitem[All Russian Olympiad 2017 P8]{%
+        Every cell of $100\times 100$ table is colored black or white. Every cell on table border is black. It is known, that in every $2\times 2$ square there are cells of two colors. Prove, that exist $2\times 2$ square that is colored in chess order.
+        }{%
+        We generalize it to $n$ even. Assume for contradiction that there doesn't exist $2\times 2$ square that is colored in chess order.
+        Call a pair of adjacent squares 'colorful' if it contains squares of both colors. The assumption implies that every $2\times 2$ square contains exactly $2$ colorful pairs. Since there are no colorful pairs in the border, every colorful pair is in exactly two $2\times 2$ squares. Hence there are exactly $(n-1)^2$ colorful pairs in the square. On the other hand, each column starts with a black unit and ends with a black unit. Hence it contains an even number of colorful pairs, and similarly for rows. Hence the total number of colorful pairs is even. But $(n-1)^2$ is odd, contradiction.
+        }{%
+        https://artofproblemsolving.com/community/c6t309f6h1441140_table_with_cells
+    }
+
+    \pitem[2019 ELMO Shortlist C2]{%
+        Adithya and Bill are playing a game on a connected graph with $n > 2$ vertices, two of which are labeled $A$ and $B$, so that $A$ and $B$ are distinct and non-adjacent and known to both players. Adithya starts on vertex $A$ and Bill starts on $B$. Each turn, both players move simultaneously: Bill moves to an adjacent vertex, while Adithya may either move to an adjacent vertex or stay at his current vertex. Adithya loses if he is on the same vertex as Bill, and wins if he reaches $B$ alone. Adithya cannot see where Bill is, but Bill can see where Adithya is. Given that Adithya has a winning strategy, what is the maximum possible number of edges the graph may have? (Your answer may be in terms of $n$.)
+        }{%
+        The answer is $\boxed{\binom{n-1}{2} + 1}.$
+
+        Our construction is as follows. Take the $n-1$ vertices apart from $B$ and form an edge between every pair of them. Then, add an edge from $B$ to some other vertex apart from $A,$ call it $C.$ Adithya can then stay on $A$ for his first turn, move to $C$ on his second turn, and then move to $B.$ Meanwhile, Bill is forced to move to $C$ on his first turn, move to a vertex other than $C$ on his second turn, and move to a vertex other than $B$ on his third turn.
+
+        To show that $\binom{n-1}{2} + 1$ edges is optimal, we make the following claim.
+
+        Claim. There do not exist any triangles containing $B.$
+
+        Proof. We proceed by contradiction. Assume that there does exist a triangle containing $B.$ Without loss of generality, assume that Bill knows beforehand which path Adithya will take. This path cannot contain one move, since $A$ and $B$ are not adjacent. If the path contains an even number of moves (staying at a vertex counts as a move), Bill can alternate between going between $B$ and an adjacent vertex. If it contains an odd number of moves, Bill can traverse the triangle and return at $B$ after three moves, and then alternate going between $B$ and an adjacent vertex. In all cases, Adithya cannot guarantee a win. $\square$
+
+        Let $B$ be adjacent to $k$ vertices. Since no two of these $k$ vertices may be connected, at most $\binom{n-1}{2} - \binom{k}{2}$ edges apart from those containing $B$ can be made. Thus, we get the upper bound
+
+        $$k + \binom{n-1}{2} - \binom{k}{2} = \binom{n-1}{2} - \frac{k^2 - 3k}{2} \leq \binom{n-1}{2} + 1,$$
+        and we are done.
+        }{%
+        https://artofproblemsolving.com/community/c6t309f6h1864635_chasing_people_on_a_connected_graph
+    }
+
+    \pitem[2011 Indonesia TST stage 2 test 3 p3]{%
+        Given a board consists of $n \times n$ unit squares ($n \ge 3$). Each unit square is colored black and white, resembling a chessboard. In each step, TOMI can choose any $2 \times 2$ square and change the color of every unit square chosen with the other color (white becomes black and black becomes white). Find every $n$ such that after a finite number of moves, every unit square on the board has a same color.
+        }{%
+        The answer is $\boxed{n = 4k, \forall k \in \mathbb{Z}^+}$.
+
+        Let the chessboard operate in $\mathbb{F}_2$, with the squares alternatively labeled $0$ and $1$. Thus, the step given corresponds to adding $1$ to each unit square in the selected $2 \times 2$ square (or a bitwise XOR operation). Let $A$ be the set of columns on a given board. Consider the sum of the numbers in an arbitrary $a \in A$ to be $S(a)$. We use the following claims. Claim 1. There does not exist a step that can change $S(a)$ for an arbitrary $a \in A$.
+        Proof. The given step adds $1$ to each of two unit squares in a column that the move affects. However, $S(a) + 1 + 1 = S(a)$ because the chessboard operates in $\mathbb{F}_2$, so it is impossible to change the sum of the numbers in a column under the given conditions. $\square$
+
+        Claim 2. In order for all squares to be labeled with the same number, $S(a) = S(b)$ must be true for all choices of $a, b \in A$.
+        Proof. This is obvious, because if every column is identical, their sums will also be identical. $\square$
+
+        Claim 3. If $n$ is even, in order for all of the unit squares to be labeled the same number, $S(a) = 0$ must be true for all $a \in A$.
+        Proof. If $n$ is even, there are an even number of numbers in each column. Thus, for any $a \in A$, it must be true that $S(a) = 0$ if all squares have the same number (note that this is true in both cases; where all the squares are labeled with $0$ or all the squares are labeled with $1$). $\square$
+        Assume that $n$ is odd. By (1), if $b \in A$ is adjacent to any $a \in A$, $S(a) = S(b) + 1$ always holds after any number and choice of steps. However, this contradicts (2), so $n$ must be even.
+
+        Assume that $n \equiv 2 \pmod 4$. Then, $S(a) = 1$ for any $a \in A$. However, due to (1), this contradicts (3). So it is only possible that $n \equiv 0 \pmod 4$.
+
+        It now suffices to provide a construction for $n=4$, as any chessboard with $n=4k$ for all $k \in \mathbb{Z}, k \geq 2$ can be subdivided into $4 \times 4$ squares with the same orientation. The moves are shown two at a time by the bolded $2 \times 2$ sets of numbers.
+        $$ \begin{array}{ |c|c|c|c| } \hline \mathbf{0} & \mathbf{1} & \color[rgb]{0.5, 0.5, 0.5} 0 & \color[rgb]{0.5, 0.5, 0.5} 1 \\ \hline \mathbf{1} & \mathbf{0} & \color[rgb]{0.5, 0.5, 0.5} 1 & \color[rgb]{0.5, 0.5, 0.5} 0 \\ \hline \color[rgb]{0.5, 0.5, 0.5} 0 & \color[rgb]{0.5, 0.5, 0.5} 1 & \mathbf{0} & \mathbf{1} \\ \hline \color[rgb]{0.5, 0.5, 0.5} 1 & \color[rgb]{0.5, 0.5, 0.5} 0 & \mathbf{1} & \mathbf{0} \\ \hline \end{array} \rightarrow \begin{array}{ |c|c|c|c| } \hline \color[rgb]{0.5, 0.5, 0.5} 1 & \color[rgb]{0.5, 0.5, 0.5} 0 & \color[rgb]{0.5, 0.5, 0.5} 0 & \color[rgb]{0.5, 0.5, 0.5} 1 \\ \hline \mathbf{0} & \mathbf{1} & \mathbf{1} & \mathbf{0} \\ \hline \mathbf{0} & \mathbf{1} & \mathbf{1} & \mathbf{0} \\ \hline \color[rgb]{0.5, 0.5, 0.5} 1 & \color[rgb]{0.5, 0.5, 0.5} 0 & \color[rgb]{0.5, 0.5, 0.5} 0 & \color[rgb]{0.5, 0.5, 0.5} 1 \\ \hline \end{array} \rightarrow \begin{array}{ |c|c|c|c| } \hline \color[rgb]{0.5, 0.5, 0.5} 1 & \mathbf{0} & \mathbf{0} & \color[rgb]{0.5, 0.5, 0.5} 1 \\ \hline \color[rgb]{0.5, 0.5, 0.5} 1 & \mathbf{0} & \mathbf{0} & \color[rgb]{0.5, 0.5, 0.5} 1 \\ \hline \color[rgb]{0.5, 0.5, 0.5} 1 & \mathbf{0} & \mathbf{0} & \color[rgb]{0.5, 0.5, 0.5} 1 \\ \hline \color[rgb]{0.5, 0.5, 0.5} 1 & \mathbf{0} & \mathbf{0} & \color[rgb]{0.5, 0.5, 0.5} 1 \\ \hline \end{array} \rightarrow \begin{array}{ |c|c|c|c| } \hline 1 & 1 & 1 & 1 \\ \hline 1 & 1 & 1 & 1 \\ \hline 1 & 1 & 1 & 1 \\ \hline 1 & 1 & 1 & 1 \\ \hline \end{array} $$Thus, $n=4k$ works for all $k \in \mathbb{Z}^+$.
+        }{%
+        https://artofproblemsolving.com/community/c6t45241f6h2377321_after_a_finite_number_of_moves_every_unit_square_on_nxn_board_has_same_color
+    }
+
+    \pitem[India TST 2016 Day 3 Problem 3]{%
+        Let $n$ be an odd natural number. We consider an $n\times n$ grid which is made up of $n^2$ unit squares and $2n(n+1)$ edges. We colour each of these edges either $\color{red} \textit{red}$ or $\color{blue}\textit{blue}$. If there are at most $n^2$ $\color{red} \textit{red}$ edges, then show that there exists a unit square at least three of whose edges are $\color{blue}\textit{blue}$.
+        }{%
+        Simple one, I was surprised that this was a P3. Here's my solution.
+
+        I will prove the equivalent result that if at least $n^2 + 2n$ edges are coloured blue in an $n$x$n$ grid, then some cell must have three blue edges. Let $n=2k+1$ since its odd.
+
+        First, define the weight of a cell to be the number of blue edges it has. Suppose FTSOC that $n^2 + 2n$ edges can be coloured blue without any cell having three edges. Then, the sum of weights of all cells is at most $2n^2$ since there are $n^2$ cells and each has at most $2$ blue edges.
+
+        Also, every blue edge contributes to the weights of at most $2$ cells and contributes to one cell only if it is a boundary edge. So, the sum of contributions to weights by border edges is at most $4n$ since there are $4n$ edges on the boundary.
+
+        So, the remaining edges contribute at least $(n^2 + 2n-4n)(2) = 2n^2 - 4n$ to the weights and so the sum of contributions becomes exactly $2n^2$ and so equality holds everywhere in all the inequalities. This means that all the $4n$ edges on the boundary have to be coloured blue.
+
+        Now, consider the inner $(n-2)$x$(n-2)$ grid. Since equality had held, it also means that every cell must have exactly $2$ blue edges. So, this means that all the edges on the boundary of this $(n-2)$x$(n-2)$ grid must be colored blue. Similarly, we can repeat this again for a $(n-4)$x$(n-4)$ grid and so on. But at the end, we will reach a $1$x$1$ grid which needs to have all of its border edges coloured blue. But, this is impossible since that would mean that this cell has $4$ blue edges.
+
+        Therefore, it is not possible to have at most $n^2$ red edges and not have a cell with at least $3$ blue edges
+        }{%
+        https://artofproblemsolving.com/community/c6h1276390p6696375
+    }
+    
+    \pitem[EGMO 2016 Day 2 Problem 5]{%
+        Let $k$ and $n$ be integers such that $k\ge 2$ and $k \le n \le 2k-1$. Place rectangular tiles, each of size $1 \times k$, or $k \times 1$ on a $n \times n$ chessboard so that each tile covers exactly $k$ cells and no two tiles overlap. Do this until no further tile can be placed in this way. For each such $k$ and $n$, determine the minimum number of tiles that such an arrangement may contain.
+        }{%
+        We claim that the answer is $k$ for $n=k$, $2(n-k+1)$ for $k<n<2k-1$, and $2k-1$ for $n=2k-1$. The $n=k$ case is not hard to see, so we'll assume that $n>k$ in the following. Also a domino is a $1\times k$ or $k\times 1$ tile.
+
+        The key idea is that each row or column can harbor at most one domino since $n\le 2k-1$. Call a row or column good if it has a domino. We must now bound the number of good rows. The key claim is the following.
+
+        Claim: Let $v$ be a good row or column, and let $S$ be the side of the square that's parallel to $v$ and closest to $v$ (if $S$ is not unique, the statement holds for either choice of $S$). Then, all row or columns from $S$ to $v$ are good.
+
+        Proof of Claim: Suppose $v$ is horizontal and $S$ is the south side. Consider the set of squares below the domino in $v$. No vertical square can touch those squares, else $S$ would not be the closest side, the north side would be. Thus, if any of those rows was not good (no dominoes in it), we could fill a domino directly parallel to $v$ to contradict the fact that the board couldn't have any dominoes added to it. Thus, all the rows from the south side to $v$ are good. $\blacksquare$
+
+        Let $a$ be the number of columns from the north side down that are good, $b$ for the east side, $c$ for south, and $d$ for west. Note that $a+b+c+d$ is the number of dominoes. We see that there is a $(n-a-c)\times (n-b-d)$ rectangle of empty squares, so since it is unfilled, either $a+c=n$ or $b+d=n$, or $n-a-c,n-b-d\le k-1$. In the former case, we have that every row (or column) is filled, so there are $n$ dominoes. In the latter case, we have $a+b+c+d\ge 2(n-k+1)$. Thus, if $k<n<2k-1$, then the number of dominoes is at least $2(n-k+1)$, and if $n=2k-1$, the number of dominoes is at least $2k-1$. It now suffices to provide a construction.
+
+        If $n=2k-1$, simply left align a domino in the top row, the right align in next row, left align in next row and so on. Now consider the case $k<n<2k-1$. Start with an empty $(k-1)\times(k-1)$ square and add four dominoes around the perimeter to get a $(k+1)\times(k+1)$ square. Place these dominoes in that configuration on the lower left corner of the $n\times n$ square, and for each of the other $2(n-k-1)$ rows and columns, put a domino in each one. This clearly works, and achieves the value of $2(n-k+1)$.
+        }{%
+        https://artofproblemsolving.com/community/c6t309f6h1227239_combinatorics_tiles
+    }
+
+    \pitem[IMOSL 2020 C1]{%
+        Let $n$ be a positive integer. Find the number of permutations $a_1$, $a_2$, $\dots a_n$ of the sequence $1$, $2$, $\dots$ , $n$ satisfying
+        $$a_1 \le 2a_2\le 3a_3 \le \dots \le na_n.$$
+        }{%
+        Let $x_n$ be the number of such permutations. If $a_n=n$ then the last inequality can't affect the rest ($ma_m\leq(n-1)^2<n^2\forall m<n$) So the number of such permutations with $a_n=n$ is $x_{n-1}$. Now assume $a_i=n$ with $i<n-1$.
+        Then if $i\leq j\leq n$ we must have $a_j\geq \frac{ia_i}{j}=\frac{in}{j}\geq i$ and so $\{a_i,...,a_n\}$ must be a permutation of $\{i,...,n\}$. So let $k$ be the number in $[i+1,n]$ such that $a_k=i$. So we must have $ki\geq ni$ but this implies $k=n$. But now we must have $a_{n-1}\leq \frac{na_n}{n-1}=\frac{ni}{n-1}=i+\frac{i}{n-1}<i+1$ but this is a contradiction, and so we must have $i=n-1$. If this is true the remaining numbers can arrange themselves in $x_{n-2}$ ways (there are no problems since $ka_k<n(n-1)\forall k<n-1$). Therefore we have the recurrence $x_n=x_{n-1}+x_{n-2}$. Since $x_1=1$ and $x_2=2$ it follows that $x_n=F_{n+1}$, i.e. the $(n+1)$-th Fibonacci number.
+        }{%
+        https://artofproblemsolving.com/community/c6t309f6h2625893_permutations_of_integers_from_1_to_n
+    }
+
+    \pitem[Nordic 2016 P4]{%
+        King George has decided to connect the $1680$ islands in his kingdom by bridges. Unfortunately the rebel movement will destroy two bridges after all the bridges have been built, but not two bridges from the same island. What is the minimal number of bridges the King has to build in order to make sure that it is still possible to travel by bridges between any two of the $1680$ islands after the rebel movement has destroyed two bridges?
+        }{%
+        We claim that the answer at least $\lceil {\frac{6}{5}n}\rceil$. It is tight for $n=5k$. To see this, first construct a cycle of length $4k$, and number the elements $1,2,\ldots 4k$. Then, we create $k$ new points $P_i$, each of which are connected to $i$ and $2k+i$. The number of degrees here is original $4k$ + new $2k$ = $6k$.
+
+        To verify that this construction works, note that if we cut $<2$ from the $4k$-cycle, everything is connected to the $4k$-cycle still. Otherwise, if we cut $2$ from the outer ring, you'll always be able to use the paths from $i\to P_i\to 2i+1$ to make your way anywhere.
+
+        To now prove this is optimal, we use induction. Case 1: There exists a pair of linked vertices $A,B$ where $\deg A = \deg B = 2$. Then, we must have that $A,B$ are both connected to a third $C$. Thus, by the inductive hypothesis on everything except for $A,B$.
+        \[f(n) \geq 3 + f(n-2) > \lceil \frac{6n}{5}\rceil\]Now, for the second case, no two elements with degree 2 are incident. Say that there are $x$ with degree 2, and $n-x$ vertices with degree $\geq 3$. Then, we firstly have that the set of edges from $x$ are disjoint, so
+        \[E\geq 2x\]and since the average degree of all $n-x$ are $\geq 3$, by handshake lemma we have
+        \[E\geq \frac{2x+3(n-x)}{2}=\frac{3n-x}{2}\]Combining, $5E = E+4E\geq 2x + 4\cdot \frac{3n-x}{2} = 6n$. Thus, $E\geq \frac{6n}{5}$ and we're done.
+        }{%
+        https://artofproblemsolving.com/community/c6t309f6h1422235_nordic_2016_p4
+    }
+
+    \pitem[BxMO2021 problem 2]{%
+        Pebbles are placed on the squares of a $2021\times 2021$ board in such a way that each square contains at most one pebble. The pebble set of a square of the board is the collection of all pebbles which are in the same row or column as this square. (A pebble belongs to the pebble set of the square in which it is placed.) What is the least possible number of pebbles on the board if no two squares have the same pebble set?
+        }{%
+        We claim that the answer for any $n$ is $n + \lfloor \frac{n}{2} \rfloor$ (so in this case it'd be $3031$). This can be achieved by placing a stone in every cell on one of the main diagonals and then placing a stone in every cell on one half of the other main diagonal so that the stones for a lowercase "y" shape. An example is shown for $n=5$ $$\begin{bmatrix} \ast & . & . & . & \ast \\ . & \ast & . & \ast & . \\ . & . & \ast & . & . \\ . & \ast & . & . & . \\ \ast & . & . & . & . \end{bmatrix}$$
+        This works because if we start by placing a stone on every cell on one of the main diagonals, as shown here $$\begin{bmatrix} . & . & . & . & \ast \\ . & . & . & \ast & . \\ . & . & \ast & . & . \\ . & \ast & . & . & . \\ \ast & . & . & . & . \end{bmatrix}$$
+        The only pairs of cells with the same set of stones left are those that are symmetric WRT to the diagonal of stones. However, after we add in the stones on the other half diagonal, notice that every cell in the upper-left contains at least one of those stones in the half-diagonal in its row or column. As it already has a stone in its row and column, now every cell in the upper-left has at least two stones in its row or column. But we know that stone symmetric to it is not in the same row or column, so therefore it cannot contain both of these stones, as desired $$\begin{bmatrix} . & . & \color{blue} . & . & \color{red} \ast \\ . & . & . & \ast & . \\ . & . & \color{red} \ast & . & \color{blue} . \\ . & \ast & . & . & . \\ \ast & . & . & . & . \end{bmatrix} \rightarrow \begin{bmatrix} \color {red} \ast & \color{magenta} . & \color{blue} . & \color{magenta} . & \color {red} \ast \\ . & \ast & . & \ast & . \\ . & . & \color {red} \ast & . & \color {blue} . \\ . & \ast & . & . & . \\ \ast & . & . & . & . \end{bmatrix}$$
+        Now we'll prove this is optimal. Suppose there exists a row without any stones: call this row $A$, and there is also a row with at most one stone: call this row $B$. Then suppose the stone in row $B$ happens to be in column $C$ (if row $B$ is empty, then any column will suffice). Now notice that row $A$, column $C$ and row $B$, column $C$ have the same set of stones (only the stones in column $C$). This means if we have an empty row, every other row must have at least two stones, which leads to at least $2(n-1)$ stones, which is not optimal. Therefore, now we know every that row (and column) has at least one stone in the optimal case.
+
+        Now call a row or column "deficient" if it only has one stone. Suppose that there are exactly $x$ deficient rows. Then summing through the rows we have $$T \geq x + 2(n-x) = 2n - x \quad (\bigstar)$$where $T$ is the total number of stones. Notice that if row $A$ and row $B$ are deficient rows and both stones are in column $C$, then row $A$, column $C$ and row $B$, column $C$ have the same set of stones (only stones in column $C$) which is an immediate contradiction. Therefore, no two deficient rows can have stones in the same column.
+
+        Now call a column "special" if it passes through a stone on a deficient row. Since every stone on deficient row is in a different column, there are exactly $x$ special columns. Now suppose two special columns $C$ and $D$ are deficient, and they pass through stones on deficient rows $A$ and $B$ respectively. Finally, row $A$, column $D$ and row $B$, column $C$ have the same set of stones (the two stones on their intersections), which is a contradiction. (In the diagram, rows $A$ and $B$ are the second and fourth rows, and column $C$ and $D$ are the second and fourth column) $$\begin{bmatrix} . & \color {red} . & . & \color {blue} . & . \\ \color {blue} . & \color {magenta} \ast & \color {blue} . & \color{magenta} . & \color {blue} . \\ . & \color {red} . & . & \color {blue} . & . \\ \color {red} . & \color{magenta} . & \color {red} . & \color {magenta} \ast & \color {red} . \\ . & \color {red} . & . & \color {blue} . & . \end{bmatrix}$$
+        Therefore, only one special column can be deficient. So now summing through the columns we get $$T \geq 1 + 2(x-1) + (n-x) = x + n - 1 \quad (\bigstar\bigstar)$$Finally, adding $(\bigstar)$ and $(\bigstar\bigstar)$ we get $$2T \geq 3n - 1 \Longrightarrow T \geq n + \frac{n-1}{2} \Longrightarrow \boxed {T \geq n + \bigg\lfloor \frac{n}{2} \bigg\rfloor}$$as desired 
+        }{%
+        https://artofproblemsolving.com/community/c6t309f6h2549153_distinct_pebble_sets_bxmo2021_p2
+    }
+\end{question*}
+
+\end{document}
+
+    \pitem[Japan Mathematical Olympiad Finals 1998, Problem 5]{%
+        On each of $ 12$ points around a circle we place a disk with one white side and one black side. We may perform the following move: select a black disk, and reverse its two neighbors. Find all initial configurations from which some sequence of such moves leads to the position where all disks but one are white.
+        }{%
+        <++>
+        }{%
+        https://artofproblemsolving.com/community/c6t309f6h161334_othello_game
+    }
+
+    \pitem[Iranian Combinatorics Olympiad P4]{%
+        Given a graph with $99$ vertices and degrees in $\{81,82,\dots,90\}$, prove that there exist $10$ vertices of this graph with equal degrees and a common neighbour.
+        }{%
+        <++>
+        }{%
+        https://artofproblemsolving.com/community/c6t309f6h2075120_finding_a_star_of_equal_degrees
+    }
+
+    <++>

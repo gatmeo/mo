@@ -1,0 +1,139 @@
+\documentclass[a4paper]{article}
+\usepackage[math_simple,imo]{gatmeo}
+
+\renewcommand{\courseTitle}{\FirstBigRestSmallCaps{2020 IMO Intensive Training}}
+\renewcommand{\courseTopic}{\FirstBigRestSmallCaps{Combinatorics: Coloring}}
+\DTMsavedate{mydate}{2021-06-12}
+
+\toggletrue{ownans}
+\togglefalse{officialans}
+\rfoot{}
+
+\begin{document}
+\maketitle
+\thispagestyle{empty}
+
+\begin{question*}{}
+    \pitem[Indonesian MO (INAMO) 2020, Day 1, Problem 4]{%
+        A chessboard with $2n \times 2n$ tiles is coloured such that every tile is coloured with one out of $n$ colours. Prove that there exists 2 tiles in either the same column or row such that if the colours of both tiles are swapped, then there exists a rectangle where all its four corner tiles have the same colour.
+        }{%
+        Since there are $2n \cdot 2n = 4n^2$ tiles coloured with $n$ colours, there exists a colour $k$ used on at least $4n$ tiles. Consider all the $4n$ tiles with this colour.
+
+        For each index $1 \leq i \leq 2n$, let $f(i)$ be the number of tiles with colour $k$ at row $i$. Then, we have $\sum_{i = 1}^{2n} f(i) = 4n$ and $f(i) \leq 2n$ for each $1 \leq i \leq 2n$. In particular:
+
+        1. There exists at least two indices $i$ such that $f(i) \geq 2$.
+        Indeed, otherwise $4n = \sum_{i = 1}^{2n} f(i) \leq (2n) + 1 \cdot (2n - 1) = 4n - 1$, a contradiction.
+
+        2. Consider the set $S$ of all indices $i$ such that $f(i) \geq 2$. Then, $\sum_{i \in S} f(i) > 2n$.
+        This has the same proof as above. By definition of $S$, $\sum_{i \not\in S} f(i) \leq \sum_{i \not\in S} 1 = 2n - |S| \leq 2n - 2 < 2n$ due to the previous observation, so
+        \[ \sum_{i \in S} f(i) = 4n - \sum_{i \not\in S} f(i) > 2n. \]
+        Now, consider the set $T$ of all tiles with coordinate $(i, j)$ of colour $k$ with $i \in S$. These correspond to all the tiles with colour $k$ who has another tile within the same row with colour $k$ as well. The number of such pairs (or tiles) is $\sum_{i \in S} f(i)  > 2n$, so by the pigeonhole principle, there exist two distinct tiles in $T$ in the same column, say $(i_1, j)$ and $(i_2, j)$. Consider two tiles $(i_1, j'), (i_2, j'') \in T$ with $j', j'' \neq j$; they exist by our construction and previous argument. If $j' = j''$, we can swap two random tiles other than those four tiles we mentioned. If $j' \neq j''$, we swap $(i_2, j')$ and $(i_2, j'')$ and we are done.
+        }{%
+        https://artofproblemsolving.com/community/c6t45241f6h2303115_colouring_2n_tiles_and_rectangles_combinatorics
+    }
+
+    \pitem[Turkey EGMO TST 2018]{%
+        In how many ways every unit square of a $2018$ x $2018$ board can be colored in red or white such that number of red unit squares in any two rows are distinct and number of red squares in any two columns are distinct.
+        }{%
+        We consider $n\in \mathbb{N}$ instead of $2018.$
+
+        Firstly, we have to prove the following lemma.
+
+        \textbf{Lemma:} The $n$ distinct numbers of rows and columns must be ${1,2,\cdots,n}$ or ${0,1,2,\cdots,n-1}.$
+
+        \textbf{Proof of the Lemma:} Clearly, totally $n+1$ distinct numbers ${0,1,\cdots,n}$ may occur in $n$ rows and $n$ columns. Suppose some $1<i<n$ does not contained in rows (resp. columns), which implies both $0$ and $n$ are contained in rows (resp. columns), therefore, the $n$ distinct numbers of red squares for each column (resp. rows), says $c(i), 1\leq i\leq n,$ satisfies $1\leq c(i) \leq n-1,$ which is $n-1$ distinct numbers in total. Obviously, it is impossible.
+
+        It is obvious to see that the ways for ${1,2,\cdots,n}$ is equal to the ways for ${0,1,2,\cdots,n-1}.$ (By considering white instead of red.) So we only sovle the first case.
+
+        Next, we denote $(r_1,r_2,\cdots,r_n; c_1,c_2,\cdots,c_n)$ some possible way for coloring, where $r_i$ denotes the numbers of red squares of the $i-th$ row, and $c_i$ denotes the $i-th$ column.
+
+        Finally, we only need to prove that there exists the unique way satisfying $r_i=a_i,$ $c_i=b_i,$ for any distinct $1\leq a_i,b_i\leq n.$
+
+        \textbf{The proof of existence:} Consider the original way $(m_{ij})_{1\leq i,j\leq n}$(the $i-th$ row and $j-th$ column) satisfying $m_{ij}$ is $red$ if $i\leq j$. Now we rearrange each rows and columns so that the way satisfies $(a_1,a_2,\cdots,a_n; b_1,b_2,\cdots,b_n).$ Then it's easy to check the new way is as desire. (NOTE: When swapping, the number of blocks in rows and columns does not affect each other.)
+
+        \textbf{The proof of uniqueness:} $n=1$ works. We assume it also works for any $i<n.$ For the case $n$, WOLG, the first row's number is $n$ and the first column's is $1$, now we throw away these two lines and we obtain the uniqueness for $n-1.$ Due to each line we just throw away, which is full of red squares, is also unique for any possible way, we finish the proof.
+
+        Therefore, the answer is $$2\times\left|\left\{(r_1,r_2,\cdots,r_n; c_1,c_2,\cdots,c_n)|, 1\leq r_i\neq r_j\leq n, 1\leq c_i\neq c_j\leq n, 1\leq i,j\leq n\right\}\right|=2\cdot (n!)^2.$$
+        }{%
+        https://artofproblemsolving.com/community/c6t45241f6h2053991_a_counting_problem_about_coloring
+    }
+
+    \pitem[Dutch IMO TST 2015 day 2 p4]{%
+        Each of the numbers $1$ up to and including $2014$ has to be coloured; half of them have to be coloured red the other half blue. Then you consider the number $k$ of positive integers that are expressible as the sum of a red and a blue number. Determine the maximum value of $k$ that can be obtained.
+        }{%
+        Let $n= 2014$.  We shall prove that the maximum $k$ equals $2n-5$.  The smallest number that you could possibly write as the sum of a red and ablue number is $1 + 2 = 3$ and the largest number is $(n-1) +n= 2n-1$. Hence, there are at most $2n-3$ numbers expressible as the sum of a redand a blue number.
+
+        Suppose that the numbers can be coloured in such a way that $2n-3$ or $2n-4$ of numbers are expressible as the sum of a red and a blue number. Now at most one of the numbers from $4$ up to and including $2n-1$ is not expressible in such a way.  We will now show that we may assume WLOG that  this  number  is  at  least $n+1$. Indeed,  we  could make a second colouring in which a number $i$ is blue if and only if $n+ 1-i$ is blue in the initial colouring.  Then in the case of the second colouring a number $m$ is expressible as the sum of a red and a blue number if and only if $2n+2-m$ was expressible as the sum of a red and a blue number in the initial colouring.  Hence, if in the initial colouring a number smaller than $n+1$ is not expressible as the sum of red and blue, then in the second colouring a number greater than $2n+ 2-(n+ 1) =n+ 1$ is not expressible as the sum of red and blue.
+
+        Hence,  we  may  assume  that  the  numbers  $3$  up  to  and  including $n$ are all  expressible  as  the  sum  of  red  and  blue.   Because  red  and  blue  are interchangable,  we  may  also  assume  without  loss  of  generality  that  $1$  is coloured blue.  Because $3$ is expressible as the sum of red and blue and this can only be $3 = 1 + 2$, the number $2$ must be red. Now suppose that we know that $2$ up to and including $l$ are red, for certain $l$ with $2\leq l\leq n-2$. Then in all the possible sums $a+b=l+ 2$ with $a$, $b\geq 2$ both numbers are colored red.  However, we know that we can express $l+ 2$ as the sum of red and blue (because $l+2\leq n$), hence that must be $1+(l+1)$.  Hence, $l+1$ is also coloured red.  By induction, we now see that the numbers $2$ up to and including $n-1$ are all red.  These are $n-2=2012$ numbers. However, only $n/2=1007$ numbers are red, which is a contradiction.
+
+        We conclude that at least two numbers of $3$ up to and including $2n-1$ are not expressible as the sum of a red and a blue number. We shall now show that we can colour the numbers in such a way that all number from $4$ up to and inlcuding $2n-2$ are expressible as the sum of a red and a blue number, implying that the maximum $k$ equals $2n-5$.
+
+        To obtain this, colour all the even numbers, except $n$, and also the number $1$ blue. All odd numbers, except $1$, and also the number $n$ we colour red.  By adding $1$ to an odd number (unequal to 1) we can obtain all even numbers from $4$ up to and inlcuding $n$ as the sum of a red and a blue number. By adding $2$ to an odd number (unequal to 1), we can obtain all odd numbers from $5$ up to and including $n+1$ as the sum of a red and a blue number. By adding $n-1$ to an even number (unequal to $n$), we can obtain all odd numbers from $n + 1$ up to and including $2n-3$ as the sum of a red and a blue number. By adding $n$ to an even number (unequal to $n$), we can obtain all even numbers from $n + 2$ up to and including $2n-2$ as the sum of a red and a blue number. Altogether, we can express all
+        numbers from $4$ up to and including $2n-2$ as the sum of a red and a blue number.
+
+        We conclude that the maximum $k$ equals $2n-5=4-23$.
+        }{%
+        https://artofproblemsolving.com/community/c6t45241f6h1906764_each_of_numbers_12014_colored_red_and_blue_half_each_max_sum_2_balls
+
+        https://www.wiskundeolympiade.nl/phocadownload/jaarverslagen/dmo2014.pdf
+        P.33
+    }
+
+    \pitem[Turkey TST 2014 Day 3 Problem 9]{%
+        At the bottom-left corner of a $2014\times 2014$ chessboard, there are some green worms and at the top-left corner of the same chessboard, there are some brown worms. Green worms can move only to right and up, and brown worms can move only to right and down. After a while, the worms make some moves and all of the unit squares of the chessboard become occupied at least once throughout this process. Find the minimum total number of the worms.
+        }{%
+        Let us put $n$ instead of $2015$. We will prove the minimum number is $\displaystyle \left\lceil \frac{2n}{3}\right\rceil$. An example that this number is enough is sketched in the figure below for $n=9$. The red dots represent the six kangaroos, enough to cover all cells of the board.
+
+        It remains to estimate a lower bound for this number. Suppose we have $a$ kangaroos of type SE and $b$ ones - NE that are enough to cover all squares of the chessboard. We will make an interpretation of the statement that allows us better visualization of what happens. Consider only the first column of the chessboard, where the kangaroos are initially disposed. Instead of dealing with the trajectories/routes of kangaroos, we just frame them on the first column. There are n rounds. At each round a kangaroo either stays still or moves some squares up or down, depending of its type - NE or SE. The condition is that at each round the empty squares must be traversed. It is clear that we can start with $a$ kangaroos disposed at the top $a$ cells in the column, each on in a separate square, and $b$ ones at the bottom part of the column, in $b$ adjacent cells. The uppermost kangaroos move only downwards, the lower ones - only upwards. Kangaroos of the same type cannot be placed in the same cell, but this is allowed for those of different types. Each round consists of moves that traverse all the empty cells. We make $n$ rounds, just as many as the columns on the chessboard. So, if you want to see the trajectories of the kangaroos, you just arange vertically the positions on each column that corresponds to each round, one after another, left to right. If at the final ($n$-th) round there are kangaroos that still can jump - up or down - we make them move. So, finally, the kangaroos that were initially at the bottom are at the top of the column and vise versa. 
+
+        It means each of the lower kangaroos (NE ones) steps exactly in $n-a$ squares and each of the SE ones steps exactly in $n-b$ cells. In each round there are $n-a-b$ empty squares that need to be stepped in (for some of them it may be done twice or more). There are also $ab$ moves when a NE kangaroo jumps over a SE one, or vise versa. Therefore
+        \[\displaystyle a(n-a)+b(n-b)\ge n(n-a-b)+ab \]
+        This inequality yields
+        \[\displaystyle 2n(a+b)\ge n^2+a^2+b^2+ab=n^2+(a+b)^2-ab\]
+        Using $ab\leq (a+b)^2/4$, we get
+        \[\displaystyle \frac{3}{4}(a+b)^2-2n(a+b)+n^2\le 0.\]
+        Considering it as a quadratic inequality with respect to a+b yields
+        \[a+b\ge 2n/3.\]
+        }{%
+        https://artofproblemsolving.com/community/c6t309f6h580322_worms_that_are_allowed_to_move_one_way
+
+        https://dgrozev.wordpress.com/2021/06/02/kangaroos-jumping-on-a-chessboard-italian-training-camp/
+    }
+
+    \pitem[Romanian Master Of Mathematics 2012]{%
+        Given a positive integer $n\ge 3$, colour each cell of an $n\times n$ square array with one of $\lfloor (n+2)^2/3\rfloor$ colours, each colour being used at least once. Prove that there is some $1\times 3$ or $3\times 1$ rectangular subarray whose three cells are coloured with three different colours.
+        }{%
+        For more convenience, say that a subarray of the $n\times n$ square arraybearsa colour if at least two of its cells share that colour. We shall prove that the number of $1\times 3$ and $3\times 1$  rectangular subarrays, which is $2n(n-2)$, exceeds the number of such subarrays, each of which bears some colour. The key ingredient isthe estimate in the lemma below.
+
+        \textbf{Lemma.} If a colour is used exactly $p$ times, then the number of $1\times 3$ and $3\times 1$ rectangular subarrays bearing that colour does not exceed $3(p-1)$.
+
+        Assume the lemma for the moment, let $N = [(n + 2)2/3]$ and let ni be the number of cells coloured the ith colour, $i = 1, . . . , N$, to deduce that the number of $1 \times 3$ and $3 \times 1$ rectangular subarrays, each of which bears some colour, is at most
+        \[\sum_{i=1}^N3(n_i-1)=3\sum_{i=1}^Nn_i-3N=3n^2-3N<3n^2-(n^2+4n)=2n(n-2)\]
+        and thereby conclude the proof.
+        Back to the lemma, the assertion is clear if $p = 1$, so let $p > 1$.\\
+        We begin by showing that if a row contains exactly $q$ cells coloured $C$, then the number $r$ of $3 \times 1$ rectangular subarrays bearing $C$ does not exceed $3q/2 - 1$; of course, a similar estimate holds for a column. To this end, notice first that the case $q = 1$ is trivial, so we assume that $q > 1$. Consider the incidence of a cell $c$ coloured $C$ and a $3\times 1$ rectangular subarray $R$ bearing $C$:
+        \[\langle c, R\rangle=
+            \begin{cases}
+                1& c\subset R,\\
+                0 & \textnormal{otherwise}.
+            \end{cases}
+        \]
+        Notice that, given $R$, $\sum_c\langle c, R\rangle \geq 2$, and, given $c$, $\sum_R\langle c, R,\rangle \leq 3$; moreover, if $c$ is the leftmost or
+        rightmost cell, then $\sum_R\langle c, R\rangle\leq 2$. Consequently,
+        \[2r\leq\sum_R\sum_c\langle c,R\rangle=\sum_c\sum_R\langle c,R\rangle\leq2+3(q-2)+2=3q-2,\]
+        whence the conclusion.\\
+        Finally, let the $p$ cells coloured $C$ lie on $k$ rows and $l$ columns and notice that $k + l \geq 3$, for $p > 1$. By the preceding, the total number of $3 \times 1$ rectangular subarrays bearing $C$ does not exceed $3p/2 - k$, and the total number of $1 \times 3$ rectangular subarrays bearing $C$ does not exceed $3p/2 - l$, so the total number of $1 \times 3$ and $3 \times 1$ rectangular subarrays bearing $C$ does not exceed $(3p/2 - k) + (3p/2 - l) = 3p - (k + l) \leq 3p - 3 = 3(p - 1)$. This completes the proof.\\
+        \textbf{Remarks.} In terms of the total number of cells, the number $N = [(n + 2)2/3]$ of colours is asymptotically close to the minimum number of colours required for some $1 \times 3$ or $3 \times 1$ rectangular subarray to have all cells of pairwise distinct colours, whatever the colouring. To see this, colour the cells with the coordinates $(i, j)$, where $i+j \equiv 0$ (mod 3) and $i, j \in \{0, 1,\dots , n-1\}$, one colour each, and use one additional colour $C$ to colour the remaining cells. Then each $1 \times 3$ and each $3 \times 1$ rectangular subarray has exactly two cells coloured $C$, and the number of colours
+        is $\lceil n^2/3 \rceil + 1$ if $n \equiv 1$ or 2 (mod 3), and $\lceil n^2/3\rceil$ if $n \equiv 0$ (mod 3). Consequently, the minimum number of colours is $n^2/3 + O(n)$.
+
+        }{%
+        https://artofproblemsolving.com/community/c6t45317f6h467560_a_1_x_3_or_3_x_1_array_with_three_different_colours
+
+        http://rmms.lbi.ro/rmm2012/index.php?id=solutions_math
+
+    }
+
+\end{question*}
+
+\end{document}

@@ -1,0 +1,10 @@
+\pitem[]{%
+    Mad scientist Kyouma writes $N$ positive integers on a board. Each second, he chooses two numbers $x, y$ written on the board with $x > y$, and writes the number $x^2-y^2$ on the board. After some time, he sends the list of all the numbers on the board to Christina. She notices that all the numbers from 1 to 1000 are present on the list. Aid Christina in finding the minimum possible value of $N$.
+    }{%
+    Note that no number congruent to $2 \bmod 4$ is ever of the form $x^2-y^2$. Using this fact, we establish that the initial list must have contained all numbers of the form $4k+2$ where $0 \leqslant k \leqslant 249$. From simple checking, it should also have contained $1$ (how do you plan on generating $1$ as $x^2-y^2$) We also need $4$ since even that cannot be generated. Now note the following fun stuff:
+1) If we have $n, n+1$ we can get $2n+1$.
+2) If we have $n-1, n+1$ we can get $4n$ (for $n > 1$).
+Now we claim that the answer is $251$ a lower bound of which was already obtained earlier. Let's induct and show that we can get all numbers from $1$ to $1000$ on the list. If $n$ is odd, use 1) to get it. If $n$ is even, and congruent to $2 \bmod 4$, it's already there, otherwise use 2) to get it. This finishes and gives answer of $252$.
+    }{%
+    https://artofproblemsolving.com/community/c6t219f6h2721263_mad_scientist_writes_numbers
+}

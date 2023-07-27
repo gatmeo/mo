@@ -1,0 +1,12 @@
+\pitem[All Russian Olympiad 2009 - Problem 10.6]{%
+    Given a finite tree $ T$ and isomorphism $ f: T\rightarrow T$. Prove that either there exist a vertex $ a$ such that $ f(a)=a$ or there exist two neighbor vertices $ a$, $ b$ such that $ f(a)=b$, $ f(b)=a$.
+    }{%
+    We use induction on the number of vertices of graph
+    For $N=1,2$ it is obvious.
+    Divide the set of vertices into two parts:
+    In the first part $\Gamma_1$ there are vertices whose degree is $1$ and in second part $\Gamma$ take others.
+    It is clear that $\Gamma_1$ is nonempty , if otherwise $\implies $ all vertices have degree $\ge 2$ so there is cycle which is a contradiction.For $N\ge 3$ it is easy to see that $\Gamma$ is also nonempty and has less than $N $ vertices.It's easy to see that
+    If $A\in \Gamma $ then $f (A)\in \Gamma $ and from $A\in \Gamma $ we can go to any $B\in \Gamma $ without traveling to any city in $\Gamma_1$ since all vertices in $\Gamma_1$ have degree $1$ and the whole graph is connected.So $\Gamma $ also satisfies all problem conditions and since it has less than $N $ vertices we are done by induction.
+    }{%
+    https://artofproblemsolving.com/community/c6t219f6h277243_a_finite_tree_and_isomorphism
+}

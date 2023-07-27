@@ -1,0 +1,9 @@
+.*
+!.latexmkrc
+!.gitignore
+build/
+*.pdf
+*.log
+*test.*
+*tmp.*
+

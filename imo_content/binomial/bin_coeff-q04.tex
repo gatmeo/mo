@@ -1,0 +1,21 @@
+\pitem[]{%
+    Prove that $\textnormal{lcm}(1,2,\dots, n) = \textnormal{lcm}(\binom{n}{0},\binom{n}{1},\dots,\binom{n}{n})$ iff $n+1$ is prime.
+    }{%
+    Lemma: if $ n \in N$ then we have: 
+    $ \frac {1}{n + 1}(lcm(1,2,\dots, n + 1)) = lcm(\binom{n}{0},\binom{n}{1},\dots, \binom{n}{n})$\\
+    Proof:
+    Let $ p^r \le n < p^{r+1}$,
+    we have 
+    $lcm(\binom{n}{0},\binom{n}{1},...,\binom{n}{n})|\frac{1}{n+1}(lcm(1,2,...,n+1))$ as $v_p({n\choose k})\leq r=\frac{1}{n+1}lcm(1,2,\dots ,n+1)$ by Kummer's. 
+    And put $k=p^r-1$, we have $p^r||{n\choose k}$ by Kummer's. Hence the equality.
+    }{%
+    https://artofproblemsolving.com/community/c6h316979
+
+    none of the binomial coefficients $ \binom{n}{k}$ where $ 0 \le k \le n$ are divisible by $ p$ if and only if we have $ n=p^rm-1$ where $ r,m$ are non-negative integers and we have $ m<p$.
+    we can easily prove by using the lemma and the fact that
+    $ v_p( \binom{n}{k})=\sum_{i=1}^{\infty} \left([\frac{n}{p^i}]-([\frac{n-r}{p^i}]+[\frac{r}{p^i}]) \right)$
+    this divisibility :
+    $ lcm(\binom{n}{0},\binom{n}{1},...,\binom{n}{n}) | \frac{1}{n+1}(lcm(1,2,...,n+1))$
+    now let $ p^r \le n < p^{r+1}$ then put $ k=p^r-1$ and then it is easy to prove that $ p^r || \binom{n}{k}$
+    and since $ v_p(\frac{1}{n+1}(lcm(1,2,...,n+1)) )=r$
+}

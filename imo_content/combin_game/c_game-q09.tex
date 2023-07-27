@@ -1,0 +1,16 @@
+\pitem[Centroamerican 2020, problem 2]{%
+    Suppose you have identical coins distributed in several piles with one or more coins in each pile. An action consists of taking two piles, which have an even total of coins among them, and redistribute their coins in two piles so that they end up with the same number of coins.
+
+    A distribution is levelable if it is possible, by means of 0 or more operations, to end up with all the piles having the same number of coins.
+
+    Determine all positive integers $n$ such that, for all positive integers $k$, any distribution of $nk$ coins in $n$ piles is levelable.
+    }{%
+    The answer is $n = 2^m$ for $m\geq 0$. First define a number $n$ to be leveler if for all positive integer $k$, any distribution of $nk$ coins in $n$ piles is levelable. We proceed by induction.
+    It can be verified that $n = 1$ is leveler. Our hypothesis is that $2^{m}$ is leveler. We are going to prove that $2^{m+1}$ is leveler. Since $2^{m+1}\cdot k$ is even, there is an even quantity of piles with each parity of coins, so we can pair them to get two groups of $2^m$ piles with $2^m\cdot k$ coins, by our hypothesis, $2^m$ is leveler, and we get that $2^{m+1}$ is leveler by making each group having $k$ coins, no matter the configuration.
+
+    To prove that $2^m\cdot i$ with $i\equiv 1 \mod 2$ and $m\geq 0$ is not leveler, take the following configuration:
+
+    For $k = i$ we can have $2^m$ piles with $1$ coin and the others with $i+1$ coins. Since $i+1$ is even, it is evident that this configuration is not levelable since $1$ and $i+1$ have different parity, so $2^m \cdot i$ is not leveler.
+    }{%
+    https://artofproblemsolving.com/community/c6t45487f6h2322272_levelable_distribution_of_coins
+}

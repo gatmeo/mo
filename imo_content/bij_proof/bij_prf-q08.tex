@@ -1,0 +1,13 @@
+\pitem[]{%
+    Let $p$ be a prime. Then $\binom{2p}{p}-2$ is divisible by $p^2$.
+    }{%
+    Take a set of $2p$ elements $A$. Consider the set of all $p$-subsets of $A$. Represent one such subset by a $2\times p$ table of $0$s and $1$s, containing exactly $p$ 1s. Remove the trivial choices, i.e., those $2$ choices having all 1s in the first row or in the second row.  Thus, all elements of the remaining set of choices have both 0s and 1s in each of the two rows. Therefore, if we shift the first row by $i$ positions, $i=0,1,\dots ,p-1$, we would always obtain a different $0-1$ vector. The same could be said for the second row. Now, we see that each choice of $p$-subset belongs to a class of $p\times p$ choices obtained by shifting the first and the second row of this choice to $i$ and $j$ positions respectively ($i,j=0,1,\dots ,p-1$). Every such class is closed thus $\binom{2p}{p}-2$  could be divided by $p^2$ (we removed the two trivial choices).
+    \[
+        \textnormal{Example:} \qquad 
+        \begin{pmatrix}
+            1&0&0&1&\cdots &0\\1&0&1&0&\cdots &1
+        \end{pmatrix}
+    \]
+    }{%
+    1.22
+}

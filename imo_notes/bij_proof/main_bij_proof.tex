@@ -1,0 +1,50 @@
+\documentclass[a4paper]{article}
+\usepackage[math_simple,imo]{gatmeo}
+
+\renewcommand{\courseTitle}{\FirstBigRestSmallCaps{IMO Phase II Level 2}}
+\renewcommand{\courseTopic}{\FirstBigRestSmallCaps{Bijective Proof}}
+\DTMsavedate{mydate}{2022-11-26}
+
+%\toggletrue{ownans}
+\togglefalse{officialans}
+\rfoot{}
+
+\begin{document}
+\maketitle
+\thispagestyle{empty}
+%\tableofcontents
+\begin{mdframed}
+  \textbf{Bijective Proof}: The main idea is similar to Double Counting: we are interested in finding a different (easier) way to count the required quantity.
+\end{mdframed}
+\vspace{.5em}
+
+%https://artofproblemsolving.com/community/c6t45317f6h2590271_double_counting_olympiad_combinatorics
+%https://artofproblemsolving.com/community/c6t45317f6h2743372_counting_in_2_ways
+\begin{example_question*}[]{}
+  \begin{mdframed}
+    \input{../imo_content/bij_proof/bij_prf-q00.tex}
+    \vspace{-1em}
+  \end{mdframed}
+
+  \begin{mdframed}
+    \input{../imo_content/bij_proof/bij_prf-q02.tex}
+    \vspace{-1em}
+  \end{mdframed}
+\end{example_question*}
+
+\newpage
+
+\begin{question*}[]{}
+  \input{../imo_content/bij_proof/bij_prf-q05.tex}
+  \input{../imo_content/bij_proof/bij_prf-q01.tex}
+  \input{../imo_content/bij_proof/bij_prf-q09.tex}
+  \input{../imo_content/bij_proof/bij_prf-q12.tex}
+  \input{../imo_content/bij_proof/bij_prf-q10.tex}
+  \input{../imo_content/bij_proof/bij_prf-q11.tex}
+  \input{../imo_content/bij_proof/bij_prf-q06.tex}
+  %\input{../imo_content/bij_proof/bij_prf-q07.tex}
+  \input{../imo_content/bij_proof/bij_prf-q08.tex}
+  \input{../imo_content/bij_proof/bij_prf-q13.tex}
+\end{question*}
+
+\end{document}

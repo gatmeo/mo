@@ -1,0 +1,33 @@
+\pitem[]{%
+    Prove that if we consider all the elements of the two sets
+    $$
+    \left\{ \binom{2^n-1}{1}, \binom{2^n-1}{3}, \binom{2^n-1}{5}, \dots, \binom{2^n-1}{2^n-1}\right\}
+    \quad\text{and}\quad
+    \{1,3,5,\dots, 2^n-1\}
+    $$
+    as a reminders modulo $2^n$, then these sets coincide.
+    }{%
+
+    All the binomial coefficients in the problem statement are odd by Lukas' theorem, therefore, it is sufficient to check that all the numbers $\binom{2^n-1}{1}$, $\binom{2^n-1}{3}$, \dots, $\binom{2^n-1}{ 2^n-1}$ have distinct reminders modulo $2^n$.
+
+    Assume by the contrary that $\binom{2^n-1}{ k}\equiv \binom{2^n-1}{ m} \pmod{2^n}$ for odd $k$ and $m$, $k>m$.  Observe that
+    \begin{multline*}
+        \binom{2^n-1}{ k}=\binom{2^n}{ k}-\binom{2^n-1}{ k-1}=\binom{2^n}{ k}-\binom{2^n}{ k-1}+\binom{2^n-1}{ k-2}
+        =\dots
+        =\\=
+        \binom{2^n}{ k}-\binom{2^n}{ k-1}+\binom{2^n}{ k-2}-\ldots-\binom{2^n}{ m+1}+\binom{2^n-1}{ m}\,.
+    \end{multline*}
+    In particular
+    $$
+    \binom{2^n}{ k}-\binom{2^n}{ k-1}+\binom{2^n}{ k-2}-\ldots-\binom{2^n}{ m+1}\equiv 0\pmod{2^n}\,.
+    $$
+    Calculate the exponent $v_2 \binom{2^n}{r}$ by Kummer's theorem.  If $v_2 (r)=a$ then we have $n-a$ carries in addition $r$ and $2^n-r$ (it is clear by the standard algorithm of addition), hence $v_2 \binom{2^n}{r}=n-a$.  In particular  $2^n\mid\binom{2^n}{ r}$  for odd $r$, that allows us to consider only one half of summands:
+    $$
+    \binom{2^n}{ k-1}+\binom{2^n}{ k-3}+\ldots+\binom{2^n}{ m+1}\equiv 0\pmod{2^n}\,.
+    $$
+    Now all the  $\binom{2^n}{i}$ in the left hand side have even parameter $i$, therefore $v_2 \binom{2^n}{x}<n$.
+
+    We will prove that this congruence is impossible and obtain a contradiction.  Choose $x$ with minimal  $v_2 \binom{2^n}{x}$.  Since ${v_2 \binom{2^n}{x}<n}$ and the whole sum is divisible by $2^n$, there exists $y$, for which $v_2 \binom{2^n}{x}=v_2 \binom{2^n}{y}$.  Then the binary representations of $x$ and $y$ end with equal number of 0's, and hence there exists $z$ between $x$ and $y$ which binary representation ends with bigger number of 0's.  Then $v_2 \binom{2^n}{z}<v_2 \binom{2^n}{x}$, a contradiction.
+    }{%
+    Amazing property 2.11
+}

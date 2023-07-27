@@ -1,0 +1,15 @@
+\pitem[Roumanian JBMO team selection test 2013]{%
+    A set that contains $7$ elements is given. All its subsets containing $3$ elements are colored with $n$ colors such that every two disjoint subsets have different colors. Find the least value of $n$ for which such a coloring its possible.
+    }{%
+    Let's color first three element subsets $A$ of $\{1,2,3,4,5,6\}$ with red and blue:
+
+    If $1\in A$ then $A$ is red, othervise blue.
+
+    Now color all other three element subset of $\{1,2,3,4,5,6,7\}$ with green (they all have $7$ in it).
+
+    So $n\leq 3$. Suppose $n=2$.
+
+    Since for each pair $A,B$ of subsets in monocolor family satisfy $|A\cap B|\geq 1$ it follow from Erdos-Ko-Rado Theorem that cardinality of this family is no more then ${7-1\choose 3-1} = 15 $. But then we can color at most $30$ subsets. Contradiction, since there is ${7\choose 3} = 35 $ three element subsets in $\{1,2,3,4,5,6,7\}$.
+    }{%
+    https://artofproblemsolving.com/community/c6h535946p3076610
+}

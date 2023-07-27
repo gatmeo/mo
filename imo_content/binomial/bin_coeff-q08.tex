@@ -1,0 +1,18 @@
+\pitem[]{%
+    Show that a sequence $(\varepsilon_n)_{n \in \mathbb{N}}$ of plus minus one is periodic of period a power of 2 if and only if $\varepsilon_n = (-1)^{P(n)}$ where $P(n)$ is a polynomial with rational coefficients which is integer-valued.
+    }{%
+    First, consider that $\varepsilon_n = (-1)^{P(n)}$, where $P(n)$ . Let $N$ be a positive integer, such that $Q(x)=N \cdot P(x) \in \mathbb{Z}[x]$.
+    Put an integer $k > \nu_2(N)$, then $Q(n+2^k) \equiv Q(n) \pmod {2^k}$.
+    Since $k > \nu_2(N)$, dividing $N$ from both sides yields $P(n) \equiv P(n+2^k) \pmod 2$ , i.e. $(\varepsilon_n)_{n \in \mathbb{N}}$ is periodic of period $2^k$.
+
+    Next, suppose $(\varepsilon_n)_{n \in \mathbb{N}}$ is a periodic sequence of period $2^k$, our aim is to construct such $P(n)$. Let
+    $$p(x)=\binom x {2^k-1}=\frac{x(x-1)\cdots (x-2^k+2)}{(2^k-1)!}$$clearly $p(x)$ is a polynomial with rational coefficients which is integer-valued. By Lucas' Theorem, $p(m)$ is odd iff $m \equiv -1 \pmod {2^k}$, $p(m)$.
+
+    %Proof. If $m \equiv -1 \pmod {2^k}$, then $\nu_2(m-j+1)=\nu_2(j)$ , $j=1,2,\cdots,2^k-1$. Thus $$\nu_2(m(m-1)\cdots(m-2^k+2))=\nu_2((2^k-1)!)$$which implies $p(m)$ is odd.  Otherwise, let $m \equiv i \pmod {2^k}$, where $0 \le i \le 2^k-2$. Since $\{m,m-1,\cdots,m-2^k+1\}$ is a complete system of residues modulo $2^k$ , we get that $$\begin{aligned} \nu_2(m(m-1)\cdot(m-2^k+2) &=\nu_2(m-i)+\nu_2((2^k-1)!)-\nu_2(2^k) \\ &>\nu_2((2^k-1)!) \end{aligned}$$i.e. $p(m)$ is even. $\blacksquare$
+
+    Let $1 \le x_1,\cdots ,x_t < 2^k $ be all the index $i$ such that $\varepsilon_i=-1$. Then $P(n)=\sum_{j=1}^{t} p(n-1-x_j)$. We have $P(n)$ takes odd values if and only if $n \equiv x_j \pmod {2^k}$ for some $1 \le j \le t$. That is to say, $\varepsilon_n = (-1)^{P(n)}$ .
+
+    %$\varepsilon_n=(-1)^{P(n)}$ is depended on the parity of $P(n)$ , thus it's natural to consider the case that there is only one odd or one even number in a period. For the special case, the Lucas theorem (as the lemma proves) works well. For general cases, notice that the parity is somehow "additive", which leads to our construction.
+    }{%
+    https://artofproblemsolving.com/community/c6h1855616p12551548
+}

@@ -1,0 +1,18 @@
+\pitem[]{%
+    Fix positive integers $n$ and $k$. Find the number of $k$-tuples $(S_1,S_2,\dots ,S_k)$ of subsets of $S_i$ of $\left\{1,\dots ,n\right\}$ for each of the following conditions separately:
+    \begin{enumerate}
+        \item $S_1\subseteq S_2\subseteq \cdots \subseteq S_k$,
+        \item The $S_i$'s are pairwise disjoin,
+        \item $S_1\cap S_2\cap \cdots \cap S_k=\emptyset $, and
+        \item $S_1\subseteq S_2\supseteq S_3\subseteq S_4\supseteq S_5\subseteq \cdots $.
+    \end{enumerate}
+    }{%
+    \begin{enumerate}
+        \item For every number $a$ in $\left\{1,\dots ,n\right\}$, we just need to choose the least index $i_a$ of a set s.t. $a\in S_{i_{a}}$ ($i_a=0$ if neither of the subsets contains $a$) in order to determine the sets $S_1\subseteq S_2\subseteq \cdots \subseteq S_k$. We see that for every $a$ we have $k+1$ possibilities for the choice of this index, namely $0,1,\dots ,k$. Thus the answer is $(k+1)^n$.
+        \item The answer is $(k+1)^n$ again. Use first part and the fact that for every set of subsets with the inclusion $S_1\subseteq S_2\subseteq \cdots \subseteq S_k$ we have a corresponding set of pairwise disjoint subsets $S_1,S_2\setminus S_1,\dots ,S_k\setminus \cup _{i=1}^{k-1}S_i$. Another way to get the answer is to observe that for every number $a$ in $\left\{1,\dots ,n\right\}$ could belongs only to a set with index $i(S_i),i=1,\dots ,k$ or to neither of those sets, i.e. $k+1$ cases for $n$ different numbers.
+        \item Here, as in the previous parts of the problem, in order to determine such configuration, we have to choose one $0-1$ vector of length $k$ for every number $i\in \left\{1,\dots ,n\right\}$. The additional condition is that none of these vectors could be consisted of 1s entirely. Therefore, the answer is $(2^k-1)^n$.
+        \item For every number $a\in \left\{1,\dots ,n\right\}$ and every $i\in \left\{1,\dots ,k\right\}$ write $\varepsilon_i^a=1$ if $a\in S_i$ and $0$ otherwise. You'll get that for every fixed $a\in \left\{1,\dots ,n\right\}$, the sequence $\left\{\varepsilon_i^a\right\}_{i=1}^{k}$ suffices the condition $\varepsilon_1^a\leq \varepsilon_2^a\geq \varepsilon_3^a\leq \varepsilon_4^a\geq \varepsilon_5^a\leq \cdots $. Using the part below, the answer is $F^n_k+2$.
+    \end{enumerate}
+    }{%
+    1.5, 1.41
+}

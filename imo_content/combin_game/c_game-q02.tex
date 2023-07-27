@@ -1,0 +1,20 @@
+\pitem[Brazilian Undergrad MO 2020 P5]{%
+    Let $N$ a positive integer. In a spaceship there are $2 \cdot N$ people, and each two of them are friends or foes (both relationships are symmetric). Two aliens play a game as follows:
+    \begin{enumerate}
+        \item The first alien chooses any person as she wishes.
+        \item Thenceforth, alternately, each alien chooses one person not chosen before such that the person chosen on each turn be a friend of the person chosen on the previous turn.
+        \item The alien that can't play in her turn loses.
+    \end{enumerate}
+    Prove that second player has a winning strategy if, and only if, the $2 \cdot N$ people can be divided in $N$ pairs in such a way that two people in the same pair are friends.
+    }{%
+    ($\Leftarrow $) If the $2N$ people can be divided into $N$ pairs, then the second player has a winning strategy.
+    If the people can be paired $(a_1, b_1), (a_2, b_2), \dots, (a_N, b_N)$ such that $a_i$ and $b_i$ are friends, then the strategy of the second player is to choose the pair of the person selected by the first player in the previous turn.
+
+    ($\Rightarrow $) If the second player has a winning strategy, then the $2N$ people can be divided into $N$ pairs.
+    We prove its contrapositive, i.e. if the $2N$ people can't be divided into $N$ such pairs, then the second player doesn't have a winning strategy. Consider the graph $G$ with the people as the vertices, and two people are connected by an edge if they are friends. Now, if the people can't be divided into $N$ pairs of friends, the maximum matching of $G$ is less than $N$. We pair the vertices according to this maximum matching, and we will show a winning strategy for the first player (hence the second player loses and doesn't have a winning strategy).
+
+    In the first turn, the first player chooses a person without a pair (call this person $v_1$). Then, the second player must choose a friend of $v_1$. Any friend of $v_1$ must be contained in a pair, otherwise, this person can be paired with $v_1$ and creates an additional pair, which contradicts the fact that we pair the people according to the maximum matching. Let the second player choose $v_2$. Then, in the next turn, the first player chooses the pair of $v_2$. So the strategy of the first player is to choose the pair of the person selected at the previous turn by the second player. If the second player can always move, eventually at some point, the second player chooses $v_{2k}$, which is not contained in any pairs. Consider the following path:
+    \[ v_1 \rightarrow v_2 \rightarrow \dots \rightarrow v_{2k}. \]We know that $v_1$ and $v_{2k}$ both are not contained in any pairs, and $(v_2, v_3), (v_4, v_5), \dots, (v_{2k-2}, v_{2k-1})$ are pairs in the maximum matching. But since $v_i$ and $v_{i+1}$ are friends, then we can create an additional pair by shifting the pairings as follows: $(v_1, v_2), (v_3, v_4), \dots, (v_{2k-1}, v_{2k})$. This is a contradiction. Therefore, at some point the second player couldn't move, and the first player wins.
+    }{%
+    https://artofproblemsolving.com/community/c7t45487f7h2846252_yet_another_combinatorial_game_in_a_spaceship
+}

@@ -1,0 +1,13 @@
+\pitem[Korean Summer Program Practice Test 2016 5]{%
+    Find the maximal possible $n$, where $A_1, \dots, A_n \subseteq \{1, 2, \dots, 2016\}$ satisfy the following properties.
+    \begin{enumerate}
+        \item For each $1 \le i \le n$, $\lvert A_i \rvert = 4$.
+        \item For each $1 \le i < j \le n$, $\lvert A_i \cap A_j \rvert$ is even.
+    \end{enumerate}
+    }{%
+    I think the above is poorly done, but on the right track. If I am not mistaken, the real answer is $\tbinom{1008}{2}$. The construction is simple: partition $\{1,2,\dots,2016\}$ into $1008$ sets of size two, and take the family of all pairwise unions.
+
+    Denote the family of sets under consideration as $\mathcal{A}=\{A_1,A_2,\dots\}$. Again, we observe that if as $j$ spans the set of non-$i$ indices, $A_i\cap A_j$ has at most two disjoint nonempty outputs, all of whom have size $2$. With that end in mind, if $A_i\cap A_j=S$ where $i\neq j$ and $S\neq \emptyset$, then we assign the elements of $S$ a shared color distinct from any previously assigned colors, and carry out this process over all distinct $i,j$. If by the end $m$ colors are assigned, then $|\mathcal{A}|\leq \tbinom{m}{2}+\tfrac{2016-2m}{4}$. Furthermore, we have $m\leq 1008$, and it follows that the maximum occurs at $m=1008$, who gives the aforementioned construction $\Box$
+    }{%
+    https://artofproblemsolving.com/community/c6h1291451p9099654
+}

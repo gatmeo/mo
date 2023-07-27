@@ -1,0 +1,31 @@
+\pitem[NIMO 5.6]{%
+    Tom has a scientific calculator. Unfortunately, all keys are broken except for one row: 1, 2, 3, + and -.
+    Tom presses a sequence of $5$ random keystrokes; at each stroke, each key is equally likely to be pressed. The calculator then evaluates the entire expression, yielding a result of $E$. Find the expected value of $E$.
+    (Note: Negative numbers are permitted, so 13-22 gives $E = -9$. Any excess operators are parsed as signs, so -2-+3 gives $E=-5$ and -+-31 gives $E = 31$. Trailing operators are discarded, so 2++-+ gives $E=2$. A string consisting only of operators, such as -++-+, gives $E=0$.)
+    }{%
+    Realize that the moment a sign is pressed, the expected value of the remaining numbers that are pressed after the sign will be equal to 0. This is most evidently seen in a few examples. For instance, the
+
+    NNNSN configuration (where N represents "Number" and S represents "Sign") will have the Ns cancel because there will be an equal amount with S as + and S as -. So, we are only considering up to when the first Sign is pressed.
+
+    We have the expected value is 2 of any one digit, since (1+2+3)/3 = 2.
+
+    Now, we can say that the expected value of a 5-digit number is 22222, a 4 digit number is 2222, a 3 digit is 222, a 2 digit number is 22 and one number will be 2. All we have to do is find the probability that the number will be a 5 digit number, or a 4 digit number, and so on.
+
+    So what is the chance we have a 5 digit number? This is just (3/5)^5.
+
+    Similarily, the chance of a 4-digit number is $(3/5)^(4) * (2/5)$ as there must be a sign as the 5th digit.
+
+    The 3-digit number chance is $(3/5)^(3)(2/5)(5/5)$ because the last digit can be anything, it is irrelevant.
+
+    The last two are $(3/5)^(2)*(2/5)*(5/5)^(2)$ and $(3/5)(2/5)(5/5)^3$.
+
+    Then we just multiply this all together. We get:
+
+    $\frac{(22222)(3)^{5}+(3)^{4}(2)(2222)+(3)^{3}(2)(5)(222)+(3)^{2}(2)(5)^{2}(22)+(3)(2)(5)^{3}(2)}{(5)^{5}}$
+
+    which turns out to be $\boxed{1866}$.
+
+    The reason why we multiply each of the chances by the 22222 and 2222's and so on is because those are the average values of the n-digit numbers, and so by expected value formula we do (chance)*(value), where the value is just the average n-digit number value.
+    }{%
+    https://artofproblemsolving.com/community/c139h517886
+}

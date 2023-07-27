@@ -1,0 +1,12 @@
+\pitem[MEMO 2018 I2]{%
+    The two figures depicted below consisting of $6$ and $10$ unit squares, respectively, are called staircases.
+    Consider a $2018\times 2018$ board consisting of $2018^2$ cells, each being a unit square. Two arbitrary
+    cells were removed from the same row of the board. Prove that the rest of the board cannot be cut (along the cell borders) into staircases (possibly rotated).
+    }{%
+    Impossibility proofs in tiling theory = coloring. (Unless we can do something about the special shape of the staircases.) Chessboard coloring: the two removed cells could be black or white. We need a more row-specific coloring!
+
+    Coloring odd rows black and even rows white, the staircases cover $4/2$, $6/4$ resp. Not helpful: the difference caused by the two cut out cells is also $=2$. Another row coloring? How about first two white, next two black, next two white, etc.? Staircases could cover $3/3$, $1/5$, $7/3$, $5/5$. Of course, this means
+    $$4|\text{covered white}-\text{covered black}.$$But in the mutilated board, the difference is $=\pm 2$. So the mutilated board cannot be covered, done.
+    }{%
+    https://artofproblemsolving.com/community/c6t219f6h1704012_the_rest_of_the_board_cannot_be_cut__into_staircases
+}

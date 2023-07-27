@@ -1,0 +1,16 @@
+\pitem[]{%
+    Let $n$ be a positive integer. Determine the number of lattice paths from $(0, 0)$ to $(n, n)$ using only unit up and right steps, such that the path stays in the region $x\geq y$.
+    }{%
+    It is easy to see that the total number of lattice paths from $(0, 0)$ to $(n, n)$ without the $x\geq y$ restriction is $\binom{2n}{n}$. Let us count the number of paths that goes into the $x<y$ region. Call these paths bad paths.  
+    We are going to prove there is a bijection between bad paths and paths from $(-1,1)$ to $(n,n)$, hence the total number of good paths equal
+    \[
+        \binom{2n}{n}-\binom{2n}{n+1}=\frac{1}{n+1}\binom{2n}{n}.
+    \]
+    Suppose that $P$ is a bad path. Since $P$ goes into the region $x < y$, it must hit the line $y = x + 1$ at some point. Let $X$ be the first point on the path $P$ that lies on the line $y = x + 1$. Now, reflect the portion of path $P$ up to $X$ about the line $y = x + 1$, keeping the latter portion of $P$ the same. This gives us a new path $P'$ starting from $(-1,1)$. 
+
+    For the inverse construction, for any path from $(-1,1)$ to $(n,n)$, let $X$ be the first point on the path lies on the line $y = x + 1$, and let $Q'$ be constructed from $Q$ by reflecting the first portion of $Q$ up to $X$ through the line $y = x + 1$ and keeping the rest the same. Then the inverse of the bijection given above sends $Q$ to $Q'$.
+
+    The remaining part is to prove these two constructions are of an inverse relation. We will leave this as a simple exercise.
+    }{%
+    https://yufeizhao.com/olympiad/bijections.pdf
+}

@@ -1,0 +1,21 @@
+\pitem[]{%
+Let n be an integer ,define the sequence $a_n$a by $a_n=\binom{2n}{n}$, find all integers m such that: there exist a positive integer $N$ :$\exists t\in N \forall n>N \in N$: $a_{n+t}=a_{n} mod m $.
+    }{%
+    Only $m=1,2$ work. The problem essentially asks to find all $m$ such that $\{a_n\}$ is eventually periodic modulo $m$.
+
+Lemma: If $p$ is an odd prime, then there do not exist $N,t$ such that $a_{n+t}\equiv a_n$ modulo $p$ for all $n>N$.
+
+Proof: Suppose this was not the case. Take some $k$ such that $p^k>\text{max}(N, pt)$ and consider numbers of the form $n = (p-1)p^k+a$ for $0\le a<p^{k-1}$. Then the base $p$ representation of $n$ is $\overline{(p-1)0A_{k-2}A_{k-3}...A_0}$ and the base $p$ representation of $2n$ is $\overline{1(p-2)B_{k-1}B_{k-2}...B_0}$. Then by Lucas's Theorem, we know $\binom{2n}{n} \equiv \binom{1}{0}\binom{p-2}{p-1}\binom{B_{k-1}}{0}...\equiv 0$ modulo $p$, since $\binom{p-2}{p-1}=0$. It follows that all such $a_n$ are zero modulo $p$.
+
+However, since every such $n$ is larger than $N$ by our assumption, and since there are $p^{k-1}>t$ consecutive values of $n$, by our assumption we see that $a_n\equiv 0$ modulo $p$ for all $n>N$. But now take $n=p^k$, where $p^k>N$, and then by Lucas's Theorem again we have $\binom{2n}{n}\equiv 2$ modulo $p$, a contradiction to the previous sentence. Therefore $\{a_n\}$ is not periodic modulo $p$.
+
+It follows by the above lemma that $m$ must be a power of two. Clearly $m=1$ and $m=2$ work, where the latter is because $v_2(a_n)\ge 1$ for all $n$. Now I claim $m=4$ fails; this will imply that $1,2$ are the only possible values of $m$.
+
+Note that $\binom{2n}{n}=2\binom{2n-1}{n-1}$, hence it's enough to show $b_n=\binom{2n-1}{n-1}$ is not eventually periodic modulo $2$. Suppose there existed $N,t$ such that $b_{n+t}\equiv b_n$ modulo $2$ for all $n>N$.
+
+This time we take $n-1=2^{k+1}+a$ for $0\le a<2^{k-1}$, where $2^k>\text{max} (N, 2t)$. Then $n-1$ has the base $2$ representation $\overline{100A_{k-2}A_{k-3}...A_0}$, and $2n-1=2(n-1)+1$ has the base $2$ representation $\overline{10B_kB_{k-1}...B_0}$, hence by Lucas we have $\binom{2n-1}{n-1} \equiv \binom{1}{0}\binom{0}{1}\binom{B_k}{0}...\binom{B_0}{A_0}\equiv 0$ as $\binom{0}{1}=0$, so this time we have $2^{k-1}>t$ consecutive values of $b_n$ which are all even and which satisfy $n>N$, implying by periodicity that $b_n$ is always even for $n>N$.
+
+But now take $n=2^k$ where $2^k>N$ so $b_n=\binom{2^{k+1}-1}{2^k-1}\equiv \binom{1}{0}\binom{1}{1}...\binom{1}{1}=1$ modulo $2$, contradicting the previous sentence. It follows that $\{b_i\}$ is not periodic modulo $2$, hence $\{a_i\}$ is not periodic modulo $4$, and we're done.
+    }{%
+    https://artofproblemsolving.com/community/c6h1545276p9373798 
+}

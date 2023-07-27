@@ -1,0 +1,34 @@
+\pitem[Kosovo TST 2019 P1]{%
+    There are 2019 cards in a box. Each card has a number written on one of its sides and a letter on the other side. Amy and Ben play the following game: in the beginning Amy takes all the cards, places them on a line and then she flips as many cards as she wishes. Each time Ben touches a card he has to flip it and its neighboring cards. Ben is allowed to have as many as 2019 touches. Ben wins if all the cards are on the numbers' side, otherwise Amy wins. Determine who has a winning strategy.
+    }{%
+%    Ben has a winning strategy.
+%    The problem is equivalent to:
+%    Is it possible to transform an arbitrary binary array of size 2019 into a binary array of size 2019 with all ones with at most 2019 moves?
+%    We will prove that it is possible for all $n\equiv 0\textnormal{ or }1\pmod{3}$ by induction.
+%
+%    \textbf{Base case:} We can prove by bruteforce for $n=3$.
+%
+%    \textbf{Induction:} We will induct on $3k\rightarrow 3k+1$ and $3k,3k+1\rightarrow 3(k+1)$.
+%
+%    $3k\rightarrow 3k+1$: 
+%    Transform the first $3k$ elements into ones. If the last bit is 1, the proof is complete. Else, the last bit is zero, so if we flip the last card then the first card we will have:
+%    $111...11110\rightarrow 111...11101\rightarrow 0011...11101$. Here, the number of ones "in the middle" is $3(k-3)$ so we can flip all the cards there into zeroes and we will have:
+    %    $000...001$ and because the number of zeroes is divisible by 3 we can flip them into ones.
+    %    We proved that we can get to an array of all ones in some number of moves (that number may be greater than $3k+1$) but because nothing changes if we flip the same card twice, it will always be possible in $3k+1$ flips.
+    %
+    %    $3k,3k+1\rightarrow 3(k+1)$:
+    %    First, flip the first $3k+1$ into ones (we can do that because of the claim) and if the last two elements are 00 or 11 the proof is complete because we can flip 00 into 11. Else, the last two elements are 01 or 10. If it is 01 flip it into 10 and after that flip the first card. We now have:
+    %    00111.....10 Where the number of ones is $3k$, so we can flip all the ones into zeroes and have an array of zeroes which can be transformed into an array of ones by flipping all cards with index $3i+2$.
+    %    With the same argument as above it will always be possible in $3k+1$ flips.
+    %
+    %    Hence we conclude with the fact $2019\equiv 0\pmod{3}$.
+    We will show that Beto has the winning strategy.
+    First of all ignore the condition that he can make at most $2022$ moves. We will allow an arbitrary number of moves, and then if we applied $k$ moves on a certain location, we replace $k$ with $k \pmod 2$ and become safe.
+    The main portion of the proof that follows hinges on $2022 \equiv 0 \pmod 3$. Now we run a linear scan on all indices from left to right. (let us number them from $1$ to $2022$ for convenience)
+    If the current card is colored White, just pass through it, otherwise flip the card next to it. (we stop when we reach the last card, and do not apply this move there)
+    This ensures that the first $2021$ cards are White. If the last one is also white, we are done. So assume that it is Black. If we apply the given type of on consecutive cards, then we immediately notice that we can swap indices $i$ and $i+3$ at the same time. Inductively, this also yields that it is possible to swap $i$ and $j$ with $i \equiv j \pmod 3$ without affecting rest of the board. In particular we can do this on $3$ and $2022$. So now location $3$ is black, all others are white. Apply the move on location $2$ and then location $1$. This completes the algorithm.
+
+    \textbf{Remark:} Show that the conclusion holds for any general $n \geqslant 3$ with $n \not \equiv 2 \pmod 3$ instead of $2022$. What happens if $n \equiv 2 \pmod 3$?
+    }{%
+    https://artofproblemsolving.com/community/c6t45487f6h1821951_kosovo_tst_2019_p1
+}

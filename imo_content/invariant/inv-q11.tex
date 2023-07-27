@@ -1,0 +1,18 @@
+\pitem[Czech-Polish-Slovak Match, 2011]{%
+    Written on a blackboard are $n$ nonnegative integers whose greatest common divisor is $1$. A move consists of erasing two numbers $x$ and $y$, where $x\ge y$, on the blackboard and replacing them with the numbers $x-y$ and $2y$. Determine for which original $n$-tuples of numbers on the blackboard is it possible to reach a point, after some number of moves, where $n-1$ of the numbers of the blackboard are zeroes.
+    }{%
+    An $n$-tuple of nonnegative integers $(x_{1}, \ldots , x_{n})$, with no restrictions on their common denominator, will be called good if there exists a sequence of moves which result in $n-1$ zeros left on the blackboard. We would like to find the set of all good $n$-tuples. I claim that the good $n$-tuples $(x_{1}, \ldots , x_{n})$ are those for which $\frac{x_{1}}{g}+\ldots+\frac{x_{n}}{g}$ is a power of $2$, where $g=GCD(x_{1}, \ldots , x_{n})$.
+
+We first state a few observations.
+
+    The sum $x_{1}+\ldots+x_{n}$ is invariant over moves.
+    $(x_{1}, \ldots , x_{n})$ is good if and only if $(Nx_{1}, \ldots , Nx_{n})$ is good for any positive integer $N$.
+    An odd integer $m$ divides $x_{1}-x_{2},2x_{2},x_{3},\ldots,x_{n}$ if and only if $m$ divides $x_{1},x_{2},x_{3},\ldots,x_{n}$. This implies in particular that the gcd of the numbers on the board either stay the same or differ by factors of $2$ between moves.
+
+
+Suppose that $(x_{1}, \ldots , x_{n})$ is good. Let $m$ be the greatest odd integer which divides $x_{1}+\ldots+x_{n}$. The 3rd observation above implies that $m$ divides each of $x_{1},\ldots,x_{n}$. Hence $m$ divides $g$ and $\frac{x_{1}}{g}+\ldots+\frac{x_{n}}{g}$ is a power of $2$.
+
+Suppose that $\frac{x_{1}}{g}+\ldots+\frac{x_{n}}{g}$ is a power of $2$; we prove that $(x_{1}, \ldots , x_{n})$ is good. By the 2nd observation above, it suffices to prove that $(\frac{x_{1}}{g},\ldots,\frac{x_{n}}{g})$ is good, so let us assume $g=1$. If $x_{1}+\ldots+x_{n}=1$, then WLOG $x_{1}=1$ and the rest are zero, and there is nothing to prove. Let $x_{1}+\ldots+x_{n}>1$. Since $x_{1}+\ldots+x_{n}$ is even, we can perform a series of moves so that no odd number is left on the board (performing a move on two odd numbers gives two even numbers). Suppose that the even numbers left on the board now are $x_{1}',\ldots,x_{n}'$; since $\frac{x_{1}'}{2}+\ldots+\frac{x_{n}'}{2}$ is a power of $2$, the induction hypothesis tells us that $(\frac{x_{1}'}{2}, \ldots , \frac{x_{n}'}{2})$ is good; and $(x_{1}, \ldots , x_{n})$ is good by the 2nd observation.
+    }{%
+    https://artofproblemsolving.com/community/c6t219f6h423188_changing_numbers_on_a_blackboard_to_zeroes
+}
