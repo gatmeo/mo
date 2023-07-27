@@ -1,0 +1,25 @@
+case "$1" in
+	*.tex)
+	file=$(readlink -f "$1") 
+	[ ! -f "$file" ] && echo "no file ${1}, aborting" && exit 0
+	dir=$(dirname "$file")
+	base="${file%.*}"
+	bkup="${base}_backup.tex"
+	cp $file $bkup
+	for t in note sol beamer
+	do 
+		fname="${base}.tex" &&
+		cat $dir/${2-.}/template_$t.tex > $fname &&
+		sed -n '/^\\begin{document}$/,$p' ${bkup} >> $fname &&
+		latexmk $fname &&
+		latexmk $fname &&
+		cp $dir/build/${base##*/}.pdf "${base}_$t.pdf" &&
+		echo "Generated $t to ${base}_$t.pdf" ||
+		echo "Failed"
+	done
+	cp $bkup $file
+	rm $bkup
+	echo "removed $bkup"
+	;;
+	*) printf "Give .tex file as argument.\\n" ;;
+esac
